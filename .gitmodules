@@ -5,3 +5,4 @@
 [submodule "src/third_party/VecFor"]
 	path = src/third_party/VecFor
 	url = https://github.com/szaghi/VecFor
+   branch = master
