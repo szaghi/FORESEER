@@ -25,15 +25,20 @@ type, extends(conservative_object) :: conservative_compressible
       procedure, pass(self) :: velocity             !< Return velocity vector.
       ! deferred methods
       procedure, pass(self) :: array              !< Return serialized array of conservative.
+      procedure, pass(self) :: compute_fluxes     !< Compute conservative fluxes.
       procedure, pass(self) :: destroy            !< Destroy conservative.
       procedure, pass(self) :: initialize         !< Initialize conservative.
-      procedure, pass(self) :: fluxes             !< Return conservative fluxes.
       procedure, pass(lhs)  :: cons_assign_cons   !< Operator `=`.
       procedure, pass(lhs)  :: cons_multiply_cons !< Operator `*`.
       procedure, pass(rhs)  :: real_multiply_cons !< Operator `real * cons`.
       procedure, pass(lhs)  :: add                !< Operator `+`.
       procedure, pass(lhs)  :: sub                !< Operator `-`.
 endtype conservative_compressible
+
+interface conservative_compressible
+   !< Overload [[conservative_compressible]] name with its constructor.
+   module procedure conservative_compressible_instance
+endinterface
 
 contains
    ! public methods
@@ -79,6 +84,28 @@ contains
    array_(7) = self%energy
    endfunction array
 
+   subroutine compute_fluxes(self, normal, fluxes)
+   !< Compute conservative fluxes.
+   class(conservative_compressible), intent(in)  :: self             !< Conservative.
+   type(vector),                     intent(in)  :: normal           !< Normal (versor) of face where fluxes are given.
+   class(conservative_object),       intent(out) :: fluxes           !< Conservative fluxes.
+   real(R8P)                                     :: pressure_        !< Pressure value.
+   type(vector)                                  :: velocity_        !< Velocity vector.
+   real(R8P)                                     :: velocity_normal_ !< Velocity component parallel to given normal.
+
+   select type(fluxes)
+   class is(conservative_compressible)
+      pressure_ = self%pressure()
+      velocity_ = self%velocity()
+      velocity_normal_ = velocity_.dot.normal
+      fluxes%cp = self%cp
+      fluxes%cv = self%cv
+      fluxes%density = self%momentum.dot.normal
+      fluxes%momentum = self%density * velocity_ * velocity_normal_ + pressure_ * normal
+      fluxes%energy = (self%energy + pressure_) * velocity_normal_
+   endselect
+   endsubroutine compute_fluxes
+
    elemental subroutine destroy(self)
    !< Destroy conservative.
    class(conservative_compressible), intent(inout) :: self  !< Conservative.
@@ -101,28 +128,6 @@ contains
       call self%destroy
    endif
    endsubroutine initialize
-
-   subroutine fluxes(self, normal, conservative_fluxes)
-   !< Return conservative fluxes.
-   class(conservative_compressible), intent(in)  :: self                !< Conservative.
-   type(vector),                     intent(in)  :: normal              !< Normal (versor) of face where fluxes are given.
-   class(conservative_object),       intent(out) :: conservative_fluxes !< Conservative fluxes.
-   real(R8P)                                     :: pressure_           !< Pressure value.
-   type(vector)                                  :: velocity_           !< Velocity vector.
-   real(R8P)                                     :: velocity_normal_    !< Velocity component parallel to given normal.
-
-   select type(conservative_fluxes)
-   class is(conservative_compressible)
-      pressure_ = self%pressure()
-      velocity_ = self%velocity()
-      velocity_normal_ = velocity_.dot.normal
-      conservative_fluxes%cp = self%cp
-      conservative_fluxes%cv = self%cv
-      conservative_fluxes%density = self%momentum.dot.normal
-      conservative_fluxes%momentum = self%density * velocity_ * velocity_normal_ + pressure_ * normal
-      conservative_fluxes%energy = (self%energy + pressure_) * velocity_normal_
-   endselect
-   endsubroutine fluxes
 
    ! operators
    pure subroutine cons_assign_cons(lhs, rhs)
@@ -151,6 +156,8 @@ contains
    allocate(conservative_compressible :: operator_result)
    select type(operator_result)
    class is(conservative_compressible)
+      operator_result%cp       = rhs%cp
+      operator_result%cv       = rhs%cv
       operator_result%density  = lhs * rhs%density
       operator_result%momentum = lhs * rhs%momentum
       operator_result%energy   = lhs * rhs%energy
@@ -219,4 +226,23 @@ contains
       endselect
    endselect
    endfunction sub
+
+   ! private non TBP
+   elemental function conservative_compressible_instance(cp, cv, density, momentum, energy) result(instance)
+   !< Return and instance of [[conservative_compressible]].
+   !<
+   !< @note This procedure is used for overloading [[conservative_compressible]] name.
+   real(R8P),    intent(in)           :: cp       !< Specific heat at constant pressure.
+   real(R8P),    intent(in)           :: cv       !< Specific heat at constant volume.
+   real(R8P),    intent(in), optional :: density  !< Density, `rho`.
+   type(vector), intent(in), optional :: momentum !< Momentum, `rho * v`, `rho` being the density and `v` the velocity vector.
+   real(R8P),    intent(in), optional :: energy   !< Energy, `rho * E`, `rho` being the density and `E` the specific energy.
+   type(conservative_compressible)    :: instance !< Instance of [[conservative_compressible]].
+
+   instance%cp = cp
+   instance%cv = cv
+   if (present(density)) instance%density = density
+   if (present(momentum)) instance%momentum = momentum
+   if (present(energy)) instance%energy = energy
+   endfunction conservative_compressible_instance
 endmodule foreseer_conservative_compressible
