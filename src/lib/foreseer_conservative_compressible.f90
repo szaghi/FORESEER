@@ -3,6 +3,7 @@
 module foreseer_conservative_compressible
 !< Define the abstract conservative compressible state of a Riemann Problem for FORESEER library.
 
+use, intrinsic :: iso_fortran_env, only : stderr=>error_unit
 use foreseer_conservative_object, only : conservative_object
 use penf, only : R8P
 use vecfor, only : vector
@@ -20,6 +21,9 @@ type, extends(conservative_object) :: conservative_compressible
    real(R8P)    :: energy=0._R8P  !< Energy, `rho * E`, `rho` being the density and `E` the specific energy.
    contains
       ! public methods
+      procedure, nopass     :: associate_guarded    !< Return [[conservative_compressible]] pointer associated
+                                                    !< to [[conservative_object]] or its extensions until
+                                                    !< [[conservative_compressible]] included.
       procedure, pass(self) :: pressure             !< Return pressure value.
       procedure, pass(self) :: specific_heats_ratio !< Return specific heats ratio `cp/cv`.
       procedure, pass(self) :: velocity             !< Return velocity vector.
@@ -42,6 +46,25 @@ endinterface
 
 contains
    ! public methods
+   function associate_guarded(to, error_message) result(pointer_)
+   !< Return [[conservative_compressible]] pointer associated to [[conservative_object]] or its extensions until
+   !< [[conservative_compressible]] included.
+   !<
+   !< @note A type-guard check is performed and error stop is raised if necessary.
+   class(conservative_object), intent(in), target   :: to            !< Target of associate.
+   character(*),               intent(in), optional :: error_message !< Auxiliary error message.
+   class(conservative_compressible), pointer        :: pointer_      !< Associated pointer.
+
+   select type(to)
+   type is(conservative_compressible)
+      pointer_ => to
+   class default
+      write(stderr, '(A)') 'error: cast conservative_object to conservative_compressible failed!'
+      if (present(error_message)) write(stderr, '(A)') error_message
+      stop
+   endselect
+   endfunction associate_guarded
+
    elemental function pressure(self) result(pressure_)
    !< Return pressure value.
    class(conservative_compressible), intent(in) :: self      !< Conservative.

@@ -8,11 +8,12 @@ use penf, only : R8P, ZeroR8
 use vecfor, only : ex, vector
 
 implicit none
-type(conservative_compressible) :: u                    !< A conservative compressible instance.
-type(conservative_compressible) :: f                    !< Conservative fluxes.
-type(vector)                    :: velocity             !< Velocity vector.
-real(R8P), allocatable          :: u_serialized(:)      !< Conservative variable serialized.
-logical                         :: are_tests_passed(12) !< List of passed tests.
+type(conservative_compressible)          :: u                    !< A conservative compressible instance.
+type(conservative_compressible), pointer :: u_pointer            !< A conservative compressible pointer.
+type(conservative_compressible)          :: f                    !< Conservative fluxes.
+type(vector)                             :: velocity             !< Velocity vector.
+real(R8P), allocatable                   :: u_serialized(:)      !< Conservative variable serialized.
+logical                                  :: are_tests_passed(13) !< List of passed tests.
 
 are_tests_passed = .false.
 
@@ -107,6 +108,16 @@ are_tests_passed(12) = (u%cp       >= 1040.004_R8P - ZeroR8).and.(u%cp       <= 
                        (u%momentum >= 0._R8P -       ZeroR8).and.(u%momentum <= 0._R8P       + ZeroR8).and. &
                        (u%energy   >= 0._R8P -       ZeroR8).and.(u%energy   <= 0._R8P       + ZeroR8)
 print "(A,L1)", 'u - u, is done right? ', are_tests_passed(12)
+
+u = conservative_compressible(cp=1040.004_R8P, cv=742.86_R8P, density=1._R8P, momentum=ex, energy=2.5_R8P)
+
+u_pointer => u_pointer%associate_guarded(to=u)
+are_tests_passed(13) = (u%cp       >= 1040.004_R8P - ZeroR8).and.(u%cp       <= 1040.004_R8P + ZeroR8).and. &
+                       (u%cv       >= 742.86_R8P -   ZeroR8).and.(u%cv       <= 742.86_R8P   + ZeroR8).and. &
+                       (u%density  >= 1._R8P -       ZeroR8).and.(u%density  <= 1._R8P       + ZeroR8).and. &
+                       (u%momentum >= 1._R8P -       ZeroR8).and.(u%momentum <= 1._R8P       + ZeroR8).and. &
+                       (u%energy   >= 2.5_R8P -      ZeroR8).and.(u%energy   <= 2.5_R8P      + ZeroR8)
+print "(A,L1)", 'u => u, is done right? ', are_tests_passed(13)
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
 endprogram foreseer_test_conservative_compressible

@@ -3,15 +3,20 @@
 module foreseer_riemann_solver_llf
 !< Define the Local Lax-Friedrichs (known also as Rusanov) Riemann solver of FORESEER library.
 
+use foreseer_conservative_compressible, only : conservative_compressible
+use foreseer_conservative_object, only : conservative_object
 use foreseer_riemann_solver_object, only : riemann_solver_object
 use penf, only : I4P, R8P
+use vecfor, only : vector
 
 implicit none
 private
 public :: riemann_solver_llf
 
 type, extends(riemann_solver_object) :: riemann_solver_llf
-   !< Abstract Riemann Solver.
+   !< Local Lax-Friedrichs (known also as Rusanov) Riemann Solver.
+   !<
+   !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    contains
       ! public deferred methods
       procedure, pass(self) :: initialize !< Initialize solver.
@@ -25,37 +30,42 @@ contains
    class(riemann_solver_llf), intent(inout) :: self !< Solver.
    endsubroutine initialize
 
-   subroutine solve(self, state_left, state_right, flux)
+   subroutine solve(self, state_left, state_right, normal, fluxes)
    !< Solve Riemann Problem.
    !<
    !< Approximate Riemann Solver based on (local) Lax-Friedrichs (known also as Rusanov) algorithm.
-   class(riemann_solver_llf), intent(inout) :: self                       !< Solver.
-   real(R8P),                 intent(in)    :: state_left(1:)             !< Left Riemann state.
-   real(R8P),                 intent(in)    :: state_right(1:)            !< Right Riemann state.
-   real(R8P),                 intent(out)   :: flux(1:)                   !< Fluxes of the Riemann Problem solution.
-   real(R8P)                                :: waves14(1:2)               !< Waves speeds 1 and 4.
-   real(R8P)                                :: flux1(1:size(flux, dim=1)) !< Fluxes of state 1.
-   real(R8P)                                :: flux4(1:size(flux, dim=1)) !< Fluxes of state 4.
-   real(R8P)                                :: lmax                       !< Maximum wave speed estimation.
+   class(riemann_solver_llf),  intent(inout) :: self         !< Solver.
+   class(conservative_object), intent(in)    :: state_left   !< Left Riemann state.
+   class(conservative_object), intent(in)    :: state_right  !< Right Riemann state.
+   type(vector),               intent(in)    :: normal       !< Normal (versor) of face where fluxes are given.
+   class(conservative_object), intent(out)   :: fluxes       !< Fluxes of the Riemann Problem solution.
+   class(conservative_compressible), pointer :: state_left_  !< Left Riemann state, local variable.
+   class(conservative_compressible), pointer :: state_right_ !< Right Riemann state, local variable.
+   real(R8P)                                 :: waves14(1:2) !< Waves speeds 1 and 4.
+   type(conservative_compressible)           :: fluxes_left  !< Fluxes of left state.
+   type(conservative_compressible)           :: fluxes_right !< Fluxes of right state.
+   real(R8P)                                 :: lmax         !< Maximum wave speed estimation.
 
-   call compute_waves(state_left=state_left, state_right=state_right, waves14=waves14)
+   state_left_ =>  state_left_%associate_guarded(to=state_left)
+   state_right_ =>  state_right_%associate_guarded(to=state_right)
+   call compute_waves(state_left=state_left_, state_right=state_right_, normal=normal, waves14=waves14)
    lmax = max(abs(waves14(1)), abs(waves14(2)))
-   call compute_flux(state=state_left,  flux=flux1)
-   call compute_flux(state=state_right, flux=flux4)
-   flux = 0.5_R8P * (flux1 + flux4 - lmax * (state_right - state_left))
+   call state_left%compute_fluxes(normal=normal, fluxes=fluxes_left)
+   call state_right%compute_fluxes(normal=normal, fluxes=fluxes_right)
+   select type(fluxes)
+   type is(conservative_compressible)
+      fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right - state_left)))
+   endselect
    endsubroutine solve
 
    ! non TBP
-   subroutine compute_flux(state, flux)
-   !< Compute flux given a state.
-   real(R8P), intent(in)  :: state(1:) !< A Riemann state.
-   real(R8P), intent(out) :: flux(1:)  !< Fluxes of the Riemann state..
-   endsubroutine compute_flux
-
-   subroutine compute_waves(state_left, state_right, waves14)
+   subroutine compute_waves(state_left, state_right, normal, waves14)
    !< Compute waves pattern.
-   real(R8P), intent(in)  :: state_left(1:)  !< Left Riemann state.
-   real(R8P), intent(in)  :: state_right(1:) !< Right Riemann state.
-   real(R8P), intent(out) :: waves14(1:)     !< Waves speeds 1 and 4.
+   !<
+   !< @TODO Implement this.
+   class(conservative_compressible), intent(in)  :: state_left  !< Left Riemann state.
+   class(conservative_compressible), intent(in)  :: state_right !< Right Riemann state.
+   type(vector),                     intent(in)  :: normal      !< Normal (versor) of face where fluxes are given.
+   real(R8P),                        intent(out) :: waves14(1:) !< Waves speeds 1 and 4.
    endsubroutine compute_waves
 endmodule foreseer_riemann_solver_llf
