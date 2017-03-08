@@ -3,7 +3,8 @@
 module foreseer_riemann_solver_object
 !< Define the abstract Riemann solver of FORESEER library.
 
-use penf, only : I4P, R8P
+use foreseer_conservative_object, only : conservative_object
+use vecfor, only : vector
 
 implicit none
 private
@@ -25,13 +26,14 @@ abstract interface
    class(riemann_solver_object), intent(inout) :: self !< Solver.
    endsubroutine initialize_interface
 
-   subroutine solve_interface(self, state_left, state_right, flux)
+   subroutine solve_interface(self, state_left, state_right, normal, fluxes)
    !< Solve Riemann Problem.
-   import :: R8P, riemann_solver_object
-   class(riemann_solver_object), intent(inout) :: self            !< Solver.
-   real(R8P),                    intent(in)    :: state_left(1:)  !< Left Riemann state.
-   real(R8P),                    intent(in)    :: state_right(1:) !< Right Riemann state.
-   real(R8P),                    intent(out)   :: flux(1:)        !< Fluxes of the Riemann Problem solution.
+   import :: conservative_object, riemann_solver_object, vector
+   class(riemann_solver_object), intent(inout) :: self        !< Solver.
+   class(conservative_object),   intent(in)    :: state_left  !< Left Riemann state.
+   class(conservative_object),   intent(in)    :: state_right !< Right Riemann state.
+   type(vector),                 intent(in)    :: normal      !< Normal (versor) of face where fluxes are given.
+   class(conservative_object),   intent(out)   :: fluxes      !< Fluxes of the Riemann Problem solution.
    endsubroutine solve_interface
 endinterface
 endmodule foreseer_riemann_solver_object

@@ -14,15 +14,15 @@ type, abstract :: conservative_object
   !< Convervative object class.
   contains
      ! deferred methods
-     procedure(array_interface),      pass(self), deferred :: array              !< Return serialized array of conservative.
-     procedure(destroy_interface),    pass(self), deferred :: destroy            !< Destroy conservative.
-     procedure(initialize_interface), pass(self), deferred :: initialize         !< Initialize conservative.
-     procedure(fluxes_interface),     pass(self), deferred :: fluxes             !< Return conservative fluxes.
-     procedure(assignment_interface), pass(lhs),  deferred :: cons_assign_cons   !< Operator `=`.
-     procedure(symmetric_operator),   pass(lhs),  deferred :: cons_multiply_cons !< Operator `*`.
-     procedure(real_operator_cons),   pass(rhs),  deferred :: real_multiply_cons !< Operator `real * cons`.
-     procedure(symmetric_operator),   pass(lhs),  deferred :: add                !< Operator `+`.
-     procedure(symmetric_operator),   pass(lhs),  deferred :: sub                !< Operator `-`.
+     procedure(array_interface),          pass(self), deferred :: array              !< Return serialized array of conservative.
+     procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes     !< Compute conservative fluxes.
+     procedure(destroy_interface),        pass(self), deferred :: destroy            !< Destroy conservative.
+     procedure(initialize_interface),     pass(self), deferred :: initialize         !< Initialize conservative.
+     procedure(assignment_interface),     pass(lhs),  deferred :: cons_assign_cons   !< Operator `=`.
+     procedure(symmetric_operator),       pass(lhs),  deferred :: cons_multiply_cons !< Operator `*`.
+     procedure(real_operator_cons),       pass(rhs),  deferred :: real_multiply_cons !< Operator `real * cons`.
+     procedure(symmetric_operator),       pass(lhs),  deferred :: add                !< Operator `+`.
+     procedure(symmetric_operator),       pass(lhs),  deferred :: sub                !< Operator `-`.
      ! operators
      generic :: assignment(=) => cons_assign_cons                     !< Overload `=`.
      generic :: operator(+) => add                                    !< Overload `+`.
@@ -39,6 +39,14 @@ abstract interface
    real(R8P), allocatable                 :: array_(:) !< Serialized array of conservative.
    endfunction array_interface
 
+   subroutine compute_fluxes_interface(self, normal, fluxes)
+   !< Compute conservative fluxes.
+   import :: conservative_object, vector
+   class(conservative_object), intent(in)  :: self   !< Conservative.
+   type(vector),               intent(in)  :: normal !< Normal (versor) of face where fluxes are given.
+   class(conservative_object), intent(out) :: fluxes !< Conservative fluxes.
+   endsubroutine compute_fluxes_interface
+
    elemental subroutine destroy_interface(self)
    !< Destroy conservative.
    import :: conservative_object
@@ -51,14 +59,6 @@ abstract interface
    class(conservative_object),           intent(inout) :: self          !< Conservative.
    class(conservative_object), optional, intent(in)    :: initial_state !< Initial state.
    endsubroutine initialize_interface
-
-   subroutine fluxes_interface(self, normal, conservative_fluxes)
-   !< Return conservative fluxes.
-   import :: conservative_object, vector
-   class(conservative_object), intent(in)  :: self                !< Conservative.
-   type(vector),               intent(in)  :: normal              !< Normal (versor) of face where fluxes are given.
-   class(conservative_object), intent(out) :: conservative_fluxes !< Conservative fluxes.
-   endsubroutine fluxes_interface
 
    pure subroutine assignment_interface(lhs, rhs)
    !< Operator `=`.
