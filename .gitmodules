@@ -2,3 +2,6 @@
    path = src/third_party/PENF
    url = https://github.com/szaghi/PENF
    branch = master
+[submodule "src/third_party/VecFor"]
+	path = src/third_party/VecFor
+	url = https://github.com/szaghi/VecFor
