@@ -5,6 +5,7 @@ module foreseer_riemann_solver_llf
 
 use foreseer_conservative_compressible, only : conservative_compressible
 use foreseer_conservative_object, only : conservative_object
+use foreseer_eos_object, only : eos_object
 use foreseer_riemann_solver_object, only : riemann_solver_object
 use penf, only : I4P, R8P
 use vecfor, only : vector
@@ -30,12 +31,14 @@ contains
    class(riemann_solver_llf), intent(inout) :: self !< Solver.
    endsubroutine initialize
 
-   subroutine solve(self, state_left, state_right, normal, fluxes)
+   subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Solve Riemann Problem.
    !<
    !< Approximate Riemann Solver based on (local) Lax-Friedrichs (known also as Rusanov) algorithm.
    class(riemann_solver_llf),  intent(inout) :: self         !< Solver.
+   class(eos_object),          intent(in)    :: eos_left     !< Equation of state for left state.
    class(conservative_object), intent(in)    :: state_left   !< Left Riemann state.
+   class(eos_object),          intent(in)    :: eos_right    !< Equation of state for right state.
    class(conservative_object), intent(in)    :: state_right  !< Right Riemann state.
    type(vector),               intent(in)    :: normal       !< Normal (versor) of face where fluxes are given.
    class(conservative_object), intent(out)   :: fluxes       !< Fluxes of the Riemann Problem solution.
@@ -50,8 +53,8 @@ contains
    state_right_ =>  state_right_%associate_guarded(to=state_right)
    call compute_waves(state_left=state_left_, state_right=state_right_, normal=normal, waves14=waves14)
    lmax = max(abs(waves14(1)), abs(waves14(2)))
-   call state_left%compute_fluxes(normal=normal, fluxes=fluxes_left)
-   call state_right%compute_fluxes(normal=normal, fluxes=fluxes_right)
+   call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
+   call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
    select type(fluxes)
    type is(conservative_compressible)
       fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right - state_left)))

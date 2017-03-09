@@ -3,6 +3,7 @@
 module foreseer_conservative_object
 !< Define the abstract conservative state of a Riemann Problem for FORESEER library.
 
+use foreseer_eos_object, only : eos_object
 use penf, only : R8P
 use vecfor, only : vector
 
@@ -39,10 +40,11 @@ abstract interface
    real(R8P), allocatable                 :: array_(:) !< Serialized array of conservative.
    endfunction array_interface
 
-   subroutine compute_fluxes_interface(self, normal, fluxes)
+   subroutine compute_fluxes_interface(self, eos, normal, fluxes)
    !< Compute conservative fluxes.
-   import :: conservative_object, vector
+   import :: conservative_object, eos_object, vector
    class(conservative_object), intent(in)  :: self   !< Conservative.
+   class(eos_object),          intent(in)  :: eos    !< Equation of state.
    type(vector),               intent(in)  :: normal !< Normal (versor) of face where fluxes are given.
    class(conservative_object), intent(out) :: fluxes !< Conservative fluxes.
    endsubroutine compute_fluxes_interface
