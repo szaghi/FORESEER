@@ -17,14 +17,15 @@ type, extends(eos_object) :: eos_compressible
    real(R8P) :: cv_=0._R8P !< Specific heat at constant volume `cv`.
    contains
       ! deferred methods
-      procedure, pass(self) :: cp          !< Return specific heat at constant pressure `cp` value.
-      procedure, pass(self) :: cv          !< Return specific heat at constant volume `cv` value.
-      procedure, pass(self) :: density     !< Return density value.
-      procedure, pass(self) :: energy      !< Return specific internal energy value.
-      procedure, pass(self) :: gam         !< Return specific heats ratio `gamma=cp/cv` value.
-      procedure, pass(self) :: pressure    !< Return pressure value.
-      procedure, pass(self) :: R           !< Return fluid constant `R=cp-cv` value.
-      procedure, pass(self) :: temperature !< Return temperature value.
+      procedure, pass(self) :: cp             !< Return specific heat at constant pressure.
+      procedure, pass(self) :: cv             !< Return specific heat at constant volume.
+      procedure, pass(self) :: density        !< Return density.
+      procedure, pass(self) :: energy         !< Return specific internal energy.
+      procedure, pass(self) :: gam            !< Return specific heats ratio `gamma=cp/cv`.
+      procedure, pass(self) :: pressure       !< Return pressure.
+      procedure, pass(self) :: R              !< Return fluid constant `R=cp-cv`.
+      procedure, pass(self) :: speed_of_sound !< Return speed of sound.
+      procedure, pass(self) :: temperature    !< Return temperature.
 endtype eos_compressible
 
 interface eos_compressible
@@ -35,7 +36,7 @@ endinterface
 contains
    ! deferred methods
    elemental function cp(self) result(cp_)
-   !< Return specific heat at constant pressure `cp` value.
+   !< Return specific heat at constant pressure.
    class(eos_compressible), intent(in) :: self !< Equation of state.
    real(R8P)                           :: cp_  !< `cp` value.
 
@@ -43,7 +44,7 @@ contains
    endfunction cp
 
    elemental function cv(self) result(cv_)
-   !< Return specific heat at constant volume `cv` value.
+   !< Return specific heat at constant volume.
    class(eos_compressible), intent(in) :: self !< Equation of state.
    real(R8P)                           :: cv_  !< `cv` value.
 
@@ -51,7 +52,7 @@ contains
    endfunction cv
 
    elemental function density(self, energy, pressure, temperature) result(density_)
-   !< Return density value.
+   !< Return density.
    class(eos_compressible), intent(in)           :: self        !< Equation of state.
    real(R8P),               intent(in), optional :: energy      !< Specific internal energy value.
    real(R8P),               intent(in), optional :: pressure    !< Pressure value.
@@ -67,7 +68,7 @@ contains
    endfunction density
 
    elemental function energy(self, density, pressure, temperature) result(energy_)
-   !< Return specific internal energy value.
+   !< Return specific internal energy.
    class(eos_compressible), intent(in)           :: self        !< Equation of state.
    real(R8P),               intent(in), optional :: density     !< Density value.
    real(R8P),               intent(in), optional :: pressure    !< Pressure value.
@@ -83,7 +84,7 @@ contains
    endfunction energy
 
    elemental function gam(self) result(gam_)
-   !< Return specific heats ratio `gamma=cp/cv` value.
+   !< Return specific heats ratio `gamma=cp/cv`.
    class(eos_compressible), intent(in) :: self !< Equation of state.
    real(R8P)                           :: gam_ !< Specific heats ratio value.
 
@@ -91,7 +92,7 @@ contains
    endfunction gam
 
    elemental function pressure(self, density, energy, temperature) result(pressure_)
-   !< Return pressure value.
+   !< Return pressure.
    class(eos_compressible), intent(in)           :: self        !< Equation of state.
    real(R8P),               intent(in), optional :: density     !< Density value.
    real(R8P),               intent(in), optional :: energy      !< Specific internal energy value.
@@ -107,15 +108,25 @@ contains
    endfunction pressure
 
    elemental function R(self) result(R_)
-   !< Return fluid constant `R=cp-cv` value.
+   !< Return fluid constant `R=cp-cv`.
    class(eos_compressible), intent(in) :: self !< Equation of state.
    real(R8P)                           :: R_   !< Fluid constant value.
 
    R_ =  self%cp_ - self%cv_
    endfunction R
 
+   elemental function speed_of_sound(self, density, pressure) result(speed_of_sound_)
+   !< Return speed of sound.
+   class(eos_compressible), intent(in) :: self            !< Equation of state.
+   real(R8P),               intent(in) :: density         !< Density value.
+   real(R8P),               intent(in) :: pressure        !< Pressure value.
+   real(R8P)                           :: speed_of_sound_ !< Speed of sound value.
+
+   speed_of_sound_ = sqrt(self%gam() * pressure / density)
+   endfunction speed_of_sound
+
    elemental function temperature(self, density, energy, pressure) result(temperature_)
-   !< Return temperature value.
+   !< Return temperature.
    class(eos_compressible), intent(in)           :: self         !< Equation of state.
    real(R8P),               intent(in), optional :: density      !< Density value.
    real(R8P),               intent(in), optional :: energy       !< Specific internal energy value.

@@ -23,13 +23,13 @@ type, extends(conservative_object) :: conservative_compressible
       procedure, nopass     :: associate_guarded !< Return [[conservative_compressible]] pointer associated
                                                  !< to [[conservative_object]] or its extensions until
                                                  !< [[conservative_compressible]] included.
-      procedure, pass(self) :: pressure          !< Return pressure value.
-      procedure, pass(self) :: velocity          !< Return velocity vector.
       ! deferred methods
       procedure, pass(self) :: array              !< Return serialized array of conservative.
       procedure, pass(self) :: compute_fluxes     !< Compute conservative fluxes.
       procedure, pass(self) :: destroy            !< Destroy conservative.
       procedure, pass(self) :: initialize         !< Initialize conservative.
+      procedure, pass(self) :: pressure           !< Return pressure value.
+      procedure, pass(self) :: velocity           !< Return velocity vector.
       procedure, pass(lhs)  :: cons_assign_cons   !< Operator `=`.
       procedure, pass(lhs)  :: cons_multiply_cons !< Operator `*`.
       procedure, pass(rhs)  :: real_multiply_cons !< Operator `real * cons`.
@@ -62,25 +62,6 @@ contains
       stop
    endselect
    endfunction associate_guarded
-
-   elemental function pressure(self, eos) result(pressure_)
-   !< Return pressure value.
-   class(conservative_compressible), intent(in) :: self      !< Conservative.
-   class(eos_object),                intent(in) :: eos       !< Equation of state.
-   real(R8P)                                    :: pressure_ !< Pressure value.
-   type(vector)                                 :: velocity_ !< Velocity vector.
-
-   velocity_ = self%velocity()
-   pressure_ = (eos%gam() - 1._R8P) * (self%energy - 0.5_R8P * self%density * velocity_%sq_norm())
-   endfunction pressure
-
-   elemental function velocity(self) result(velocity_)
-   !< Return velocity vector.
-   class(conservative_compressible), intent(in) :: self      !< Conservative.
-   type(vector)                                 :: velocity_ !< Velocity vector.
-
-   velocity_ = self%momentum / self%density
-   endfunction velocity
 
    ! deferred methods
    pure function array(self) result(array_)
@@ -139,6 +120,25 @@ contains
       call self%destroy
    endif
    endsubroutine initialize
+
+   elemental function pressure(self, eos) result(pressure_)
+   !< Return pressure value.
+   class(conservative_compressible), intent(in) :: self      !< Conservative.
+   class(eos_object),                intent(in) :: eos       !< Equation of state.
+   real(R8P)                                    :: pressure_ !< Pressure value.
+   type(vector)                                 :: velocity_ !< Velocity vector.
+
+   velocity_ = self%velocity()
+   pressure_ = (eos%gam() - 1._R8P) * (self%energy - 0.5_R8P * self%density * velocity_%sq_norm())
+   endfunction pressure
+
+   elemental function velocity(self) result(velocity_)
+   !< Return velocity vector.
+   class(conservative_compressible), intent(in) :: self      !< Conservative.
+   type(vector)                                 :: velocity_ !< Velocity vector.
+
+   velocity_ = self%momentum / self%density
+   endfunction velocity
 
    ! operators
    pure subroutine cons_assign_cons(lhs, rhs)

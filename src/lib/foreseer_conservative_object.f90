@@ -12,23 +12,25 @@ private
 public :: conservative_object
 
 type, abstract :: conservative_object
-  !< Convervative object class.
-  contains
-     ! deferred methods
-     procedure(array_interface),          pass(self), deferred :: array              !< Return serialized array of conservative.
-     procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes     !< Compute conservative fluxes.
-     procedure(destroy_interface),        pass(self), deferred :: destroy            !< Destroy conservative.
-     procedure(initialize_interface),     pass(self), deferred :: initialize         !< Initialize conservative.
-     procedure(assignment_interface),     pass(lhs),  deferred :: cons_assign_cons   !< Operator `=`.
-     procedure(symmetric_operator),       pass(lhs),  deferred :: cons_multiply_cons !< Operator `*`.
-     procedure(real_operator_cons),       pass(rhs),  deferred :: real_multiply_cons !< Operator `real * cons`.
-     procedure(symmetric_operator),       pass(lhs),  deferred :: add                !< Operator `+`.
-     procedure(symmetric_operator),       pass(lhs),  deferred :: sub                !< Operator `-`.
-     ! operators
-     generic :: assignment(=) => cons_assign_cons                     !< Overload `=`.
-     generic :: operator(+) => add                                    !< Overload `+`.
-     generic :: operator(-) => sub                                    !< Overload `-`.
-     generic :: operator(*) => cons_multiply_cons, real_multiply_cons
+   !< Convervative object class.
+   contains
+      ! deferred methods
+      procedure(array_interface),          pass(self), deferred :: array              !< Return serialized array of conservative.
+      procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes     !< Compute conservative fluxes.
+      procedure(destroy_interface),        pass(self), deferred :: destroy            !< Destroy conservative.
+      procedure(initialize_interface),     pass(self), deferred :: initialize         !< Initialize conservative.
+      procedure(pressure_interface),       pass(self), deferred :: pressure           !< Return pressure value.
+      procedure(velocity_interface),       pass(self), deferred :: velocity           !< Return velocity vector.
+      procedure(assignment_interface),     pass(lhs),  deferred :: cons_assign_cons   !< Operator `=`.
+      procedure(symmetric_operator),       pass(lhs),  deferred :: cons_multiply_cons !< Operator `*`.
+      procedure(real_operator_cons),       pass(rhs),  deferred :: real_multiply_cons !< Operator `real * cons`.
+      procedure(symmetric_operator),       pass(lhs),  deferred :: add                !< Operator `+`.
+      procedure(symmetric_operator),       pass(lhs),  deferred :: sub                !< Operator `-`.
+      ! operators
+      generic :: assignment(=) => cons_assign_cons                     !< Overload `=`.
+      generic :: operator(+) => add                                    !< Overload `+`.
+      generic :: operator(-) => sub                                    !< Overload `-`.
+      generic :: operator(*) => cons_multiply_cons, real_multiply_cons
 endtype conservative_object
 
 abstract interface
@@ -61,6 +63,21 @@ abstract interface
    class(conservative_object),           intent(inout) :: self          !< Conservative.
    class(conservative_object), optional, intent(in)    :: initial_state !< Initial state.
    endsubroutine initialize_interface
+
+   elemental function pressure_interface(self, eos) result(pressure_)
+   !< Return pressure value.
+   import :: conservative_object, eos_object, R8P
+   class(conservative_object), intent(in) :: self      !< Conservative.
+   class(eos_object),          intent(in) :: eos       !< Equation of state.
+   real(R8P)                              :: pressure_ !< Pressure value.
+   endfunction pressure_interface
+
+   elemental function velocity_interface(self) result(velocity_)
+   !< Return velocity vector.
+   import :: conservative_object, vector
+   class(conservative_object), intent(in) :: self      !< Conservative.
+   type(vector)                           :: velocity_ !< Velocity vector.
+   endfunction velocity_interface
 
    pure subroutine assignment_interface(lhs, rhs)
    !< Operator `=`.
