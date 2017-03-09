@@ -7,6 +7,7 @@ use foreseer_conservative_compressible, only : conservative_compressible
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
 use foreseer_riemann_pattern_compressible, only : riemann_pattern_compressible
+use foreseer_riemann_pattern_object, only : riemann_pattern_object
 use foreseer_riemann_solver_object, only : riemann_solver_object
 use penf, only : I4P, R8P
 use vecfor, only : vector
@@ -32,34 +33,36 @@ contains
    class(riemann_solver_llf), intent(inout) :: self !< Solver.
    endsubroutine initialize
 
-   subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes, pattern)
    !< Solve Riemann Problem.
    !<
    !< Approximate Riemann Solver based on (local) Lax-Friedrichs (known also as Rusanov) algorithm.
-   class(riemann_solver_llf),  intent(inout) :: self         !< Solver.
-   class(eos_object),          intent(in)    :: eos_left     !< Equation of state for left state.
-   class(conservative_object), intent(in)    :: state_left   !< Left Riemann state.
-   class(eos_object),          intent(in)    :: eos_right    !< Equation of state for right state.
-   class(conservative_object), intent(in)    :: state_right  !< Right Riemann state.
-   type(vector),               intent(in)    :: normal       !< Normal (versor) of face where fluxes are given.
-   class(conservative_object), intent(out)   :: fluxes       !< Fluxes of the Riemann Problem solution.
-   class(conservative_compressible), pointer :: state_left_  !< Left Riemann state, local variable.
-   class(conservative_compressible), pointer :: state_right_ !< Right Riemann state, local variable.
-   type(conservative_compressible)           :: fluxes_left  !< Fluxes of left state.
-   type(conservative_compressible)           :: fluxes_right !< Fluxes of right state.
-   type(riemann_pattern_compressible)        :: pattern      !< Riemann pattern.
-   real(R8P)                                 :: lmax         !< Maximum wave speed estimation.
+   class(riemann_solver_llf),     intent(inout)         :: self         !< Solver.
+   class(eos_object),             intent(in)            :: eos_left     !< Equation of state for left state.
+   class(conservative_object),    intent(in)            :: state_left   !< Left Riemann state.
+   class(eos_object),             intent(in)            :: eos_right    !< Equation of state for right state.
+   class(conservative_object),    intent(in)            :: state_right  !< Right Riemann state.
+   type(vector),                  intent(in)            :: normal       !< Normal (versor) of face where fluxes are given.
+   class(conservative_object),    intent(out)           :: fluxes       !< Fluxes of the Riemann Problem solution.
+   class(riemann_pattern_object), intent(out), optional :: pattern      !< Riemann pattern.
+   type(conservative_compressible)                      :: fluxes_left  !< Fluxes of left state.
+   type(conservative_compressible)                      :: fluxes_right !< Fluxes of right state.
+   type(riemann_pattern_compressible)                   :: pattern_     !< Riemann pattern.
+   real(R8P)                                            :: lmax         !< Maximum wave speed estimation.
 
-   state_left_ => state_left_%associate_guarded(to=state_left)
-   state_right_ => state_right_%associate_guarded(to=state_right)
-   call pattern%compute(eos_left=eos_left, state_left=state_left_, eos_right=eos_right, state_right=state_right_, &
-                        normal=normal)
-   lmax = max(abs(pattern%s_1), abs(pattern%s_4))
+   call pattern_%compute(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
+   lmax = max(abs(pattern_%s_1), abs(pattern_%s_4))
    call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
    call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
    select type(fluxes)
    type is(conservative_compressible)
       fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right - state_left)))
    endselect
+   if (present(pattern)) then
+      select type(pattern)
+      type is(riemann_pattern_compressible)
+         pattern = pattern_
+      endselect
+   endif
    endsubroutine solve
 endmodule foreseer_riemann_solver_llf

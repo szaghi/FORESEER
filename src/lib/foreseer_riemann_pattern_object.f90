@@ -15,7 +15,11 @@ type, abstract :: riemann_pattern_object
    !< Riemann (waves) pattern object class.
    contains
       ! deferred methods
-      procedure(compute_interface), pass(self), deferred :: compute !< Compute pattern given left and right states.
+      procedure(compute_interface),     pass(self), deferred :: compute        !< Compute pattern given left and right states.
+      procedure(description_interface), pass(self), deferred :: description    !< Return pretty-printed object description.
+      procedure(assignment_interface),  pass(lhs),  deferred :: pat_assign_pat !< Operator `=`.
+      ! operators
+      generic :: assignment(=) => pat_assign_pat !< Overload `=`.
 endtype riemann_pattern_object
 
 abstract interface
@@ -30,5 +34,20 @@ abstract interface
    class(conservative_object),    intent(in)    :: state_right !< Right Riemann state.
    type(vector),                  intent(in)    :: normal      !< Normal (versor) of face where fluxes are given.
    endsubroutine compute_interface
+
+   pure function description_interface(self, prefix) result(desc)
+   !< Return a pretty-formatted object description.
+   import :: riemann_pattern_object
+   class(riemann_pattern_object), intent(in)           :: self   !< Riemann pattern.
+   character(*),                  intent(in), optional :: prefix !< Prefixing string.
+   character(len=:), allocatable                       :: desc   !< Description.
+   endfunction description_interface
+
+   pure subroutine assignment_interface(lhs, rhs)
+   !< Operator `=`.
+   import :: riemann_pattern_object
+   class(riemann_pattern_object), intent(inout) :: lhs !< Left hand side.
+   class(riemann_pattern_object), intent(in)    :: rhs !< Right hand side.
+   endsubroutine assignment_interface
 endinterface
 endmodule foreseer_riemann_pattern_object

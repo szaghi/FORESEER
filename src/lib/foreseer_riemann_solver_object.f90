@@ -5,6 +5,7 @@ module foreseer_riemann_solver_object
 
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
+use foreseer_riemann_pattern_object, only : riemann_pattern_object
 use vecfor, only : vector
 
 implicit none
@@ -27,16 +28,17 @@ abstract interface
    class(riemann_solver_object), intent(inout) :: self !< Solver.
    endsubroutine initialize_interface
 
-   subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes, pattern)
    !< Solve Riemann Problem.
-   import :: conservative_object, eos_object, riemann_solver_object, vector
-   class(riemann_solver_object), intent(inout) :: self        !< Solver.
-   class(eos_object),            intent(in)    :: eos_left    !< Equation of state for left state.
-   class(conservative_object),   intent(in)    :: state_left  !< Left Riemann state.
-   class(eos_object),            intent(in)    :: eos_right   !< Equation of state for right state.
-   class(conservative_object),   intent(in)    :: state_right !< Right Riemann state.
-   type(vector),                 intent(in)    :: normal      !< Normal (versor) of face where fluxes are given.
-   class(conservative_object),   intent(out)   :: fluxes      !< Fluxes of the Riemann Problem solution.
+   import :: conservative_object, eos_object, riemann_pattern_object, riemann_solver_object, vector
+   class(riemann_solver_object),  intent(inout)         :: self        !< Solver.
+   class(eos_object),             intent(in)            :: eos_left    !< Equation of state for left state.
+   class(conservative_object),    intent(in)            :: state_left  !< Left Riemann state.
+   class(eos_object),             intent(in)            :: eos_right   !< Equation of state for right state.
+   class(conservative_object),    intent(in)            :: state_right !< Right Riemann state.
+   type(vector),                  intent(in)            :: normal      !< Normal (versor) of face where fluxes are given.
+   class(conservative_object),    intent(out)           :: fluxes      !< Fluxes of the Riemann Problem solution.
+   class(riemann_pattern_object), intent(out), optional :: pattern     !< Riemann pattern.
    endsubroutine solve_interface
 endinterface
 endmodule foreseer_riemann_solver_object

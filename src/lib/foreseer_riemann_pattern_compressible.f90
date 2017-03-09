@@ -7,7 +7,7 @@ use foreseer_conservative_compressible, only : conservative_compressible
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
 use foreseer_riemann_pattern_object, only : riemann_pattern_object
-use penf, only : R8P
+use penf, only : R8P, str
 use vecfor, only : vector
 
 implicit none
@@ -34,7 +34,9 @@ type, extends(riemann_pattern_object) :: riemann_pattern_compressible
    real(R8P) :: s_4=0._R8P !< Right-front of right wave.
    contains
       ! deferred methods
-      procedure, pass(self) :: compute !< Compute pattern given left and right states.
+      procedure, pass(self) :: compute        !< Compute pattern given left and right states.
+      procedure, pass(self) :: description    !< Return pretty-printed object description.
+      procedure, pass(lhs)  :: pat_assign_pat !< Operator `=`.
       ! private methods
       procedure, pass(self) :: compute_from_u23 !< Compute waves pattern given the speed u23 of intermediates states.
 endtype riemann_pattern_compressible
@@ -68,6 +70,60 @@ contains
    call self%compute_from_u23(eos_left=eos_left, eos_right=eos_right)
    endsubroutine compute
 
+   pure function description(self, prefix) result(desc)
+   !< Return a pretty-formatted object description.
+   class(riemann_pattern_compressible), intent(in)           :: self             !< Riemann pattern.
+   character(*),                        intent(in), optional :: prefix           !< Prefixing string.
+   character(len=:), allocatable                             :: prefix_          !< Prefixing string, local variable.
+   character(len=:), allocatable                             :: desc             !< Description.
+   character(len=1), parameter                               :: NL=new_line('a') !< New line character.
+
+   prefix_ = '' ; if (present(prefix)) prefix_ = prefix
+   desc = ''
+   desc = desc//prefix_//'u_1 = '//trim(str(n=self%u_1))//NL
+   desc = desc//prefix_//'u_4 = '//trim(str(n=self%u_4))//NL
+   desc = desc//prefix_//'p_1 = '//trim(str(n=self%p_1))//NL
+   desc = desc//prefix_//'p_4 = '//trim(str(n=self%p_4))//NL
+   desc = desc//prefix_//'r_1 = '//trim(str(n=self%r_1))//NL
+   desc = desc//prefix_//'r_4 = '//trim(str(n=self%r_4))//NL
+   desc = desc//prefix_//'a_1 = '//trim(str(n=self%a_1))//NL
+   desc = desc//prefix_//'a_4 = '//trim(str(n=self%a_4))//NL
+   desc = desc//prefix_//'u23 = '//trim(str(n=self%u23))//NL
+   desc = desc//prefix_//'p23 = '//trim(str(n=self%p23))//NL
+   desc = desc//prefix_//'r_2 = '//trim(str(n=self%r_2))//NL
+   desc = desc//prefix_//'r_3 = '//trim(str(n=self%r_3))//NL
+   desc = desc//prefix_//'s_1 = '//trim(str(n=self%s_1))//NL
+   desc = desc//prefix_//'s_2 = '//trim(str(n=self%s_2))//NL
+   desc = desc//prefix_//'s_3 = '//trim(str(n=self%s_3))//NL
+   desc = desc//prefix_//'s_4 = '//trim(str(n=self%s_4))
+   endfunction description
+
+   pure subroutine pat_assign_pat(lhs, rhs)
+   !< Operator `=`.
+   class(riemann_pattern_compressible), intent(inout) :: lhs !< Left hand side.
+   class(riemann_pattern_object),       intent(in)    :: rhs !< Right hand side.
+
+   select type(rhs)
+   class is (riemann_pattern_compressible)
+      lhs%u_1 = rhs%u_1
+      lhs%u_4 = rhs%u_4
+      lhs%p_1 = rhs%p_1
+      lhs%p_4 = rhs%p_4
+      lhs%r_1 = rhs%r_1
+      lhs%r_4 = rhs%r_4
+      lhs%a_1 = rhs%a_1
+      lhs%a_4 = rhs%a_4
+      lhs%u23 = rhs%u23
+      lhs%p23 = rhs%p23
+      lhs%r_2 = rhs%r_2
+      lhs%r_3 = rhs%r_3
+      lhs%s_1 = rhs%s_1
+      lhs%s_2 = rhs%s_2
+      lhs%s_3 = rhs%s_3
+      lhs%s_4 = rhs%s_4
+   endselect
+   endsubroutine pat_assign_pat
+
    ! private methods
    elemental subroutine compute_from_u23(self, eos_left, eos_right)
    !< Compute waves pattern given the speed u23 of intermediates states.
@@ -94,5 +150,4 @@ contains
      self%s_4 = self%u_4  + self%a_4
    endif
    endsubroutine compute_from_u23
-
 endmodule foreseer_riemann_pattern_compressible

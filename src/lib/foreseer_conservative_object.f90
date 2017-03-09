@@ -17,6 +17,7 @@ type, abstract :: conservative_object
       ! deferred methods
       procedure(array_interface),          pass(self), deferred :: array              !< Return serialized array of conservative.
       procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes     !< Compute conservative fluxes.
+      procedure(description_interface),    pass(self), deferred :: description        !< Return pretty-printed object description.
       procedure(destroy_interface),        pass(self), deferred :: destroy            !< Destroy conservative.
       procedure(initialize_interface),     pass(self), deferred :: initialize         !< Initialize conservative.
       procedure(pressure_interface),       pass(self), deferred :: pressure           !< Return pressure value.
@@ -50,6 +51,14 @@ abstract interface
    type(vector),               intent(in)  :: normal !< Normal (versor) of face where fluxes are given.
    class(conservative_object), intent(out) :: fluxes !< Conservative fluxes.
    endsubroutine compute_fluxes_interface
+
+   pure function description_interface(self, prefix) result(desc)
+   !< Return a pretty-formatted object description.
+   import :: conservative_object
+   class(conservative_object), intent(in)           :: self   !< Conservative.
+   character(*),               intent(in), optional :: prefix !< Prefixing string.
+   character(len=:), allocatable                    :: desc   !< Description.
+   endfunction description_interface
 
    elemental subroutine destroy_interface(self)
    !< Destroy conservative.

@@ -6,7 +6,7 @@ module foreseer_conservative_compressible
 use, intrinsic :: iso_fortran_env, only : stderr=>error_unit
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
-use penf, only : R8P
+use penf, only : R8P, str
 use vecfor, only : vector
 
 implicit none
@@ -26,6 +26,7 @@ type, extends(conservative_object) :: conservative_compressible
       ! deferred methods
       procedure, pass(self) :: array              !< Return serialized array of conservative.
       procedure, pass(self) :: compute_fluxes     !< Compute conservative fluxes.
+      procedure, pass(self) :: description        !< Return pretty-printed object description.
       procedure, pass(self) :: destroy            !< Destroy conservative.
       procedure, pass(self) :: initialize         !< Initialize conservative.
       procedure, pass(self) :: pressure           !< Return pressure value.
@@ -97,6 +98,21 @@ contains
       fluxes%energy = (self%energy + pressure_) * velocity_normal_
    endselect
    endsubroutine compute_fluxes
+
+   pure function description(self, prefix) result(desc)
+   !< Return a pretty-formatted object description.
+   class(conservative_compressible), intent(in)           :: self             !< Conservative.
+   character(*),                     intent(in), optional :: prefix           !< Prefixing string.
+   character(len=:), allocatable                          :: prefix_          !< Prefixing string, local variable.
+   character(len=:), allocatable                          :: desc             !< Description.
+   character(len=1), parameter                            :: NL=new_line('a') !< New line character.
+
+   prefix_ = '' ; if (present(prefix)) prefix_ = prefix
+   desc = ''
+   desc = desc//prefix_//'density  = '//trim(str(n=self%density))//NL
+   desc = desc//prefix_//'momentum = '//trim(str(n=[self%momentum%x, self%momentum%y, self%momentum%z]))//NL
+   desc = desc//prefix_//'energy   = '//trim(str(n=self%energy))
+   endfunction description
 
    elemental subroutine destroy(self)
    !< Destroy conservative.
