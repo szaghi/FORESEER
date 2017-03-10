@@ -51,17 +51,20 @@ contains
    cv_ = self%cv_
    endfunction cv
 
-   elemental function density(self, energy, pressure, temperature) result(density_)
+   elemental function density(self, energy, pressure, speed_of_sound, temperature) result(density_)
    !< Return density.
-   class(eos_compressible), intent(in)           :: self        !< Equation of state.
-   real(R8P),               intent(in), optional :: energy      !< Specific internal energy value.
-   real(R8P),               intent(in), optional :: pressure    !< Pressure value.
-   real(R8P),               intent(in), optional :: temperature !< Temperature value.
-   real(R8P)                                     :: density_    !< Density value.
+   class(eos_compressible), intent(in)           :: self           !< Equation of state.
+   real(R8P),               intent(in), optional :: energy         !< Specific internal energy value.
+   real(R8P),               intent(in), optional :: pressure       !< Pressure value.
+   real(R8P),               intent(in), optional :: speed_of_sound !< Speed of sound value.
+   real(R8P),               intent(in), optional :: temperature    !< Temperature value.
+   real(R8P)                                     :: density_       !< Density value.
 
    density_ = 0._R8P
    if (present(energy).and.present(pressure)) then
       density_ = pressure / ((self%gam() - 1._R8P) * energy)
+   elseif (present(pressure).and.present(speed_of_sound)) then
+      density_ = self%gam() * pressure / (speed_of_sound * speed_of_sound)
    elseif (present(pressure).and.present(temperature)) then
       density_ = pressure / (self%R() * temperature)
    endif

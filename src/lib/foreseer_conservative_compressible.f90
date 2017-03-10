@@ -23,6 +23,7 @@ type, extends(conservative_object) :: conservative_compressible
       procedure, nopass     :: associate_guarded !< Return [[conservative_compressible]] pointer associated
                                                  !< to [[conservative_object]] or its extensions until
                                                  !< [[conservative_compressible]] included.
+      procedure, pass(self) :: compute_fluxes_from_primitive !< Compute conservative fluxes from primitives at interface.
       ! deferred methods
       procedure, pass(self) :: array              !< Return serialized array of conservative.
       procedure, pass(self) :: compute_fluxes     !< Compute conservative fluxes.
@@ -63,6 +64,20 @@ contains
       stop
    endselect
    endfunction associate_guarded
+
+   elemental subroutine compute_fluxes_from_primitive(self, eos, p, r, u, normal)
+   !< Compute conservative fluxes from primitives at interface.
+   class(conservative_compressible), intent(inout) :: self   !< Conservative.
+   class(eos_object),                intent(in)    :: eos    !< Equation of state.
+   real(R8P),                        intent(in)    :: p      !< Pressure at interface.
+   real(R8P),                        intent(in)    :: r      !< Density at interface.
+   real(R8P),                        intent(in)    :: u      !< Velocity (normal component) at interface.
+   type(vector),                     intent(in)    :: normal !< Normal (versor) of face where fluxes are given.
+
+   self%density = r * u
+   self%momentum = (r * u * u + p) * normal
+   self%energy = (r * eos%energy(density=r, pressure=p) + r * u * u * 0.5_R8P + p) * u
+   endsubroutine compute_fluxes_from_primitive
 
    ! deferred methods
    pure function array(self) result(array_)

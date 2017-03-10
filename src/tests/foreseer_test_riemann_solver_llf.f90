@@ -3,18 +3,18 @@
 program foreseer_test_riemann_solver_llf
 !< FORESEER test: Riemann solver LLF class test.
 
-use foreseer, only : eos_compressible, conservative_compressible, riemann_pattern_compressible, riemann_solver_llf
+use foreseer, only : eos_compressible, conservative_compressible, riemann_pattern_compressible_pvl, riemann_solver_llf
 use penf, only : R8P, str
 use vecfor, only : ex
 
 implicit none
-type(eos_compressible)             :: eos                 !< The equation of state.
-type(conservative_compressible)    :: state_left          !< Left state.
-type(conservative_compressible)    :: state_right         !< Right state.
-type(conservative_compressible)    :: fluxes              !< Conservative fluxes.
-type(riemann_solver_llf)           :: riemann_solver      !< Riemann solver.
-type(riemann_pattern_compressible) :: riemann_pattern     !< Riemann pattern.
-logical                            :: are_tests_passed(1) !< List of passed tests.
+type(eos_compressible)                 :: eos                 !< The equation of state.
+type(conservative_compressible)        :: state_left          !< Left state.
+type(conservative_compressible)        :: state_right         !< Right state.
+type(conservative_compressible)        :: fluxes              !< Conservative fluxes.
+type(riemann_solver_llf)               :: riemann_solver      !< Riemann solver.
+type(riemann_pattern_compressible_pvl) :: riemann_pattern     !< Riemann pattern.
+logical                                :: are_tests_passed(1) !< List of passed tests.
 
 are_tests_passed = .true.
 

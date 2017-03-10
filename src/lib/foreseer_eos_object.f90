@@ -40,14 +40,15 @@ abstract interface
    real(R8P)                     :: cv_  !< `cv` value.
    endfunction cv_interface
 
-   elemental function density_interface(self, energy, pressure, temperature) result(density_)
+   elemental function density_interface(self, energy, pressure, speed_of_sound, temperature) result(density_)
    !< Return density.
    import :: eos_object, R8P
-   class(eos_object), intent(in)           :: self        !< Equation of state.
-   real(R8P),         intent(in), optional :: energy      !< Specific internal energy value.
-   real(R8P),         intent(in), optional :: pressure    !< Pressure value.
-   real(R8P),         intent(in), optional :: temperature !< Temperature value.
-   real(R8P)                               :: density_    !< Density value.
+   class(eos_object), intent(in)           :: self           !< Equation of state.
+   real(R8P),         intent(in), optional :: energy         !< Specific internal energy value.
+   real(R8P),         intent(in), optional :: pressure       !< Pressure value.
+   real(R8P),         intent(in), optional :: speed_of_sound !< Speed of sound value.
+   real(R8P),         intent(in), optional :: temperature    !< Temperature value.
+   real(R8P)                               :: density_       !< Density value.
    endfunction density_interface
 
    elemental function energy_interface(self, density, pressure, temperature) result(energy_)
