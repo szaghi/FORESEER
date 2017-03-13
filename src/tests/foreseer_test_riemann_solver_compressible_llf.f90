@@ -1,7 +1,7 @@
-!< FORESEER test: Riemann solver LLF class test.
+!< FORESEER test: Riemann solver compressible LLF class test.
 
-program foreseer_test_riemann_solver_llf
-!< FORESEER test: Riemann solver LLF class test.
+program foreseer_test_riemann_solver_compressible_llf
+!< FORESEER test: Riemann solver compressible LLF class test.
 
 use foreseer, only : eos_compressible, conservative_compressible, riemann_solver_compressible_llf
 use penf, only : R8P, str
@@ -38,4 +38,4 @@ print '(A)', '  p23 = '//str(n=p23)
 print '(A)', '  u23 = '//str(n=u23)
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
-endprogram foreseer_test_riemann_solver_llf
+endprogram foreseer_test_riemann_solver_compressible_llf
