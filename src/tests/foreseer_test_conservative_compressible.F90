@@ -3,7 +3,7 @@
 program foreseer_test_conservative_compressible
 !< FORESEER test: conservative compressible class test.
 
-use foreseer, only : eos_compressible, conservative_compressible
+use foreseer, only : eos_compressible, conservative_compressible, conservative_compressible_pointer
 use penf, only : R8P, ZeroR8
 use vecfor, only : ex, vector
 
@@ -14,7 +14,11 @@ type(conservative_compressible), pointer :: u_pointer            !< A conservati
 type(conservative_compressible)          :: f                    !< Conservative fluxes.
 type(vector)                             :: velocity             !< Velocity vector.
 real(R8P), allocatable                   :: u_serialized(:)      !< Conservative variable serialized.
+#ifdef __GFORTRAN__
 logical                                  :: are_tests_passed(11) !< List of passed tests.
+#else
+logical                                  :: are_tests_passed(7)  !< List of passed tests.
+#endif
 
 are_tests_passed = .false.
 
@@ -66,37 +70,38 @@ print "(A,L1)", 'u = f, is done right? ', are_tests_passed(6)
 
 u = conservative_compressible(density=1._R8P, momentum=ex, energy=2.5_R8P)
 
+u_pointer => conservative_compressible_pointer(to=u)
+are_tests_passed(7) = (u_pointer%density  >= 1._R8P -  ZeroR8).and.(u_pointer%density  <= 1._R8P  + ZeroR8).and. &
+                      (u_pointer%momentum >= 1._R8P -  ZeroR8).and.(u_pointer%momentum <= 1._R8P  + ZeroR8).and. &
+                      (u_pointer%energy   >= 2.5_R8P - ZeroR8).and.(u_pointer%energy   <= 2.5_R8P + ZeroR8)
+print "(A,L1)", 'u => u, is done right? ', are_tests_passed(7)
+
+#ifdef __GFORTRAN__
+u = conservative_compressible(density=1._R8P, momentum=ex, energy=2.5_R8P)
 u = 2._R8P * u
-are_tests_passed(7) = (u%density  >= 2._R8P - ZeroR8).and.(u%density  <= 2._R8P + ZeroR8).and. &
+are_tests_passed(8) = (u%density  >= 2._R8P - ZeroR8).and.(u%density  <= 2._R8P + ZeroR8).and. &
                       (u%momentum >= 2._R8P - ZeroR8).and.(u%momentum <= 2._R8P + ZeroR8).and. &
                       (u%energy   >= 5._R8P - ZeroR8).and.(u%energy   <= 5._R8P + ZeroR8)
-print "(A,L1)", '2 * u, is done right? ', are_tests_passed(7)
+print "(A,L1)", '2 * u, is done right? ', are_tests_passed(8)
 
 u = u * u
-are_tests_passed(8) = (u%density  >= 4._R8P -  ZeroR8).and.(u%density  <= 4._R8P  + ZeroR8).and. &
+are_tests_passed(9) = (u%density  >= 4._R8P -  ZeroR8).and.(u%density  <= 4._R8P  + ZeroR8).and. &
                       (u%momentum >= 4._R8P -  ZeroR8).and.(u%momentum <= 4._R8P  + ZeroR8).and. &
                       (u%energy   >= 25._R8P - ZeroR8).and.(u%energy   <= 25._R8P + ZeroR8)
-print "(A,L1)", 'u * u, is done right? ', are_tests_passed(8)
+print "(A,L1)", 'u * u, is done right? ', are_tests_passed(9)
 
 u = u + u
-are_tests_passed(9) = (u%density  >= 8._R8P -  ZeroR8).and.(u%density  <= 8._R8P  + ZeroR8).and. &
-                      (u%momentum >= 8._R8P -  ZeroR8).and.(u%momentum <= 8._R8P  + ZeroR8).and. &
-                      (u%energy   >= 50._R8P - ZeroR8).and.(u%energy   <= 50._R8P + ZeroR8)
-print "(A,L1)", 'u + u, is done right? ', are_tests_passed(9)
+are_tests_passed(10) = (u%density  >= 8._R8P -  ZeroR8).and.(u%density  <= 8._R8P  + ZeroR8).and. &
+                       (u%momentum >= 8._R8P -  ZeroR8).and.(u%momentum <= 8._R8P  + ZeroR8).and. &
+                       (u%energy   >= 50._R8P - ZeroR8).and.(u%energy   <= 50._R8P + ZeroR8)
+print "(A,L1)", 'u + u, is done right? ', are_tests_passed(10)
 
 u = u - u
-are_tests_passed(10) = (u%density  >= 0._R8P - ZeroR8).and.(u%density  <= 0._R8P + ZeroR8).and. &
+are_tests_passed(11) = (u%density  >= 0._R8P - ZeroR8).and.(u%density  <= 0._R8P + ZeroR8).and. &
                        (u%momentum >= 0._R8P - ZeroR8).and.(u%momentum <= 0._R8P + ZeroR8).and. &
                        (u%energy   >= 0._R8P - ZeroR8).and.(u%energy   <= 0._R8P + ZeroR8)
-print "(A,L1)", 'u - u, is done right? ', are_tests_passed(10)
-
-u = conservative_compressible(density=1._R8P, momentum=ex, energy=2.5_R8P)
-
-u_pointer => u_pointer%associate_guarded(to=u)
-are_tests_passed(11) = (u_pointer%density  >= 1._R8P -  ZeroR8).and.(u_pointer%density  <= 1._R8P  + ZeroR8).and. &
-                       (u_pointer%momentum >= 1._R8P -  ZeroR8).and.(u_pointer%momentum <= 1._R8P  + ZeroR8).and. &
-                       (u_pointer%energy   >= 2.5_R8P - ZeroR8).and.(u_pointer%energy   <= 2.5_R8P + ZeroR8)
-print "(A,L1)", 'u => u, is done right? ', are_tests_passed(11)
+print "(A,L1)", 'u - u, is done right? ', are_tests_passed(11)
+#endif
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
 endprogram foreseer_test_conservative_compressible
