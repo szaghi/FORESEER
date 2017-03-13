@@ -31,7 +31,7 @@ type, abstract :: conservative_object
       generic :: assignment(=) => cons_assign_cons                     !< Overload `=`.
       generic :: operator(+) => add                                    !< Overload `+`.
       generic :: operator(-) => sub                                    !< Overload `-`.
-      generic :: operator(*) => cons_multiply_cons, real_multiply_cons
+      generic :: operator(*) => cons_multiply_cons, real_multiply_cons !< Overload `*`.
 endtype conservative_object
 
 abstract interface
