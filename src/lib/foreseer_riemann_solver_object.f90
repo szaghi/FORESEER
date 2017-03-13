@@ -37,7 +37,7 @@ abstract interface
    class(eos_object),             intent(in)            :: eos_right   !< Equation of state for right state.
    class(conservative_object),    intent(in)            :: state_right !< Right Riemann state.
    type(vector),                  intent(in)            :: normal      !< Normal (versor) of face where fluxes are given.
-   class(conservative_object),    intent(out)           :: fluxes      !< Fluxes of the Riemann Problem solution.
+   class(conservative_object),    intent(inout)         :: fluxes      !< Fluxes of the Riemann Problem solution.
    class(riemann_pattern_object), intent(out), optional :: pattern     !< Riemann pattern.
    endsubroutine solve_interface
 endinterface

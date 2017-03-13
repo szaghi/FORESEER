@@ -12,6 +12,7 @@ use vecfor, only : vector
 implicit none
 private
 public :: conservative_compressible
+public :: conservative_compressible_pointer
 
 type, extends(conservative_object) :: conservative_compressible
    !< Convervative compressible object class.
@@ -20,9 +21,6 @@ type, extends(conservative_object) :: conservative_compressible
    real(R8P)    :: energy=0._R8P  !< Energy, `rho * E`, `rho` being the density and `E` the specific energy.
    contains
       ! public methods
-      procedure, nopass     :: associate_guarded !< Return [[conservative_compressible]] pointer associated
-                                                 !< to [[conservative_object]] or its extensions until
-                                                 !< [[conservative_compressible]] included.
       procedure, pass(self) :: compute_fluxes_from_primitive !< Compute conservative fluxes from primitives at interface.
       ! deferred methods
       procedure, pass(self) :: array              !< Return serialized array of conservative.
@@ -46,7 +44,7 @@ endinterface
 
 contains
    ! public methods
-   function associate_guarded(to, error_message) result(pointer_)
+   function conservative_compressible_pointer(to, error_message) result(pointer_)
    !< Return [[conservative_compressible]] pointer associated to [[conservative_object]] or its extensions until
    !< [[conservative_compressible]] included.
    !<
@@ -63,7 +61,7 @@ contains
       if (present(error_message)) write(stderr, '(A)') error_message
       stop
    endselect
-   endfunction associate_guarded
+   endfunction conservative_compressible_pointer
 
    elemental subroutine compute_fluxes_from_primitive(self, eos, p, r, u, normal)
    !< Compute conservative fluxes from primitives at interface.

@@ -3,7 +3,7 @@
 module foreseer_riemann_solver_llf
 !< Define the Local Lax-Friedrichs (known also as Rusanov) Riemann solver of FORESEER library.
 
-use foreseer_conservative_compressible, only : conservative_compressible
+use foreseer_conservative_compressible, only : conservative_compressible, conservative_compressible_pointer
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
 use foreseer_riemann_pattern_compressible_pvl, only : riemann_pattern_compressible_pvl
@@ -43,10 +43,13 @@ contains
    class(eos_object),             intent(in)            :: eos_right    !< Equation of state for right state.
    class(conservative_object),    intent(in)            :: state_right  !< Right Riemann state.
    type(vector),                  intent(in)            :: normal       !< Normal (versor) of face where fluxes are given.
-   class(conservative_object),    intent(out)           :: fluxes       !< Fluxes of the Riemann Problem solution.
+   class(conservative_object),    intent(inout)         :: fluxes       !< Fluxes of the Riemann Problem solution.
    class(riemann_pattern_object), intent(out), optional :: pattern      !< Riemann pattern.
+   type(conservative_compressible), pointer             :: state_left_  !< Left Riemann state, local variable.
+   type(conservative_compressible), pointer             :: state_right_ !< Right Riemann state, local variable.
    type(conservative_compressible)                      :: fluxes_left  !< Fluxes of left state.
    type(conservative_compressible)                      :: fluxes_right !< Fluxes of right state.
+   type(conservative_compressible)                      :: fluxes_      !< Fluxes, local variable.
    type(riemann_pattern_compressible_pvl)               :: pattern_     !< Riemann pattern.
    real(R8P)                                            :: lmax         !< Maximum wave speed estimation.
 
@@ -54,9 +57,20 @@ contains
    lmax = maxval(abs(pattern_%waves_extrema()))
    call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
    call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
+   state_left_ => conservative_compressible_pointer(to=state_left)
+   state_right_ => conservative_compressible_pointer(to=state_right)
    select type(fluxes)
    type is(conservative_compressible)
-      fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right - state_left)))
+#ifdef __GFORTRAN__
+      fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right_ - state_left_)))
+#else
+      ! Intel Fortran has issue in resolving the equation with multiple operators... it must be split
+      fluxes_ = state_right_ - state_left_
+      fluxes_ = lmax * fluxes_
+      fluxes = fluxes_left + fluxes_right
+      fluxes = fluxes - fluxes_
+      fluxes = 0.5_R8P * fluxes
+#endif
    endselect
    if (present(pattern)) then
       select type(pattern)
