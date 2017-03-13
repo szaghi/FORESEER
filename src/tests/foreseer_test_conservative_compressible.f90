@@ -3,7 +3,7 @@
 program foreseer_test_conservative_compressible
 !< FORESEER test: conservative compressible class test.
 
-use foreseer, only : eos_compressible, conservative_compressible
+use foreseer, only : eos_compressible, conservative_compressible, conservative_compressible_pointer
 use penf, only : R8P, ZeroR8
 use vecfor, only : ex, vector
 
@@ -92,7 +92,7 @@ print "(A,L1)", 'u - u, is done right? ', are_tests_passed(10)
 
 u = conservative_compressible(density=1._R8P, momentum=ex, energy=2.5_R8P)
 
-u_pointer => u_pointer%associate_guarded(to=u)
+u_pointer => conservative_compressible_pointer(to=u)
 are_tests_passed(11) = (u_pointer%density  >= 1._R8P -  ZeroR8).and.(u_pointer%density  <= 1._R8P  + ZeroR8).and. &
                        (u_pointer%momentum >= 1._R8P -  ZeroR8).and.(u_pointer%momentum <= 1._R8P  + ZeroR8).and. &
                        (u_pointer%energy   >= 2.5_R8P - ZeroR8).and.(u_pointer%energy   <= 2.5_R8P + ZeroR8)

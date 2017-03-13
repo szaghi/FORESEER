@@ -1,9 +1,9 @@
-!< FORESEER test: Riemann solver LLF class test.
+!< FORESEER test: Riemann solver compressible PVL class test.
 
-program foreseer_test_riemann_solver_llf
-!< FORESEER test: Riemann solver LLF class test.
+program foreseer_test_riemann_solver_compressible_pvl
+!< FORESEER test: Riemann solver compressible PVL class test.
 
-use foreseer, only : eos_compressible, conservative_compressible, riemann_solver_compressible_llf
+use foreseer, only : eos_compressible, conservative_compressible, riemann_solver_compressible_pvl
 use penf, only : R8P, str
 use vecfor, only : ex
 
@@ -12,7 +12,7 @@ type(eos_compressible)                :: eos                          !< The equ
 type(conservative_compressible)       :: state_left                   !< Left state.
 type(conservative_compressible)       :: state_right                  !< Right state.
 type(conservative_compressible)       :: fluxes                       !< Conservative fluxes.
-type(riemann_solver_compressible_llf) :: riemann_solver               !< Riemann solver.
+type(riemann_solver_compressible_pvl) :: riemann_solver               !< Riemann solver.
 real(R8P), parameter                  :: r_2=0.426319003105163574_R8P !< Exact value of density in state 2.
 real(R8P), parameter                  :: r_3=0.265574008226394653_R8P !< Exact value of density in state 3.
 real(R8P), parameter                  :: p23=0.303130000829696655_R8P !< Exact value of pressure in states 2 and 3.
@@ -38,4 +38,4 @@ print '(A)', '  p23 = '//str(n=p23)
 print '(A)', '  u23 = '//str(n=u23)
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
-endprogram foreseer_test_riemann_solver_llf
+endprogram foreseer_test_riemann_solver_compressible_pvl

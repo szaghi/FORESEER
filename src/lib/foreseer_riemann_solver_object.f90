@@ -5,7 +5,7 @@ module foreseer_riemann_solver_object
 
 use foreseer_conservative_object, only : conservative_object
 use foreseer_eos_object, only : eos_object
-use foreseer_riemann_pattern_object, only : riemann_pattern_object
+use penf, only : R8P
 use vecfor, only : vector
 
 implicit none
@@ -16,29 +16,53 @@ type, abstract :: riemann_solver_object
    !< Abstract Riemann Solver.
    contains
       ! public deferred methods
-      procedure(initialize_interface), pass(self), deferred :: initialize !< Initialize solver.
-      procedure(solve_interface),      pass(self), deferred :: solve      !< Solve Riemann Problem.
+      procedure(compute_waves_interface), pass(self), deferred :: compute_waves !< Compute waves pattern.
+      procedure(initialize_interface),    pass(self), deferred :: initialize    !< Initialize solver.
+      procedure(description_interface),   pass(self), deferred :: description   !< Return pretty-printed object description.
+      procedure(solve_interface),         pass(self), deferred :: solve         !< Solve Riemann Problem.
 endtype riemann_solver_object
 
 abstract interface
    !< Abstract interfaces of [[riemann_solver_object]] deferred methods.
-   subroutine initialize_interface(self)
+   pure subroutine compute_waves_interface(self, eos_left, state_left, eos_right, state_right, normal, waves)
+   !< Compute waves pattern.
+   !<
+   !< This compute only the waves pattern, not the fluxes: this is useful for building solvers being hybrid of other solvers.
+   import :: conservative_object, eos_object, riemann_solver_object, R8P, vector
+   class(riemann_solver_object), intent(inout) :: self        !< Solver.
+   class(eos_object),            intent(in)    :: eos_left    !< Equation of state for left state.
+   class(conservative_object),   intent(in)    :: state_left  !< Left Riemann state.
+   class(eos_object),            intent(in)    :: eos_right   !< Equation of state for right state.
+   class(conservative_object),   intent(in)    :: state_right !< Right Riemann state.
+   type(vector),                 intent(in)    :: normal      !< Normal (versor) of face where fluxes are given.
+   real(R8P),                    intent(out)   :: waves(1:)   !< Waves pattern.
+   endsubroutine compute_waves_interface
+
+   subroutine initialize_interface(self, config)
    !< Initialize solver.
    import :: riemann_solver_object
-   class(riemann_solver_object), intent(inout) :: self !< Solver.
+   class(riemann_solver_object), intent(inout)        :: self   !< Solver.
+   character(len=*),             intent(in), optional :: config !< Configuration for solver algorithm.
    endsubroutine initialize_interface
 
-   subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes, pattern)
+   pure function description_interface(self, prefix) result(desc)
+   !< Return a pretty-formatted object description.
+   import :: riemann_solver_object
+   class(riemann_solver_object), intent(in)           :: self   !< Solver.
+   character(*),                 intent(in), optional :: prefix !< Prefixing string.
+   character(len=:), allocatable                      :: desc   !< Description.
+   endfunction description_interface
+
+   subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Solve Riemann Problem.
-   import :: conservative_object, eos_object, riemann_pattern_object, riemann_solver_object, vector
-   class(riemann_solver_object),  intent(inout)         :: self        !< Solver.
-   class(eos_object),             intent(in)            :: eos_left    !< Equation of state for left state.
-   class(conservative_object),    intent(in)            :: state_left  !< Left Riemann state.
-   class(eos_object),             intent(in)            :: eos_right   !< Equation of state for right state.
-   class(conservative_object),    intent(in)            :: state_right !< Right Riemann state.
-   type(vector),                  intent(in)            :: normal      !< Normal (versor) of face where fluxes are given.
-   class(conservative_object),    intent(inout)         :: fluxes      !< Fluxes of the Riemann Problem solution.
-   class(riemann_pattern_object), intent(out), optional :: pattern     !< Riemann pattern.
+   import :: conservative_object, eos_object, riemann_solver_object, vector
+   class(riemann_solver_object),  intent(inout) :: self        !< Solver.
+   class(eos_object),             intent(in)    :: eos_left    !< Equation of state for left state.
+   class(conservative_object),    intent(in)    :: state_left  !< Left Riemann state.
+   class(eos_object),             intent(in)    :: eos_right   !< Equation of state for right state.
+   class(conservative_object),    intent(in)    :: state_right !< Right Riemann state.
+   type(vector),                  intent(in)    :: normal      !< Normal (versor) of face where fluxes are given.
+   class(conservative_object),    intent(inout) :: fluxes      !< Fluxes of the Riemann Problem solution.
    endsubroutine solve_interface
 endinterface
 endmodule foreseer_riemann_solver_object
