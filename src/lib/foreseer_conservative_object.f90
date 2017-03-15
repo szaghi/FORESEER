@@ -23,15 +23,20 @@ type, abstract :: conservative_object
       procedure(pressure_interface),       pass(self), deferred :: pressure           !< Return pressure value.
       procedure(velocity_interface),       pass(self), deferred :: velocity           !< Return velocity vector.
       procedure(assignment_interface),     pass(lhs),  deferred :: cons_assign_cons   !< Operator `=`.
+      procedure(cons_operator_real),       pass(lhs),  deferred :: cons_divide_real   !< Operator `cons / real`.
       procedure(symmetric_operator),       pass(lhs),  deferred :: cons_multiply_cons !< Operator `*`.
+      procedure(cons_operator_real),       pass(lhs),  deferred :: cons_multiply_real !< Operator `cons * real`.
       procedure(real_operator_cons),       pass(rhs),  deferred :: real_multiply_cons !< Operator `real * cons`.
       procedure(symmetric_operator),       pass(lhs),  deferred :: add                !< Operator `+`.
+      procedure(unary_operator),           pass(self), deferred :: positive           !< Unary operator `+ cons`.
       procedure(symmetric_operator),       pass(lhs),  deferred :: sub                !< Operator `-`.
+      procedure(unary_operator),           pass(self), deferred :: negative           !< Unary operator `- cons`.
       ! operators
-      generic :: assignment(=) => cons_assign_cons                     !< Overload `=`.
-      generic :: operator(+) => add                                    !< Overload `+`.
-      generic :: operator(-) => sub                                    !< Overload `-`.
-      generic :: operator(*) => cons_multiply_cons, real_multiply_cons !< Overload `*`.
+      generic :: assignment(=) => cons_assign_cons                                         !< Overload `=`.
+      generic :: operator(+) => add, positive                                              !< Overload `+`.
+      generic :: operator(-) => sub, negative                                              !< Overload `-`.
+      generic :: operator(*) => cons_multiply_cons, cons_multiply_real, real_multiply_cons !< Overload `*`.
+      generic :: operator(/) => cons_divide_real                                           !< Overload `/`.
 endtype conservative_object
 
 abstract interface
@@ -95,8 +100,16 @@ abstract interface
    class(conservative_object), intent(in)    :: rhs !< Right hand side.
    endsubroutine assignment_interface
 
+   function cons_operator_real(lhs, rhs) result(operator_result)
+   !< Operator `cons.op.real`.
+   import :: conservative_object, R8P
+   class(conservative_object), intent(in)  :: lhs             !< Left hand side.
+   real(R8P),                  intent(in)  :: rhs             !< Right hand side.
+   class(conservative_object), allocatable :: operator_result !< Operator result.
+   endfunction cons_operator_real
+
    function real_operator_cons(lhs, rhs) result(operator_result)
-   !< Operator `real * cons`.
+   !< Operator `real.op.cons`.
    import :: conservative_object, R8P
    real(R8P),                  intent(in)  :: lhs             !< Left hand side.
    class(conservative_object), intent(in)  :: rhs             !< Right hand side.
@@ -110,5 +123,12 @@ abstract interface
    class(conservative_object), intent(in)  :: rhs             !< Right hand side.
    class(conservative_object), allocatable :: operator_result !< Operator result.
    endfunction symmetric_operator
+
+   function unary_operator(self) result(operator_result)
+   !< Unary operator `.op.cons`.
+   import :: conservative_object
+   class(conservative_object), intent(in)  :: self            !< Conservative.
+   class(conservative_object), allocatable :: operator_result !< Operator result.
+   endfunction unary_operator
 endinterface
 endmodule foreseer_conservative_object

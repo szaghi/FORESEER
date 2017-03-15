@@ -31,10 +31,14 @@ type, extends(conservative_object) :: conservative_compressible
       procedure, pass(self) :: pressure           !< Return pressure value.
       procedure, pass(self) :: velocity           !< Return velocity vector.
       procedure, pass(lhs)  :: cons_assign_cons   !< Operator `=`.
+      procedure, pass(lhs)  :: cons_divide_real   !< Operator `cons / real`.
+      procedure, pass(lhs)  :: cons_multiply_real !< Operator `cons * real`.
       procedure, pass(lhs)  :: cons_multiply_cons !< Operator `*`.
       procedure, pass(rhs)  :: real_multiply_cons !< Operator `real * cons`.
       procedure, pass(lhs)  :: add                !< Operator `+`.
+      procedure, pass(self) :: positive           !< Unary operator `+ cons`.
       procedure, pass(lhs)  :: sub                !< Operator `-`.
+      procedure, pass(self) :: negative           !< Unary operator `- cons`.
 endtype conservative_compressible
 
 interface conservative_compressible
@@ -43,7 +47,7 @@ interface conservative_compressible
 endinterface
 
 contains
-   ! public methods
+   ! public non TBP
    function conservative_compressible_pointer(to, error_message) result(pointer_)
    !< Return [[conservative_compressible]] pointer associated to [[conservative_object]] or its extensions until
    !< [[conservative_compressible]] included.
@@ -63,6 +67,7 @@ contains
    endselect
    endfunction conservative_compressible_pointer
 
+   ! public methods
    elemental subroutine compute_fluxes_from_primitive(self, eos, p, r, u, normal)
    !< Compute conservative fluxes from primitives at interface.
    class(conservative_compressible), intent(inout) :: self   !< Conservative.
@@ -183,6 +188,36 @@ contains
    endselect
    endsubroutine cons_assign_cons
 
+   function cons_divide_real(lhs, rhs) result(operator_result)
+   !< Operator `cons / real`.
+   class(conservative_compressible), intent(in) :: lhs             !< Left hand side.
+   real(R8P),                        intent(in) :: rhs             !< Right hand side.
+   class(conservative_object), allocatable      :: operator_result !< Operator result.
+
+   allocate(conservative_compressible :: operator_result)
+   select type(operator_result)
+   class is(conservative_compressible)
+      operator_result%density  = lhs%density  / rhs
+      operator_result%momentum = lhs%momentum / rhs
+      operator_result%energy   = lhs%energy   / rhs
+   endselect
+   endfunction cons_divide_real
+
+   function cons_multiply_real(lhs, rhs) result(operator_result)
+   !< Operator `cons * real`.
+   class(conservative_compressible), intent(in) :: lhs             !< Left hand side.
+   real(R8P),                        intent(in) :: rhs             !< Right hand side.
+   class(conservative_object), allocatable      :: operator_result !< Operator result.
+
+   allocate(conservative_compressible :: operator_result)
+   select type(operator_result)
+   class is(conservative_compressible)
+      operator_result%density  = lhs%density  * rhs
+      operator_result%momentum = lhs%momentum * rhs
+      operator_result%energy   = lhs%energy   * rhs
+   endselect
+   endfunction cons_multiply_real
+
    function real_multiply_cons(lhs, rhs) result(operator_result)
    !< Operator `real * cons`.
    real(R8P),                        intent(in) :: lhs             !< Left hand side.
@@ -236,6 +271,20 @@ contains
    endselect
    endfunction add
 
+   function positive(self) result(operator_result)
+   !< Unary operator `+ cons`.
+   class(conservative_compressible), intent(in) :: self            !< Conservative.
+   class(conservative_object), allocatable      :: operator_result !< Operator result.
+
+   allocate(conservative_compressible :: operator_result)
+   select type(operator_result)
+   class is(conservative_compressible)
+      operator_result%density  = + self%density
+      operator_result%momentum = + self%momentum
+      operator_result%energy   = + self%energy
+   endselect
+   endfunction positive
+
    function sub(lhs, rhs) result(operator_result)
    !< Operator `+`.
    class(conservative_compressible), intent(in) :: lhs             !< Left hand side.
@@ -254,6 +303,20 @@ contains
       endselect
    endselect
    endfunction sub
+
+   function negative(self) result(operator_result)
+   !< Unary operator `- cons`.
+   class(conservative_compressible), intent(in) :: self            !< Conservative.
+   class(conservative_object), allocatable      :: operator_result !< Operator result.
+
+   allocate(conservative_compressible :: operator_result)
+   select type(operator_result)
+   class is(conservative_compressible)
+      operator_result%density  = - self%density
+      operator_result%momentum = - self%momentum
+      operator_result%energy   = - self%energy
+   endselect
+   endfunction negative
 
    ! private non TBP
    elemental function conservative_compressible_instance(density, momentum, energy) result(instance)
