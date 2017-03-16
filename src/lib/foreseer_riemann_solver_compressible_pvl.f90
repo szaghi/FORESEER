@@ -19,8 +19,8 @@ type, extends(riemann_solver_compressible_object) :: riemann_solver_compressible
    !< Primitive Variables Linearization based Riemann solver.
    !<
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
-   procedure(compute_waves_interface), pointer :: compute_waves_ => compute_waves_u23 !< Compute waves pattern
-   procedure(solve_interface),         pointer :: solve_ => solve_u23                 !< Solve Riemann problem.
+   procedure(compute_waves_interface), pointer :: compute_waves_ => compute_waves_up23 !< Compute waves pattern
+   procedure(solve_interface),         pointer :: solve_ => solve_up23                 !< Solve Riemann problem.
    contains
       ! public deferred methods
       procedure, pass(self) :: compute_waves !< Compute waves pattern.
@@ -177,8 +177,8 @@ contains
    waves(1) = self%s_1
    waves(2) = self%s_1
    waves(3) = self%u23
-   waves(4) = self%u_4
-   waves(5) = self%u_4
+   waves(4) = self%s_4
+   waves(5) = self%s_4
    endsubroutine compute_waves_u23
 
    pure subroutine compute_waves_up23(self, eos_left, state_left, eos_right, state_right, normal, waves)
@@ -213,8 +213,8 @@ contains
    waves(1) = self%s_1
    waves(2) = self%s_1
    waves(3) = self%u23
-   waves(4) = self%u_4
-   waves(5) = self%u_4
+   waves(4) = self%s_4
+   waves(5) = self%s_4
    endsubroutine compute_waves_up23
 
    pure subroutine solve_u23(self, eos_left, state_left, eos_right, state_right, normal, fluxes)

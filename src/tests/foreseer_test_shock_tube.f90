@@ -194,7 +194,7 @@ contains
       do i=1, Ni
          u = self%U(i)%velocity()
          a = self%eos%speed_of_sound(density=self%U(i)%density, pressure=self%U(i)%pressure(eos=self%eos))
-         vmax = max(vmax, abs(u%normL2()) + a)
+         vmax = max(vmax, u%normL2() + a)
       enddo
       Dt = Dx * CFL / vmax
       if (Nmax <= 0) then
@@ -214,11 +214,8 @@ contains
    type(conservative_compressible)       :: UR(1:2,0:self%Ni+1)          !< Reconstructed conservative variables.
    type(conservative_compressible)       :: F(0:self%Ni)                 !< Fluxes of conservative variables.
    integer(I4P)                          :: i                            !< Counter.
-   type(riemann_solver_compressible_pvl) :: riemann_solver               !< Riemann solver.
+   type(riemann_solver_compressible_llf) :: riemann_solver               !< Riemann solver.
 
-   ! do i=0, self%Ni+1
-   !   PR(:, :, i) = 0._R8P
-   ! enddo
    do i=1, self%Ni
       P(i) = conservative_to_primitive_compressible(conservative=self%U(i), eos=self%eos)
    enddo
@@ -228,20 +225,14 @@ contains
       UR(1, i) = primitive_to_conservative_compressible(primitive=PR(1, i), eos=self%eos)
       UR(2, i) = primitive_to_conservative_compressible(primitive=PR(2, i), eos=self%eos)
    enddo
-
-   ! compute fluxes by solving Rimeann Problems at each interface
    do i=0, self%Ni
       call riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
                                 eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
    enddo
-   ! compute residuals
    allocate(euler_1d :: dState_dt)
    select type(dState_dt)
    class is(euler_1d)
       dState_dt = self
-   endselect
-   select type(dState_dt)
-   class is(euler_1d)
       do i=1, self%Ni
           dState_dt%U(i) = (F(i - 1) - F(i)) / self%Dx
       enddo
@@ -575,7 +566,7 @@ call cli%init(progname    = 'foreseer_test_shock_tube',                         
                              "foreseer_test_shock_tube            ",                &
                              "foreseer_test_shock_tube --plots -r "])
 call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100', error=error)
-call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='30', error=error)
+call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60', error=error)
 call cli%add(switch='--results', switch_ab='-r', help='Save results', required=.false., act='store_true', def='.false.', &
              error=error)
 call cli%add(switch='--plots', switch_ab='-p', help='Save plots of results', required=.false., act='store_true', def='.false.', &
@@ -630,7 +621,7 @@ contains
       initial_state(i)%pressure = 0.1_R8P
    enddo
    call domain%initialize(Ni=Ni, Dx=Dx, BC_L=BC_L, BC_R=BC_R, &
-                          initial_state=initial_state, eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), ord=3)
+                          initial_state=initial_state, eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), ord=1)
    endsubroutine initialize
 
    subroutine save_time_serie(filename, finish, t)
