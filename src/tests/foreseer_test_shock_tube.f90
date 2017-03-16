@@ -11,7 +11,6 @@ use penf, only : I4P, R8P
 use foodie, only : integrand
 use vecfor, only : ex, vector
 use wenoof, only : interpolator_object, wenoof_create
-! use wenoof, only : weno_factory, weno_constructor_upwind, weno_interpolator, weno_interpolator_upwind
 
 implicit none
 private
@@ -76,15 +75,17 @@ type, extends(integrand) :: euler_1d
    !<```
    !< Where *Ni* are the finite volumes (cells) used for discretizing the domain and *Ng* are the ghost cells used for imposing the
    !< left and right boundary conditions (for a total of *2Ng* cells).
-   integer(I4P)                                 :: ord=0        !< Space accuracy formal order.
-   integer(I4P)                                 :: Ni=0         !< Space dimension.
-   integer(I4P)                                 :: Ng=0         !< Number of ghost cells for boundary conditions handling.
-   real(R8P)                                    :: Dx=0._R8P    !< Space step.
-   type(eos_compressible)                       :: eos          !< Equation of state.
-   type(conservative_compressible), allocatable :: U(:)         !< Integrand (state) variables, whole physical domain.
-   character(:),                    allocatable :: BC_L         !< Left boundary condition type.
-   character(:),                    allocatable :: BC_R         !< Right boundary condition type.
-   class(interpolator_object),      allocatable :: interpolator !< WENO interpolator.
+   integer(I4P)                                 :: weno_order=0                         !< WENO reconstruction order.
+   integer(I4P)                                 :: Ni=0                                 !< Space dimension.
+   integer(I4P)                                 :: Ng=0                                 !< Ghost cells number.
+   real(R8P)                                    :: Dx=0._R8P                            !< Space step.
+   type(eos_compressible)                       :: eos                                  !< Equation of state.
+   type(conservative_compressible), allocatable :: U(:)                                 !< Integrand (state) variables.
+   character(:),                    allocatable :: BC_L                                 !< Left boundary condition type.
+   character(:),                    allocatable :: BC_R                                 !< Right boundary condition type.
+   class(interpolator_object),      allocatable :: interpolator                         !< WENO interpolator.
+   character(:),                    allocatable :: riemann_solver_scheme                !< Riemann solver scheme.
+   procedure(riemann_solver_), pointer          :: riemann_solver => riemann_solver_llf !< Actual Riemann Problem solver.
    contains
       ! auxiliary methods
       procedure, pass(self) :: initialize       !< Initialize field.
@@ -104,47 +105,70 @@ type, extends(integrand) :: euler_1d
       ! private methods
       procedure, pass(self), private :: impose_boundary_conditions    !< Impose boundary conditions.
       procedure, pass(self), private :: reconstruct_interfaces_states !< Reconstruct interfaces states.
-      ! procedure, pass(self), private :: riemann_solver                !< Solve the Riemann Problem at cell interfaces.
+      procedure, pass(self), private :: riemann_solver_llf            !< LLF Riemann Problem solver.
+      procedure, pass(self), private :: riemann_solver_pvl            !< PVL Riemann Problem solver.
 endtype euler_1d
+
+abstract interface
+   !< Abstract interface of Riemman Problem solver.
+   subroutine riemann_solver_(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   !< Riemann Problem solver.
+   import :: conservative_compressible, eos_compressible, euler_1d, vector
+   class(euler_1d),                  intent(in)    :: self           !< Euler field.
+   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
+   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
+   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
+   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
+   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
+   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
+   endsubroutine riemann_solver_
+endinterface
 
 contains
    ! auxiliary methods
-   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, ord)
+   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, riemann_solver_scheme)
    !< Initialize field.
-   class(euler_1d),              intent(inout)        :: self              !< Euler field.
-   integer(I4P),                 intent(in)           :: Ni                !< Space dimension.
-   real(R8P),                    intent(in)           :: Dx                !< Space step.
-   character(*),                 intent(in)           :: BC_L              !< Left boundary condition type.
-   character(*),                 intent(in)           :: BC_R              !< Right boundary condition type.
-   type(primitive_compressible), intent(in)           :: initial_state(1:) !< Initial state of primitive variables.
-   type(eos_compressible),       intent(in)           :: eos               !< Equation of state.
-   integer(I4P),                 intent(in), optional :: ord               !< Space accuracy formal order.
-   integer(I4P)                                       :: i                 !< Space counter.
+   class(euler_1d),              intent(inout)        :: self                  !< Euler field.
+   integer(I4P),                 intent(in)           :: Ni                    !< Space dimension.
+   real(R8P),                    intent(in)           :: Dx                    !< Space step.
+   character(*),                 intent(in)           :: BC_L                  !< Left boundary condition type.
+   character(*),                 intent(in)           :: BC_R                  !< Right boundary condition type.
+   type(primitive_compressible), intent(in)           :: initial_state(1:)     !< Initial state of primitive variables.
+   type(eos_compressible),       intent(in)           :: eos                   !< Equation of state.
+   integer(I4P),                 intent(in), optional :: weno_order            !< WENO reconstruction order.
+   character(*),                 intent(in), optional :: riemann_solver_scheme !< Riemann solver scheme.
+   integer(I4P)                                       :: i                     !< Space couner.
 
    call self%destroy
-   self%ord = 1 ; if (present(ord)) self%ord = ord
-   self%Ng = (self%ord + 1) / 2
-   if (self%ord>1) then
-      call wenoof_create(interpolator_type='reconstructor-JS', &
-                         S=self%Ng,                            &
-                         interpolator=self%interpolator)
-   endif
+   self%weno_order = 1 ; if (present(weno_order)) self%weno_order = weno_order
    self%Ni = Ni
+   self%Ng = (self%weno_order + 1) / 2
    self%Dx = Dx
+   self%eos = eos
    if (allocated(self%U)) deallocate(self%U) ; allocate(self%U(1-self%Ng:self%Ni+self%Ng))
    do i=1, Ni
       self%U(i) = primitive_to_conservative_compressible(primitive=initial_state(i), eos=eos)
    enddo
-   self%eos = eos
    self%BC_L = BC_L
    self%BC_R = BC_R
+   if (self%weno_order>1) call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=self%interpolator)
+   self%riemann_solver_scheme = 'llf'
+   if (present(riemann_solver_scheme)) self%riemann_solver_scheme = trim(adjustl(riemann_solver_scheme))
+   select case(self%riemann_solver_scheme)
+   case('llf')
+      self%riemann_solver => riemann_solver_llf
+   case('pvl')
+      self%riemann_solver => riemann_solver_pvl
+   case default
+      error stop 'error: Riemann Solver scheme "'//self%riemann_solver_scheme//'" unknown!'
+   endselect
    endsubroutine initialize
 
    pure subroutine destroy(self)
    !< Destroy field.
    class(euler_1d), intent(inout) :: self !< Euler field.
 
-   self%ord = 0
+   self%weno_order = 0
    self%Ni = 0
    self%Ng = 0
    self%Dx = 0._R8P
@@ -159,35 +183,39 @@ contains
    class(euler_1d), intent(in)           :: self          !< Euler field.
    logical,         intent(in), optional :: is_primitive  !< Output in primitive variables.
    real(R8P), allocatable                :: state(:,:)    !< Euler state vector.
+   real(R8P), allocatable                :: state_(:)     !< Euler state vector, local variable.
    logical                               :: is_primitive_ !< Output in primitive variables, local variable.
    type(primitive_compressible)          :: primitive     !< Primitive state.
    integer(I4P)                          :: i             !< Counter.
 
    is_primitive_ = .false. ; if (present(is_primitive)) is_primitive_ = is_primitive
-   allocate(state(1:5, 1:self%Ni))
    if (is_primitive_) then
+      allocate(state(1:size(primitive%array(), dim=1), 1:self%Ni))
       do i=1, self%Ni
          primitive = conservative_to_primitive_compressible(conservative=self%U(i), eos=self%eos)
+         state_ = primitive%array()
       enddo
    else
+      allocate(state(1:size(self%U(1)%array(), dim=1), 1:self%Ni))
       do i=1, self%Ni
-         state(:, i) = self%U(i)%array()
+         state_ = self%U(i)%array()
+         state(:, i) = state_
       enddo
    endif
    endfunction output
 
-   pure function compute_dt(self, Nmax, Tmax, t, CFL) result(Dt)
+   pure function compute_dt(self, steps_max, t_max, t, CFL) result(Dt)
    !< Compute the current time step by means of CFL condition.
-   class(euler_1d), intent(in) :: self !< Euler field.
-   integer(I4P),    intent(in) :: Nmax !< Maximun number of iterates.
-   real(R8P),       intent(in) :: Tmax !< Maximum time (ignored if Nmax>0).
-   real(R8P),       intent(in) :: t    !< Time.
-   real(R8P),       intent(in) :: CFL  !< CFL value.
-   real(R8P)                   :: Dt   !< Time step.
-   type(vector)                :: u    !< Velocity vector.
-   real(R8P)                   :: a    !< Speed of sound.
-   real(R8P)                   :: vmax !< Maximum propagation speed of signals.
-   integer(I4P)                :: i    !< Counter.
+   class(euler_1d), intent(in) :: self      !< Euler field.
+   integer(I4P),    intent(in) :: steps_max !< Maximun number of time steps.
+   real(R8P),       intent(in) :: t_max     !< Maximum integration time.
+   real(R8P),       intent(in) :: t         !< Time.
+   real(R8P),       intent(in) :: CFL       !< CFL value.
+   real(R8P)                   :: Dt        !< Time step.
+   type(vector)                :: u         !< Velocity vector.
+   real(R8P)                   :: a         !< Speed of sound.
+   real(R8P)                   :: vmax      !< Maximum propagation speed of signals.
+   integer(I4P)                :: i         !< Counter.
 
    associate(Ni=>self%Ni, Dx=>self%Dx)
       vmax = 0._R8P
@@ -197,8 +225,8 @@ contains
          vmax = max(vmax, u%normL2() + a)
       enddo
       Dt = Dx * CFL / vmax
-      if (Nmax <= 0) then
-         if ((t + Dt) > Tmax) Dt = Tmax - t
+      if (steps_max <= 0 .and. t_max > 0._R8P) then
+         if ((t + Dt) > t_max) Dt = t_max - t
       endif
    endassociate
    endfunction compute_dt
@@ -214,7 +242,6 @@ contains
    type(conservative_compressible)       :: UR(1:2,0:self%Ni+1)          !< Reconstructed conservative variables.
    type(conservative_compressible)       :: F(0:self%Ni)                 !< Fluxes of conservative variables.
    integer(I4P)                          :: i                            !< Counter.
-   type(riemann_solver_compressible_llf) :: riemann_solver               !< Riemann solver.
 
    do i=1, self%Ni
       P(i) = conservative_to_primitive_compressible(conservative=self%U(i), eos=self%eos)
@@ -226,8 +253,8 @@ contains
       UR(2, i) = primitive_to_conservative_compressible(primitive=PR(2, i), eos=self%eos)
    enddo
    do i=0, self%Ni
-      call riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
-                                eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
+      call self%riemann_solver(eos_left=self%eos,  state_left=UR( 2, i  ), &
+                               eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
    enddo
    allocate(euler_1d :: dState_dt)
    select type(dState_dt)
@@ -278,9 +305,6 @@ contains
   select type(opr)
   class is(euler_1d)
      opr = lhs
-  endselect
-  select type(opr)
-  class is(euler_1d)
      select type(rhs)
      class is (euler_1d)
         do i=1, lhs%Ni
@@ -301,9 +325,6 @@ contains
   select type(opr)
   class is(euler_1d)
      opr = lhs
-  endselect
-  select type(opr)
-  class is(euler_1d)
      do i=1, lhs%Ni
         opr%U(i) = rhs * lhs%U(i)
      enddo
@@ -321,9 +342,6 @@ contains
   select type(opr)
   class is(euler_1d)
      opr = rhs
-  endselect
-  select type(opr)
-  class is(euler_1d)
      do i=1, rhs%Ni
         opr%U(i) = lhs * rhs%U(i)
      enddo
@@ -341,9 +359,6 @@ contains
   select type(opr)
   class is(euler_1d)
      opr = lhs
-  endselect
-  select type(opr)
-  class is(euler_1d)
      select type(rhs)
      class is (euler_1d)
         do i=1, lhs%Ni
@@ -364,9 +379,6 @@ contains
   select type(opr)
   class is(euler_1d)
      opr = lhs
-  endselect
-  select type(opr)
-  class is(euler_1d)
      select type(rhs)
      class is (euler_1d)
         do i=1, lhs%Ni
@@ -384,11 +396,11 @@ contains
 
   select type(rhs)
   class is(euler_1d)
-     lhs%ord  = rhs%ord
-     lhs%Ni   = rhs%Ni
-     lhs%Ng   = rhs%Ng
-     lhs%Dx   = rhs%Dx
-     lhs%eos  = rhs%eos
+     lhs%weno_order = rhs%weno_order
+     lhs%Ni         = rhs%Ni
+     lhs%Ng         = rhs%Ng
+     lhs%Dx         = rhs%Dx
+     lhs%eos        = rhs%eos
      if (allocated(rhs%U)) then
         if (allocated(lhs%U)) deallocate(lhs%U) ; allocate(lhs%U(1:lhs%Ni))
         select type(rhs)
@@ -406,6 +418,7 @@ contains
         if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
         allocate(lhs%interpolator, source=rhs%interpolator)
      endif
+     if (associated(rhs%riemann_solver)) lhs%riemann_solver => rhs%riemann_solver
   endselect
   endsubroutine euler_assign_euler
 
@@ -477,7 +490,7 @@ contains
   integer(I4P)                                :: v                                    !< Counter.
   class(interpolator_object), allocatable     :: interpolator                         !< WENO interpolator.
 
-  select case(self%ord)
+  select case(self%weno_order)
   case(1) ! 1st order piecewise constant reconstruction
      do i=0, self%Ni+1
         r_primitive(1, i) = primitive(i)
@@ -519,6 +532,36 @@ contains
      enddo
   endselect
   endsubroutine reconstruct_interfaces_states
+
+   subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   !< Riemann Problem solver.
+   class(euler_1d),                  intent(in)    :: self           !< Euler field.
+   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
+   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
+   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
+   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
+   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
+   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
+   type(riemann_solver_compressible_llf)           :: riemann_solver !< Riemann solver.
+
+   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
+                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
+   endsubroutine riemann_solver_llf
+
+   subroutine riemann_solver_pvl(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   !< Riemann Problem solver.
+   class(euler_1d),                  intent(in)    :: self           !< Euler field.
+   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
+   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
+   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
+   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
+   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
+   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
+   type(riemann_solver_compressible_pvl)           :: riemann_solver !< Riemann solver.
+
+   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
+                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
+   endsubroutine riemann_solver_pvl
 endmodule foreseer_euler_1d
 
 program foreseer_test_shock_tube
@@ -535,64 +578,41 @@ use penf, only : FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
-type(command_line_interface)     :: cli                   !< Command line interface handler.
+integer(I4P)                     :: weno_order            !< WENO reconstruction order.
 type(tvd_runge_kutta_integrator) :: rk_integrator         !< Runge-Kutta integrator.
-integer, parameter               :: rk_stages=1           !< Runge-Kutta stages number.
-type(euler_1d)                   :: rk_stage(1:rk_stages) !< Runge-Kutta stages.
+integer(I4P)                     :: rk_stages_number      !< Runge-Kutta stages number.
+type(euler_1d), allocatable      :: rk_stage(:)           !< Runge-Kutta stages.
 real(R8P)                        :: dt                    !< Time step.
 real(R8P)                        :: t                     !< Time.
-integer(I4P)                     :: steps                 !< Time steps counter.
+integer(I4P)                     :: step                  !< Time steps counter.
 type(euler_1d)                   :: domain                !< Domain of Euler equations.
-real(R8P), parameter             :: CFL=0.7_R8P           !< CFL value.
+real(R8P)                        :: CFL                   !< CFL value.
 character(3)                     :: BC_L                  !< Left boundary condition type.
 character(3)                     :: BC_R                  !< Right boundary condition type.
 integer(I4P)                     :: Ni                    !< Number of grid cells.
 real(R8P)                        :: Dx                    !< Space step discretization.
 real(R8P), allocatable           :: x(:)                  !< Cell center x-abscissa values.
-integer(I4P)                     :: error                 !< Error handler.
 integer(I4P)                     :: steps_max             !< Maximum number of time steps.
-logical                          :: plots                 !< Flag for activating plots saving.
+real(R8P)                        :: t_max                 !< Maximum integration time.
+character(99)                    :: riemann_solver_scheme !< Riemann Problem solver scheme.
+character(99)                    :: s_scheme              !< Space integration scheme.
+character(99)                    :: t_scheme              !< Time integration scheme.
 logical                          :: results               !< Flag for activating results saving.
 logical                          :: time_serie            !< Flag for activating time serie-results saving.
 logical                          :: verbose               !< Flag for activating more verbose output.
-! real(R_P), allocatable           :: final_state(:,:)      !< Final state.
-
-call cli%init(progname    = 'foreseer_test_shock_tube',                             &
-              authors     = 'S. Zaghi',                                             &
-              license     = 'GNU GPLv3',                                            &
-              description = 'FORESEER test: shock tube tester, 1D Euler equation.', &
-              examples    = ["foreseer_test_shock_tube --results  ",                &
-                             "foreseer_test_shock_tube -r -t -v -p",                &
-                             "foreseer_test_shock_tube            ",                &
-                             "foreseer_test_shock_tube --plots -r "])
-call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100', error=error)
-call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60', error=error)
-call cli%add(switch='--results', switch_ab='-r', help='Save results', required=.false., act='store_true', def='.false.', &
-             error=error)
-call cli%add(switch='--plots', switch_ab='-p', help='Save plots of results', required=.false., act='store_true', def='.false.', &
-             error=error)
-call cli%add(switch='--tserie', switch_ab='-t', help='Save time-serie-results', required=.false., act='store_true', def='.false.', &
-             error=error)
-call cli%add(switch='--verbose', help='Verbose output', required=.false., act='store_true', def='.false.', error=error)
-call cli%parse(error=error)
-call cli%get(switch='--Ni', val=Ni, error=error) ; if (error/=0) stop
-call cli%get(switch='--steps', val=steps_max, error=error) ; if (error/=0) stop
-call cli%get(switch='-r', val=results, error=error) ; if (error/=0) stop
-call cli%get(switch='-p', val=plots, error=error) ; if (error/=0) stop
-call cli%get(switch='-t', val=time_serie, error=error) ; if (error/=0) stop
-call cli%get(switch='--verbose', val=verbose, error=error) ; if (error/=0) stop
 
 call initialize
-call save_time_serie(filename='euler_1D_integration-tvdrk-'//trim(str(n=rk_stages, no_sign=.true.))//'-time_serie.dat', t=t)
-do steps=1, steps_max
-   if (verbose) print "(A)", '    Time step: '//str(n=dt)//', Time: '//str(n=t)
-   dt = domain%dt(Nmax=steps_max, Tmax=0._R8P, t=t, CFL=CFL)
+call save_time_serie(filename='euler_1D-'//trim(adjustl(s_scheme))//'-'//trim(adjustl(t_scheme))//'.dat', t=t)
+step = 0
+time_loop: do
+   step = step + 1
+   dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
    call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
    t = t + dt
    call save_time_serie(t=t)
-enddo
-if (verbose) print "(A)", '    Time step: '//str(n=dt)//', Time: '//str(n=t)
-call save_time_serie(t=t, finish=.true.)
+   if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
+   if ((t == t_max).or.(step == steps_max)) exit time_loop
+enddo time_loop
 
 contains
    subroutine initialize()
@@ -600,7 +620,9 @@ contains
    type(primitive_compressible), allocatable :: initial_state(:) !< Initial state of primitive variables.
    integer(I4P)                              :: i                !< Space counter.
 
-   call rk_integrator%init(stages=rk_stages)
+   call parse_command_line_interface
+   allocate(rk_stage(1:rk_stages_number))
+   call rk_integrator%init(stages=rk_stages_number)
    t = 0._R8P
    allocate(x(1:Ni))
    allocate(initial_state(1:Ni))
@@ -620,9 +642,66 @@ contains
       initial_state(i)%velocity = 0._R8P
       initial_state(i)%pressure = 0.1_R8P
    enddo
-   call domain%initialize(Ni=Ni, Dx=Dx, BC_L=BC_L, BC_R=BC_R, &
-                          initial_state=initial_state, eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), ord=1)
+   call domain%initialize(Ni=Ni, Dx=Dx,                                         &
+                          BC_L=BC_L, BC_R=BC_R,                                 &
+                          initial_state=initial_state,                          &
+                          eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), &
+                          weno_order=weno_order,                                &
+                          riemann_solver_scheme=riemann_solver_scheme)
    endsubroutine initialize
+
+   subroutine parse_command_line_interface()
+   !< Parse Command Line Interface (CLI).
+   type(command_line_interface) :: cli      !< Command line interface handler.
+   integer(I4P)                 :: error    !< Error handler.
+
+   call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
+                 examples    = ["foreseer_test_shock_tube         ",                   &
+                                "foreseer_test_shock_tube --tserie"])
+   call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
+   call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
+   call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
+   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='llf,pvl')
+   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-1', &
+                choices='weno-1,weno-3,weno-5,weno-7')
+   call cli%add(switch='--t-scheme', help='Time intergation scheme', required=.false., act='store', def='tvd-rk-1', &
+                choices='tvd-rk-1,tvd-rk-2,tvd-rk-3,tvd-rk-5')
+   call cli%add(switch='--cfl', help='CFL value', required=.false., act='store', def='0.7')
+   call cli%add(switch='--tserie', switch_ab='-t', help='Save time-serie-result', required=.false., act='store_true', def='.false.')
+   call cli%add(switch='--verbose', help='Verbose output', required=.false., act='store_true', def='.false.')
+   call cli%parse(error=error)
+   call cli%get(switch='--Ni',       val=Ni,                    error=error) ; if (error/=0) stop
+   call cli%get(switch='--steps',    val=steps_max,             error=error) ; if (error/=0) stop
+   call cli%get(switch='--t-max',    val=t_max,                 error=error) ; if (error/=0) stop
+   call cli%get(switch='--riemann',  val=riemann_solver_scheme, error=error) ; if (error/=0) stop
+   call cli%get(switch='--s-scheme', val=s_scheme,              error=error) ; if (error/=0) stop
+   call cli%get(switch='--t-scheme', val=t_scheme,              error=error) ; if (error/=0) stop
+   call cli%get(switch='--cfl',      val=CFL,                   error=error) ; if (error/=0) stop
+   call cli%get(switch='--tserie',   val=time_serie,            error=error) ; if (error/=0) stop
+   call cli%get(switch='--verbose',  val=verbose,               error=error) ; if (error/=0) stop
+
+   if (t_max > 0._R8P) steps_max = 0
+   select case(trim(adjustl(s_scheme)))
+   case('weno-1')
+      weno_order = 1
+   case('weno-2')
+      weno_order = 3
+   case('weno-3')
+      weno_order = 5
+   case('weno-5')
+      weno_order = 7
+   endselect
+   select case(trim(adjustl(t_scheme)))
+   case('tvd-rk-1')
+      rk_stages_number = 1
+   case('tvd-rk-2')
+      rk_stages_number = 2
+   case('tvd-rk-3')
+      rk_stages_number = 3
+   case('tvd-rk-5')
+      rk_stages_number = 5
+   endselect
+   endsubroutine parse_command_line_interface
 
    subroutine save_time_serie(filename, finish, t)
    !< Save time-serie results.
