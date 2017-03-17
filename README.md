@@ -25,12 +25,32 @@ A KISS pure Fortran Library providing a large set of Riemann Solvers:
 
 ```fortran
 use foreseer
-type(riemann_solver) :: rsolver
-call rsolver%initialize(solver='hllc', input_type='conservative')
-call rsolver%solve(left=U_left, right=U_right, interface=U_interface)
-```
+type(eos_compressible)                 :: eos            ! Equation of state.
+type(conservative_compressible)        :: state_left     ! Left state.
+type(conservative_compressible)        :: state_right    ! Right state.
+type(conservative_compressible)        :: fluxes         ! Conservative fluxes.
+class(riemann_solver_compressible_llf) :: riemann_solver ! Riemman Problem solver.
 
-To be completed.
+! air
+eos = eos_compressible(cp=1040.004_R8P, cv=742.86_R8P)
+
+! SOD's Riemann Problem
+state_left  = conservative_compressible(density=1._R8P,                          &
+                                        energy=1._R8P*eos%energy(density=1._R8P, &
+                                                                 pressure=1._R8P))
+state_right = conservative_compressible(density=0.125_R8P,                             &
+                                        energy=0.125_R8P*eos%energy(density=0.125_R8P, &
+                                                                    pressure=0.1_R8P))
+
+! solve Riemann Problem
+call riemann_solver%solve(eos_left=eos, state_left=state_left,               &
+                          eos_right=eos, state_right=state_right, normal=ex, &
+                          fluxes=fluxes)
+
+! print results
+print '(A)', 'Fluxes at interface:'
+print '(A)', fluxes%description(prefix='  ')
+```
 
 #### Issues
 
@@ -41,8 +61,8 @@ To be completed.
 
 #### Compiler Support
 
-[![Compiler](https://img.shields.io/badge/GNU-v6.1.1+-brightgreen.svg)]()
-[![Compiler](https://img.shields.io/badge/Intel-v16.1+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/GNU-v6.3.1+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/Intel-v17.0.1+-brightgreen.svg)]()
 [![Compiler](https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg)]()
 [![Compiler](https://img.shields.io/badge/g95-not%20tested-yellow.svg)]()
 [![Compiler](https://img.shields.io/badge/NAG-not%20tested-yellow.svg)]()
@@ -76,11 +96,11 @@ Go to [Top](#top)
 
 ## Copyrights
 
-HASTY is a Free and Open Source Software (FOSS), it is distributed under a **very permissive** multi-licensing system: selectable licenses are [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html), [BSD2-Clause](http://opensource.org/licenses/BSD-2-Clause), [BSD3-Clause](http://opensource.org/licenses/BSD-3-Clause) and [MIT](http://opensource.org/licenses/MIT), feel free to select the license that best matches your workflow.
+FORESEER is a Free and Open Source Software (FOSS), it is distributed under a **very permissive** multi-licensing system: selectable licenses are [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html), [BSD2-Clause](http://opensource.org/licenses/BSD-2-Clause), [BSD3-Clause](http://opensource.org/licenses/BSD-3-Clause) and [MIT](http://opensource.org/licenses/MIT), feel free to select the license that best matches your workflow.
 
-> Anyone is interest to use, to develop or to contribute to HASTY is welcome.
+> Anyone is interest to use, to develop or to contribute to FORESEER is welcome.
 
-More details can be found on [wiki](https://github.com/szaghi/HASTY/wiki/Copyrights).
+More details can be found on [wiki](https://github.com/szaghi/FORESEER/wiki/Copyrights).
 
 Go to [Top](#top)
 
