@@ -496,7 +496,7 @@ contains
         r_primitive(1, i) = primitive(i)
         r_primitive(2, i) = r_primitive(1, i)
      enddo
-  case(3, 5, 7) ! 3rd, 5th or 7th order WENO reconstruction
+  case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
      call wenoof_create(interpolator_type='reconstructor-JS', &
                         S=self%Ng,                            &
                         interpolator=interpolator)
@@ -663,7 +663,7 @@ contains
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='llf,pvl')
    call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-1', &
-                choices='weno-1,weno-3,weno-5,weno-7')
+                choices='weno-1,weno-3,weno-5,weno-7,weno-9,weno-11,weno-13,weno-15,weno-17')
    call cli%add(switch='--t-scheme', help='Time intergation scheme', required=.false., act='store', def='tvd-rk-1', &
                 choices='tvd-rk-1,tvd-rk-2,tvd-rk-3,tvd-rk-5')
    call cli%add(switch='--cfl', help='CFL value', required=.false., act='store', def='0.7')
@@ -684,12 +684,22 @@ contains
    select case(trim(adjustl(s_scheme)))
    case('weno-1')
       weno_order = 1
-   case('weno-2')
-      weno_order = 3
    case('weno-3')
-      weno_order = 5
+      weno_order = 3
    case('weno-5')
+      weno_order = 5
+   case('weno-7')
       weno_order = 7
+   case('weno-9')
+      weno_order = 9
+   case('weno-11')
+      weno_order = 11
+   case('weno-13')
+      weno_order = 13
+   case('weno-15')
+      weno_order = 15
+   case('weno-17')
+      weno_order = 17
    endselect
    select case(trim(adjustl(t_scheme)))
    case('tvd-rk-1')
