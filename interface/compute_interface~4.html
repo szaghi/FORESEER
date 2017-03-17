@@ -136,18 +136,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.3% of total for abstract interfaces.">8 statements</a>
+	  title=" 0.2% of total for abstract interfaces.">6 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_object.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_kappa_object.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_alpha_object.f90.html'>wenoof_alpha_object.F90</a></li>
+     <li><a href='../sourcefile/wenoof_kappa_object.f90.html'>wenoof_kappa_object.F90</a></li>
   
-     <li><a href='../module/wenoof_alpha_object.html'>wenoof_alpha_object</a></li>
+     <li><a href='../module/wenoof_kappa_object.html'>wenoof_kappa_object</a></li>
   
      <li class="active">compute_interface</li>
   </ol>
@@ -219,9 +219,9 @@
       
       <a class="list-group-item" href="../interface/compute_interface%7E5.html">compute_interface</a>
       
-      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
-      
       <a class="list-group-item" href="../interface/compute_waves_interface%7E2.html">compute_waves_interface</a>
+      
+      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
       
       <a class="list-group-item" href="../interface/cons_operator_real.html">cons_operator_real</a>
       
@@ -289,9 +289,9 @@
       
       <a class="list-group-item" href="../interface/smoothness_indicators_interface.html">smoothness_indicators_interface</a>
       
-      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
-      
       <a class="list-group-item" href="../interface/solve_interface%7E2.html">solve_interface</a>
+      
+      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
       
       <a class="list-group-item" href="../interface/speed_of_sound_interface.html">speed_of_sound_interface</a>
       
@@ -324,11 +324,11 @@
 	
     
     <h2>abstract interface</h2>
-    <p>Abstract interfaces of <a href="../type/alpha_object.html">alpha_object</a>.</p>
+    <p>Abstract interfaces of <a href="../type/kappa_object.html">kappa_object</a>.</p>
     
     
     <h2>
-private pure subroutine compute_interface(self, beta, kappa)
+private pure subroutine compute_interface(self)
     
     
 	 
@@ -357,42 +357,12 @@ private pure subroutine compute_interface(self, beta, kappa)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E40"></span>class(<a href='../type/alpha_object.html'>alpha_object</a>),</td>
+  <td><span class="anchor" id="variable-self%7E42"></span>class(<a href='../type/kappa_object.html'>kappa_object</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Alpha.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-beta%7E4"></span>class(<a href='../type/beta_object.html'>beta_object</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>beta</strong></td><td><p>Beta.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-kappa%7E2"></span>class(<a href='../type/kappa_object.html'>kappa_object</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>kappa</strong></td><td><p>Kappa.</p></td>
+  <td><strong>self</strong></td><td><p>Kappa.</p></td>
   
 </tr>
 
@@ -403,7 +373,7 @@ private pure subroutine compute_interface(self, beta, kappa)
     
     
     <h3>Description</h3>
-    <p>Compute alpha.</p>
+    <p>Compute kappa.</p>
     
     <br>
 
@@ -441,9 +411,9 @@ private pure subroutine compute_interface(self, beta, kappa)
       
       <a class="list-group-item" href="../interface/compute_interface%7E5.html">compute_interface</a>
       
-      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
-      
       <a class="list-group-item" href="../interface/compute_waves_interface%7E2.html">compute_waves_interface</a>
+      
+      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
       
       <a class="list-group-item" href="../interface/cons_operator_real.html">cons_operator_real</a>
       
@@ -511,9 +481,9 @@ private pure subroutine compute_interface(self, beta, kappa)
       
       <a class="list-group-item" href="../interface/smoothness_indicators_interface.html">smoothness_indicators_interface</a>
       
-      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
-      
       <a class="list-group-item" href="../interface/solve_interface%7E2.html">solve_interface</a>
+      
+      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
       
       <a class="list-group-item" href="../interface/speed_of_sound_interface.html">speed_of_sound_interface</a>
       
@@ -550,7 +520,7 @@ private pure subroutine compute_interface(self, beta, kappa)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

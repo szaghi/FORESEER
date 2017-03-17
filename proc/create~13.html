@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">15 statements</a>
+	  title=" 0.1% of total for procedures.">11 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_factory.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_kappa_factory.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_alpha_factory.f90.html'>wenoof_alpha_factory.f90</a></li>
+     <li><a href='../sourcefile/wenoof_kappa_factory.f90.html'>wenoof_kappa_factory.f90</a></li>
   
-     <li><a href='../module/wenoof_alpha_factory.html'>wenoof_alpha_factory</a></li>
+     <li><a href='../module/wenoof_kappa_factory.html'>wenoof_kappa_factory</a></li>
   
      <li class="active">create</li>
   </ol>
@@ -1014,7 +1014,7 @@ private subroutine create(constructor, object)
 
 
     
-    <p>Create an instance of concrete extension of <a href="../type/alpha_object.html">alpha_object</a> given its constructor.</p>
+    <p>Create an instance of concrete extension of <a href="../type/kappa_object.html">kappa_object</a> given its constructor.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,7 +1035,7 @@ private subroutine create(constructor, object)
   
 <tr>
   
-  <td><span class="anchor" id="variable-constructor%7E31"></span>class(<a href='../type/alpha_object_constructor.html'>alpha_object_constructor</a>),</td>
+  <td><span class="anchor" id="variable-constructor%7E19"></span>class(<a href='../type/kappa_object_constructor.html'>kappa_object_constructor</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -1050,7 +1050,7 @@ private subroutine create(constructor, object)
   
 <tr>
   
-  <td><span class="anchor" id="variable-object%7E11"></span>class(<a href='../type/alpha_object.html'>alpha_object</a>),</td>
+  <td><span class="anchor" id="variable-object%7E5"></span>class(<a href='../type/kappa_object.html'>kappa_object</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -1122,17 +1122,13 @@ private subroutine create(constructor, object)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="p">,</span> <span class="n">object</span><span class="p">)</span>
-  <span class="c">!&lt; Create an instance of concrete extension of [[alpha_object]] given its constructor.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">alpha_object_constructor</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Constructor.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">alpha_object</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">object</span>      <span class="c">!&lt; Object.</span>
+  <span class="c">!&lt; Create an instance of concrete extension of [[kappa_object]] given its constructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">kappa_object_constructor</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Constructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">kappa_object</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">object</span>      <span class="c">!&lt; Object.</span>
 
   <span class="k">select type</span><span class="p">(</span><span class="n">constructor</span><span class="p">)</span>
-  <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_js_constructor</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_js</span> <span class="kd">::</span> <span class="n">object</span><span class="p">)</span>
-  <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_m</span> <span class="kd">::</span> <span class="n">object</span><span class="p">)</span>
-  <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_z_constructor</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_z</span> <span class="kd">::</span> <span class="n">object</span><span class="p">)</span>
+  <span class="k">type is</span><span class="p">(</span><span class="n">kappa_rec_js_constructor</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">kappa_rec_js</span> <span class="kd">::</span> <span class="n">object</span><span class="p">)</span>
   <span class="k">class </span><span class="n">default</span>
     <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error: WenOOF object factory do NOT know the constructor given&#39;</span>
   <span class="n">endselect</span>
@@ -1965,7 +1961,7 @@ private subroutine create(constructor, object)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

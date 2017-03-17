@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.2% of total for procedures.">16 statements</a>
+	  title=" 0.2% of total for procedures.">18 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_argument_t.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_interface_t.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/flap_command_line_argument_t.f90.html'>flap_command_line_argument_t.F90</a></li>
+     <li><a href='../sourcefile/flap_command_line_interface_t.f90.html'>flap_command_line_interface_t.F90</a></li>
   
-     <li><a href='../module/flap_command_line_argument_t.html'>flap_command_line_argument_t</a></li>
+     <li><a href='../module/flap_command_line_interface_t.html'>flap_command_line_interface_t</a></li>
   
      <li class="active">check</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine check(self, pref)
+private subroutine check(self, pref, error)
     
     
 	 
@@ -1035,12 +1035,12 @@ private subroutine check(self, pref)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E153"></span>class(<a href='../type/command_line_argument.html'>command_line_argument</a>),</td>
+  <td><span class="anchor" id="variable-self%7E157"></span>class(<a href='../type/command_line_interface.html'>command_line_interface</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>CLA data.</p></td>
+  <td><strong>self</strong></td><td><p>CLI data.</p></td>
   
 </tr>
 
@@ -1050,12 +1050,27 @@ private subroutine check(self, pref)
   
 <tr>
   
-  <td><span class="anchor" id="variable-pref%7E30"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-pref%7E40"></span>character(len=*),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
   <td><strong>pref</strong></td><td><p>Prefixing string.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-error%7E14"></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error trapping flag.</p></td>
   
 </tr>
 
@@ -1121,23 +1136,27 @@ private subroutine check(self, pref)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">check</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pref</span><span class="p">)</span>
-  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">check</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pref</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
   <span class="c">!&lt; Check data consistency.</span>
-  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">command_line_argument</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>  <span class="c">!&lt; CLA data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">pref</span>  <span class="c">!&lt; Prefixing string.</span>
-  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">command_line_interface</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">INOUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>  <span class="c">!&lt; CLI data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>        <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">pref</span>  <span class="c">!&lt; Prefixing string.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>        <span class="k">intent</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">error</span> <span class="c">!&lt; Error trapping flag.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                                 <span class="kd">::</span> <span class="n">g</span>     <span class="c">!&lt; Counter.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                                 <span class="kd">::</span> <span class="n">gg</span>    <span class="c">!&lt; Counter.</span>
 
-  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">check_envvar_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  call </span><span class="n">self</span><span class="p">%</span><span class="n">check_action_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  call </span><span class="n">self</span><span class="p">%</span><span class="n">check_optional_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  call </span><span class="n">self</span><span class="p">%</span><span class="n">check_m_exclude_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  call </span><span class="n">self</span><span class="p">%</span><span class="n">check_named_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  call </span><span class="n">self</span><span class="p">%</span><span class="n">check_positional_consistency</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span>
-  <span class="k">return</span>
-  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="k">do </span><span class="n">g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="c">! check group consistency</span>
+    <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">check</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">%</span><span class="n">error</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">error</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="n">error</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">error</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">exit</span>
+    <span class="c">! check mutually exclusive interaction</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">g</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">m_exclude</span><span class="o">/=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">is_defined_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">m_exclude</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">gg</span><span class="p">))</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">gg</span><span class="p">)%</span><span class="n">m_exclude</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">group</span>
+      <span class="n">endif</span>
+    <span class="n">endif</span>
+  <span class="n">enddo</span>
   <span class="n">endsubroutine</span> <span class="n">check</span>
 </pre></div>
 
@@ -1966,7 +1985,7 @@ private subroutine check(self, pref)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

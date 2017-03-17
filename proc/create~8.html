@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.3% of total for procedures.">26 statements</a>
+	  title=" 0.2% of total for procedures.">19 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_rec_m.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_weights_js.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_alpha_rec_m.f90.html'>wenoof_alpha_rec_m.F90</a></li>
+     <li><a href='../sourcefile/wenoof_weights_js.f90.html'>wenoof_weights_js.F90</a></li>
   
-     <li><a href='../module/wenoof_alpha_rec_m.html'>wenoof_alpha_rec_m</a></li>
+     <li><a href='../module/wenoof_weights_js.html'>wenoof_weights_js</a></li>
   
      <li class="active">create</li>
   </ol>
@@ -1014,7 +1014,7 @@ private subroutine create(self, constructor)
 
 
     
-    <p>Create alpha.</p>
+    <p>Create reconstructor.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private subroutine create(self, constructor)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E250"></span>class(<a href='../type/alpha_rec_m.html'>alpha_rec_m</a>),</td>
+  <td><span class="anchor" id="variable-self%7E250"></span>class(<a href='../type/weights_js.html'>weights_js</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Alpha.</p></td>
+  <td><strong>self</strong></td><td><p>Weights.</p></td>
   
 </tr>
 
@@ -1055,7 +1055,7 @@ private subroutine create(self, constructor)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>constructor</strong></td><td><p>Alpha constructor.</p></td>
+  <td><strong>constructor</strong></td><td><p>Constructor.</p></td>
   
 </tr>
 
@@ -1122,32 +1122,47 @@ private subroutine create(self, constructor)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">constructor</span><span class="p">)</span>
-  <span class="c">!&lt; Create alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">alpha_rec_m</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Alpha constructor.</span>
+  <span class="c">!&lt; Create reconstructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">weights_js</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Weights.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Constructor.</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">alpha_factory</span><span class="p">)</span>                           <span class="kd">::</span> <span class="n">a_factory</span>   <span class="c">!&lt; Alpha factory.</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">beta_factory</span><span class="p">)</span>                            <span class="kd">::</span> <span class="n">b_factory</span>   <span class="c">!&lt; Beta factory.</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">kappa_factory</span><span class="p">)</span>                           <span class="kd">::</span> <span class="n">k_factory</span>   <span class="c">!&lt; Kappa factory.</span>
 
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy</span>
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">create_</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
   <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">self</span><span class="p">%</span><span class="n">S</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-  <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">))</span>
   <span class="n">self</span><span class="p">%</span><span class="n">values</span> <span class="o">=</span> <span class="mf">0._RPP</span>
-  <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span> <span class="o">=</span> <span class="mf">0._RPP</span>
   <span class="k">select type</span><span class="p">(</span><span class="n">constructor</span><span class="p">)</span>
-  <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      select case</span><span class="p">(</span><span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span><span class="p">)</span>
-      <span class="k">case</span><span class="p">(</span><span class="s1">&#39;JS&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
-        <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_js</span> <span class="kd">::</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
-        <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
-      <span class="k">case</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
-        <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_z</span> <span class="kd">::</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
-        <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
-      <span class="n">endselect</span>
-    <span class="n">endif</span>
-  <span class="k">class </span><span class="n">default</span>
-    <span class="c">! @TODO add error handling</span>
+  <span class="k">type is</span><span class="p">(</span><span class="n">weights_js_constructor</span><span class="p">)</span>
+    <span class="k">associate</span><span class="p">(</span><span class="n">alpha_constructor</span><span class="o">=&gt;</span><span class="n">constructor</span><span class="p">%</span><span class="n">alpha_constructor</span><span class="p">,</span> <span class="p">&amp;</span>
+              <span class="n">beta_constructor</span><span class="o">=&gt;</span><span class="n">constructor</span><span class="p">%</span><span class="n">beta_constructor</span><span class="p">,</span>   <span class="p">&amp;</span>
+              <span class="n">kappa_constructor</span><span class="o">=&gt;</span><span class="n">constructor</span><span class="p">%</span><span class="n">kappa_constructor</span><span class="p">)</span>
+
+      <span class="k">call </span><span class="n">a_factory</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">alpha_constructor</span><span class="p">,</span> <span class="n">object</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">)</span>
+      <span class="c">! select type(alpha_constructor)</span>
+      <span class="c">! type is(alpha_rec_js_constructor)</span>
+      <span class="c">!   call factory%create(constructor=alpha_constructor, object=self%alpha)</span>
+      <span class="c">! type is(alpha_rec_m_constructor)</span>
+      <span class="c">!   call factory%create(constructor=alpha_constructor, object=self%alpha)</span>
+      <span class="c">! type is(alpha_rec_z_constructor)</span>
+      <span class="c">!   call factory%create(constructor=alpha_constructor, object=self%alpha)</span>
+      <span class="c">! endselect</span>
+
+      <span class="k">call </span><span class="n">b_factory</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">beta_constructor</span><span class="p">,</span> <span class="n">object</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">)</span>
+      <span class="c">! select type(beta_constructor)</span>
+      <span class="c">! type is(beta_rec_js_constructor)</span>
+      <span class="c">!   allocate(beta_rec_js :: self%beta)</span>
+      <span class="c">!   call self%beta%create(constructor=beta_constructor)</span>
+      <span class="c">! endselect</span>
+
+      <span class="k">call </span><span class="n">k_factory</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">kappa_constructor</span><span class="p">,</span> <span class="n">object</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">kappa</span><span class="p">)</span>
+      <span class="c">! select type(kappa_constructor)</span>
+      <span class="c">! type is(kappa_rec_js_constructor)</span>
+      <span class="c">!   allocate(kappa_rec_js :: self%kappa)</span>
+      <span class="c">!   call self%kappa%create(constructor=kappa_constructor)</span>
+      <span class="c">! endselect</span>
+    <span class="n">endassociate</span>
   <span class="n">endselect</span>
   <span class="n">endsubroutine</span> <span class="n">create</span>
 </pre></div>
@@ -1977,7 +1992,7 @@ private subroutine create(self, constructor)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

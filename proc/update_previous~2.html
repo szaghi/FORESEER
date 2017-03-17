@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">11 statements</a>
+	  title=" 0.1% of total for procedures.">13 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foodie_integrator_adams_bashforth.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foodie_integrator_adams_moulton.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foodie_integrator_adams_bashforth.f90.html'>foodie_integrator_adams_bashforth.f90</a></li>
+     <li><a href='../sourcefile/foodie_integrator_adams_moulton.f90.html'>foodie_integrator_adams_moulton.f90</a></li>
   
-     <li><a href='../module/foodie_integrator_adams_bashforth.html'>foodie_integrator_adams_bashforth</a></li>
+     <li><a href='../module/foodie_integrator_adams_moulton.html'>foodie_integrator_adams_moulton</a></li>
   
      <li class="active">update_previous</li>
   </ol>
@@ -1035,7 +1035,7 @@ private subroutine update_previous(self, U, previous)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E197"></span>class(<a href='../type/adams_bashforth_integrator.html'>adams_bashforth_integrator</a>),</td>
+  <td><span class="anchor" id="variable-self%7E195"></span>class(<a href='../type/adams_moulton_integrator.html'>adams_moulton_integrator</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -1050,7 +1050,7 @@ private subroutine update_previous(self, U, previous)
   
 <tr>
   
-  <td><span class="anchor" id="variable-u%7E9"></span>class(<a href='../type/integrand.html'>integrand</a>),</td>
+  <td><span class="anchor" id="variable-u%7E7"></span>class(<a href='../type/integrand.html'>integrand</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -1140,17 +1140,19 @@ private subroutine update_previous(self, U, previous)
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="c">!&lt; Cyclic update previous time steps.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">adams_bashforth_integrator</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>         <span class="c">!&lt; Actual AB integrator.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">integrand</span><span class="p">),</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">U</span>            <span class="c">!&lt; Field to be integrated.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">integrand</span><span class="p">),</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">INOUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">previous</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span> <span class="c">!&lt; Previous time steps solutions of integrand field.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">)</span>                                     <span class="kd">::</span> <span class="n">s</span>            <span class="c">!&lt; Steps counter.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">adams_moulton_integrator</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>         <span class="c">!&lt; Actual AB integrator.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">integrand</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">U</span>            <span class="c">!&lt; Field to be integrated.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">integrand</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">INOUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">previous</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span> <span class="c">!&lt; Previous time steps solutions of integrand field.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">)</span>                                   <span class="kd">::</span> <span class="n">s</span>            <span class="c">!&lt; Steps counter.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
 
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">do </span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">steps</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">previous</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">previous</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="n">enddo</span>
-  <span class="n">previous</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">steps</span><span class="p">)</span> <span class="o">=</span> <span class="n">U</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">steps</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    do </span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">steps</span> <span class="o">-</span> <span class="mi">2</span>
+      <span class="n">previous</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">previous</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">enddo</span>
+    <span class="n">previous</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">steps</span><span class="p">)</span> <span class="o">=</span> <span class="n">U</span>
+  <span class="n">endif</span>
   <span class="k">return</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="n">endsubroutine</span> <span class="n">update_previous</span>
@@ -1981,7 +1983,7 @@ private subroutine update_previous(self, U, previous)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">9 statements</a>
+	  title=" 0.1% of total for procedures.">8 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foodie_integrator_tvd_runge_kutta.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foodie_integrator_adams_bashforth_moulton.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foodie_integrator_tvd_runge_kutta.f90.html'>foodie_integrator_tvd_runge_kutta.f90</a></li>
+     <li><a href='../sourcefile/foodie_integrator_adams_bashforth_moulton.f90.html'>foodie_integrator_adams_bashforth_moulton.f90</a></li>
   
-     <li><a href='../module/foodie_integrator_tvd_runge_kutta.html'>foodie_integrator_tvd_runge_kutta</a></li>
+     <li><a href='../module/foodie_integrator_adams_bashforth_moulton.html'>foodie_integrator_adams_bashforth_moulton</a></li>
   
      <li class="active">destroy</li>
   </ol>
@@ -1035,12 +1035,12 @@ private elemental subroutine destroy(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E189"></span>class(<a href='../type/tvd_runge_kutta_integrator.html'>tvd_runge_kutta_integrator</a>),</td>
+  <td><span class="anchor" id="variable-self%7E189"></span>class(<a href='../type/adams_bashforth_moulton_integrator.html'>adams_bashforth_moulton_integrator</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Integrator.</p></td>
+  <td><strong>self</strong></td><td><p>ABM integrator.</p></td>
   
 </tr>
 
@@ -1110,14 +1110,13 @@ private elemental subroutine destroy(self)
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="c">!&lt; Destroy the integrator.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">tvd_runge_kutta_integrator</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">INOUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Integrator.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">adams_bashforth_moulton_integrator</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">INOUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; ABM integrator.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
 
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="n">self</span><span class="p">%</span><span class="n">stages</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alph</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alph</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">gamm</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">gamm</span><span class="p">)</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">steps</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">predictor</span><span class="p">%</span><span class="n">destroy</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">corrector</span><span class="p">%</span><span class="n">destroy</span>
   <span class="n">self</span><span class="p">%</span><span class="n">error</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="k">return</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1949,7 +1948,7 @@ private elemental subroutine destroy(self)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

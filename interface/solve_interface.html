@@ -136,18 +136,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.8% of total for abstract interfaces.">22 statements</a>
+	  title=" 1.3% of total for abstract interfaces.">33 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_pvl.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_object.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html'>foreseer_riemann_solver_compressible_pvl.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_solver_object.f90.html'>foreseer_riemann_solver_object.f90</a></li>
   
-     <li><a href='../module/foreseer_riemann_solver_compressible_pvl.html'>foreseer_riemann_solver_compressible_pvl</a></li>
+     <li><a href='../module/foreseer_riemann_solver_object.html'>foreseer_riemann_solver_object</a></li>
   
      <li class="active">solve_interface</li>
   </ol>
@@ -219,9 +219,9 @@
       
       <a class="list-group-item" href="../interface/compute_interface%7E5.html">compute_interface</a>
       
-      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
-      
       <a class="list-group-item" href="../interface/compute_waves_interface%7E2.html">compute_waves_interface</a>
+      
+      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
       
       <a class="list-group-item" href="../interface/cons_operator_real.html">cons_operator_real</a>
       
@@ -289,9 +289,9 @@
       
       <a class="list-group-item" href="../interface/smoothness_indicators_interface.html">smoothness_indicators_interface</a>
       
-      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
-      
       <a class="list-group-item" href="../interface/solve_interface%7E2.html">solve_interface</a>
+      
+      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
       
       <a class="list-group-item" href="../interface/speed_of_sound_interface.html">speed_of_sound_interface</a>
       
@@ -323,13 +323,16 @@
     <div class="col-md-9" id='text'>
 	
     
-    <h2>abstract interface <br>
+    <h2>abstract interface</h2>
+    <p>Abstract interfaces of <a href="../type/riemann_solver_object.html">riemann_solver_object</a> deferred methods.</p>
     
-private pure subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+    
+    <h2>
+private subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
     
     
 	 
-</h2>    
+</h2>
     
 
     
@@ -354,7 +357,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E2"></span>class(<a href='../type/riemann_solver_compressible_pvl.html'>riemann_solver_compressible_pvl</a>),</td>
+  <td><span class="anchor" id="variable-self%7E30"></span>class(<a href='../type/riemann_solver_object.html'>riemann_solver_object</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -369,7 +372,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E2"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E4"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -384,7 +387,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_left%7E2"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_left%7E4"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -399,7 +402,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E2"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E4"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -414,7 +417,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_right%7E2"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_right%7E4"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -429,7 +432,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E2"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E5"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -444,7 +447,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-fluxes"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-fluxes%7E3"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -460,7 +463,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
     
     
     <h3>Description</h3>
-    <p>Solve Riemann problem.</p>
+    <p>Solve Riemann Problem.</p>
     
     <br>
 
@@ -498,9 +501,9 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
       
       <a class="list-group-item" href="../interface/compute_interface%7E5.html">compute_interface</a>
       
-      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
-      
       <a class="list-group-item" href="../interface/compute_waves_interface%7E2.html">compute_waves_interface</a>
+      
+      <a class="list-group-item" href="../interface/compute_waves_interface.html">compute_waves_interface</a>
       
       <a class="list-group-item" href="../interface/cons_operator_real.html">cons_operator_real</a>
       
@@ -568,9 +571,9 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
       
       <a class="list-group-item" href="../interface/smoothness_indicators_interface.html">smoothness_indicators_interface</a>
       
-      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
-      
       <a class="list-group-item" href="../interface/solve_interface%7E2.html">solve_interface</a>
+      
+      <a class="list-group-item" href="../interface/solve_interface.html">solve_interface</a>
       
       <a class="list-group-item" href="../interface/speed_of_sound_interface.html">speed_of_sound_interface</a>
       
@@ -607,7 +610,7 @@ private pure subroutine solve_interface(self, eos_left, state_left, eos_right, s
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

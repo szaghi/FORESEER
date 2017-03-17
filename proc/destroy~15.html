@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">8 statements</a>
+	  title=" 0.1% of total for procedures.">6 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_weights_js.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_interpolations_rec_js.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_weights_js.f90.html'>wenoof_weights_js.F90</a></li>
+     <li><a href='../sourcefile/wenoof_interpolations_rec_js.f90.html'>wenoof_interpolations_rec_js.F90</a></li>
   
-     <li><a href='../module/wenoof_weights_js.html'>wenoof_weights_js</a></li>
+     <li><a href='../module/wenoof_interpolations_rec_js.html'>wenoof_interpolations_rec_js</a></li>
   
      <li class="active">destroy</li>
   </ol>
@@ -1014,7 +1014,7 @@ private elemental subroutine destroy(self)
 
 
     
-    <p>Destroy weights.</p>
+    <p>Destroy interpolations.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private elemental subroutine destroy(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E236"></span>class(<a href='../type/weights_js.html'>weights_js</a>),</td>
+  <td><span class="anchor" id="variable-self%7E234"></span>class(<a href='../type/interpolations_rec_js.html'>interpolations_rec_js</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Weights.</p></td>
+  <td><strong>self</strong></td><td><p>Interpolations.</p></td>
   
 </tr>
 
@@ -1107,14 +1107,12 @@ private elemental subroutine destroy(self)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">elemental subroutine </span><span class="n">destroy</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-  <span class="c">!&lt; Destroy weights.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">weights_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Weights.</span>
+  <span class="c">!&lt; Destroy interpolations.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">interpolations_rec_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Interpolations.</span>
 
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy_</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">kappa</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">kappa</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">coef</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">coef</span><span class="p">)</span>
   <span class="n">endsubroutine</span> <span class="n">destroy</span>
 </pre></div>
 
@@ -1943,7 +1941,7 @@ private elemental subroutine destroy(self)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

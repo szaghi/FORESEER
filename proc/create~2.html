@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">13 statements</a>
+	  title=" 0.3% of total for procedures.">26 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_reconstructor_js.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_rec_m.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_reconstructor_js.f90.html'>wenoof_reconstructor_js.F90</a></li>
+     <li><a href='../sourcefile/wenoof_alpha_rec_m.f90.html'>wenoof_alpha_rec_m.F90</a></li>
   
-     <li><a href='../module/wenoof_reconstructor_js.html'>wenoof_reconstructor_js</a></li>
+     <li><a href='../module/wenoof_alpha_rec_m.html'>wenoof_alpha_rec_m</a></li>
   
      <li class="active">create</li>
   </ol>
@@ -1014,7 +1014,7 @@ private subroutine create(self, constructor)
 
 
     
-    <p>Create interpolator.</p>
+    <p>Create alpha.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private subroutine create(self, constructor)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E220"></span>class(<a href='../type/reconstructor_js.html'>reconstructor_js</a>),</td>
+  <td><span class="anchor" id="variable-self%7E221"></span>class(<a href='../type/alpha_rec_m.html'>alpha_rec_m</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Interpolator.</p></td>
+  <td><strong>self</strong></td><td><p>Alpha.</p></td>
   
 </tr>
 
@@ -1055,7 +1055,7 @@ private subroutine create(self, constructor)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>constructor</strong></td><td><p>Constructor.</p></td>
+  <td><strong>constructor</strong></td><td><p>Alpha constructor.</p></td>
   
 </tr>
 
@@ -1122,18 +1122,32 @@ private subroutine create(self, constructor)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">constructor</span><span class="p">)</span>
-  <span class="c">!&lt; Create interpolator.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">reconstructor_js</span><span class="p">),</span>        <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Interpolator.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Constructor.</span>
-  <span class="k">type</span><span class="p">(</span><span class="n">interpolations_factory</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">i_factory</span>   <span class="c">!&lt; Inteprolations factory.</span>
-  <span class="k">type</span><span class="p">(</span><span class="n">weights_factory</span><span class="p">)</span>                         <span class="kd">::</span> <span class="n">w_factory</span>   <span class="c">!&lt; Weights factory.</span>
+  <span class="c">!&lt; Create alpha.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">alpha_rec_m</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Alpha.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Alpha constructor.</span>
 
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy</span>
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">create_</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
+  <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">self</span><span class="p">%</span><span class="n">S</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">))</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">values</span> <span class="o">=</span> <span class="mf">0._RPP</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span> <span class="o">=</span> <span class="mf">0._RPP</span>
   <span class="k">select type</span><span class="p">(</span><span class="n">constructor</span><span class="p">)</span>
-  <span class="k">class is</span><span class="p">(</span><span class="n">interpolator_object_constructor</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">i_factory</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">%</span><span class="n">interpolations_constructor</span><span class="p">,</span> <span class="n">object</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">interpolations</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">w_factory</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">%</span><span class="n">weights_constructor</span><span class="p">,</span> <span class="n">object</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">weights</span><span class="p">)</span>
+  <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      select case</span><span class="p">(</span><span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span><span class="p">)</span>
+      <span class="k">case</span><span class="p">(</span><span class="s1">&#39;JS&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_js</span> <span class="kd">::</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
+      <span class="k">case</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_z</span> <span class="kd">::</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
+      <span class="n">endselect</span>
+    <span class="n">endif</span>
+  <span class="k">class </span><span class="n">default</span>
+    <span class="c">! @TODO add error handling</span>
   <span class="n">endselect</span>
   <span class="n">endsubroutine</span> <span class="n">create</span>
 </pre></div>
@@ -1963,7 +1977,7 @@ private subroutine create(self, constructor)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

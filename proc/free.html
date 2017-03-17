@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">15 statements</a>
+	  title=" 0.2% of total for procedures.">18 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_interface_t.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_argument_t.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/flap_command_line_interface_t.f90.html'>flap_command_line_interface_t.F90</a></li>
+     <li><a href='../sourcefile/flap_command_line_argument_t.f90.html'>flap_command_line_argument_t.F90</a></li>
   
-     <li><a href='../module/flap_command_line_interface_t.html'>flap_command_line_interface_t</a></li>
+     <li><a href='../module/flap_command_line_argument_t.html'>flap_command_line_argument_t</a></li>
   
      <li class="active">free</li>
   </ol>
@@ -1035,12 +1035,12 @@ private elemental subroutine free(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E114"></span>class(<a href='../type/command_line_interface.html'>command_line_interface</a>),</td>
+  <td><span class="anchor" id="variable-self%7E115"></span>class(<a href='../type/command_line_argument.html'>command_line_argument</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>CLI data.</p></td>
+  <td><strong>self</strong></td><td><p>CLA data.</p></td>
   
 </tr>
 
@@ -1107,23 +1107,31 @@ private elemental subroutine free(self)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">elemental subroutine </span><span class="n">free</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="c">!&lt; Free dynamic memory.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">command_line_interface</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; CLI data.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                                 <span class="kd">::</span> <span class="n">g</span>    <span class="c">!&lt; Counter.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">command_line_argument</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; CLA data.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
 
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="c">! object members</span>
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">free_object</span>
-  <span class="c">! command_line_interface members</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">    do </span><span class="n">g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-      <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">free</span>
-    <span class="n">enddo</span>
-    <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">)</span>
-  <span class="n">endif</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">args</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">args</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">examples</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">examples</span><span class="p">)</span>
-  <span class="n">self</span><span class="p">%</span><span class="n">disable_hv</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-  <span class="n">self</span><span class="p">%</span><span class="n">is_parsed_</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="c">! command_line_argument members</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span>   <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span>   <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">act</span>      <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">act</span>      <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span>      <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span>      <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">nargs</span>    <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">nargs</span>    <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span>  <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span>  <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">val</span>      <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">val</span>      <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">envvar</span>   <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">envvar</span>   <span class="p">)</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">is_required</span>   <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">is_positional</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">position</span>      <span class="o">=</span>  <span class="mi">0_I4P</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">is_passed</span>     <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="n">self</span><span class="p">%</span><span class="n">is_hidden</span>     <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="k">return</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="n">endsubroutine</span> <span class="n">free</span>
 </pre></div>
 
@@ -1952,7 +1960,7 @@ private elemental subroutine free(self)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

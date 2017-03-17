@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.2% of total for procedures.">16 statements</a>
+	  title=" 0.1% of total for procedures.">12 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_rec_m.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_weights_js.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_alpha_rec_m.f90.html'>wenoof_alpha_rec_m.F90</a></li>
+     <li><a href='../sourcefile/wenoof_weights_js.f90.html'>wenoof_weights_js.F90</a></li>
   
-     <li><a href='../module/wenoof_alpha_rec_m.html'>wenoof_alpha_rec_m</a></li>
+     <li><a href='../module/wenoof_weights_js.html'>wenoof_weights_js</a></li>
   
      <li class="active">compute</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private pure subroutine compute(self, beta, kappa)
+private pure subroutine compute(self, stencil)
     
     
 	 
@@ -1014,7 +1014,7 @@ private pure subroutine compute(self, beta, kappa)
 
 
     
-    <p>Compute alpha.</p>
+    <p>Compute weights.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private pure subroutine compute(self, beta, kappa)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E249"></span>class(<a href='../type/alpha_rec_m.html'>alpha_rec_m</a>),</td>
+  <td><span class="anchor" id="variable-self%7E249"></span>class(<a href='../type/weights_js.html'>weights_js</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Alpha.</p></td>
+  <td><strong>self</strong></td><td><p>Weights.</p></td>
   
 </tr>
 
@@ -1050,27 +1050,12 @@ private pure subroutine compute(self, beta, kappa)
   
 <tr>
   
-  <td><span class="anchor" id="variable-beta%7E8"></span>class(<a href='../type/beta_object.html'>beta_object</a>),</td>
+  <td><span class="anchor" id="variable-stencil%7E12"></span>real(kind=RPP),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>beta</strong></td><td><p>Beta.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-kappa%7E5"></span>class(<a href='../type/kappa_object.html'>kappa_object</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>kappa</strong></td><td><p>Kappa.</p></td>
+  <td><strong>stencil</strong>(1:,1-self%S:)</td><td><p>Stencil used for the interpolation, [1:2, 1-S:-1+S].</p></td>
   
 </tr>
 
@@ -1136,26 +1121,17 @@ private pure subroutine compute(self, beta, kappa)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">pure subroutine </span><span class="n">compute</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">kappa</span><span class="p">)</span>
-  <span class="c">!&lt; Compute alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">alpha_rec_m</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">beta_object</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">beta</span>        <span class="c">!&lt; Beta.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">kappa_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">kappa</span>       <span class="c">!&lt; Kappa.</span>
-  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">kappa_base</span>  <span class="c">!&lt; Kappa evaluated from the base alphas.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">)</span>                       <span class="kd">::</span> <span class="n">f</span><span class="p">,</span> <span class="n">s1</span>       <span class="c">!&lt; Counters.</span>
+    <div class="highlight"><pre><span></span>  <span class="k">pure subroutine </span><span class="n">compute</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">stencil</span><span class="p">)</span>
+  <span class="c">!&lt; Compute weights.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">weights_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>                  <span class="c">!&lt; Weights.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">stencil</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span><span class="mi">1</span><span class="o">-</span><span class="n">self</span><span class="p">%</span><span class="n">S</span><span class="p">:)</span> <span class="c">!&lt; Stencil used for the interpolation, [1:2, 1-S:-1+S].</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">f</span><span class="p">,</span> <span class="n">s</span>                  <span class="c">!&lt; Counters.</span>
 
-  <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span> <span class="o">=</span> <span class="mf">0._RPP</span>
-  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">compute</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">kappa</span><span class="o">=</span><span class="n">kappa</span><span class="p">)</span>
-  <span class="k">do </span><span class="n">s1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">S</span> <span class="o">-</span> <span class="mi">1</span> <span class="c">! stencil loops</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">%</span><span class="n">compute</span><span class="p">(</span><span class="n">stencil</span><span class="o">=</span><span class="n">stencil</span><span class="p">)</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">%</span><span class="n">compute</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">beta</span><span class="p">,</span> <span class="n">kappa</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">kappa</span><span class="p">)</span>
+  <span class="k">do </span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">S</span> <span class="o">-</span> <span class="mi">1</span> <span class="c">! stencils loop</span>
     <span class="k">do </span><span class="n">f</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">f1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">f2</span> <span class="c">! 1 =&gt; left interface (i-1/2), 2 =&gt; right interface (i+1/2)</span>
-      <span class="n">kappa_base</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">=</span>                                                               <span class="p">&amp;</span>
-        <span class="p">(</span><span class="n">kappa_base</span> <span class="o">*</span> <span class="p">(</span><span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
-         <span class="mf">3._RPP</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">kappa_base</span> <span class="o">+</span> <span class="n">kappa_base</span> <span class="o">*</span>                        <span class="p">&amp;</span>
-         <span class="n">kappa_base</span><span class="p">))</span> <span class="o">/</span>                                                                  <span class="p">&amp;</span>
-         <span class="p">(</span><span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">kappa_base</span> <span class="o">*</span>                       <span class="p">&amp;</span>
-         <span class="p">(</span><span class="mf">1._RPP</span> <span class="o">-</span> <span class="mf">2._RPP</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)))</span>
-      <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+      <span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">ff</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">alpha</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">enddo</span>
   <span class="n">enddo</span>
   <span class="n">endsubroutine</span> <span class="n">compute</span>
@@ -1986,7 +1962,7 @@ private pure subroutine compute(self, beta, kappa)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

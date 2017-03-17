@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.2% of total for procedures.">24 statements</a>
+	  title=" 0.2% of total for procedures.">23 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_interface_t.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_arguments_group_t.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/flap_command_line_interface_t.f90.html'>flap_command_line_interface_t.F90</a></li>
+     <li><a href='../sourcefile/flap_command_line_arguments_group_t.f90.html'>flap_command_line_arguments_group_t.f90</a></li>
   
-     <li><a href='../module/flap_command_line_interface_t.html'>flap_command_line_interface_t</a></li>
+     <li><a href='../module/flap_command_line_arguments_group_t.html'>flap_command_line_arguments_group_t</a></li>
   
      <li class="active">is_passed</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private function is_passed(self, group, switch, position)
+private pure function is_passed(self, switch, position)
     
     
 	 
@@ -1035,12 +1035,12 @@ private function is_passed(self, group, switch, position)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E105"></span>class(<a href='../type/command_line_interface.html'>command_line_interface</a>),</td>
+  <td><span class="anchor" id="variable-self%7E135"></span>class(<a href='../type/command_line_arguments_group.html'>command_line_arguments_group</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>CLI data.</p></td>
+  <td><strong>self</strong></td><td><p>CLAsG data.</p></td>
   
 </tr>
 
@@ -1050,22 +1050,7 @@ private function is_passed(self, group, switch, position)
   
 <tr>
   
-  <td><span class="anchor" id="variable-group%7E5"></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>group</strong></td><td><p>Name of group (command) of CLA.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-switch%7E3"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-switch%7E5"></span>character(len=*),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -1160,31 +1145,35 @@ private function is_passed(self, group, switch, position)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">is_passed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">switch</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>  <span class="k">pure function </span><span class="n">is_passed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="c">!&lt; Check if a CLA has been passed.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">command_line_interface</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; CLI data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">group</span>     <span class="c">!&lt; Name of group (command) of CLA.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">switch</span>    <span class="c">!&lt; Switch name.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">position</span>  <span class="c">!&lt; Position of positional CLA.</span>
-  <span class="kt">logical</span>                                   <span class="kd">::</span> <span class="n">is_passed</span> <span class="c">!&lt; Check if a CLA has been passed.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">g</span>         <span class="c">!&lt; Counter.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">command_line_arguments_group</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; CLAsG data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">switch</span>    <span class="c">!&lt; Switch name.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">position</span>  <span class="c">!&lt; Position of positional CLA.</span>
+  <span class="kt">logical</span>                                         <span class="kd">::</span> <span class="n">is_passed</span> <span class="c">!&lt; Check if a CLA has been passed.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                                    <span class="kd">::</span> <span class="n">a</span>         <span class="c">!&lt; CLA counter.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
 
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="n">is_passed</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="k">then</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">Na</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">    if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">switch</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="mi">0</span><span class="p">)%</span><span class="n">is_passed</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="n">switch</span><span class="p">)</span>
+<span class="k">      do </span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">Na</span>
+        <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">is_positional</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          if</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">switch</span><span class="o">==</span><span class="n">switch</span><span class="p">).</span><span class="nb">or</span><span class="p">.(</span><span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">switch_ab</span><span class="o">==</span><span class="n">switch</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">is_passed</span>
+            <span class="k">exit</span>
+<span class="k">          </span><span class="n">endif</span>
+        <span class="n">endif</span>
+      <span class="n">enddo</span>
     <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">position</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="mi">0</span><span class="p">)%</span><span class="n">is_passed</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
-    <span class="n">endif</span>
-  <span class="k">else</span>
-<span class="k">    if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">is_defined_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">switch</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">is_passed</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="n">switch</span><span class="p">)</span>
-      <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">position</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">clasg</span><span class="p">(</span><span class="n">g</span><span class="p">)%</span><span class="n">is_passed</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
-      <span class="n">endif</span>
+<span class="k">      </span><span class="n">is_passed</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">position</span><span class="p">)%</span><span class="n">is_passed</span>
     <span class="n">endif</span>
   <span class="n">endif</span>
+  <span class="k">return</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="n">endfunction</span> <span class="n">is_passed</span>
 </pre></div>
 
@@ -2013,7 +2002,7 @@ private function is_passed(self, group, switch, position)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

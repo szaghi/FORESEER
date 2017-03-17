@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">12 statements</a>
+	  title=" 0.2% of total for procedures.">20 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_conservative_compressible.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_pvl.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_conservative_compressible.f90.html'>foreseer_conservative_compressible.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html'>foreseer_riemann_solver_compressible_pvl.f90</a></li>
   
-     <li><a href='../module/foreseer_conservative_compressible.html'>foreseer_conservative_compressible</a></li>
+     <li><a href='../module/foreseer_riemann_solver_compressible_pvl.html'>foreseer_riemann_solver_compressible_pvl</a></li>
   
      <li class="active">initialize</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine initialize(self, initial_state)
+private subroutine initialize(self, config)
     
     
 	 
@@ -1014,7 +1014,7 @@ private subroutine initialize(self, initial_state)
 
 
     
-    <p>Initialize conservative.</p>
+    <p>Initialize solver.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private subroutine initialize(self, initial_state)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E86"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-self%7E86"></span>class(<a href='../type/riemann_solver_compressible_pvl.html'>riemann_solver_compressible_pvl</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Conservative.</p></td>
+  <td><strong>self</strong></td><td><p>Solver.</p></td>
   
 </tr>
 
@@ -1050,12 +1050,12 @@ private subroutine initialize(self, initial_state)
   
 <tr>
   
-  <td><span class="anchor" id="variable-initial_state%7E4"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-config%7E3"></span>character(len=*),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>initial_state</strong></td><td><p>Initial state.</p></td>
+  <td><strong>config</strong></td><td><p>Configuration for solver algorithm.</p></td>
   
 </tr>
 
@@ -1121,19 +1121,26 @@ private subroutine initialize(self, initial_state)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>   <span class="k">subroutine </span><span class="n">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">)</span>
-   <span class="c">!&lt; Initialize conservative.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">self</span>          <span class="c">!&lt; Conservative.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">initial_state</span> <span class="c">!&lt; Initial state.</span>
+    <div class="highlight"><pre><span></span>   <span class="k">subroutine </span><span class="n">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+   <span class="c">!&lt; Initialize solver.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_pvl</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">self</span>    <span class="c">!&lt; Solver.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span>                       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">config</span>  <span class="c">!&lt; Configuration for solver algorithm.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                <span class="kd">::</span> <span class="n">config_</span> <span class="c">!&lt; Configuration for solver algorithm, local var.</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      select type</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
-      <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
-         <span class="n">self</span> <span class="o">=</span> <span class="n">initial_state</span>
-      <span class="n">endselect</span>
-   <span class="k">else</span>
-<span class="k">      call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy</span>
-   <span class="n">endif</span>
+   <span class="n">self</span><span class="p">%</span><span class="n">compute_waves_</span> <span class="o">=&gt;</span> <span class="n">compute_waves_u23</span>
+   <span class="n">self</span><span class="p">%</span><span class="n">solve_</span> <span class="o">=&gt;</span> <span class="n">solve_u23</span>
+   <span class="n">config_</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">config</span><span class="p">))</span> <span class="n">config_</span> <span class="o">=</span> <span class="n">config</span>
+   <span class="k">select case</span><span class="p">(</span><span class="n">config_</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;u23&#39;</span><span class="p">)</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">compute_waves_</span> <span class="o">=&gt;</span> <span class="n">compute_waves_u23</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">solve_</span> <span class="o">=&gt;</span> <span class="n">solve_u23</span>
+   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;up23&#39;</span><span class="p">)</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">compute_waves_</span> <span class="o">=&gt;</span> <span class="n">compute_waves_up23</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">solve_</span> <span class="o">=&gt;</span> <span class="n">solve_up23</span>
+   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;upr23&#39;</span><span class="p">)</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">compute_waves_</span> <span class="o">=&gt;</span> <span class="n">compute_waves_up23</span>
+     <span class="n">self</span><span class="p">%</span><span class="n">solve_</span> <span class="o">=&gt;</span> <span class="n">solve_up23</span>
+   <span class="n">endselect</span>
    <span class="n">endsubroutine</span> <span class="n">initialize</span>
 </pre></div>
 
@@ -1962,7 +1969,7 @@ private subroutine initialize(self, initial_state)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

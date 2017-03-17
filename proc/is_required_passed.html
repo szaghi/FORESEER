@@ -117,7 +117,7 @@
   
   <div class="row">
     <h1>is_required_passed
-      <small>Subroutine</small>
+      <small>Function</small>
     
     </h1>
     
@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">15 statements</a>
+	  title=" 0.1% of total for procedures.">11 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_arguments_group_t.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_argument_t.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/flap_command_line_arguments_group_t.f90.html'>flap_command_line_arguments_group_t.f90</a></li>
+     <li><a href='../sourcefile/flap_command_line_argument_t.f90.html'>flap_command_line_argument_t.F90</a></li>
   
-     <li><a href='../module/flap_command_line_arguments_group_t.html'>flap_command_line_arguments_group_t</a></li>
+     <li><a href='../module/flap_command_line_argument_t.html'>flap_command_line_argument_t</a></li>
   
      <li class="active">is_required_passed</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine is_required_passed(self, pref)
+private function is_required_passed(self, pref) result(is_ok)
     
     
 	 
@@ -1014,7 +1014,7 @@ private subroutine is_required_passed(self, pref)
 
 
     
-    <p>Check if required CLAs are passed.</p>
+    <p>Check if required CLA is passed.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private subroutine is_required_passed(self, pref)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E145"></span>class(<a href='../type/command_line_arguments_group.html'>command_line_arguments_group</a>),</td>
+  <td><span class="anchor" id="variable-self%7E102"></span>class(<a href='../type/command_line_argument.html'>command_line_argument</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>CLAsG data.</p></td>
+  <td><strong>self</strong></td><td><p>CLA data.</p></td>
   
 </tr>
 
@@ -1050,7 +1050,7 @@ private subroutine is_required_passed(self, pref)
   
 <tr>
   
-  <td><span class="anchor" id="variable-pref%7E24"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-pref%7E2"></span>character(len=*),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -1063,6 +1063,15 @@ private subroutine is_required_passed(self, pref)
 </table>
 
     
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-is_ok%7E2"></span>logical
+  </small></h3>
+    <p>Check result.</p>
     
     
      
@@ -1121,28 +1130,24 @@ private subroutine is_required_passed(self, pref)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">is_required_passed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pref</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">is_required_passed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pref</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">is_ok</span><span class="p">)</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="c">!&lt; Check if required CLAs are passed.</span>
+  <span class="c">!&lt; Check if required CLA is passed.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">command_line_arguments_group</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>  <span class="c">!&lt; CLAsG data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">pref</span>  <span class="c">!&lt; Prefixing string.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                                       <span class="kd">::</span> <span class="n">a</span>     <span class="c">!&lt; Counter.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">command_line_argument</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>  <span class="c">!&lt; CLA data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">pref</span>  <span class="c">!&lt; Prefixing string.</span>
+  <span class="kt">logical</span>                                     <span class="kd">::</span> <span class="n">is_ok</span> <span class="c">!&lt; Check result.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
 
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">is_called</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">    do </span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">Na</span>
-      <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">is_required_passed</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">self</span><span class="p">%</span><span class="n">error</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">cla</span><span class="p">(</span><span class="n">a</span><span class="p">)%</span><span class="n">error</span>
-        <span class="k">write</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">usage_lun</span><span class="p">,</span> <span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="n">self</span><span class="p">%</span><span class="n">usage</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">)</span>
-        <span class="k">return</span>
-<span class="k">      </span><span class="n">endif</span>
-    <span class="n">enddo</span>
+  <span class="n">is_ok</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+  <span class="k">if</span> <span class="p">(((.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_passed</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_required</span><span class="p">).</span><span class="nb">or</span><span class="p">.((.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_passed</span><span class="p">).</span><span class="nb">and</span><span class="p">.(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span><span class="p">))))</span> <span class="k">then</span>
+<span class="k">    call </span><span class="n">self</span><span class="p">%</span><span class="n">errored</span><span class="p">(</span><span class="n">pref</span><span class="o">=</span><span class="n">pref</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">ERROR_MISSING_REQUIRED</span><span class="p">)</span>
+    <span class="n">is_ok</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
   <span class="n">endif</span>
   <span class="k">return</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
-  <span class="n">endsubroutine</span> <span class="n">is_required_passed</span>
+  <span class="n">endfunction</span> <span class="n">is_required_passed</span>
 </pre></div>
 
     </section>
@@ -1970,7 +1975,7 @@ private subroutine is_required_passed(self, pref)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

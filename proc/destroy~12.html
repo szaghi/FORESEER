@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">6 statements</a>
+	  title=" 0.1% of total for procedures.">7 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_reconstructor_js.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_rec_m.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_reconstructor_js.f90.html'>wenoof_reconstructor_js.F90</a></li>
+     <li><a href='../sourcefile/wenoof_alpha_rec_m.f90.html'>wenoof_alpha_rec_m.F90</a></li>
   
-     <li><a href='../module/wenoof_reconstructor_js.html'>wenoof_reconstructor_js</a></li>
+     <li><a href='../module/wenoof_alpha_rec_m.html'>wenoof_alpha_rec_m</a></li>
   
      <li class="active">destroy</li>
   </ol>
@@ -1014,7 +1014,7 @@ private elemental subroutine destroy(self)
 
 
     
-    <p>Destroy reconstructor.</p>
+    <p>Destroy alpha.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private elemental subroutine destroy(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E221"></span>class(<a href='../type/reconstructor_js.html'>reconstructor_js</a>),</td>
+  <td><span class="anchor" id="variable-self%7E222"></span>class(<a href='../type/alpha_rec_m.html'>alpha_rec_m</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Reconstructor.</p></td>
+  <td><strong>self</strong></td><td><p>Alpha.</p></td>
   
 </tr>
 
@@ -1107,12 +1107,13 @@ private elemental subroutine destroy(self)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">elemental subroutine </span><span class="n">destroy</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-  <span class="c">!&lt; Destroy reconstructor.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">reconstructor_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Reconstructor.</span>
+  <span class="c">!&lt; Destroy alpha.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">alpha_rec_m</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Alpha.</span>
 
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy_</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">interpolations</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">interpolations</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">weights</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">weights</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">alpha_base</span><span class="p">)</span>
   <span class="n">endsubroutine</span> <span class="n">destroy</span>
 </pre></div>
 
@@ -1941,7 +1942,7 @@ private elemental subroutine destroy(self)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

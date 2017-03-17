@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.2% of total for procedures.">18 statements</a>
+	  title=" 0.3% of total for procedures.">29 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_kappa_factory.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_factory.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_kappa_factory.f90.html'>wenoof_kappa_factory.f90</a></li>
+     <li><a href='../sourcefile/wenoof_alpha_factory.f90.html'>wenoof_alpha_factory.f90</a></li>
   
-     <li><a href='../module/wenoof_kappa_factory.html'>wenoof_kappa_factory</a></li>
+     <li><a href='../module/wenoof_alpha_factory.html'>wenoof_alpha_factory</a></li>
   
      <li class="active">create_constructor</li>
   </ol>
@@ -1004,7 +1004,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine create_constructor(interpolator_type, S, constructor)
+private subroutine create_constructor(interpolator_type, S, constructor, face_left, face_right, eps)
     
     
 	 
@@ -1014,7 +1014,7 @@ private subroutine create_constructor(interpolator_type, S, constructor)
 
 
     
-    <p>Create an instance of concrete extension of <a href="../type/kappa_object_constructor.html">kappa_object_constructor</a>.</p>
+    <p>Create an instance of concrete extension of <a href="../type/alpha_object_constructor.html">alpha_object_constructor</a>.</p>
     
 
     <h3>Arguments</h3>
@@ -1065,12 +1065,57 @@ private subroutine create_constructor(interpolator_type, S, constructor)
   
 <tr>
   
-  <td><span class="anchor" id="variable-constructor%7E12"></span>class(<a href='../type/kappa_object_constructor.html'>kappa_object_constructor</a>),</td>
+  <td><span class="anchor" id="variable-constructor%7E12"></span>class(<a href='../type/alpha_object_constructor.html'>alpha_object_constructor</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
   <td>allocatable</td><td>::</td>
   <td><strong>constructor</strong></td><td><p>Constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_left%7E4"></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td><p>Activate left-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_right%7E4"></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td><p>Activate right-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eps%7E5"></span>real(kind=RPP),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>eps</strong></td><td><p>Small epsilon to avoid zero/division.</p></td>
   
 </tr>
 
@@ -1136,26 +1181,37 @@ private subroutine create_constructor(interpolator_type, S, constructor)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create_constructor</span><span class="p">(</span><span class="n">interpolator_type</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">constructor</span><span class="p">)</span>
-  <span class="c">!&lt; Create an instance of concrete extension of [[kappa_object_constructor]].</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">interpolator_type</span> <span class="c">!&lt; Type of the interpolator.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">),</span>                                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">S</span>                 <span class="c">!&lt; Stencils dimension.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">kappa_object_constructor</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">constructor</span>       <span class="c">!&lt; Constructor.</span>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create_constructor</span><span class="p">(</span><span class="n">interpolator_type</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">constructor</span><span class="p">,</span> <span class="n">face_left</span><span class="p">,</span> <span class="n">face_right</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+  <span class="c">!&lt; Create an instance of concrete extension of [[alpha_object_constructor]].</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">interpolator_type</span> <span class="c">!&lt; Type of the interpolator.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">),</span>                                 <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">S</span>                 <span class="c">!&lt; Stencils dimension.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">alpha_object_constructor</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">constructor</span>       <span class="c">!&lt; Constructor.</span>
+  <span class="kt">logical</span><span class="p">,</span>                                      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">face_left</span>         <span class="c">!&lt; Activate left-face interpolations.</span>
+  <span class="kt">logical</span><span class="p">,</span>                                      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">face_right</span>        <span class="c">!&lt; Activate right-face interpolations.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>                                    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">eps</span>               <span class="c">!&lt; Small epsilon to avoid zero/division.</span>
 
   <span class="k">select case</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">interpolator_type</span><span class="p">)))</span>
   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;interpolator-JS&#39;</span><span class="p">)</span>
     <span class="c">! @TODO implement this</span>
     <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;interpolator-JS to be implemented&#39;</span>
   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;reconstructor-JS&#39;</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">kappa_rec_js_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_js_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;reconstructor-M-JS&#39;</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">kappa_rec_js_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">constructor</span><span class="p">)</span>
+    <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span><span class="p">)</span>
+      <span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span> <span class="o">=</span> <span class="s1">&#39;JS&#39;</span>
+    <span class="n">endselect</span>
   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;reconstructor-M-Z&#39;</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">kappa_rec_js_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">constructor</span><span class="p">)</span>
+    <span class="k">type is</span><span class="p">(</span><span class="n">alpha_rec_m_constructor</span><span class="p">)</span>
+      <span class="n">constructor</span><span class="p">%</span><span class="n">base_type</span> <span class="o">=</span> <span class="s1">&#39;Z&#39;</span>
+    <span class="n">endselect</span>
   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;reconstructor-Z&#39;</span><span class="p">)</span>
-    <span class="k">allocate</span><span class="p">(</span><span class="n">kappa_rec_js_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">alpha_rec_z_constructor</span> <span class="kd">::</span> <span class="n">constructor</span><span class="p">)</span>
   <span class="n">endselect</span>
-  <span class="k">call </span><span class="n">constructor</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">)</span>
+  <span class="k">call </span><span class="n">constructor</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">face_left</span><span class="o">=</span><span class="n">face_left</span><span class="p">,</span> <span class="n">face_right</span><span class="o">=</span><span class="n">face_right</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
   <span class="n">endsubroutine</span> <span class="n">create_constructor</span>
 </pre></div>
 
@@ -1984,7 +2040,7 @@ private subroutine create_constructor(interpolator_type, S, constructor)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

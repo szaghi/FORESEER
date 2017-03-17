@@ -138,14 +138,14 @@
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_primitive_compressible.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_conservative_compressible.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_primitive_compressible.f90.html'>foreseer_primitive_compressible.f90</a></li>
+     <li><a href='../sourcefile/foreseer_conservative_compressible.f90.html'>foreseer_conservative_compressible.f90</a></li>
   
-     <li><a href='../module/foreseer_primitive_compressible.html'>foreseer_primitive_compressible</a></li>
+     <li><a href='../module/foreseer_conservative_compressible.html'>foreseer_conservative_compressible</a></li>
   
      <li class="active">array</li>
   </ol>
@@ -1014,7 +1014,7 @@ private pure function array(self) result(array_)
 
 
     
-    <p>Return serialized array of primitive.</p>
+    <p>Return serialized array of conservative.</p>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1035,12 @@ private pure function array(self) result(array_)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E67"></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td><span class="anchor" id="variable-self%7E45"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  <td><strong>self</strong></td><td><p>Conservative.</p></td>
   
 </tr>
 
@@ -1056,7 +1056,7 @@ private pure function array(self) result(array_)
     
 	 <h3>Return Value <small><span class="anchor" id="variable-array_%7E3"></span>real(kind=R8P),
   allocatable,(:)</small></h3>
-    <p>Serialized array of primitive.</p>
+    <p>Serialized array of conservative.</p>
     
     
      
@@ -1116,16 +1116,16 @@ private pure function array(self) result(array_)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>   <span class="k">pure function array</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">array_</span><span class="p">)</span>
-   <span class="c">!&lt; Return serialized array of primitive.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">primitive_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; Primitive.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">allocatable</span>                    <span class="kd">::</span> <span class="n">array_</span><span class="p">(:)</span> <span class="c">!&lt; Serialized array of primitive.</span>
+   <span class="c">!&lt; Return serialized array of conservative.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; Conservative.</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">allocatable</span>                       <span class="kd">::</span> <span class="n">array_</span><span class="p">(:)</span> <span class="c">!&lt; Serialized array of conservative.</span>
 
    <span class="k">allocate</span><span class="p">(</span><span class="n">array_</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">))</span>
    <span class="n">array_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">density</span>
-   <span class="n">array_</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">x</span>
-   <span class="n">array_</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">y</span>
-   <span class="n">array_</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">z</span>
-   <span class="n">array_</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">pressure</span>
+   <span class="n">array_</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">momentum</span><span class="p">%</span><span class="n">x</span>
+   <span class="n">array_</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">momentum</span><span class="p">%</span><span class="n">y</span>
+   <span class="n">array_</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">momentum</span><span class="p">%</span><span class="n">z</span>
+   <span class="n">array_</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">energy</span>
    <span class="n">endfunction</span> <span class="k">array</span>
 </pre></div>
 
@@ -1954,7 +1954,7 @@ private pure function array(self) result(array_)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

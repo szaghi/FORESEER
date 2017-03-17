@@ -3,6 +3,7 @@
 module foreseer_euler_1d
 !< Definition of Euler 1D class for FORESEER test.
 
+use, intrinsic :: iso_fortran_env, only : stderr=>error_unit
 use foreseer, only : conservative_object, conservative_compressible, primitive_compressible,         &
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_object, eos_compressible,                                                   &
@@ -177,7 +178,8 @@ contains
    case('primitive')
       self%reconstruct_interfaces => reconstruct_interfaces_primitive
    case default
-      error stop 'error: WENO reconstruction variables set "'//weno_variables_//'" unknown!'
+      write(stderr, '(A)') 'error: WENO reconstruction variables set "'//weno_variables_//'" unknown!'
+      stop
    endselect
 
    riemann_solver_scheme_ = 'llf'
@@ -188,7 +190,8 @@ contains
    case('pvl')
       self%riemann_solver => riemann_solver_pvl
    case default
-      error stop 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
+      write(stderr, '(A)') 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
+      stop
    endselect
    endsubroutine initialize
 

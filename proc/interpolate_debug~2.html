@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">8 statements</a>
+	  title=" 0.1% of total for procedures.">10 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_interpolator_js.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_reconstructor_js.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_interpolator_js.f90.html'>wenoof_interpolator_js.F90</a></li>
+     <li><a href='../sourcefile/wenoof_reconstructor_js.f90.html'>wenoof_reconstructor_js.F90</a></li>
   
-     <li><a href='../module/wenoof_interpolator_js.html'>wenoof_interpolator_js</a></li>
+     <li><a href='../module/wenoof_reconstructor_js.html'>wenoof_reconstructor_js</a></li>
   
      <li class="active">interpolate_debug</li>
   </ol>
@@ -1035,12 +1035,12 @@ private pure subroutine interpolate_debug(self, stencil, interpolation, si, weig
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E238"></span>class(<a href='../type/interpolator_js.html'>interpolator_js</a>),</td>
+  <td><span class="anchor" id="variable-self%7E245"></span>class(<a href='../type/reconstructor_js.html'>reconstructor_js</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Interpolator.</p></td>
+  <td><strong>self</strong></td><td><p>Reconstructor.</p></td>
   
 </tr>
 
@@ -1080,7 +1080,7 @@ private pure subroutine interpolate_debug(self, stencil, interpolation, si, weig
   
 <tr>
   
-  <td><span class="anchor" id="variable-si%7E5"></span>real(kind=RPP),</td>
+  <td><span class="anchor" id="variable-si%7E4"></span>real(kind=RPP),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -1168,16 +1168,15 @@ private pure subroutine interpolate_debug(self, stencil, interpolation, si, weig
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">pure subroutine </span><span class="n">interpolate_debug</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">stencil</span><span class="p">,</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">si</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
   <span class="c">!&lt; Interpolate values (providing also debug values).</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">interpolator_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>                     <span class="c">!&lt; Interpolator.</span>
-  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">stencil</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">self</span><span class="p">%</span><span class="n">S</span><span class="p">:)</span> <span class="c">!&lt; Stencil of the interpolation [1:2, 1-S:-1+S].</span>
-  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">interpolation</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span>        <span class="c">!&lt; Result of the interpolation, [1:2].</span>
-  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">si</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">:)</span>               <span class="c">!&lt; Computed values of smoothness indicators [1:2, 0:S-1].</span>
-  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">weights</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">:)</span>          <span class="c">!&lt; Weights of the stencils, [1:2, 0:S-1].</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">reconstructor_js</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>                     <span class="c">!&lt; Reconstructor.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">stencil</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">self</span><span class="p">%</span><span class="n">S</span><span class="p">:)</span> <span class="c">!&lt; Stencil of the interpolation [1:2, 1-S:-1+S].</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">interpolation</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span>        <span class="c">!&lt; Result of the interpolation, [1:2].</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">si</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">:)</span>               <span class="c">!&lt; Computed values of smoothness indicators [1:2, 0:S-1].</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">weights</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">:)</span>          <span class="c">!&lt; Weights of the stencils, [1:2, 0:S-1].</span>
 
-<span class="cp">#ifndef DEBUG</span>
-  <span class="c">! error stop in pure procedure is a F2015 feature not yet supported in debug mode</span>
-  <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;interpolator_js to be implemented, do not use!&#39;</span>
-<span class="cp">#endif</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">interpolate_standard</span><span class="p">(</span><span class="n">stencil</span><span class="o">=</span><span class="n">stencil</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
+  <span class="n">si</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">weights</span><span class="p">%</span><span class="n">smoothness_indicators</span><span class="p">()</span>
+  <span class="n">weights</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">weights</span><span class="p">%</span><span class="n">values</span>
   <span class="n">endsubroutine</span> <span class="n">interpolate_debug</span>
 </pre></div>
 
@@ -2006,7 +2005,7 @@ private pure subroutine interpolate_debug(self, stencil, interpolation, si, weig
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.1% of total for procedures.">10 statements</a>
+	  title=" 0.1% of total for procedures.">9 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/wenoof_alpha_rec_z.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_kappa_rec_js.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/wenoof_alpha_rec_z.f90.html'>wenoof_alpha_rec_z.F90</a></li>
+     <li><a href='../sourcefile/wenoof_kappa_rec_js.f90.html'>wenoof_kappa_rec_js.F90</a></li>
   
-     <li><a href='../module/wenoof_alpha_rec_z.html'>wenoof_alpha_rec_z</a></li>
+     <li><a href='../module/wenoof_kappa_rec_js.html'>wenoof_kappa_rec_js</a></li>
   
      <li class="active">create</li>
   </ol>
@@ -1014,7 +1014,8 @@ private subroutine create(self, constructor)
 
 
     
-    <p>Create alpha.</p>
+    <p>Create kappa.</p>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>The kappa coefficients are also computed, they being constants.</p></div>
     
 
     <h3>Arguments</h3>
@@ -1035,12 +1036,12 @@ private subroutine create(self, constructor)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E242"></span>class(<a href='../type/alpha_rec_z.html'>alpha_rec_z</a>),</td>
+  <td><span class="anchor" id="variable-self%7E240"></span>class(<a href='../type/kappa_rec_js.html'>kappa_rec_js</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Alpha.</p></td>
+  <td><strong>self</strong></td><td><p>Kappa.</p></td>
   
 </tr>
 
@@ -1055,7 +1056,7 @@ private subroutine create(self, constructor)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>constructor</strong></td><td><p>Alpha constructor.</p></td>
+  <td><strong>constructor</strong></td><td><p>Kappa constructor.</p></td>
   
 </tr>
 
@@ -1122,16 +1123,17 @@ private subroutine create(self, constructor)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">create</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">constructor</span><span class="p">)</span>
-  <span class="c">!&lt; Create alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">alpha_rec_z</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Alpha.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Alpha constructor.</span>
+  <span class="c">!&lt; Create kappa.</span>
+  <span class="c">!&lt;</span>
+  <span class="c">!&lt; @note The kappa coefficients are also computed, they being constants.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">kappa_rec_js</span><span class="p">),</span>            <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Kappa.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">constructor</span> <span class="c">!&lt; Kappa constructor.</span>
 
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">destroy</span>
   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">create_</span><span class="p">(</span><span class="n">constructor</span><span class="o">=</span><span class="n">constructor</span><span class="p">)</span>
   <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">self</span><span class="p">%</span><span class="n">S</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-  <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">values_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">))</span>
   <span class="n">self</span><span class="p">%</span><span class="n">values</span> <span class="o">=</span> <span class="mf">0._RPP</span>
-  <span class="n">self</span><span class="p">%</span><span class="n">values_sum</span> <span class="o">=</span> <span class="mf">0._RPP</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">compute</span>
   <span class="n">endsubroutine</span> <span class="n">create</span>
 </pre></div>
 
@@ -1960,7 +1962,7 @@ private subroutine create(self, constructor)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

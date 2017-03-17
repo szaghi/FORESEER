@@ -138,14 +138,14 @@
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_primitive_compressible.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_conservative_compressible.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_primitive_compressible.f90.html'>foreseer_primitive_compressible.f90</a></li>
+     <li><a href='../sourcefile/foreseer_conservative_compressible.f90.html'>foreseer_conservative_compressible.f90</a></li>
   
-     <li><a href='../module/foreseer_primitive_compressible.html'>foreseer_primitive_compressible</a></li>
+     <li><a href='../module/foreseer_conservative_compressible.html'>foreseer_conservative_compressible</a></li>
   
      <li class="active">add</li>
   </ol>
@@ -1035,7 +1035,7 @@ private function add(lhs, rhs) result(operator_result)
   
 <tr>
   
-  <td><span class="anchor" id="variable-lhs%7E14"></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td><span class="anchor" id="variable-lhs%7E14"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -1050,7 +1050,7 @@ private function add(lhs, rhs) result(operator_result)
   
 <tr>
   
-  <td><span class="anchor" id="variable-rhs%7E14"></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td><span class="anchor" id="variable-rhs%7E14"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -1069,7 +1069,7 @@ private function add(lhs, rhs) result(operator_result)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-operator_result%7E12"></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+	 <h3>Return Value <small><span class="anchor" id="variable-operator_result%7E12"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),
   allocatable</small></h3>
     <p>Operator result.</p>
     
@@ -1132,19 +1132,19 @@ private function add(lhs, rhs) result(operator_result)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>   <span class="k">function </span><span class="n">add</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">operator_result</span><span class="p">)</span>
    <span class="c">!&lt; Operator `+`.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">primitive_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span>             <span class="c">!&lt; Left hand side.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">primitive_object</span><span class="p">),</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span>             <span class="c">!&lt; Right hand side.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">primitive_object</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="n">operator_result</span> <span class="c">!&lt; Operator result.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span>             <span class="c">!&lt; Left hand side.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span>             <span class="c">!&lt; Right hand side.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="n">operator_result</span> <span class="c">!&lt; Operator result.</span>
 
-   <span class="k">allocate</span><span class="p">(</span><span class="n">primitive_compressible</span> <span class="kd">::</span> <span class="n">operator_result</span><span class="p">)</span>
+   <span class="k">allocate</span><span class="p">(</span><span class="n">conservative_compressible</span> <span class="kd">::</span> <span class="n">operator_result</span><span class="p">)</span>
    <span class="k">select type</span><span class="p">(</span><span class="n">operator_result</span><span class="p">)</span>
-   <span class="k">class is</span><span class="p">(</span><span class="n">primitive_compressible</span><span class="p">)</span>
+   <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
       <span class="n">operator_result</span> <span class="o">=</span> <span class="n">lhs</span>
       <span class="k">select type</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
-      <span class="k">class is</span> <span class="p">(</span><span class="n">primitive_compressible</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
          <span class="n">operator_result</span><span class="p">%</span><span class="n">density</span>  <span class="o">=</span> <span class="n">lhs</span><span class="p">%</span><span class="n">density</span>  <span class="o">+</span> <span class="n">rhs</span><span class="p">%</span><span class="n">density</span>
-         <span class="n">operator_result</span><span class="p">%</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">%</span><span class="n">velocity</span> <span class="o">+</span> <span class="n">rhs</span><span class="p">%</span><span class="n">velocity</span>
-         <span class="n">operator_result</span><span class="p">%</span><span class="n">pressure</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">%</span><span class="n">pressure</span> <span class="o">+</span> <span class="n">rhs</span><span class="p">%</span><span class="n">pressure</span>
+         <span class="n">operator_result</span><span class="p">%</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">%</span><span class="n">momentum</span> <span class="o">+</span> <span class="n">rhs</span><span class="p">%</span><span class="n">momentum</span>
+         <span class="n">operator_result</span><span class="p">%</span><span class="n">energy</span>   <span class="o">=</span> <span class="n">lhs</span><span class="p">%</span><span class="n">energy</span>   <span class="o">+</span> <span class="n">rhs</span><span class="p">%</span><span class="n">energy</span>
       <span class="n">endselect</span>
    <span class="n">endselect</span>
    <span class="n">endfunction</span> <span class="n">add</span>
@@ -1975,7 +1975,7 @@ private function add(lhs, rhs) result(operator_result)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:51  
+             on 2017-03-17 15:36  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
