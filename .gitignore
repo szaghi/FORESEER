@@ -27,6 +27,7 @@
 # special directories
 doc/html/
 exe/
+utils/
 wiki/
 
 # special files

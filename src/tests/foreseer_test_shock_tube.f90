@@ -75,17 +75,18 @@ type, extends(integrand) :: euler_1d
    !<```
    !< Where *Ni* are the finite volumes (cells) used for discretizing the domain and *Ng* are the ghost cells used for imposing the
    !< left and right boundary conditions (for a total of *2Ng* cells).
-   integer(I4P)                                 :: weno_order=0                         !< WENO reconstruction order.
-   integer(I4P)                                 :: Ni=0                                 !< Space dimension.
-   integer(I4P)                                 :: Ng=0                                 !< Ghost cells number.
-   real(R8P)                                    :: Dx=0._R8P                            !< Space step.
-   type(eos_compressible)                       :: eos                                  !< Equation of state.
-   type(conservative_compressible), allocatable :: U(:)                                 !< Integrand (state) variables.
-   character(:),                    allocatable :: BC_L                                 !< Left boundary condition type.
-   character(:),                    allocatable :: BC_R                                 !< Right boundary condition type.
-   class(interpolator_object),      allocatable :: interpolator                         !< WENO interpolator.
-   character(:),                    allocatable :: riemann_solver_scheme                !< Riemann solver scheme.
-   procedure(riemann_solver_), pointer          :: riemann_solver => riemann_solver_llf !< Actual Riemann Problem solver.
+   integer(I4P)                                 :: weno_order=0                          !< WENO reconstruction order.
+   integer(I4P)                                 :: Ni=0                                  !< Space dimension.
+   integer(I4P)                                 :: Ng=0                                  !< Ghost cells number.
+   real(R8P)                                    :: Dx=0._R8P                             !< Space step.
+   type(eos_compressible)                       :: eos                                   !< Equation of state.
+   type(conservative_compressible), allocatable :: U(:)                                  !< Integrand (state) variables.
+   character(:),                    allocatable :: BC_L                                  !< Left boundary condition type.
+   character(:),                    allocatable :: BC_R                                  !< Right boundary condition type.
+   class(interpolator_object),      allocatable :: interpolator                          !< WENO interpolator.
+   procedure(reconstruct_interfaces_), pointer  :: reconstruct_interfaces=>&
+                                                   reconstruct_interfaces_characteristic !< Reconstruct interface states.
+   procedure(riemann_solver_),         pointer  :: riemann_solver=>riemann_solver_llf    !< Actual Riemann Problem solver.
    contains
       ! auxiliary methods
       procedure, pass(self) :: initialize       !< Initialize field.
@@ -103,14 +104,16 @@ type, extends(integrand) :: euler_1d
       procedure, pass(lhs)  :: assign_integrand => euler_assign_euler               !< Operator `=`.
       procedure, pass(lhs)  :: assign_real => euler_assign_real                     !< Operator `euler = real`.
       ! private methods
-      procedure, pass(self), private :: impose_boundary_conditions    !< Impose boundary conditions.
-      procedure, pass(self), private :: reconstruct_interfaces_states !< Reconstruct interfaces states.
-      procedure, pass(self), private :: riemann_solver_llf            !< LLF Riemann Problem solver.
-      procedure, pass(self), private :: riemann_solver_pvl            !< PVL Riemann Problem solver.
+      procedure, pass(self), private :: impose_boundary_conditions            !< Impose boundary conditions.
+      procedure, pass(self), private :: reconstruct_interfaces_characteristic !< Reconstruct (charc.) interface states.
+      procedure, pass(self), private :: reconstruct_interfaces_conservative   !< Reconstruct (cons.) interface states.
+      procedure, pass(self), private :: reconstruct_interfaces_primitive      !< Reconstruct (prim.) interface states.
+      procedure, pass(self), private :: riemann_solver_llf                    !< LLF Riemann Problem solver.
+      procedure, pass(self), private :: riemann_solver_pvl                    !< PVL Riemann Problem solver.
 endtype euler_1d
 
 abstract interface
-   !< Abstract interface of Riemman Problem solver.
+   !< Abstract interfaces of [[euler_1d]] pointer methods.
    subroutine riemann_solver_(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Riemann Problem solver.
    import :: conservative_compressible, eos_compressible, euler_1d, vector
@@ -122,22 +125,33 @@ abstract interface
    type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
    class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
    endsubroutine riemann_solver_
+
+   subroutine reconstruct_interfaces_(self, conservative, r_conservative)
+   !< Reconstruct interface states.
+   import :: conservative_compressible, euler_1d, primitive_compressible
+   class(euler_1d),                 intent(in)    :: self                     !< Euler field.
+   type(conservative_compressible), intent(in)    :: conservative(1-self%Ng:) !< Conservative variables.
+   type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)   !< Reconstructed conservative variables.
+   endsubroutine reconstruct_interfaces_
 endinterface
 
 contains
    ! auxiliary methods
-   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, riemann_solver_scheme)
+   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
    !< Initialize field.
-   class(euler_1d),              intent(inout)        :: self                  !< Euler field.
-   integer(I4P),                 intent(in)           :: Ni                    !< Space dimension.
-   real(R8P),                    intent(in)           :: Dx                    !< Space step.
-   character(*),                 intent(in)           :: BC_L                  !< Left boundary condition type.
-   character(*),                 intent(in)           :: BC_R                  !< Right boundary condition type.
-   type(primitive_compressible), intent(in)           :: initial_state(1:)     !< Initial state of primitive variables.
-   type(eos_compressible),       intent(in)           :: eos                   !< Equation of state.
-   integer(I4P),                 intent(in), optional :: weno_order            !< WENO reconstruction order.
-   character(*),                 intent(in), optional :: riemann_solver_scheme !< Riemann solver scheme.
-   integer(I4P)                                       :: i                     !< Space couner.
+   class(euler_1d),              intent(inout)        :: self                   !< Euler field.
+   integer(I4P),                 intent(in)           :: Ni                     !< Space dimension.
+   real(R8P),                    intent(in)           :: Dx                     !< Space step.
+   character(*),                 intent(in)           :: BC_L                   !< Left boundary condition type.
+   character(*),                 intent(in)           :: BC_R                   !< Right boundary condition type.
+   type(primitive_compressible), intent(in)           :: initial_state(1:)      !< Initial state of primitive variables.
+   type(eos_compressible),       intent(in)           :: eos                    !< Equation of state.
+   integer(I4P),                 intent(in), optional :: weno_order             !< WENO reconstruction order.
+   character(*),                 intent(in), optional :: weno_variables         !< Variables on which WENO reconstruction is done.
+   character(*),                 intent(in), optional :: riemann_solver_scheme  !< Riemann solver scheme.
+   character(:), allocatable                          :: weno_variables_        !< WENO Variables, local variable.
+   character(:), allocatable                          :: riemann_solver_scheme_ !< Riemann solver scheme, local variable.
+   integer(I4P)                                       :: i                      !< Space couner.
 
    call self%destroy
    self%weno_order = 1 ; if (present(weno_order)) self%weno_order = weno_order
@@ -151,16 +165,30 @@ contains
    enddo
    self%BC_L = BC_L
    self%BC_R = BC_R
+
    if (self%weno_order>1) call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=self%interpolator)
-   self%riemann_solver_scheme = 'llf'
-   if (present(riemann_solver_scheme)) self%riemann_solver_scheme = trim(adjustl(riemann_solver_scheme))
-   select case(self%riemann_solver_scheme)
+   weno_variables_ = 'llf'
+   if (present(weno_variables)) weno_variables_ = trim(adjustl(weno_variables))
+   select case(weno_variables_)
+   case('characteristic')
+      self%reconstruct_interfaces => reconstruct_interfaces_characteristic
+   case('conservative')
+      self%reconstruct_interfaces => reconstruct_interfaces_conservative
+   case('primitive')
+      self%reconstruct_interfaces => reconstruct_interfaces_primitive
+   case default
+      error stop 'error: WENO reconstruction variables set "'//weno_variables_//'" unknown!'
+   endselect
+
+   riemann_solver_scheme_ = 'llf'
+   if (present(riemann_solver_scheme)) riemann_solver_scheme_ = trim(adjustl(riemann_solver_scheme))
+   select case(riemann_solver_scheme_)
    case('llf')
       self%riemann_solver => riemann_solver_llf
    case('pvl')
       self%riemann_solver => riemann_solver_pvl
    case default
-      error stop 'error: Riemann Solver scheme "'//self%riemann_solver_scheme//'" unknown!'
+      error stop 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
    endselect
    endsubroutine initialize
 
@@ -237,21 +265,16 @@ contains
    class(euler_1d), intent(in)           :: self                         !< Euler field.
    real(R8P),       intent(in), optional :: t                            !< Time.
    class(integrand), allocatable         :: dState_dt                    !< Euler field time derivative.
-   type(primitive_compressible)          :: P(1-self%Ng:self%Ni+self%Ng) !< Primitive variables.
-   type(primitive_compressible)          :: PR(1:2,0:self%Ni+1)          !< Reconstructed primitive variables.
+   type(conservative_compressible)       :: U(1-self%Ng:self%Ni+self%Ng) !< Conservative variables.
    type(conservative_compressible)       :: UR(1:2,0:self%Ni+1)          !< Reconstructed conservative variables.
    type(conservative_compressible)       :: F(0:self%Ni)                 !< Fluxes of conservative variables.
    integer(I4P)                          :: i                            !< Counter.
 
    do i=1, self%Ni
-      P(i) = conservative_to_primitive_compressible(conservative=self%U(i), eos=self%eos)
+      U(i) = self%U(i)
    enddo
-   call self%impose_boundary_conditions(P=P)
-   call self%reconstruct_interfaces_states(primitive=P, r_primitive=PR)
-   do i=0, self%Ni+1
-      UR(1, i) = primitive_to_conservative_compressible(primitive=PR(1, i), eos=self%eos)
-      UR(2, i) = primitive_to_conservative_compressible(primitive=PR(2, i), eos=self%eos)
-   enddo
+   call self%impose_boundary_conditions(U=U)
+   call self%reconstruct_interfaces(conservative=U, r_conservative=UR)
    do i=0, self%Ni
       call self%riemann_solver(eos_left=self%eos,  state_left=UR( 2, i  ), &
                                eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
@@ -418,6 +441,7 @@ contains
         if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
         allocate(lhs%interpolator, source=rhs%interpolator)
      endif
+     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
      if (associated(rhs%riemann_solver)) lhs%riemann_solver => rhs%riemann_solver
   endselect
   endsubroutine euler_assign_euler
@@ -438,100 +462,224 @@ contains
   endsubroutine euler_assign_real
 
    ! private methods
-   pure subroutine impose_boundary_conditions(self, P)
+   ! pure subroutine impose_boundary_conditions(self, P)
+   pure subroutine impose_boundary_conditions(self, U)
    !< Impose boundary conditions.
    !<
    !< The boundary conditions are imposed on the primitive variables by means of the ghost cells approach.
    class(euler_1d),              intent(in)    :: self          !< Euler field.
-   type(primitive_compressible), intent(inout) :: P(1-self%Ng:) !< Primitive variables.
+   type(conservative_compressible), intent(inout) :: U(1-self%Ng:) !< Conservative variables.
+   ! type(primitive_compressible), intent(inout) :: P(1-self%Ng:) !< Primitive variables.
    integer(I4P)                                :: i             !< Space counter.
 
    select case(trim(adjustl(self%BC_L)))
       case('TRA') ! trasmissive (non reflective) BC
          do i=1-self%Ng, 0
-            P(i) = P(-i+1)
+            ! P(i) = P(-i+1)
+            U(i) = U(-i+1)
          enddo
       case('REF') ! reflective BC
          do i=1-self%Ng, 0
-            P(i)%density  =   P(-i+1)%density
-            P(i)%velocity = - P(-i+1)%velocity
-            P(i)%pressure =   P(-i+1)%pressure
+            ! P(i)%density  =   P(-i+1)%density
+            ! P(i)%velocity = - P(-i+1)%velocity
+            ! P(i)%pressure =   P(-i+1)%pressure
+            U(i)%density  =   U(-i+1)%density
+            U(i)%momentum = - U(-i+1)%momentum
+            U(i)%energy   =   U(-i+1)%energy
          enddo
    endselect
 
    select case(trim(adjustl(self%BC_R)))
       case('TRA') ! trasmissive (non reflective) BC
          do i=self%Ni+1, self%Ni+self%Ng
-            P(i) = P(self%Ni-(i-self%Ni-1))
+            ! P(i) = P(self%Ni-(i-self%Ni-1))
+            U(i) = U(self%Ni-(i-self%Ni-1))
          enddo
       case('REF') ! reflective BC
          do i=self%Ni+1, self%Ni+self%Ng
-            P(i)%density  =   P(self%Ni-(i-self%Ni-1))%density
-            P(i)%velocity = - P(self%Ni-(i-self%Ni-1))%velocity
-            P(i)%pressure =   P(self%Ni-(i-self%Ni-1))%pressure
+            ! P(i)%density  =   P(self%Ni-(i-self%Ni-1))%density
+            ! P(i)%velocity = - P(self%Ni-(i-self%Ni-1))%velocity
+            ! P(i)%pressure =   P(self%Ni-(i-self%Ni-1))%pressure
+            U(i)%density  =   U(self%Ni-(i-self%Ni-1))%density
+            U(i)%momentum = - U(self%Ni-(i-self%Ni-1))%momentum
+            U(i)%energy   =   U(self%Ni-(i-self%Ni-1))%energy
          enddo
    endselect
    endsubroutine impose_boundary_conditions
 
-  subroutine reconstruct_interfaces_states(self, primitive, r_primitive)
-  !< Reconstruct the interfaces states (into primitive variables formulation) by the requested order of accuracy.
-  class(euler_1d),              intent(in)    :: self                                 !< Euler field.
-  type(primitive_compressible), intent(in)    :: primitive(1-self%Ng:self%Ni+self%Ng) !< Primitive variables.
-  type(primitive_compressible), intent(inout) :: r_primitive(1:2, 0:self%Ni+1)        !< Reconstructed primitive variables.
-  type(primitive_compressible)                :: Pm(1:2)                              !< Mean of primitive variables.
-  real(R8P)                                   :: LPm(1:3, 1:3, 1:2)                   !< Mean left eigenvectors matrix.
-  real(R8P)                                   :: RPm(1:3, 1:3, 1:2)                   !< Mean right eigenvectors matrix.
-  real(R8P)                                   :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3)    !< Pseudo characteristic variables.
-  real(R8P)                                   :: CR(1:2, 1:3)                         !< Pseudo characteristic reconst. vars.
-  real(R8P)                                   :: buffer(1:3)                          !< Dummy buffer.
-  integer(I4P)                                :: i                                    !< Counter.
-  integer(I4P)                                :: j                                    !< Counter.
-  integer(I4P)                                :: f                                    !< Counter.
-  integer(I4P)                                :: v                                    !< Counter.
-  class(interpolator_object), allocatable     :: interpolator                         !< WENO interpolator.
+   subroutine reconstruct_interfaces_characteristic(self, conservative, r_conservative)
+   !< Reconstruct interfaces states.
+   !<
+   !< The reconstruction is done in pseudo characteristic variables.
+   class(euler_1d),                 intent(in)    :: self                                 !< Euler field.
+   type(conservative_compressible), intent(in)    :: conservative(1-self%Ng:)             !< Conservative variables.
+   type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)               !< Reconstructed conservative vars.
+   type(primitive_compressible)                   :: primitive(1-self%Ng:self%Ni+self%Ng) !< Primitive variables.
+   type(primitive_compressible)                   :: r_primitive(1:2, 0:self%Ni+1)        !< Reconstructed primitive variables.
+   type(primitive_compressible)                   :: Pm(1:2)                              !< Mean of primitive variables.
+   real(R8P)                                      :: LPm(1:3, 1:3, 1:2)                   !< Mean left eigenvectors matrix.
+   real(R8P)                                      :: RPm(1:3, 1:3, 1:2)                   !< Mean right eigenvectors matrix.
+   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3)    !< Pseudo characteristic variables.
+   real(R8P)                                      :: CR(1:2, 1:3)                         !< Pseudo characteristic reconst.
+   real(R8P)                                      :: buffer(1:3)                          !< Dummy buffer.
+   integer(I4P)                                   :: i                                    !< Counter.
+   integer(I4P)                                   :: j                                    !< Counter.
+   integer(I4P)                                   :: f                                    !< Counter.
+   integer(I4P)                                   :: v                                    !< Counter.
+   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
 
-  select case(self%weno_order)
-  case(1) ! 1st order piecewise constant reconstruction
-     do i=0, self%Ni+1
-        r_primitive(1, i) = primitive(i)
-        r_primitive(2, i) = r_primitive(1, i)
-     enddo
-  case(3, 5, 7) ! 3rd, 5th or 7th order WENO reconstruction
-     call wenoof_create(interpolator_type='reconstructor-JS', &
-                        S=self%Ng,                            &
-                        interpolator=interpolator)
-     do i=0, self%Ni+1
-        ! trasform primitive variables to pseudo charteristic ones
-        do f=1, 2
-           Pm(f) = 0.5_R8P * (primitive(i+f-2) + primitive(i+f-1))
-        enddo
-        do f=1, 2
-           LPm(:, :, f) = Pm(f)%left_eigenvectors(eos=self%eos)
-           RPm(:, :, f) = Pm(f)%right_eigenvectors(eos=self%eos)
-        enddo
-        do j=i+1-self%Ng, i-1+self%Ng
-           do f=1, 2
-              do v=1, 3
-                 C(f, j-i, v) = dot_product(LPm(v, :, f), [primitive(j)%density, primitive(j)%velocity%x, primitive(j)%pressure])
-              enddo
-           enddo
-        enddo
-        ! compute WENO reconstruction of pseudo charteristic variables
-        do v=1, 3
-           call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
-        enddo
-        ! trasform back reconstructed pseudo charteristic variables to primitive ones
-        do f=1, 2
-           do v=1, 3
-              buffer(v) = dot_product(RPm(v, :, f), CR(f, :))
-           enddo
-           r_primitive(f, i)%density  = buffer(1)
-           r_primitive(f, i)%velocity = buffer(2) * ex
-           r_primitive(f, i)%pressure = buffer(3)
-        enddo
-     enddo
-  endselect
-  endsubroutine reconstruct_interfaces_states
+   select case(self%weno_order)
+   case(1) ! 1st order piecewise constant reconstruction
+      do i=0, self%Ni+1
+         r_conservative(1, i) = conservative(i)
+         r_conservative(2, i) = r_conservative(1, i)
+      enddo
+   case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
+      call wenoof_create(interpolator_type='reconstructor-JS', &
+                         S=self%Ng,                            &
+                         interpolator=interpolator)
+      do i=1-self%Ng, self%Ni+self%Ng
+         primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
+      enddo
+      do i=0, self%Ni+1
+         ! trasform primitive variables to pseudo charteristic ones
+         do f=1, 2
+            Pm(f) = 0.5_R8P * (primitive(i+f-2) + primitive(i+f-1))
+         enddo
+         do f=1, 2
+            LPm(:, :, f) = Pm(f)%left_eigenvectors(eos=self%eos)
+            RPm(:, :, f) = Pm(f)%right_eigenvectors(eos=self%eos)
+         enddo
+         do j=i+1-self%Ng, i-1+self%Ng
+            do f=1, 2
+               do v=1, 3
+                  C(f, j-i, v) = dot_product(LPm(v, :, f), [primitive(j)%density, primitive(j)%velocity%x, primitive(j)%pressure])
+               enddo
+            enddo
+         enddo
+         ! compute WENO reconstruction of pseudo charteristic variables
+         do v=1, 3
+            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+         enddo
+         ! trasform back reconstructed pseudo charteristic variables to primitive ones
+         do f=1, 2
+            do v=1, 3
+               buffer(v) = dot_product(RPm(v, :, f), CR(f, :))
+            enddo
+            r_primitive(f, i)%density  = buffer(1)
+            r_primitive(f, i)%velocity = buffer(2) * ex
+            r_primitive(f, i)%pressure = buffer(3)
+         enddo
+      enddo
+      do i=0, self%Ni+1
+         r_conservative(1, i) = primitive_to_conservative_compressible(primitive=r_primitive(1, i), eos=self%eos)
+         r_conservative(2, i) = primitive_to_conservative_compressible(primitive=r_primitive(2, i), eos=self%eos)
+      enddo
+   endselect
+   endsubroutine reconstruct_interfaces_characteristic
+
+   subroutine reconstruct_interfaces_conservative(self, conservative, r_conservative)
+   !< Reconstruct interfaces states.
+   !<
+   !< The reconstruction is done in conservative variables.
+   class(euler_1d),                 intent(in)    :: self                                 !< Euler field.
+   type(conservative_compressible), intent(in)    :: conservative(1-self%Ng:)             !< Conservative variables.
+   type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)               !< Reconstructed conservative vars.
+   real(R8P), allocatable                         :: U(:)                                 !< Serialized conservative variables.
+   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3)    !< Pseudo characteristic variables.
+   real(R8P)                                      :: CR(1:2, 1:3)                         !< Pseudo characteristic reconst.
+   integer(I4P)                                   :: i                                    !< Counter.
+   integer(I4P)                                   :: j                                    !< Counter.
+   integer(I4P)                                   :: f                                    !< Counter.
+   integer(I4P)                                   :: v                                    !< Counter.
+   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
+
+   select case(self%weno_order)
+   case(1) ! 1st order piecewise constant reconstruction
+      do i=0, self%Ni+1
+         r_conservative(1, i) = conservative(i)
+         r_conservative(2, i) = r_conservative(1, i)
+      enddo
+   case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
+      call wenoof_create(interpolator_type='reconstructor-JS', &
+                         S=self%Ng,                            &
+                         interpolator=interpolator)
+      do i=0, self%Ni+1
+         do j=i+1-self%Ng, i-1+self%Ng
+             U = conservative(j)%array()
+            do f=1, 2
+               C(f, j-i, 1) = U(1)
+               C(f, j-i, 2) = U(2)
+               C(f, j-i, 3) = U(5)
+            enddo
+         enddo
+         do v=1, 3
+            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+         enddo
+         do f=1, 2
+            r_conservative(f, i)%density  = CR(f, 1)
+            r_conservative(f, i)%momentum = CR(f, 2) * ex
+            r_conservative(f, i)%energy   = CR(f, 3)
+         enddo
+      enddo
+   endselect
+   endsubroutine reconstruct_interfaces_conservative
+
+   subroutine reconstruct_interfaces_primitive(self, conservative, r_conservative)
+   !< Reconstruct interfaces states.
+   !<
+   !< The reconstruction is done in primitive variables.
+   class(euler_1d),                 intent(in)    :: self                                 !< Euler field.
+   type(conservative_compressible), intent(in)    :: conservative(1-self%Ng:)             !< Conservative variables.
+   type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)               !< Reconstructed conservative vars.
+   type(primitive_compressible)                   :: primitive(1-self%Ng:self%Ni+self%Ng) !< Primitive variables.
+   type(primitive_compressible)                   :: r_primitive(1:2, 0:self%Ni+1)        !< Reconstructed primitive variables.
+   real(R8P), allocatable                         :: P(:)                                 !< Serialized primitive variables.
+   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3)    !< Pseudo characteristic variables.
+   real(R8P)                                      :: CR(1:2, 1:3)                         !< Pseudo characteristic reconst.
+   integer(I4P)                                   :: i                                    !< Counter.
+   integer(I4P)                                   :: j                                    !< Counter.
+   integer(I4P)                                   :: f                                    !< Counter.
+   integer(I4P)                                   :: v                                    !< Counter.
+   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
+
+   select case(self%weno_order)
+   case(1) ! 1st order piecewise constant reconstruction
+      do i=0, self%Ni+1
+         r_conservative(1, i) = conservative(i)
+         r_conservative(2, i) = r_conservative(1, i)
+      enddo
+   case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
+      call wenoof_create(interpolator_type='reconstructor-JS', &
+                         S=self%Ng,                            &
+                         interpolator=interpolator)
+      do i=1-self%Ng, self%Ni+self%Ng
+         primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
+      enddo
+      do i=0, self%Ni+1
+         do j=i+1-self%Ng, i-1+self%Ng
+             P = primitive(j)%array()
+            do f=1, 2
+               C(f, j-i, 1) = P(1)
+               C(f, j-i, 2) = P(2)
+               C(f, j-i, 3) = P(5)
+            enddo
+         enddo
+         do v=1, 3
+            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+         enddo
+         do f=1, 2
+            r_primitive(f, i)%density  = CR(f, 1)
+            r_primitive(f, i)%velocity = CR(f, 2) * ex
+            r_primitive(f, i)%pressure = CR(f, 3)
+         enddo
+      enddo
+      do i=0, self%Ni+1
+         r_conservative(1, i) = primitive_to_conservative_compressible(primitive=r_primitive(1, i), eos=self%eos)
+         r_conservative(2, i) = primitive_to_conservative_compressible(primitive=r_primitive(2, i), eos=self%eos)
+      enddo
+   endselect
+   endsubroutine reconstruct_interfaces_primitive
 
    subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Riemann Problem solver.
@@ -573,12 +721,12 @@ use foreseer, only : conservative_compressible, primitive_compressible,         
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_compressible
 use foreseer_euler_1d, only : euler_1d
-use penf, only : FR8P, I4P, R8P, str
-! use pyplot_module, only :  pyplot
+use penf, only : cton, FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
 integer(I4P)                     :: weno_order            !< WENO reconstruction order.
+character(len=:), allocatable    :: weno_variables        !< Variables set on which WENO reconstruction is done.
 type(tvd_runge_kutta_integrator) :: rk_integrator         !< Runge-Kutta integrator.
 integer(I4P)                     :: rk_stages_number      !< Runge-Kutta stages number.
 type(euler_1d), allocatable      :: rk_stage(:)           !< Runge-Kutta stages.
@@ -647,13 +795,15 @@ contains
                           initial_state=initial_state,                          &
                           eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), &
                           weno_order=weno_order,                                &
+                          weno_variables=weno_variables,                        &
                           riemann_solver_scheme=riemann_solver_scheme)
    endsubroutine initialize
 
    subroutine parse_command_line_interface()
    !< Parse Command Line Interface (CLI).
-   type(command_line_interface) :: cli      !< Command line interface handler.
-   integer(I4P)                 :: error    !< Error handler.
+   type(command_line_interface)  :: cli    !< Command line interface handler.
+   integer(I4P)                  :: error  !< Error handler.
+   character(len=:), allocatable :: buffer !< String buffer.
 
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
@@ -662,8 +812,10 @@ contains
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='llf,pvl')
-   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-1', &
-                choices='weno-1,weno-3,weno-5,weno-7')
+   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-1',                &
+     choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
+             'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
+             'weno-prim-1,weno-prim-3,weno-prim-5,weno-prim-7,weno-prim-9,weno-prim-11,weno-prim-13,weno-prim-15,weno-prim-17')
    call cli%add(switch='--t-scheme', help='Time intergation scheme', required=.false., act='store', def='tvd-rk-1', &
                 choices='tvd-rk-1,tvd-rk-2,tvd-rk-3,tvd-rk-5')
    call cli%add(switch='--cfl', help='CFL value', required=.false., act='store', def='0.7')
@@ -681,16 +833,18 @@ contains
    call cli%get(switch='--verbose',  val=verbose,               error=error) ; if (error/=0) stop
 
    if (t_max > 0._R8P) steps_max = 0
-   select case(trim(adjustl(s_scheme)))
-   case('weno-1')
-      weno_order = 1
-   case('weno-2')
-      weno_order = 3
-   case('weno-3')
-      weno_order = 5
-   case('weno-5')
-      weno_order = 7
+
+   buffer = trim(adjustl(s_scheme))
+   select case(buffer(6:9))
+   case('char')
+      weno_variables = 'characteristic'
+   case('cons')
+      weno_variables = 'conservative'
+   case('prim')
+      weno_variables = 'primitive'
    endselect
+   weno_order = cton(buffer(11:), knd=1_I4P)
+
    select case(trim(adjustl(t_scheme)))
    case('tvd-rk-1')
       rk_stages_number = 1
