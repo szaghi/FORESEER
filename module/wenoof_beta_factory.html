@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>wenoof_beta_factory &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>wenoof_beta_factory 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 0.4% of total for modules and submodules.">45 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_beta_factory.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/wenoof_beta_factory.f90.html'>wenoof_beta_factory.f90</a></li>
+  
+     <li class="active">wenoof_beta_factory</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-0">Derived Types</a></h3></div>
+  <div id="types-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#type-beta_factory">beta_factory</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#proc-create%7E14">create</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#proc-create_constructor%7E6">create_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
+  <div id="allmods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/face.html">face</a>
+      
+      <a class="list-group-item" href="../module/flap.html">flap</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_argument_t.html">flap_command_line_argument_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_arguments_group_t.html">flap_command_line_arguments_group_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_interface_t.html">flap_command_line_interface_t</a>
+      
+      <a class="list-group-item" href="../module/flap_object_t.html">flap_object_t</a>
+      
+      <a class="list-group-item" href="../module/flap_utils_m.html">flap_utils_m</a>
+      
+      <a class="list-group-item" href="../module/foodie.html">foodie</a>
+      
+      <a class="list-group-item" href="../module/foodie_adt_integrand.html">foodie_adt_integrand</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth.html">foodie_integrator_adams_bashforth</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth_moulton.html">foodie_integrator_adams_bashforth_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_moulton.html">foodie_integrator_adams_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_backward_differentiation_formula.html">foodie_integrator_backward_differentiation_formula</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_emd_runge_kutta.html">foodie_integrator_emd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_euler_explicit.html">foodie_integrator_euler_explicit</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_leapfrog.html">foodie_integrator_leapfrog</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_low_storage_runge_kutta.html">foodie_integrator_low_storage_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_tvd_runge_kutta.html">foodie_integrator_tvd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_kinds.html">foodie_kinds</a>
+      
+      <a class="list-group-item" href="../module/foodie_utils.html">foodie_utils</a>
+      
+      <a class="list-group-item" href="../module/foreseer.html">foreseer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_compressible_transformations.html">foreseer_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_compressible.html">foreseer_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_object.html">foreseer_conservative_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_compressible.html">foreseer_eos_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_object.html">foreseer_eos_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_euler_1d.html">foreseer_euler_1d</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html">foreseer_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_object.html">foreseer_primitive_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_llf.html">foreseer_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_pvl.html">foreseer_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_object.html">foreseer_riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../module/penf.html">penf</a>
+      
+      <a class="list-group-item" href="../module/penf_b_size.html">penf_b_size</a>
+      
+      <a class="list-group-item" href="../module/penf_global_parameters_variables.html">penf_global_parameters_variables</a>
+      
+      <a class="list-group-item" href="../module/penf_stringify.html">penf_stringify</a>
+      
+      <a class="list-group-item" href="../module/wenoof.html">wenoof</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_factory.html">wenoof_alpha_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_object.html">wenoof_alpha_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_js.html">wenoof_alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_m.html">wenoof_alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_z.html">wenoof_alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../module/wenoof_base_object.html">wenoof_base_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html">wenoof_beta_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_object.html">wenoof_beta_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_rec_js.html">wenoof_beta_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_factory.html">wenoof_interpolations_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_object.html">wenoof_interpolations_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_rec_js.html">wenoof_interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_factory.html">wenoof_interpolator_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_js.html">wenoof_interpolator_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_object.html">wenoof_interpolator_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_factory.html">wenoof_kappa_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_object.html">wenoof_kappa_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_rec_js.html">wenoof_kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_objects_factory.html">wenoof_objects_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_reconstructor_js.html">wenoof_reconstructor_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_factory.html">wenoof_weights_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_js.html">wenoof_weights_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      
+    
+  
+    <ul class="list-inline">
+      <li><h4>Uses:</h4></li>
+      
+      <li><a href='../module/penf.html'>penf</a></li>
+      
+      <li><a href='../module/wenoof_beta_object.html'>wenoof_beta_object</a></li>
+      
+      <li><a href='../module/wenoof_beta_rec_js.html'>wenoof_beta_rec_js</a></li>
+      
+    </ul>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: module~~wenoof_beta_factory~~UsesGraph Pages: 1 -->
+<svg id="modulewenoof_beta_factoryUsesGraph" width="641pt" height="63pt"
+ viewBox="0.00 0.00 641.00 63.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~wenoof_beta_factory~~UsesGraph" class="graph" transform="scale(.5849 .5849) rotate(0) translate(4 103.7131)">
+<title>module~~wenoof_beta_factory~~UsesGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-103.7131 1092,-103.7131 1092,4 -4,4"/>
+<!-- module~wenoof_beta_factory -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node1" class="node">
+<title>module~wenoof_beta_factory</title>
+<polygon fill="none" stroke="#000000" points="1088,-86 976,-86 976,-62 1088,-62 1088,-86"/>
+<text text-anchor="middle" x="1032" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">wenoof_beta_factory</text>
+</g>
+<!-- module~penf -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node2" class="node">
+<title>module~penf</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node2"><a xlink:href="../module/penf.html" xlink:title="penf">
+<polygon fill="#337ab7" stroke="#337ab7" points="503,-66 449,-66 449,-42 503,-42 503,-66"/>
+<text text-anchor="middle" x="476" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~wenoof_beta_factory -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge14" class="edge">
+<title>module~penf&#45;&gt;module~wenoof_beta_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M594.5,-94C723.2538,-106.2298 756.1667,-93.9104 885.5,-94"/>
+</g>
+<!-- module~wenoof_beta_rec_js -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node3" class="node">
+<title>module~wenoof_beta_rec_js</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node3"><a xlink:href="../module/wenoof_beta_rec_js.html" xlink:title="wenoof_beta_rec_js">
+<polygon fill="#337ab7" stroke="#337ab7" points="940,-66 831,-66 831,-42 940,-42 940,-66"/>
+<text text-anchor="middle" x="885.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_beta_rec_js</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~wenoof_beta_rec_js -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge9" class="edge">
+<title>module~penf&#45;&gt;module~wenoof_beta_rec_js</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M503.225,-43.4175C514.1858,-39.5562 527.0422,-35.5223 539,-33 627.0161,-14.4348 650.7461,-8.0213 740.5,-14"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M740.5,-14C777.4761,-15.9043 817.9717,-27.9688 846.7463,-38.3551"/>
+<polygon fill="#000000" stroke="#000000" points="845.8174,-41.7435 856.4104,-41.9395 848.2516,-35.1804 845.8174,-41.7435"/>
+</g>
+<!-- module~wenoof_beta_object -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node4" class="node">
+<title>module~wenoof_beta_object</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node4"><a xlink:href="../module/wenoof_beta_object.html" xlink:title="wenoof_beta_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="795,-66 686,-66 686,-42 795,-42 795,-66"/>
+<text text-anchor="middle" x="740.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_beta_object</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~wenoof_beta_object -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge12" class="edge">
+<title>module~penf&#45;&gt;module~wenoof_beta_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M500.6824,-66.0759C524.1519,-76.6441 560.7789,-90.797 594.5,-94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M594.5,-94C634.3432,-97.7846 678.4478,-82.912 707.6449,-70.24"/>
+<polygon fill="#000000" stroke="#000000" points="709.2624,-73.3503 716.9474,-66.057 706.3916,-66.9661 709.2624,-73.3503"/>
+</g>
+<!-- module~wenoof_base_object -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node9" class="node">
+<title>module~wenoof_base_object</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node9"><a xlink:href="../module/wenoof_base_object.html" xlink:title="wenoof_base_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="650,-66 539,-66 539,-42 650,-42 650,-66"/>
+<text text-anchor="middle" x="594.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_base_object</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~wenoof_base_object -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge8" class="edge">
+<title>module~penf&#45;&gt;module~wenoof_base_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M503.1863,-54C510.9311,-54 519.7219,-54 528.7161,-54"/>
+<polygon fill="#000000" stroke="#000000" points="528.9122,-57.5001 538.9122,-54 528.9121,-50.5001 528.9122,-57.5001"/>
+</g>
+<!-- module~wenoof_beta_rec_js&#45;&gt;module~wenoof_beta_factory -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge15" class="edge">
+<title>module~wenoof_beta_rec_js&#45;&gt;module~wenoof_beta_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M940.0512,-61.4473C948.4711,-62.5967 957.2442,-63.7944 965.8838,-64.9739"/>
+<polygon fill="#000000" stroke="#000000" points="965.5537,-68.4612 975.9352,-66.3461 966.5006,-61.5255 965.5537,-68.4612"/>
+</g>
+<!-- module~wenoof_beta_object&#45;&gt;module~wenoof_beta_factory -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge16" class="edge">
+<title>module~wenoof_beta_object&#45;&gt;module~wenoof_beta_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M767.4162,-66.0981C796.078,-77.8614 843.0649,-93.9706 885.5,-94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M885.5,-94C911.8969,-94.0183 940.7254,-90.7948 965.7728,-86.931"/>
+<polygon fill="#000000" stroke="#000000" points="966.5763,-90.3469 975.8941,-85.3043 965.4654,-83.4356 966.5763,-90.3469"/>
+</g>
+<!-- module~wenoof_beta_object&#45;&gt;module~wenoof_beta_rec_js -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge11" class="edge">
+<title>module~wenoof_beta_object&#45;&gt;module~wenoof_beta_rec_js</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M795.3183,-54C803.5286,-54 812.0611,-54 820.4586,-54"/>
+<polygon fill="#000000" stroke="#000000" points="820.6042,-57.5001 830.6042,-54 820.6042,-50.5001 820.6042,-57.5001"/>
+</g>
+<!-- module~penf_global_parameters_variables -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node5" class="node">
+<title>module~penf_global_parameters_variables</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node5"><a xlink:href="../module/penf_global_parameters_variables.html" xlink:title="penf_global_parameters_variables">
+<polygon fill="#337ab7" stroke="#337ab7" points="178,-65 0,-65 0,-41 178,-41 178,-65"/>
+<text text-anchor="middle" x="89" y="-50.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_global_parameters_variables</text>
+</a>
+</g>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge5" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.5,-94C327.0823,-96.4394 345.0785,-90.3075 413,-75 421.5688,-73.0688 430.6173,-70.4272 439.101,-67.6689"/>
+<polygon fill="#000000" stroke="#000000" points="440.3844,-70.9297 448.738,-64.413 438.1438,-64.298 440.3844,-70.9297"/>
+</g>
+<!-- module~penf_b_size -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node6" class="node">
+<title>module~penf_b_size</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node6"><a xlink:href="../module/penf_b_size.html" xlink:title="penf_b_size">
+<polygon fill="#337ab7" stroke="#337ab7" points="292.5,-24 222.5,-24 222.5,0 292.5,0 292.5,-24"/>
+<text text-anchor="middle" x="257.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_b_size</text>
+</a>
+</g>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_b_size -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge1" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf_b_size</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.6442,-40.9204C162.0682,-35.2208 189.8118,-28.4701 212.6011,-22.925"/>
+<polygon fill="#000000" stroke="#000000" points="213.4738,-26.3148 222.3628,-20.5497 211.8188,-19.5133 213.4738,-26.3148"/>
+</g>
+<!-- module~penf_stringify -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node7" class="node">
+<title>module~penf_stringify</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node7"><a xlink:href="../module/penf_stringify.html" xlink:title="penf_stringify">
+<polygon fill="#337ab7" stroke="#337ab7" points="413,-66 337,-66 337,-42 413,-42 413,-66"/>
+<text text-anchor="middle" x="375" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_stringify</text>
+</a>
+</g>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_stringify -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge2" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.3777,-65.0463C154.9009,-76.5231 209.0575,-92.3017 257.5,-94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.5,-94C288.731,-95.0949 322.2844,-82.1132 345.5069,-70.6519"/>
+<polygon fill="#000000" stroke="#000000" points="347.1873,-73.7235 354.4841,-66.0419 343.9896,-67.4966 347.1873,-73.7235"/>
+</g>
+<!-- module~penf_b_size&#45;&gt;module~penf -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge6" class="edge">
+<title>module~penf_b_size&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M292.7331,-14.8583C324.4741,-17.8814 372.2663,-23.5486 413,-33 421.5565,-34.9853 430.5999,-37.6489 439.0826,-40.4113"/>
+<polygon fill="#000000" stroke="#000000" points="438.1261,-43.7823 448.7203,-43.6646 440.365,-37.15 438.1261,-43.7823"/>
+</g>
+<!-- module~penf_b_size&#45;&gt;module~penf_stringify -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge4" class="edge">
+<title>module~penf_b_size&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M291.1708,-24.0355C303.8309,-28.5608 318.4038,-33.7699 331.8114,-38.5624"/>
+<polygon fill="#000000" stroke="#000000" points="330.7297,-41.8925 341.3243,-41.9627 333.0859,-35.301 330.7297,-41.8925"/>
+</g>
+<!-- module~penf_stringify&#45;&gt;module~penf -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge7" class="edge">
+<title>module~penf_stringify&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M413.1838,-54C421.5107,-54 430.3135,-54 438.6092,-54"/>
+<polygon fill="#000000" stroke="#000000" points="438.7719,-57.5001 448.7719,-54 438.7719,-50.5001 438.7719,-57.5001"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_node8" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~wenoof_beta_factory~~UsesGraph_node8"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="301,-66 214,-66 214,-42 301,-42 301,-66"/>
+<text text-anchor="middle" x="257.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~penf_stringify -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge3" class="edge">
+<title>iso_fortran_env&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M301.2527,-54C309.5096,-54 318.1901,-54 326.5803,-54"/>
+<polygon fill="#000000" stroke="#000000" points="326.6227,-57.5001 336.6227,-54 326.6226,-50.5001 326.6227,-57.5001"/>
+</g>
+<!-- module~wenoof_base_object&#45;&gt;module~wenoof_beta_rec_js -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge10" class="edge">
+<title>module~wenoof_base_object&#45;&gt;module~wenoof_beta_rec_js</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M619.0335,-41.9149C647.6275,-29.1012 696.5762,-11.0741 740.5,-14"/>
+</g>
+<!-- module~wenoof_base_object&#45;&gt;module~wenoof_beta_object -->
+<g id="module~~wenoof_beta_factory~~UsesGraph_edge13" class="edge">
+<title>module~wenoof_base_object&#45;&gt;module~wenoof_beta_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M650.1128,-54C658.3627,-54 666.9272,-54 675.3506,-54"/>
+<polygon fill="#000000" stroke="#000000" points="675.5247,-57.5001 685.5247,-54 675.5247,-50.5001 675.5247,-57.5001"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var panmodulewenoof_beta_factoryUsesGraph = svgPanZoom('#modulewenoof_beta_factoryUsesGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="490pt" height="32pt"
+ viewBox="0.00 0.00 489.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 485.5,-28 485.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="139.5,-24 72.5,-24 72.5,0 139.5,0 139.5,-24"/>
+<text text-anchor="middle" x="106" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-24 158,-24 158,0 222,0 222,-24"/>
+<text text-anchor="middle" x="190" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="294,-24 240,-24 240,0 294,0 294,-24"/>
+<text text-anchor="middle" x="267" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="366,-24 312,-24 312,0 366,0 366,-24"/>
+<text text-anchor="middle" x="339" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="481.5,-24 384.5,-24 384.5,0 481.5,0 481.5,-24"/>
+<text text-anchor="middle" x="433" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+
+    
+    <p>Wenoof beta factory.</p>
+    
+    
+    <h3>Used By</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: module~~wenoof_beta_factory~~UsedByGraph Pages: 1 -->
+<svg id="modulewenoof_beta_factoryUsedByGraph" width="641pt" height="30pt"
+ viewBox="0.00 0.00 641.00 29.90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~wenoof_beta_factory~~UsedByGraph" class="graph" transform="scale(.4827 .4827) rotate(0) translate(4 57.9373)">
+<title>module~~wenoof_beta_factory~~UsedByGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-57.9373 1324,-57.9373 1324,4 -4,4"/>
+<!-- module~wenoof_beta_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node1" class="node">
+<title>module~wenoof_beta_factory</title>
+<polygon fill="none" stroke="#000000" points="112,-44 0,-44 0,-20 112,-20 112,-44"/>
+<text text-anchor="middle" x="56" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">wenoof_beta_factory</text>
+</g>
+<!-- module~wenoof_objects_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node2" class="node">
+<title>module~wenoof_objects_factory</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node2"><a xlink:href="../module/wenoof_objects_factory.html" xlink:title="wenoof_objects_factory">
+<polygon fill="#337ab7" stroke="#337ab7" points="922,-44 797,-44 797,-20 922,-20 922,-44"/>
+<text text-anchor="middle" x="859.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_objects_factory</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_beta_factory&#45;&gt;module~wenoof_objects_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge9" class="edge">
+<title>module~wenoof_beta_factory&#45;&gt;module~wenoof_objects_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M112.1829,-34.2516C198.7122,-37.7638 369.806,-44.8844 515,-52"/>
+</g>
+<!-- module~wenoof_weights_js -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node3" class="node">
+<title>module~wenoof_weights_js</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node3"><a xlink:href="../module/wenoof_weights_js.html" xlink:title="wenoof_weights_js">
+<polygon fill="#337ab7" stroke="#337ab7" points="251,-24 148,-24 148,0 251,0 251,-24"/>
+<text text-anchor="middle" x="199.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_weights_js</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_beta_factory&#45;&gt;module~wenoof_weights_js -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge10" class="edge">
+<title>module~wenoof_beta_factory&#45;&gt;module~wenoof_weights_js</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M112.3031,-24.1529C120.5649,-23.0014 129.1136,-21.81 137.4823,-20.6436"/>
+<polygon fill="#000000" stroke="#000000" points="138.1485,-24.0847 147.5696,-19.2377 137.1822,-17.1517 138.1485,-24.0847"/>
+</g>
+<!-- module~wenoof -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node4" class="node">
+<title>module~wenoof</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node4"><a xlink:href="../module/wenoof.html" xlink:title="wenoof">
+<polygon fill="#337ab7" stroke="#337ab7" points="1012,-44 958,-44 958,-20 1012,-20 1012,-44"/>
+<text text-anchor="middle" x="985" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_objects_factory&#45;&gt;module~wenoof -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge3" class="edge">
+<title>module~wenoof_objects_factory&#45;&gt;module~wenoof</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M922.25,-32C930.9421,-32 939.6342,-32 947.6591,-32"/>
+<polygon fill="#000000" stroke="#000000" points="947.7684,-35.5001 957.7684,-32 947.7683,-28.5001 947.7684,-35.5001"/>
+</g>
+<!-- module~wenoof_weights_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node7" class="node">
+<title>module~wenoof_weights_factory</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node7"><a xlink:href="../module/wenoof_weights_factory.html" xlink:title="wenoof_weights_factory">
+<polygon fill="#337ab7" stroke="#337ab7" points="414,-24 287,-24 287,0 414,0 414,-24"/>
+<text text-anchor="middle" x="350.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_weights_factory</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_weights_js&#45;&gt;module~wenoof_weights_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge8" class="edge">
+<title>module~wenoof_weights_js&#45;&gt;module~wenoof_weights_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M251.0433,-12C259.3333,-12 268.0532,-12 276.7424,-12"/>
+<polygon fill="#000000" stroke="#000000" points="276.9009,-15.5001 286.9009,-12 276.9009,-8.5001 276.9009,-15.5001"/>
+</g>
+<!-- module~foreseer_euler_1d -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node5" class="node">
+<title>module~foreseer_euler_1d</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node5"><a xlink:href="../module/foreseer_euler_1d.html" xlink:title="foreseer_euler_1d">
+<polygon fill="#337ab7" stroke="#337ab7" points="1148,-44 1048,-44 1048,-20 1148,-20 1148,-44"/>
+<text text-anchor="middle" x="1098" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_euler_1d</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof&#45;&gt;module~foreseer_euler_1d -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge2" class="edge">
+<title>module~wenoof&#45;&gt;module~foreseer_euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1012.0663,-32C1019.8464,-32 1028.6595,-32 1037.6035,-32"/>
+<polygon fill="#000000" stroke="#000000" points="1037.7091,-35.5001 1047.709,-32 1037.709,-28.5001 1037.7091,-35.5001"/>
+</g>
+<!-- program~foreseer_test_shock_tube -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node6" class="node">
+<title>program~foreseer_test_shock_tube</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node6"><a xlink:href="../program/foreseer_test_shock_tube.html" xlink:title="foreseer_test_shock_tube">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1320,-44 1184,-44 1184,-20 1320,-20 1320,-44"/>
+<text text-anchor="middle" x="1252" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_shock_tube</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer_euler_1d&#45;&gt;program~foreseer_test_shock_tube -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge1" class="edge">
+<title>module~foreseer_euler_1d&#45;&gt;program~foreseer_test_shock_tube</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1148.4254,-32C1156.5587,-32 1165.1429,-32 1173.748,-32"/>
+<polygon fill="#000000" stroke="#000000" points="1173.8334,-35.5001 1183.8334,-32 1173.8334,-28.5001 1173.8334,-35.5001"/>
+</g>
+<!-- module~wenoof_weights_factory&#45;&gt;module~wenoof_objects_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge6" class="edge">
+<title>module~wenoof_weights_factory&#45;&gt;module~wenoof_objects_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M384.6112,-24.0678C417.5049,-34.7978 468.9402,-49.2103 515,-52"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515,-52C608.9026,-57.6874 717.2241,-48.8728 786.9454,-41.2069"/>
+<polygon fill="#000000" stroke="#000000" points="787.3978,-44.6782 796.9457,-40.0861 786.6181,-37.7218 787.3978,-44.6782"/>
+</g>
+<!-- module~wenoof_reconstructor_js -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node8" class="node">
+<title>module~wenoof_reconstructor_js</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node8"><a xlink:href="../module/wenoof_reconstructor_js.html" xlink:title="wenoof_reconstructor_js">
+<polygon fill="#337ab7" stroke="#337ab7" points="580,-24 450,-24 450,0 580,0 580,-24"/>
+<text text-anchor="middle" x="515" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_reconstructor_js</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_weights_factory&#45;&gt;module~wenoof_reconstructor_js -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge7" class="edge">
+<title>module~wenoof_weights_factory&#45;&gt;module~wenoof_reconstructor_js</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M414.1,-12C422.5477,-12 431.2726,-12 439.892,-12"/>
+<polygon fill="#000000" stroke="#000000" points="439.9391,-15.5001 449.9391,-12 439.9391,-8.5001 439.9391,-15.5001"/>
+</g>
+<!-- module~wenoof_interpolator_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_node9" class="node">
+<title>module~wenoof_interpolator_factory</title>
+<g id="a_module~~wenoof_beta_factory~~UsedByGraph_node9"><a xlink:href="../module/wenoof_interpolator_factory.html" xlink:title="wenoof_interpolator_factory">
+<polygon fill="#337ab7" stroke="#337ab7" points="761,-24 616,-24 616,0 761,0 761,-24"/>
+<text text-anchor="middle" x="688.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_interpolator_factory</text>
+</a>
+</g>
+</g>
+<!-- module~wenoof_reconstructor_js&#45;&gt;module~wenoof_interpolator_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge5" class="edge">
+<title>module~wenoof_reconstructor_js&#45;&gt;module~wenoof_interpolator_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M580.0986,-12C588.4611,-12 597.1103,-12 605.7076,-12"/>
+<polygon fill="#000000" stroke="#000000" points="605.756,-15.5001 615.7559,-12 605.7559,-8.5001 605.756,-15.5001"/>
+</g>
+<!-- module~wenoof_interpolator_factory&#45;&gt;module~wenoof_objects_factory -->
+<g id="module~~wenoof_beta_factory~~UsedByGraph_edge4" class="edge">
+<title>module~wenoof_interpolator_factory&#45;&gt;module~wenoof_objects_factory</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.0194,-20.4818C769.5902,-21.4842 778.3392,-22.5075 786.9109,-23.5101"/>
+<polygon fill="#000000" stroke="#000000" points="786.5318,-26.9895 796.8707,-24.6749 787.3451,-20.0369 786.5318,-26.9895"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var panmodulewenoof_beta_factoryUsedByGraph = svgPanZoom('#modulewenoof_beta_factoryUsedByGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="490pt" height="32pt"
+ viewBox="0.00 0.00 489.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 485.5,-28 485.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="139.5,-24 72.5,-24 72.5,0 139.5,0 139.5,-24"/>
+<text text-anchor="middle" x="106" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-24 158,-24 158,0 222,0 222,-24"/>
+<text text-anchor="middle" x="190" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="294,-24 240,-24 240,0 294,0 294,-24"/>
+<text text-anchor="middle" x="267" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="366,-24 312,-24 312,0 366,0 366,-24"/>
+<text text-anchor="middle" x="339" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="481.5,-24 384.5,-24 384.5,0 481.5,0 481.5,-24"/>
+<text text-anchor="middle" x="433" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    <br>
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-1">Derived Types</a></h3></div>
+  <div id="types-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#type-beta_factory">beta_factory</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#proc-create%7E14">create</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html#proc-create_constructor%7E6">create_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    <section>
+     <h2>Derived Types</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-beta_factory"></span><h3>type, public :: <a href='../type/beta_factory.html'>beta_factory</a>
+    
+  </h3></div>
+  <div class="panel-body">
+    
+    
+    <p>Factory, create an instance of concrete extension of <a href="../type/beta_object.html">beta_object</a> given its constructor.</p>
+    
+     
+     
+          
+     
+     <h4>Type-Bound Procedures</h4>
+      <table class="table table-striped varlist">
+      <tbody>
+      
+       <tr><td>procedure, public, nopass :: <strong><a href='../type/beta_factory.html#boundprocedure-create%7E17'>create</a></strong>  </td>
+       <td><p>Create a concrete instance of <a href="../type/beta_object.html">beta_object</a>.</p></td></tr>
+      
+       <tr><td>procedure, public, nopass :: <strong><a href='../type/beta_factory.html#boundprocedure-create_constructor%7E7'>create_constructor</a></strong>  </td>
+       <td><p>Create a concrete instance of <a href="../type/beta_object_constructor.html">beta_object_constructor</a>.</p></td></tr>
+      
+       </tbody>
+       </table>
+     
+  </div>
+</div>
+
+     
+    </section>
+	<br>
+    
+    
+    
+
+    
+    <section>
+    <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-create%7E14"></span><h3>
+private subroutine <a href='../proc/create%7E14.html'>create</a>(constructor, object)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create an instance of concrete extension of <a href="../type/beta_object.html">beta_object</a> given its constructor.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/beta_object_constructor.html'>beta_object_constructor</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>constructor</strong></td><td><p>Constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/beta_object.html'>beta_object</a>),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>object</strong></td><td><p>Object.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-create_constructor%7E6"></span><h3>
+private subroutine <a href='../proc/create_constructor%7E6.html'>create_constructor</a>(interpolator_type, S, constructor, face_left, face_right)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create an instance of concrete extension of <a href="../type/beta_object_constructor.html">beta_object_constructor</a>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>interpolator_type</strong></td><td><p>Type of the interpolator.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I_P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>S</strong></td><td><p>Stencils dimension.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/beta_object_constructor.html'>beta_object_constructor</a>),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>constructor</strong></td><td><p>Constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td><p>Activate left-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td><p>Activate right-face interpolations.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    </section>    
+    <br>
+    
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
+  <div id="allmods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/face.html">face</a>
+      
+      <a class="list-group-item" href="../module/flap.html">flap</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_argument_t.html">flap_command_line_argument_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_arguments_group_t.html">flap_command_line_arguments_group_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_interface_t.html">flap_command_line_interface_t</a>
+      
+      <a class="list-group-item" href="../module/flap_object_t.html">flap_object_t</a>
+      
+      <a class="list-group-item" href="../module/flap_utils_m.html">flap_utils_m</a>
+      
+      <a class="list-group-item" href="../module/foodie.html">foodie</a>
+      
+      <a class="list-group-item" href="../module/foodie_adt_integrand.html">foodie_adt_integrand</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth.html">foodie_integrator_adams_bashforth</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth_moulton.html">foodie_integrator_adams_bashforth_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_moulton.html">foodie_integrator_adams_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_backward_differentiation_formula.html">foodie_integrator_backward_differentiation_formula</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_emd_runge_kutta.html">foodie_integrator_emd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_euler_explicit.html">foodie_integrator_euler_explicit</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_leapfrog.html">foodie_integrator_leapfrog</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_low_storage_runge_kutta.html">foodie_integrator_low_storage_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_tvd_runge_kutta.html">foodie_integrator_tvd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_kinds.html">foodie_kinds</a>
+      
+      <a class="list-group-item" href="../module/foodie_utils.html">foodie_utils</a>
+      
+      <a class="list-group-item" href="../module/foreseer.html">foreseer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_compressible_transformations.html">foreseer_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_compressible.html">foreseer_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_object.html">foreseer_conservative_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_compressible.html">foreseer_eos_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_object.html">foreseer_eos_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_euler_1d.html">foreseer_euler_1d</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html">foreseer_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_object.html">foreseer_primitive_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_llf.html">foreseer_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_pvl.html">foreseer_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_object.html">foreseer_riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../module/penf.html">penf</a>
+      
+      <a class="list-group-item" href="../module/penf_b_size.html">penf_b_size</a>
+      
+      <a class="list-group-item" href="../module/penf_global_parameters_variables.html">penf_global_parameters_variables</a>
+      
+      <a class="list-group-item" href="../module/penf_stringify.html">penf_stringify</a>
+      
+      <a class="list-group-item" href="../module/wenoof.html">wenoof</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_factory.html">wenoof_alpha_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_object.html">wenoof_alpha_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_js.html">wenoof_alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_m.html">wenoof_alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_z.html">wenoof_alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../module/wenoof_base_object.html">wenoof_base_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html">wenoof_beta_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_object.html">wenoof_beta_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_rec_js.html">wenoof_beta_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_factory.html">wenoof_interpolations_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_object.html">wenoof_interpolations_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_rec_js.html">wenoof_interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_factory.html">wenoof_interpolator_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_js.html">wenoof_interpolator_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_object.html">wenoof_interpolator_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_factory.html">wenoof_kappa_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_object.html">wenoof_kappa_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_rec_js.html">wenoof_kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_objects_factory.html">wenoof_objects_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_reconstructor_js.html">wenoof_reconstructor_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_factory.html">wenoof_weights_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_js.html">wenoof_weights_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

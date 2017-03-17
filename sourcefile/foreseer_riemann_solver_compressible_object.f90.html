@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>foreseer_riemann_solver_compressible_object.f90 &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>foreseer_riemann_solver_compressible_object.f90
+    <small>Source File</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 1.1% of total for source files.">130 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_object.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li class="active">foreseer_riemann_solver_compressible_object.f90</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-0">Modules</a></h3></div>
+  <div id="mods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html#src">foreseer_riemann_solver_compressible_object.f90</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
+  <div id="allfiles-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/face.f90.html">face.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap.f90.html">flap.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_argument_t.f90.html">flap_command_line_argument_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_arguments_group_t.f90.html">flap_command_line_arguments_group_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_interface_t.f90.html">flap_command_line_interface_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_object_t.f90.html">flap_object_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_utils_m.f90.html">flap_utils_m.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie.f90.html">foodie.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_adt_integrand.f90.html">foodie_adt_integrand.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth.f90.html">foodie_integrator_adams_bashforth.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth_moulton.f90.html">foodie_integrator_adams_bashforth_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_moulton.f90.html">foodie_integrator_adams_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_backward_differentiation_formula.f90.html">foodie_integrator_backward_differentiation_formula.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_embedded_runge_kutta.f90.html">foodie_integrator_embedded_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_euler_explicit.f90.html">foodie_integrator_euler_explicit.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_leapfrog.f90.html">foodie_integrator_leapfrog.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_low_storage_runge_kutta.f90.html">foodie_integrator_low_storage_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_tvd_runge_kutta.f90.html">foodie_integrator_tvd_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_kinds.f90.html">foodie_kinds.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_utils.f90.html">foodie_utils.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf.f90.html">penf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_b_size.f90.html">penf_b_size.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_global_parameters_variables.f90.html">penf_global_parameters_variables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_stringify.f90.html">penf_stringify.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof.f90.html">wenoof.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_factory.f90.html">wenoof_alpha_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_object.f90.html">wenoof_alpha_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_js.f90.html">wenoof_alpha_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_m.f90.html">wenoof_alpha_rec_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_z.f90.html">wenoof_alpha_rec_z.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_base_object.f90.html">wenoof_base_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_factory.f90.html">wenoof_beta_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_object.f90.html">wenoof_beta_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_rec_js.f90.html">wenoof_beta_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_factory.f90.html">wenoof_interpolations_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_object.f90.html">wenoof_interpolations_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_rec_js.f90.html">wenoof_interpolations_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_factory.f90.html">wenoof_interpolator_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_js.f90.html">wenoof_interpolator_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_object.f90.html">wenoof_interpolator_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_factory.f90.html">wenoof_kappa_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_object.f90.html">wenoof_kappa_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_rec_js.f90.html">wenoof_kappa_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_objects_factory.f90.html">wenoof_objects_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_reconstructor_js.f90.html">wenoof_reconstructor_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_factory.f90.html">wenoof_weights_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_js.f90.html">wenoof_weights_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html">wenoof_weights_object.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    <div class="col-md-9" id='text'>
+    <p>Define the Riemann solver for ideal compressible fluid for FORESEER library.</p>
+    
+    <h3>This File Depends On</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefileforeseer_riemann_solver_compressible_objectf90EfferentGraph" width="641pt" height="74pt"
+ viewBox="0.00 0.00 641.00 73.58" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph" class="graph" transform="scale(.4387 .4387) rotate(0) translate(4 163.7146)">
+<title>sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-163.7146 1457,-163.7146 1457,4 -4,4"/>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<polygon fill="none" stroke="#000000" points="1453,-84.2218 1200,-84.2218 1200,-60.2218 1453,-60.2218 1453,-84.2218"/>
+<text text-anchor="middle" x="1326.5" y="-69.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">foreseer_riemann_solver_compressible_object.f90</text>
+</g>
+<!-- sourcefile~penf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~penf.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/penf.f90.html" xlink:title="penf.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="552,-84.2218 497,-84.2218 497,-60.2218 552,-60.2218 552,-84.2218"/>
+<text text-anchor="middle" x="524.5" y="-69.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge16" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.5,-152.2218C982.7125,-145.752 1021.795,-163.3263 1164,-133.2218 1209.8194,-123.5219 1259.8994,-103.1159 1292.1779,-88.5788"/>
+<polygon fill="#000000" stroke="#000000" points="1293.9585,-91.6134 1301.5995,-84.2741 1291.0494,-85.2465 1293.9585,-91.6134"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~foreseer_riemann_solver_object.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/foreseer_riemann_solver_object.f90.html" xlink:title="foreseer_riemann_solver_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1153.5,-124.2218 969.5,-124.2218 969.5,-100.2218 1153.5,-100.2218 1153.5,-124.2218"/>
+<text text-anchor="middle" x="1061.5" y="-109.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_riemann_solver_object.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M652,-152.2218C733.1997,-166.494 755.1373,-155.8914 837.5,-152.2218"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.5,-152.2218C895.1034,-149.6553 959.8389,-137.0122 1004.8478,-126.6173"/>
+<polygon fill="#000000" stroke="#000000" points="1005.7741,-129.9951 1014.7098,-124.3027 1004.1746,-123.1802 1005.7741,-129.9951"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~foreseer_eos_object.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/foreseer_eos_object.f90.html" xlink:title="foreseer_eos_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="716,-84.2218 588,-84.2218 588,-60.2218 716,-60.2218 716,-84.2218"/>
+<text text-anchor="middle" x="652" y="-69.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_eos_object.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_eos_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge10" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_eos_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M552.1656,-72.2218C559.8283,-72.2218 568.5281,-72.2218 577.5213,-72.2218"/>
+<polygon fill="#000000" stroke="#000000" points="577.7598,-75.7219 587.7597,-72.2218 577.7597,-68.7219 577.7598,-75.7219"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~foreseer_conservative_compressible.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/foreseer_conservative_compressible.f90.html" xlink:title="foreseer_conservative_compressible.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1164,-44.2218 959,-44.2218 959,-20.2218 1164,-20.2218 1164,-44.2218"/>
+<text text-anchor="middle" x="1061.5" y="-29.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_conservative_compressible.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge11" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M552.1006,-62.2879C563.1704,-58.516 576.1022,-54.3738 588,-51.2218 732.6204,-12.908 773.5802,-10.6891 923,-18.2218 931.3273,-18.6416 939.9255,-19.2025 948.5704,-19.8589"/>
+<polygon fill="#000000" stroke="#000000" points="948.4797,-23.3627 958.7267,-20.6705 949.0374,-16.385 948.4797,-23.3627"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~foreseer_conservative_object.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/foreseer_conservative_object.f90.html" xlink:title="foreseer_conservative_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="923,-84.2218 752,-84.2218 752,-60.2218 923,-60.2218 923,-84.2218"/>
+<text text-anchor="middle" x="837.5" y="-69.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_conservative_object.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge14" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M536.4669,-84.3565C557.5332,-104.5592 603.6137,-143.7171 652,-152.2218"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M652,-152.2218C715.0511,-163.3041 782.4955,-117.9118 816.0139,-90.945"/>
+<polygon fill="#000000" stroke="#000000" points="818.2986,-93.5975 823.7813,-84.5316 813.8417,-88.1997 818.2986,-93.5975"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge17" class="edge">
+<title>sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1141.0087,-100.2205C1171.136,-95.673 1205.6395,-90.4649 1236.653,-85.7836"/>
+<polygon fill="#000000" stroke="#000000" points="1237.2242,-89.2371 1246.5898,-84.2837 1236.1793,-82.3155 1237.2242,-89.2371"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge18" class="edge">
+<title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M700.1299,-60.1354C737.3995,-51.1925 790.434,-39.3696 837.5,-32.2218"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.5,-32.2218C981.2626,-10.389 1020.9268,14.7472 1164,-11.2218 1210.6193,-19.6836 1261.2729,-40.7625 1293.4185,-55.7676"/>
+<polygon fill="#000000" stroke="#000000" points="1292.2407,-59.0828 1302.7756,-60.2087 1295.2422,-52.7589 1292.2407,-59.0828"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M702.1116,-84.2374C717.9823,-87.6404 735.6502,-91.0152 752,-93.2218 820.7143,-102.4957 898.6293,-107.2473 959.0931,-109.6796"/>
+<polygon fill="#000000" stroke="#000000" points="959.2785,-113.1893 969.4065,-110.0789 959.5494,-106.1945 959.2785,-113.1893"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge13" class="edge">
+<title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M837.5,-32.2218C873.3686,-26.7745 912.8421,-25.2974 948.5299,-25.6203"/>
+<polygon fill="#000000" stroke="#000000" points="948.9326,-29.1262 958.9806,-25.7664 949.0305,-22.1269 948.9326,-29.1262"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge15" class="edge">
+<title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M716.0983,-72.2218C724.378,-72.2218 732.9954,-72.2218 741.6488,-72.2218"/>
+<polygon fill="#000000" stroke="#000000" points="741.8057,-75.7219 751.8057,-72.2218 741.8057,-68.7219 741.8057,-75.7219"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge19" class="edge">
+<title>sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1141.0087,-44.2231C1171.136,-48.7706 1205.6395,-53.9787 1236.653,-58.66"/>
+<polygon fill="#000000" stroke="#000000" points="1236.1793,-62.1281 1246.5898,-60.1599 1237.2242,-55.2065 1236.1793,-62.1281"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge20" class="edge">
+<title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M923.2369,-72.2218C996.8796,-72.2218 1104.3765,-72.2218 1189.8674,-72.2218"/>
+<polygon fill="#000000" stroke="#000000" points="1189.9152,-75.7219 1199.9151,-72.2218 1189.9151,-68.7219 1189.9152,-75.7219"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M904.7074,-84.2231C929.6223,-88.6722 958.0778,-93.7536 983.8475,-98.3553"/>
+<polygon fill="#000000" stroke="#000000" points="983.4937,-101.8474 993.9532,-100.1599 984.7242,-94.9564 983.4937,-101.8474"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge12" class="edge">
+<title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M904.7074,-60.2205C929.6223,-55.7714 958.0778,-50.69 983.8475,-46.0883"/>
+<polygon fill="#000000" stroke="#000000" points="984.7242,-49.4872 993.9532,-44.2837 983.4937,-42.5962 984.7242,-49.4872"/>
+</g>
+<!-- sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node7" class="node">
+<title>sourcefile~penf_stringify.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node7"><a xlink:href="../sourcefile/penf_stringify.f90.html" xlink:title="penf_stringify.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="461,-104.2218 363,-104.2218 363,-80.2218 461,-80.2218 461,-104.2218"/>
+<text text-anchor="middle" x="412" y="-89.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_stringify.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_stringify.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~penf_stringify.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M461.0169,-83.5077C469.6766,-81.9682 478.5689,-80.3873 486.8543,-78.9144"/>
+<polygon fill="#000000" stroke="#000000" points="487.7284,-82.3139 496.9614,-77.1175 486.5031,-75.422 487.7284,-82.3139"/>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node8" class="node">
+<title>sourcefile~penf_global_parameters_variables.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node8"><a xlink:href="../sourcefile/penf_global_parameters_variables.f90.html" xlink:title="penf_global_parameters_variables.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="199,-104.2218 0,-104.2218 0,-80.2218 199,-80.2218 199,-104.2218"/>
+<text text-anchor="middle" x="99.5" y="-89.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_global_parameters_variables.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M155.9633,-80.1787C218.3391,-68.0034 321.8949,-51.1208 412,-52.2218"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M412,-52.2218C437.1742,-52.1556 465.0347,-57.0697 486.7323,-62.0427"/>
+<polygon fill="#000000" stroke="#000000" points="486.0022,-65.4667 496.5422,-64.3903 487.6314,-58.6589 486.0022,-65.4667"/>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_stringify.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M156.6299,-104.2321C202.6989,-112.2959 269.1203,-120.2657 327,-113.2218 338.4372,-111.8299 350.5532,-109.4213 361.9434,-106.72"/>
+<polygon fill="#000000" stroke="#000000" points="362.8694,-110.0964 371.7308,-104.2891 361.182,-103.3029 362.8694,-110.0964"/>
+</g>
+<!-- sourcefile~penf_b_size.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node9" class="node">
+<title>sourcefile~penf_b_size.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_node9"><a xlink:href="../sourcefile/penf_b_size.f90.html" xlink:title="penf_b_size.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="327,-104.2218 235,-104.2218 235,-80.2218 327,-80.2218 327,-104.2218"/>
+<text text-anchor="middle" x="281" y="-89.8218" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_b_size.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_b_size.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_b_size.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M199.0115,-92.2218C207.7197,-92.2218 216.3193,-92.2218 224.4855,-92.2218"/>
+<polygon fill="#000000" stroke="#000000" points="224.5731,-95.7219 234.5731,-92.2218 224.5731,-88.7219 224.5731,-95.7219"/>
+</g>
+<!-- sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M304.9593,-80.033C330.7311,-68.0941 373.2421,-51.7482 412,-52.2218"/>
+</g>
+<!-- sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf_stringify.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M327.1857,-92.2218C335.3554,-92.2218 343.9654,-92.2218 352.4416,-92.2218"/>
+<polygon fill="#000000" stroke="#000000" points="352.6758,-95.7219 362.6758,-92.2218 352.6757,-88.7219 352.6758,-95.7219"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefileforeseer_riemann_solver_compressible_objectf90EfferentGraph = svgPanZoom('#sourcefileforeseer_riemann_solver_compressible_objectf90EfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="190pt" height="32pt"
+ viewBox="0.00 0.00 190.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 186,-28 186,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="67,-24 0,-24 0,0 67,0 67,-24"/>
+<text text-anchor="middle" x="33.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="182,-24 85,-24 85,0 182,0 182,-24"/>
+<text text-anchor="middle" x="133.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+      
+      <h3>Files Dependent On This One</h3>
+      
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefileforeseer_riemann_solver_compressible_objectf90AfferentGraph" width="641pt" height="106pt"
+ viewBox="0.00 0.00 641.00 105.86" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph" class="graph" transform="scale(.5293 .5293) rotate(0) translate(4 196)">
+<title>sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-196 1207,-196 1207,4 -4,4"/>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<polygon fill="none" stroke="#000000" points="253,-128 0,-128 0,-104 253,-104 253,-128"/>
+<text text-anchor="middle" x="126.5" y="-113.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">foreseer_riemann_solver_compressible_object.f90</text>
+</g>
+<!-- sourcefile~foreseer.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~foreseer.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/foreseer.f90.html" xlink:title="foreseer.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="905,-108 835,-108 835,-84 905,-84 905,-108"/>
+<text text-anchor="middle" x="870" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408,-136C581.9827,-135.8086 627.4686,-146.103 799,-117 807.7474,-115.5159 816.9393,-113.3054 825.7,-110.8682"/>
+<polygon fill="#000000" stroke="#000000" points="826.7434,-114.2098 835.3613,-108.0468 824.7811,-107.4904 826.7434,-114.2098"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_llf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~foreseer_riemann_solver_compressible_llf.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html" xlink:title="foreseer_riemann_solver_compressible_llf.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="799,-108 563,-108 563,-84 799,-84 799,-108"/>
+<text text-anchor="middle" x="681" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_riemann_solver_compressible_llf.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_llf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_llf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M242.441,-128.0092C293.1991,-132.2908 353.4934,-136.06 408,-136"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408,-136C481.3923,-135.9192 564.7217,-121.6075 619.8051,-110.1279"/>
+<polygon fill="#000000" stroke="#000000" points="620.695,-113.5171 629.753,-108.0214 619.2448,-106.669 620.695,-113.5171"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html" xlink:title="foreseer_riemann_solver_compressible_pvl.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="527,-108 289,-108 289,-84 527,-84 527,-108"/>
+<text text-anchor="middle" x="408" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_riemann_solver_compressible_pvl.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253.2506,-106.9946C261.6542,-106.3976 270.1251,-105.7957 278.5418,-105.1977"/>
+<polygon fill="#000000" stroke="#000000" points="279.0465,-108.6708 288.7733,-104.4708 278.5503,-101.6884 279.0465,-108.6708"/>
+</g>
+<!-- sourcefile~foreseer_test_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~foreseer_test_conservative_compressible.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/foreseer_test_conservative_compressible.f90.html" xlink:title="foreseer_test_conservative_compressible.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1188,-192 956,-192 956,-168 1188,-168 1188,-192"/>
+<text text-anchor="middle" x="1072" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_conservative_compressible.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_conservative_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M879.8614,-108.2344C892.4092,-122.8799 915.5328,-146.937 941,-159 945.4495,-161.1076 950.0692,-163.0096 954.7998,-164.7257"/>
+<polygon fill="#000000" stroke="#000000" points="954.0529,-168.1655 964.6464,-167.9935 956.2578,-161.5218 954.0529,-168.1655"/>
+</g>
+<!-- sourcefile~foreseer_test_riemann_solver_compressible_llf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~foreseer_test_riemann_solver_compressible_llf.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html" xlink:title="foreseer_test_riemann_solver_compressible_llf.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1200,-150 944,-150 944,-126 1200,-126 1200,-150"/>
+<text text-anchor="middle" x="1072" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_riemann_solver_compressible_llf.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_llf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_llf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M905.1562,-107.3712C916.5143,-110.7827 929.2169,-114.3247 941,-117 952.4941,-119.6097 964.6273,-122.0152 976.6849,-124.1938"/>
+<polygon fill="#000000" stroke="#000000" points="976.3245,-127.6841 986.7798,-125.97 977.5376,-120.79 976.3245,-127.6841"/>
+</g>
+<!-- sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html" xlink:title="foreseer_test_riemann_solver_compressible_pvl.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1203,-108 941,-108 941,-84 1203,-84 1203,-108"/>
+<text text-anchor="middle" x="1072" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_riemann_solver_compressible_pvl.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M905.1857,-96C912.9057,-96 921.5343,-96 930.6918,-96"/>
+<polygon fill="#000000" stroke="#000000" points="930.8183,-99.5001 940.8183,-96 930.8182,-92.5001 930.8183,-99.5001"/>
+</g>
+<!-- sourcefile~foreseer_test_eos_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~foreseer_test_eos_compressible.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/foreseer_test_eos_compressible.f90.html" xlink:title="foreseer_test_eos_compressible.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1165,-66 979,-66 979,-42 1165,-42 1165,-66"/>
+<text text-anchor="middle" x="1072" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_eos_compressible.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_eos_compressible.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_eos_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M905.1562,-84.6288C916.5143,-81.2173 929.2169,-77.6753 941,-75 952.4941,-72.3903 964.6273,-69.9848 976.6849,-67.8062"/>
+<polygon fill="#000000" stroke="#000000" points="977.5376,-71.21 986.7798,-66.03 976.3245,-64.3159 977.5376,-71.21"/>
+</g>
+<!-- sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~foreseer_test_shock_tube.f90</title>
+<g id="a_sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/foreseer_test_shock_tube.f90.html" xlink:title="foreseer_test_shock_tube.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1149,-24 995,-24 995,0 1149,0 1149,-24"/>
+<text text-anchor="middle" x="1072" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_shock_tube.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M879.8614,-83.7656C892.4092,-69.1201 915.5328,-45.063 941,-33 954.6607,-26.5294 969.9262,-21.9962 985.076,-18.8324"/>
+<polygon fill="#000000" stroke="#000000" points="985.8274,-22.2523 994.9968,-16.9445 984.5188,-15.3757 985.8274,-22.2523"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_llf.f90&#45;&gt;sourcefile~foreseer.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_llf.f90&#45;&gt;sourcefile~foreseer.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M799.0857,-96C808.0095,-96 816.6335,-96 824.611,-96"/>
+<polygon fill="#000000" stroke="#000000" points="824.6965,-99.5001 834.6965,-96 824.6964,-92.5001 824.6965,-99.5001"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M477.9436,-83.9904C556.4647,-72.4193 687.4863,-58.8543 799,-75 808.1556,-76.3256 817.7747,-78.5656 826.8732,-81.101"/>
+<polygon fill="#000000" stroke="#000000" points="825.9134,-84.467 836.4951,-83.939 827.8937,-77.7529 825.9134,-84.467"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_llf.f90 -->
+<g id="sourcefile~~foreseer_riemann_solver_compressible_object.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_llf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M527.3446,-96C535.7089,-96 544.1604,-96 552.571,-96"/>
+<polygon fill="#000000" stroke="#000000" points="552.8011,-99.5001 562.8011,-96 552.801,-92.5001 552.8011,-99.5001"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefileforeseer_riemann_solver_compressible_objectf90AfferentGraph = svgPanZoom('#sourcefileforeseer_riemann_solver_compressible_objectf90AfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="190pt" height="32pt"
+ viewBox="0.00 0.00 190.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 186,-28 186,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="67,-24 0,-24 0,0 67,0 67,-24"/>
+<text text-anchor="middle" x="33.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="182,-24 85,-24 85,0 182,0 182,-24"/>
+<text text-anchor="middle" x="133.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+      
+      <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-1">Modules</a></h3></div>
+  <div id="mods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html#src">foreseer_riemann_solver_compressible_object.f90</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    <section>
+      <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; Define the Riemann solver for ideal compressible fluid for FORESEER library.</span>
+<a name="ln-2"></a>
+<a name="ln-3"></a><span class="k">module </span><span class="n">foreseer_riemann_solver_compressible_object</span>
+<a name="ln-4"></a><span class="c">!&lt; Define the Riemann solver for ideal compressible fluid for FORESEER library.</span>
+<a name="ln-5"></a>
+<a name="ln-6"></a><span class="k">use </span><span class="n">foreseer_conservative_compressible</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">conservative_compressible</span>
+<a name="ln-7"></a><span class="k">use </span><span class="n">foreseer_conservative_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">conservative_object</span>
+<a name="ln-8"></a><span class="k">use </span><span class="n">foreseer_eos_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">eos_object</span>
+<a name="ln-9"></a><span class="k">use </span><span class="n">foreseer_riemann_solver_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">riemann_solver_object</span>
+<a name="ln-10"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">R8P</span><span class="p">,</span> <span class="n">str</span>
+<a name="ln-11"></a><span class="k">use </span><span class="n">vecfor</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">vector</span>
+<a name="ln-12"></a>
+<a name="ln-13"></a><span class="k">implicit none</span>
+<a name="ln-14"></a><span class="k">private</span>
+<a name="ln-15"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">riemann_solver_compressible_object</span>
+<a name="ln-16"></a>
+<a name="ln-17"></a><span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">riemann_solver_object</span><span class="p">),</span> <span class="k">abstract</span> <span class="kd">::</span> <span class="n">riemann_solver_compressible_object</span>
+<a name="ln-18"></a>   <span class="c">!&lt; Riemann solver for ideal compressible fluid object class.</span>
+<a name="ln-19"></a>   <span class="c">!&lt;</span>
+<a name="ln-20"></a>   <span class="c">!&lt; The ideal compressible fluid generates a 3-waves pattern: 2 genuinely non-linear acoustic waves and 1</span>
+<a name="ln-21"></a>   <span class="c">!&lt; linear-degener contact discontinuity.</span>
+<a name="ln-22"></a>   <span class="c">!&lt;</span>
+<a name="ln-23"></a>   <span class="c">!&lt;```</span>
+<a name="ln-24"></a>   <span class="c">!&lt;   t ^                                .</span>
+<a name="ln-25"></a>   <span class="c">!&lt;     |     S1 _       S2 _            .      _ S       _ S3       _ S4</span>
+<a name="ln-26"></a>   <span class="c">!&lt;     |       |\_        |\_           .      /|      __/|       __/|</span>
+<a name="ln-27"></a>   <span class="c">!&lt;     |          \__        \_     U2  .     /  U3  _/       ___/</span>
+<a name="ln-28"></a>   <span class="c">!&lt;     |             \___      \_       .    /    __/     ___/</span>
+<a name="ln-29"></a>   <span class="c">!&lt;     |                 \____   \_     .   /   _/    ___/</span>
+<a name="ln-30"></a>   <span class="c">!&lt;     |                      \___ \_   .  / __/  ___/</span>
+<a name="ln-31"></a>   <span class="c">!&lt;     |          UL=U1           \__\_ . /_/____/          UR=U4</span>
+<a name="ln-32"></a>   <span class="c">!&lt;     |                              \\.///</span>
+<a name="ln-33"></a>   <span class="c">!&lt;  ---+--------------------------------o---------------------------------&gt;</span>
+<a name="ln-34"></a>   <span class="c">!&lt;     |                                xo                                x</span>
+<a name="ln-35"></a>   <span class="c">!&lt;```</span>
+<a name="ln-36"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">g_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Specific heats ratio `gamma=cp/cv` of state 1.</span>
+<a name="ln-37"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; `(gamma-1)/2` of state 1.</span>
+<a name="ln-38"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">e_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; `2*g/(g-1)` of state 1.</span>
+<a name="ln-39"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">u_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Velocity (normal) of state 1.</span>
+<a name="ln-40"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Pressure of state 1.</span>
+<a name="ln-41"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Density of state 1.</span>
+<a name="ln-42"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Speed of sound of state 1.</span>
+<a name="ln-43"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">g_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Specific heats ratio `gamma=cp/cv` of state 4.</span>
+<a name="ln-44"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; `(gamma-1)/2` of state 4.</span>
+<a name="ln-45"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">e_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; `2*g/(g-1)` of state 4.</span>
+<a name="ln-46"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">u_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Velocity (normal) of state 4.</span>
+<a name="ln-47"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Pressure of state 4.</span>
+<a name="ln-48"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Density of state 4.</span>
+<a name="ln-49"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Speed of sound of state 4.</span>
+<a name="ln-50"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">u23</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Velocity (normal) of intermediate states.</span>
+<a name="ln-51"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p23</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Pressure of intermediate states.</span>
+<a name="ln-52"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r_2</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Density of state 2.</span>
+<a name="ln-53"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r_3</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Density of state 3.</span>
+<a name="ln-54"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s_1</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Left-front of left wave.</span>
+<a name="ln-55"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s_2</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Right-front of left wave.</span>
+<a name="ln-56"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s_3</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Left-front of right wave.</span>
+<a name="ln-57"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s_4</span><span class="o">=</span><span class="mf">0._R8P</span> <span class="c">!&lt; Right-front of right wave.</span>
+<a name="ln-58"></a>   <span class="k">contains</span>
+<a name="ln-59"></a>      <span class="c">! deferred methods</span>
+<a name="ln-60"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">description</span> <span class="c">!&lt; Return pretty-printed object description.</span>
+<a name="ln-61"></a>      <span class="c">! public methods</span>
+<a name="ln-62"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">compute_fluxes</span> <span class="c">!&lt; Compute fluxes at interface `x=xo`.</span>
+<a name="ln-63"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_states14</span>   <span class="c">!&lt; Set states 1 and 4.</span>
+<a name="ln-64"></a><span class="n">endtype</span> <span class="n">riemann_solver_compressible_object</span>
+<a name="ln-65"></a>
+<a name="ln-66"></a><span class="k">contains</span>
+<a name="ln-67"></a>   <span class="c">! deferred methods</span>
+<a name="ln-68"></a>   <span class="k">pure function </span><span class="n">description</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
+<a name="ln-69"></a>   <span class="c">!&lt; Return a pretty-formatted object description.</span>
+<a name="ln-70"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">self</span>             <span class="c">!&lt; Solver.</span>
+<a name="ln-71"></a>   <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">prefix</span>           <span class="c">!&lt; Prefixing string.</span>
+<a name="ln-72"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                   <span class="kd">::</span> <span class="n">prefix_</span>          <span class="c">!&lt; Prefixing string, local variable.</span>
+<a name="ln-73"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                   <span class="kd">::</span> <span class="n">desc</span>             <span class="c">!&lt; Description.</span>
+<a name="ln-74"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="k">parameter</span>                                     <span class="kd">::</span> <span class="n">NL</span><span class="o">=</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c">!&lt; New line character.</span>
+<a name="ln-75"></a>
+<a name="ln-76"></a>   <span class="n">prefix_</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">prefix</span><span class="p">))</span> <span class="n">prefix_</span> <span class="o">=</span> <span class="n">prefix</span>
+<a name="ln-77"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<a name="ln-78"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;u_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-79"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;u_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-80"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;p_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-81"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;p_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-82"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-83"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-84"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;a_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-85"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;a_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-86"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;u23 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">u23</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-87"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;p23 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p23</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-88"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_2 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_2</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-89"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_3 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_3</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-90"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;s_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">s_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-91"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;s_2 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">s_2</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-92"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;s_3 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">s_3</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+<a name="ln-93"></a>   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;s_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">s_4</span><span class="p">))</span>
+<a name="ln-94"></a>   <span class="n">endfunction</span> <span class="n">description</span>
+<a name="ln-95"></a>
+<a name="ln-96"></a>   <span class="c">! public methods</span>
+<a name="ln-97"></a>   <span class="k">elemental subroutine </span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
+<a name="ln-98"></a>   <span class="c">!&lt; Compute fluxes at interface `x=xo`.</span>
+<a name="ln-99"></a>   <span class="c">!&lt;</span>
+<a name="ln-100"></a>   <span class="c">!&lt; Sampling the pattern the interface states are computed.</span>
+<a name="ln-101"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; Solver.</span>
+<a name="ln-102"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>  <span class="c">!&lt; Equation of state for left state.</span>
+<a name="ln-103"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span> <span class="c">!&lt; Equation of state for right state.</span>
+<a name="ln-104"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>    <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
+<a name="ln-105"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fluxes</span>    <span class="c">!&lt; Fluxes at interface `x=xo`.</span>
+<a name="ln-106"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">a</span>         <span class="c">!&lt; Speed of sound at interface `x=xo`.</span>
+<a name="ln-107"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">p</span>         <span class="c">!&lt; Pressure at interface `x=xo`.</span>
+<a name="ln-108"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">r</span>         <span class="c">!&lt; Desnity at interface `x=xo`.</span>
+<a name="ln-109"></a>
+<a name="ln-110"></a>   <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">destroy</span>
+<a name="ln-111"></a>   <span class="k">associate</span><span class="p">(</span><span class="n">s1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_2</span><span class="p">,</span> <span class="n">u23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u23</span><span class="p">,</span> <span class="n">s3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_3</span><span class="p">,</span> <span class="n">s4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span>                            <span class="p">&amp;</span>
+<a name="ln-112"></a>             <span class="n">p1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">r1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">a1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">,</span> <span class="n">g1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">g_1</span><span class="p">,</span> <span class="n">d1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">d_1</span><span class="p">,</span> <span class="n">e1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">e_1</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-113"></a>             <span class="n">p4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">r4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">a4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">,</span> <span class="n">g4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">g_4</span><span class="p">,</span> <span class="n">d4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">d_4</span><span class="p">,</span> <span class="n">e4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">e_4</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-114"></a>             <span class="n">p23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p23</span><span class="p">,</span> <span class="n">r2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_2</span><span class="p">,</span> <span class="n">r3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_3</span><span class="p">)</span>
+<a name="ln-115"></a>      <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
+<a name="ln-116"></a>      <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
+<a name="ln-117"></a>         <span class="k">select case</span><span class="p">(</span><span class="nb">minloc</span><span class="p">([</span><span class="o">-</span><span class="n">s1</span><span class="p">,</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">u23</span><span class="p">,</span> <span class="n">u23</span> <span class="o">*</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span> <span class="o">*</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s4</span><span class="p">],</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<a name="ln-118"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c">! left supersonic</span>
+<a name="ln-119"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u1</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-120"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">! left transonic</span>
+<a name="ln-121"></a>            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">u1</span> <span class="o">*</span> <span class="n">d1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">d1</span><span class="p">)</span>
+<a name="ln-122"></a>            <span class="n">p</span> <span class="o">=</span> <span class="n">p1</span><span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a1</span><span class="p">)</span><span class="o">**</span><span class="n">e1</span>
+<a name="ln-123"></a>            <span class="n">r</span> <span class="o">=</span> <span class="n">eos_left</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+<a name="ln-124"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-125"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c">! left subsonic</span>
+<a name="ln-126"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-127"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c">! right subsonic</span>
+<a name="ln-128"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r3</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-129"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c">! right transonic</span>
+<a name="ln-130"></a>            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a4</span> <span class="o">-</span> <span class="n">u4</span> <span class="o">*</span> <span class="n">d4</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">d4</span><span class="p">)</span>
+<a name="ln-131"></a>            <span class="n">p</span> <span class="o">=</span> <span class="n">p4</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a4</span><span class="p">)</span> <span class="o">**</span> <span class="n">e4</span>
+<a name="ln-132"></a>            <span class="n">r</span> <span class="o">=</span> <span class="n">eos_right</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+<a name="ln-133"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=-</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-134"></a>         <span class="k">case</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c">! right supersonic</span>
+<a name="ln-135"></a>            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p4</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u4</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-136"></a>         <span class="n">endselect</span>
+<a name="ln-137"></a>      <span class="n">endselect</span>
+<a name="ln-138"></a>   <span class="n">endassociate</span>
+<a name="ln-139"></a>   <span class="n">endsubroutine</span> <span class="n">compute_fluxes</span>
+<a name="ln-140"></a>
+<a name="ln-141"></a>   <span class="k">elemental subroutine </span><span class="n">set_states14</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
+<a name="ln-142"></a>   <span class="c">!&lt; Set states 1 and 4.</span>
+<a name="ln-143"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Solver.</span>
+<a name="ln-144"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>    <span class="c">!&lt; Equation of state for left state.</span>
+<a name="ln-145"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>  <span class="c">!&lt; Left Riemann state.</span>
+<a name="ln-146"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span>   <span class="c">!&lt; Equation of state for right state.</span>
+<a name="ln-147"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_right</span> <span class="c">!&lt; Right Riemann state.</span>
+<a name="ln-148"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>      <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
+<a name="ln-149"></a>
+<a name="ln-150"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">state_left</span><span class="p">)</span>
+<a name="ln-151"></a>   <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
+<a name="ln-152"></a>      <span class="n">self</span><span class="p">%</span><span class="n">g_1</span> <span class="o">=</span> <span class="n">eos_left</span><span class="p">%</span><span class="n">gam</span><span class="p">()</span>
+<a name="ln-153"></a>      <span class="n">self</span><span class="p">%</span><span class="n">d_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">g_1</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5_R8P</span>
+<a name="ln-154"></a>      <span class="n">self</span><span class="p">%</span><span class="n">e_1</span> <span class="o">=</span> <span class="mf">2._R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">g_1</span> <span class="o">/</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">g_1</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span>
+<a name="ln-155"></a>      <span class="n">self</span><span class="p">%</span><span class="n">u_1</span> <span class="o">=</span> <span class="n">state_left</span><span class="p">%</span><span class="n">velocity</span><span class="p">().</span><span class="n">dot</span><span class="p">.</span><span class="n">normal</span>
+<a name="ln-156"></a>      <span class="n">self</span><span class="p">%</span><span class="n">p_1</span> <span class="o">=</span> <span class="n">state_left</span><span class="p">%</span><span class="n">pressure</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">)</span>
+<a name="ln-157"></a>      <span class="n">self</span><span class="p">%</span><span class="n">r_1</span> <span class="o">=</span> <span class="n">state_left</span><span class="p">%</span><span class="n">density</span>
+<a name="ln-158"></a>      <span class="n">self</span><span class="p">%</span><span class="n">a_1</span> <span class="o">=</span> <span class="n">eos_left</span><span class="p">%</span><span class="n">speed_of_sound</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="n">state_left</span><span class="p">%</span><span class="n">density</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">)</span>
+<a name="ln-159"></a>   <span class="n">endselect</span>
+<a name="ln-160"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">state_right</span><span class="p">)</span>
+<a name="ln-161"></a>   <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
+<a name="ln-162"></a>      <span class="n">self</span><span class="p">%</span><span class="n">g_4</span> <span class="o">=</span> <span class="n">eos_right</span><span class="p">%</span><span class="n">gam</span><span class="p">()</span>
+<a name="ln-163"></a>      <span class="n">self</span><span class="p">%</span><span class="n">d_4</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">g_4</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5_R8P</span>
+<a name="ln-164"></a>      <span class="n">self</span><span class="p">%</span><span class="n">e_4</span> <span class="o">=</span> <span class="mf">2._R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">g_4</span> <span class="o">/</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">g_4</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span>
+<a name="ln-165"></a>      <span class="n">self</span><span class="p">%</span><span class="n">u_4</span> <span class="o">=</span> <span class="n">state_right</span><span class="p">%</span><span class="n">velocity</span><span class="p">().</span><span class="n">dot</span><span class="p">.</span><span class="n">normal</span>
+<a name="ln-166"></a>      <span class="n">self</span><span class="p">%</span><span class="n">p_4</span> <span class="o">=</span> <span class="n">state_right</span><span class="p">%</span><span class="n">pressure</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">)</span>
+<a name="ln-167"></a>      <span class="n">self</span><span class="p">%</span><span class="n">r_4</span> <span class="o">=</span> <span class="n">state_right</span><span class="p">%</span><span class="n">density</span>
+<a name="ln-168"></a>      <span class="n">self</span><span class="p">%</span><span class="n">a_4</span> <span class="o">=</span> <span class="n">eos_right</span><span class="p">%</span><span class="n">speed_of_sound</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="n">state_right</span><span class="p">%</span><span class="n">density</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">)</span>
+<a name="ln-169"></a>   <span class="n">endselect</span>
+<a name="ln-170"></a>   <span class="n">endsubroutine</span> <span class="n">set_states14</span>
+<a name="ln-171"></a><span class="n">endmodule</span> <span class="n">foreseer_riemann_solver_compressible_object</span>
+</pre></div>
+
+    </section>
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
+  <div id="allfiles-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/face.f90.html">face.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap.f90.html">flap.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_argument_t.f90.html">flap_command_line_argument_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_arguments_group_t.f90.html">flap_command_line_arguments_group_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_interface_t.f90.html">flap_command_line_interface_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_object_t.f90.html">flap_object_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_utils_m.f90.html">flap_utils_m.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie.f90.html">foodie.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_adt_integrand.f90.html">foodie_adt_integrand.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth.f90.html">foodie_integrator_adams_bashforth.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth_moulton.f90.html">foodie_integrator_adams_bashforth_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_moulton.f90.html">foodie_integrator_adams_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_backward_differentiation_formula.f90.html">foodie_integrator_backward_differentiation_formula.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_embedded_runge_kutta.f90.html">foodie_integrator_embedded_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_euler_explicit.f90.html">foodie_integrator_euler_explicit.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_leapfrog.f90.html">foodie_integrator_leapfrog.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_low_storage_runge_kutta.f90.html">foodie_integrator_low_storage_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_tvd_runge_kutta.f90.html">foodie_integrator_tvd_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_kinds.f90.html">foodie_kinds.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_utils.f90.html">foodie_utils.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf.f90.html">penf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_b_size.f90.html">penf_b_size.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_global_parameters_variables.f90.html">penf_global_parameters_variables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_stringify.f90.html">penf_stringify.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof.f90.html">wenoof.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_factory.f90.html">wenoof_alpha_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_object.f90.html">wenoof_alpha_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_js.f90.html">wenoof_alpha_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_m.f90.html">wenoof_alpha_rec_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_z.f90.html">wenoof_alpha_rec_z.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_base_object.f90.html">wenoof_base_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_factory.f90.html">wenoof_beta_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_object.f90.html">wenoof_beta_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_rec_js.f90.html">wenoof_beta_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_factory.f90.html">wenoof_interpolations_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_object.f90.html">wenoof_interpolations_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_rec_js.f90.html">wenoof_interpolations_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_factory.f90.html">wenoof_interpolator_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_js.f90.html">wenoof_interpolator_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_object.f90.html">wenoof_interpolator_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_factory.f90.html">wenoof_kappa_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_object.f90.html">wenoof_kappa_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_rec_js.f90.html">wenoof_kappa_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_objects_factory.f90.html">wenoof_objects_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_reconstructor_js.f90.html">wenoof_reconstructor_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_factory.f90.html">wenoof_weights_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_js.f90.html">wenoof_weights_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html">wenoof_weights_object.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

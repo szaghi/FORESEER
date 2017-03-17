@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>wenoof_weights_object.F90 &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>wenoof_weights_object.F90
+    <small>Source File</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 0.2% of total for source files.">28 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_weights_object.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li class="active">wenoof_weights_object.F90</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-0">Modules</a></h3></div>
+  <div id="mods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html#src">wenoof_weights_object.F90</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
+  <div id="allfiles-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/face.f90.html">face.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap.f90.html">flap.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_argument_t.f90.html">flap_command_line_argument_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_arguments_group_t.f90.html">flap_command_line_arguments_group_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_interface_t.f90.html">flap_command_line_interface_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_object_t.f90.html">flap_object_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_utils_m.f90.html">flap_utils_m.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie.f90.html">foodie.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_adt_integrand.f90.html">foodie_adt_integrand.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth.f90.html">foodie_integrator_adams_bashforth.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth_moulton.f90.html">foodie_integrator_adams_bashforth_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_moulton.f90.html">foodie_integrator_adams_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_backward_differentiation_formula.f90.html">foodie_integrator_backward_differentiation_formula.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_embedded_runge_kutta.f90.html">foodie_integrator_embedded_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_euler_explicit.f90.html">foodie_integrator_euler_explicit.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_leapfrog.f90.html">foodie_integrator_leapfrog.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_low_storage_runge_kutta.f90.html">foodie_integrator_low_storage_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_tvd_runge_kutta.f90.html">foodie_integrator_tvd_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_kinds.f90.html">foodie_kinds.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_utils.f90.html">foodie_utils.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf.f90.html">penf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_b_size.f90.html">penf_b_size.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_global_parameters_variables.f90.html">penf_global_parameters_variables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_stringify.f90.html">penf_stringify.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof.f90.html">wenoof.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_factory.f90.html">wenoof_alpha_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_object.f90.html">wenoof_alpha_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_js.f90.html">wenoof_alpha_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_m.f90.html">wenoof_alpha_rec_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_z.f90.html">wenoof_alpha_rec_z.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_base_object.f90.html">wenoof_base_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_factory.f90.html">wenoof_beta_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_object.f90.html">wenoof_beta_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_rec_js.f90.html">wenoof_beta_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_factory.f90.html">wenoof_interpolations_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_object.f90.html">wenoof_interpolations_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_rec_js.f90.html">wenoof_interpolations_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_factory.f90.html">wenoof_interpolator_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_js.f90.html">wenoof_interpolator_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_object.f90.html">wenoof_interpolator_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_factory.f90.html">wenoof_kappa_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_object.f90.html">wenoof_kappa_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_rec_js.f90.html">wenoof_kappa_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_objects_factory.f90.html">wenoof_objects_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_reconstructor_js.f90.html">wenoof_reconstructor_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_factory.f90.html">wenoof_weights_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_js.f90.html">wenoof_weights_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html">wenoof_weights_object.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    <div class="col-md-9" id='text'>
+    <p>Abstract weights object.</p>
+    
+    <h3>This File Depends On</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: sourcefile~~wenoof_weights_object.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilewenoof_weights_objectf90EfferentGraph" width="641pt" height="57pt"
+ viewBox="0.00 0.00 641.00 56.62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph" class="graph" transform="scale(.7044 .7044) rotate(0) translate(4 76.3855)">
+<title>sourcefile~~wenoof_weights_object.f90~~EfferentGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-76.3855 906,-76.3855 906,4 -4,4"/>
+<!-- sourcefile~wenoof_weights_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~wenoof_weights_object.f90</title>
+<polygon fill="none" stroke="#000000" points="902,-44 757,-44 757,-20 902,-20 902,-44"/>
+<text text-anchor="middle" x="829.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">wenoof_weights_object.F90</text>
+</g>
+<!-- sourcefile~penf.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~penf.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/penf.f90.html" xlink:title="penf.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="552,-44 497,-44 497,-20 552,-20 552,-44"/>
+<text text-anchor="middle" x="524.5" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~wenoof_weights_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~wenoof_weights_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M552.0042,-32.5275C563.1741,-32.7172 576.2029,-32.9071 588,-33 640.8288,-33.4159 700.1595,-33.1802 746.793,-32.8335"/>
+<polygon fill="#000000" stroke="#000000" points="746.8731,-36.333 756.8456,-32.7556 746.8188,-29.3333 746.8731,-36.333"/>
+</g>
+<!-- sourcefile~wenoof_base_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~wenoof_base_object.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/wenoof_base_object.f90.html" xlink:title="wenoof_base_object.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="721,-24 588,-24 588,0 721,0 721,-24"/>
+<text text-anchor="middle" x="654.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_base_object.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf.f90&#45;&gt;sourcefile~wenoof_base_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~penf.f90&#45;&gt;sourcefile~wenoof_base_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M552.0697,-27.7585C559.8419,-26.5628 568.6973,-25.2004 577.8722,-23.7889"/>
+<polygon fill="#000000" stroke="#000000" points="578.5657,-27.2235 587.9172,-22.2435 577.5012,-20.3049 578.5657,-27.2235"/>
+</g>
+<!-- sourcefile~wenoof_base_object.f90&#45;&gt;sourcefile~wenoof_weights_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~wenoof_base_object.f90&#45;&gt;sourcefile~wenoof_weights_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M721.1592,-19.6182C729.5597,-20.5782 738.2322,-21.5694 746.8421,-22.5534"/>
+<polygon fill="#000000" stroke="#000000" points="746.5677,-26.0447 756.9004,-23.7029 747.3626,-19.09 746.5677,-26.0447"/>
+</g>
+<!-- sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~penf_stringify.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/penf_stringify.f90.html" xlink:title="penf_stringify.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="461,-44 363,-44 363,-20 461,-20 461,-44"/>
+<text text-anchor="middle" x="412" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_stringify.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_stringify.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~penf_stringify.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M461.0169,-32C469.6766,-32 478.5689,-32 486.8543,-32"/>
+<polygon fill="#000000" stroke="#000000" points="486.9614,-35.5001 496.9614,-32 486.9614,-28.5001 486.9614,-35.5001"/>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~penf_global_parameters_variables.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/penf_global_parameters_variables.f90.html" xlink:title="penf_global_parameters_variables.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="199,-64 0,-64 0,-40 199,-40 199,-64"/>
+<text text-anchor="middle" x="99.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_global_parameters_variables.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M281,-72C361.4269,-70.3208 382.3612,-69.9485 461,-53 469.5664,-51.1537 478.6006,-48.571 487.0824,-45.8464"/>
+<polygon fill="#000000" stroke="#000000" points="488.3527,-49.1122 496.7243,-42.6185 486.1305,-42.4743 488.3527,-49.1122"/>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_stringify.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M169.5546,-64.0308C203.1709,-68.6983 244.0762,-72.7709 281,-72"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M281,-72C314.9408,-71.2914 351.766,-58.9336 377.7033,-48.1396"/>
+<polygon fill="#000000" stroke="#000000" points="379.2781,-51.2724 387.0823,-44.1068 376.5129,-44.8417 379.2781,-51.2724"/>
+</g>
+<!-- sourcefile~penf_b_size.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~penf_b_size.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/penf_b_size.f90.html" xlink:title="penf_b_size.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="327,-44 235,-44 235,-20 327,-20 327,-44"/>
+<text text-anchor="middle" x="281" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_b_size.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_b_size.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~penf_global_parameters_variables.f90&#45;&gt;sourcefile~penf_b_size.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M199.0115,-41.0345C207.7197,-40.075 216.3193,-39.1273 224.4855,-38.2275"/>
+<polygon fill="#000000" stroke="#000000" points="225.0167,-41.6902 234.5731,-37.1159 224.2499,-34.7324 225.0167,-41.6902"/>
+</g>
+<!-- sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M319.8216,-19.9338C333.3458,-16.3001 348.7114,-12.8006 363,-11 406.2138,-5.5544 417.9986,-4.074 461,-11 469.6516,-12.3935 478.7208,-14.7904 487.2095,-17.478"/>
+<polygon fill="#000000" stroke="#000000" points="486.2539,-20.8493 496.848,-20.7239 488.488,-14.2154 486.2539,-20.8493"/>
+</g>
+<!-- sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf_stringify.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~penf_b_size.f90&#45;&gt;sourcefile~penf_stringify.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M327.1857,-32C335.3554,-32 343.9654,-32 352.4416,-32"/>
+<polygon fill="#000000" stroke="#000000" points="352.6758,-35.5001 362.6758,-32 352.6757,-28.5001 352.6758,-35.5001"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefilewenoof_weights_objectf90EfferentGraph = svgPanZoom('#sourcefilewenoof_weights_objectf90EfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="190pt" height="32pt"
+ viewBox="0.00 0.00 190.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 186,-28 186,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="67,-24 0,-24 0,0 67,0 67,-24"/>
+<text text-anchor="middle" x="33.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="182,-24 85,-24 85,0 182,0 182,-24"/>
+<text text-anchor="middle" x="133.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+      
+      <h3>Files Dependent On This One</h3>
+      
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: sourcefile~~wenoof_weights_object.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilewenoof_weights_objectf90AfferentGraph" width="641pt" height="90pt"
+ viewBox="0.00 0.00 641.00 89.52" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph" class="graph" transform="scale(.4672 .4672) rotate(0) translate(4 187.6024)">
+<title>sourcefile~~wenoof_weights_object.f90~~AfferentGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-187.6024 1368,-187.6024 1368,4 -4,4"/>
+<!-- sourcefile~wenoof_weights_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~wenoof_weights_object.f90</title>
+<polygon fill="none" stroke="#000000" points="145,-71.0205 0,-71.0205 0,-47.0205 145,-47.0205 145,-71.0205"/>
+<text text-anchor="middle" x="72.5" y="-56.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">wenoof_weights_object.F90</text>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~wenoof_interpolator_object.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/wenoof_interpolator_object.f90.html" xlink:title="wenoof_interpolator_object.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="504,-111.0205 341,-111.0205 341,-87.0205 504,-87.0205 504,-111.0205"/>
+<text text-anchor="middle" x="422.5" y="-96.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_interpolator_object.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_interpolator_object.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_interpolator_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M243,-89.0205C271.4427,-90.7079 302.4258,-92.4635 330.5206,-94.0241"/>
+<polygon fill="#000000" stroke="#000000" points="330.5523,-97.5311 340.7306,-94.5897 330.9395,-90.5418 330.5523,-97.5311"/>
+</g>
+<!-- sourcefile~wenoof_reconstructor_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~wenoof_reconstructor_js.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/wenoof_reconstructor_js.f90.html" xlink:title="wenoof_reconstructor_js.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="691,-71.0205 540,-71.0205 540,-47.0205 691,-47.0205 691,-71.0205"/>
+<text text-anchor="middle" x="615.5" y="-56.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_reconstructor_js.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M422.5,-59.0205C457.2559,-54.3199 495.8556,-53.4632 529.3455,-54.0929"/>
+<polygon fill="#000000" stroke="#000000" points="529.4853,-57.5971 539.5649,-54.3335 529.6501,-50.599 529.4853,-57.5971"/>
+</g>
+<!-- sourcefile~wenoof_weights_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~wenoof_weights_js.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/wenoof_weights_js.f90.html" xlink:title="wenoof_weights_js.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="305,-51.0205 181,-51.0205 181,-27.0205 305,-27.0205 305,-51.0205"/>
+<text text-anchor="middle" x="243" y="-36.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_weights_js.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_weights_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_weights_js.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145.3019,-50.4807C153.7314,-49.4919 162.3269,-48.4836 170.749,-47.4957"/>
+<polygon fill="#000000" stroke="#000000" points="171.3892,-50.9447 180.9133,-46.3034 170.5736,-43.9923 171.3892,-50.9447"/>
+</g>
+<!-- sourcefile~wenoof_objects_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~wenoof_objects_factory.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/wenoof_objects_factory.f90.html" xlink:title="wenoof_objects_factory.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1069,-91.0205 926,-91.0205 926,-67.0205 1069,-67.0205 1069,-91.0205"/>
+<text text-anchor="middle" x="997.5" y="-76.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_objects_factory.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M243,-89.0205C288.6026,-91.726 296.7643,-108.6138 341,-120.0205 492.6088,-159.1146 538.898,-197.1496 691,-160.0205 748.1618,-146.0669 750.3642,-108.0981 808.5,-99.0205"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~wenoof_interpolator_factory.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/wenoof_interpolator_factory.f90.html" xlink:title="wenoof_interpolator_factory.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="890,-71.0205 727,-71.0205 727,-47.0205 890,-47.0205 890,-71.0205"/>
+<text text-anchor="middle" x="808.5" y="-56.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_interpolator_factory.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M243,-89.0205C323.7423,-93.8108 342.3454,-69.861 422.5,-59.0205"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M422.5,-59.0205C475.0711,-51.9105 487.1576,-42.7055 540,-38.0205 606.8489,-32.0937 624.1511,-32.0937 691,-38.0205 707.8374,-39.5133 725.8744,-42.1868 742.637,-45.1371"/>
+<polygon fill="#000000" stroke="#000000" points="742.4223,-48.6555 752.8873,-47.0018 743.6752,-41.7685 742.4223,-48.6555"/>
+</g>
+<!-- sourcefile~wenoof_weights_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~wenoof_weights_factory.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/wenoof_weights_factory.f90.html" xlink:title="wenoof_weights_factory.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="495,-31.0205 350,-31.0205 350,-7.0205 495,-7.0205 495,-31.0205"/>
+<text text-anchor="middle" x="422.5" y="-16.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_weights_factory.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_weights_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~wenoof_weights_object.f90&#45;&gt;sourcefile~wenoof_weights_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.2441,-71.1005C156.962,-78.3452 202.3464,-86.6086 243,-89.0205"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M243,-89.0205C290.6604,-91.8481 296.408,-62.081 341,-45.0205 350.8811,-41.2401 361.5737,-37.5504 371.8609,-34.1936"/>
+<polygon fill="#000000" stroke="#000000" points="373.1053,-37.4702 381.56,-31.0853 370.9689,-30.8042 373.1053,-37.4702"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M480.4064,-87.0192C501.4933,-82.6488 525.5238,-77.6684 547.413,-73.1318"/>
+<polygon fill="#000000" stroke="#000000" points="548.2196,-76.5391 557.3012,-71.0824 546.799,-69.6847 548.2196,-76.5391"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M615.5,-99.0205C701.1635,-94.5938 723.7492,-112.2539 808.5,-99.0205"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M808.5,-99.0205C843.5101,-93.5538 882.4065,-89.1541 915.7677,-85.8882"/>
+<polygon fill="#000000" stroke="#000000" points="916.3138,-89.3519 925.9331,-84.9111 915.644,-82.3841 916.3138,-89.3519"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M504.2492,-100.8849C538.6231,-101.1851 579.0261,-100.9053 615.5,-99.0205"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M615.5,-99.0205C664.7511,-96.4754 719.7173,-84.1184 758.3541,-73.8038"/>
+<polygon fill="#000000" stroke="#000000" points="759.575,-77.0989 768.3051,-71.096 757.737,-70.3445 759.575,-77.0989"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~wenoof_interpolator_js.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/wenoof_interpolator_js.f90.html" xlink:title="wenoof_interpolator_js.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="686.5,-151.0205 544.5,-151.0205 544.5,-127.0205 686.5,-127.0205 686.5,-151.0205"/>
+<text text-anchor="middle" x="615.5" y="-136.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof_interpolator_js.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_interpolator_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof_interpolator_js.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M480.4064,-111.0218C501.4933,-115.3921 525.5238,-120.3726 547.413,-124.9092"/>
+<polygon fill="#000000" stroke="#000000" points="546.799,-128.3562 557.3012,-126.9586 548.2196,-121.5019 546.799,-128.3562"/>
+</g>
+<!-- sourcefile~wenoof.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~wenoof.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/wenoof.f90.html" xlink:title="wenoof.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1174,-150.0205 1105,-150.0205 1105,-126.0205 1174,-126.0205 1174,-150.0205"/>
+<text text-anchor="middle" x="1139.5" y="-135.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wenoof.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~wenoof_interpolator_object.f90&#45;&gt;sourcefile~wenoof.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M439.3632,-111.1255C461.2917,-126.0485 501.3711,-150.5909 540,-160.0205 742.2419,-209.3891 994.1482,-168.2512 1094.8657,-147.8444"/>
+<polygon fill="#000000" stroke="#000000" points="1095.6108,-151.2645 1104.6995,-145.8198 1094.1991,-144.4083 1095.6108,-151.2645"/>
+</g>
+<!-- sourcefile~wenoof_reconstructor_js.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~wenoof_reconstructor_js.f90&#45;&gt;sourcefile~wenoof_interpolator_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M691.2248,-59.0205C699.6501,-59.0205 708.2973,-59.0205 716.8925,-59.0205"/>
+<polygon fill="#000000" stroke="#000000" points="716.9424,-62.5206 726.9424,-59.0205 716.9423,-55.5206 716.9424,-62.5206"/>
+</g>
+<!-- sourcefile~wenoof_weights_js.f90&#45;&gt;sourcefile~wenoof_weights_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~wenoof_weights_js.f90&#45;&gt;sourcefile~wenoof_weights_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M305.0251,-32.1096C316.2329,-30.8608 328.0804,-29.5408 339.7682,-28.2385"/>
+<polygon fill="#000000" stroke="#000000" points="340.4272,-31.6868 349.9781,-27.1009 339.652,-24.7299 340.4272,-31.6868"/>
+</g>
+<!-- sourcefile~wenoof_objects_factory.f90&#45;&gt;sourcefile~wenoof.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~wenoof_objects_factory.f90&#45;&gt;sourcefile~wenoof.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1026.5785,-91.1024C1048.1156,-100.0509 1077.6707,-112.3308 1101.1422,-122.0831"/>
+<polygon fill="#000000" stroke="#000000" points="1099.8828,-125.3499 1110.4604,-125.9547 1102.5687,-118.8856 1099.8828,-125.3499"/>
+</g>
+<!-- sourcefile~wenoof_interpolator_factory.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~wenoof_interpolator_factory.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M890.0243,-67.6474C898.5696,-68.5517 907.2591,-69.4712 915.8062,-70.3756"/>
+<polygon fill="#000000" stroke="#000000" points="915.4444,-73.8568 925.7572,-71.4287 916.181,-66.8957 915.4444,-73.8568"/>
+</g>
+<!-- sourcefile~wenoof_weights_factory.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~wenoof_weights_factory.f90&#45;&gt;sourcefile~wenoof_reconstructor_js.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M480.4064,-31.0218C501.4933,-35.3921 525.5238,-40.3726 547.413,-44.9092"/>
+<polygon fill="#000000" stroke="#000000" points="546.799,-48.3562 557.3012,-46.9586 548.2196,-41.5019 546.799,-48.3562"/>
+</g>
+<!-- sourcefile~wenoof_weights_factory.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~wenoof_weights_factory.f90&#45;&gt;sourcefile~wenoof_objects_factory.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495.0876,-9.008C509.9177,-7.3466 525.4397,-5.8849 540,-5.0205 695.9709,4.2387 739.1821,2.8036 890,-38.0205 914.1347,-44.5534 940.3694,-54.5002 960.88,-62.9604"/>
+<polygon fill="#000000" stroke="#000000" points="959.5873,-66.2135 970.1631,-66.8486 962.2916,-59.757 959.5873,-66.2135"/>
+</g>
+<!-- sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~foreseer_test_shock_tube.f90</title>
+<g id="a_sourcefile~~wenoof_weights_object.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/foreseer_test_shock_tube.f90.html" xlink:title="foreseer_test_shock_tube.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1364,-150.0205 1210,-150.0205 1210,-126.0205 1364,-126.0205 1364,-150.0205"/>
+<text text-anchor="middle" x="1287" y="-135.6205" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_shock_tube.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~wenoof.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="sourcefile~~wenoof_weights_object.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~wenoof.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1174.0822,-138.0205C1181.9392,-138.0205 1190.6318,-138.0205 1199.6036,-138.0205"/>
+<polygon fill="#000000" stroke="#000000" points="1199.822,-141.5206 1209.8219,-138.0205 1199.8219,-134.5206 1199.822,-141.5206"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefilewenoof_weights_objectf90AfferentGraph = svgPanZoom('#sourcefilewenoof_weights_objectf90AfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="190pt" height="32pt"
+ viewBox="0.00 0.00 190.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 186,-28 186,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="67,-24 0,-24 0,0 67,0 67,-24"/>
+<text text-anchor="middle" x="33.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="182,-24 85,-24 85,0 182,0 182,-24"/>
+<text text-anchor="middle" x="133.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+      
+      <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-1">Modules</a></h3></div>
+  <div id="mods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html#src">wenoof_weights_object.F90</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    <section>
+      <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; Abstract weights object.</span>
+<a name="ln-2"></a><span class="k">module </span><span class="n">wenoof_weights_object</span>
+<a name="ln-3"></a><span class="c">!&lt; Abstract weights object.</span>
+<a name="ln-4"></a>
+<a name="ln-5"></a><span class="cp">#ifdef r16p</span>
+<a name="ln-6"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">RPP</span><span class="o">=&gt;</span><span class="n">R16P</span>
+<a name="ln-7"></a><span class="cp">#else</span>
+<a name="ln-8"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">RPP</span><span class="o">=&gt;</span><span class="n">R8P</span>
+<a name="ln-9"></a><span class="cp">#endif</span>
+<a name="ln-10"></a><span class="k">use </span><span class="n">wenoof_base_object</span>
+<a name="ln-11"></a>
+<a name="ln-12"></a><span class="k">implicit none</span>
+<a name="ln-13"></a><span class="k">private</span>
+<a name="ln-14"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">weights_object</span>
+<a name="ln-15"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">weights_object_constructor</span>
+<a name="ln-16"></a>
+<a name="ln-17"></a><span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">base_object_constructor</span><span class="p">)</span> <span class="kd">::</span> <span class="n">weights_object_constructor</span>
+<a name="ln-18"></a>  <span class="c">!&lt; Abstract weights object constructor.</span>
+<a name="ln-19"></a><span class="n">endtype</span> <span class="n">weights_object_constructor</span>
+<a name="ln-20"></a>
+<a name="ln-21"></a><span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">base_object</span><span class="p">),</span> <span class="k">abstract</span> <span class="kd">::</span> <span class="n">weights_object</span>
+<a name="ln-22"></a>  <span class="c">!&lt; Weights of stencil interpolations object.</span>
+<a name="ln-23"></a>  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">values</span><span class="p">(:,:)</span> <span class="c">!&lt; Weights values of stencil interpolations [1:2,0:S-1].</span>
+<a name="ln-24"></a>  <span class="k">contains</span>
+<a name="ln-25"></a>    <span class="c">! deferred public methods</span>
+<a name="ln-26"></a>    <span class="k">procedure</span><span class="p">(</span><span class="n">compute_interface</span><span class="p">),</span>               <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">compute</span>               <span class="c">!&lt; Compute weights.</span>
+<a name="ln-27"></a>    <span class="k">procedure</span><span class="p">(</span><span class="n">smoothness_indicators_interface</span><span class="p">),</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">smoothness_indicators</span> <span class="c">!&lt; Return smoothness indicators.</span>
+<a name="ln-28"></a><span class="n">endtype</span> <span class="n">weights_object</span>
+<a name="ln-29"></a>
+<a name="ln-30"></a><span class="k">abstract interface</span>
+<a name="ln-31"></a>  <span class="c">!&lt; Abstract interfaces of [[weights_object]].</span>
+<a name="ln-32"></a>  <span class="k">pure subroutine </span><span class="n">compute_interface</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">stencil</span><span class="p">)</span>
+<a name="ln-33"></a>  <span class="c">!&lt; Compute beta.</span>
+<a name="ln-34"></a>  <span class="k">import</span> <span class="kd">::</span> <span class="n">weights_object</span><span class="p">,</span> <span class="n">RPP</span>
+<a name="ln-35"></a>  <span class="k">class</span><span class="p">(</span><span class="n">weights_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>                  <span class="c">!&lt; Weights.</span>
+<a name="ln-36"></a>  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">stencil</span><span class="p">(</span><span class="mi">1</span><span class="p">:,</span><span class="mi">1</span><span class="o">-</span><span class="n">self</span><span class="p">%</span><span class="n">S</span><span class="p">:)</span> <span class="c">!&lt; Stencil used for the interpolation, [1:2, 1-S:-1+S].</span>
+<a name="ln-37"></a>  <span class="n">endsubroutine</span> <span class="n">compute_interface</span>
+<a name="ln-38"></a>
+<a name="ln-39"></a>  <span class="k">pure function </span><span class="n">smoothness_indicators_interface</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">si</span><span class="p">)</span>
+<a name="ln-40"></a>  <span class="c">!&lt; Return smoothness indicators.</span>
+<a name="ln-41"></a>  <span class="k">import</span> <span class="kd">::</span> <span class="n">weights_object</span><span class="p">,</span> <span class="n">RPP</span>
+<a name="ln-42"></a>  <span class="k">class</span><span class="p">(</span><span class="n">weights_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>    <span class="c">!&lt; Weights.</span>
+<a name="ln-43"></a>  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">),</span> <span class="k">allocatable</span>            <span class="kd">::</span> <span class="n">si</span><span class="p">(:,:)</span> <span class="c">!&lt; Smoothness indicators.</span>
+<a name="ln-44"></a>  <span class="n">endfunction</span> <span class="n">smoothness_indicators_interface</span>
+<a name="ln-45"></a><span class="n">endinterface</span>
+<a name="ln-46"></a>
+<a name="ln-47"></a><span class="n">endmodule</span> <span class="n">wenoof_weights_object</span>
+</pre></div>
+
+    </section>
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
+  <div id="allfiles-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/face.f90.html">face.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap.f90.html">flap.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_argument_t.f90.html">flap_command_line_argument_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_arguments_group_t.f90.html">flap_command_line_arguments_group_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_command_line_interface_t.f90.html">flap_command_line_interface_t.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_object_t.f90.html">flap_object_t.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/flap_utils_m.f90.html">flap_utils_m.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie.f90.html">foodie.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_adt_integrand.f90.html">foodie_adt_integrand.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth.f90.html">foodie_integrator_adams_bashforth.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_bashforth_moulton.f90.html">foodie_integrator_adams_bashforth_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_adams_moulton.f90.html">foodie_integrator_adams_moulton.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_backward_differentiation_formula.f90.html">foodie_integrator_backward_differentiation_formula.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_embedded_runge_kutta.f90.html">foodie_integrator_embedded_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_euler_explicit.f90.html">foodie_integrator_euler_explicit.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_leapfrog.f90.html">foodie_integrator_leapfrog.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_low_storage_runge_kutta.f90.html">foodie_integrator_low_storage_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_integrator_tvd_runge_kutta.f90.html">foodie_integrator_tvd_runge_kutta.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_kinds.f90.html">foodie_kinds.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foodie_utils.f90.html">foodie_utils.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf.f90.html">penf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_b_size.f90.html">penf_b_size.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_global_parameters_variables.f90.html">penf_global_parameters_variables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/penf_stringify.f90.html">penf_stringify.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof.f90.html">wenoof.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_factory.f90.html">wenoof_alpha_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_object.f90.html">wenoof_alpha_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_js.f90.html">wenoof_alpha_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_m.f90.html">wenoof_alpha_rec_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_alpha_rec_z.f90.html">wenoof_alpha_rec_z.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_base_object.f90.html">wenoof_base_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_factory.f90.html">wenoof_beta_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_object.f90.html">wenoof_beta_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_beta_rec_js.f90.html">wenoof_beta_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_factory.f90.html">wenoof_interpolations_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_object.f90.html">wenoof_interpolations_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolations_rec_js.f90.html">wenoof_interpolations_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_factory.f90.html">wenoof_interpolator_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_js.f90.html">wenoof_interpolator_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_interpolator_object.f90.html">wenoof_interpolator_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_factory.f90.html">wenoof_kappa_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_object.f90.html">wenoof_kappa_object.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_kappa_rec_js.f90.html">wenoof_kappa_rec_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_objects_factory.f90.html">wenoof_objects_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_reconstructor_js.f90.html">wenoof_reconstructor_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_factory.f90.html">wenoof_weights_factory.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_js.f90.html">wenoof_weights_js.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/wenoof_weights_object.f90.html">wenoof_weights_object.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

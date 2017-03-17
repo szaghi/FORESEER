@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>base_object_constructor &ndash; FORESEER </title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>base_object_constructor
+    <small>Derived Type</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title="<p> 1.1% of total for derived types.</p>Including implementation: 19 statements,  0.2% of total for derived types.">8 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_base_object.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/wenoof_base_object.f90.html'>wenoof_base_object.F90</a></li>
+  
+     <li><a href='../module/wenoof_base_object.html'>wenoof_base_object</a></li>
+  
+     <li class="active">base_object_constructor</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-s%7E2">S</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-eps%7E2">eps</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-face_left">face_left</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-face_right">face_right</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-0">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#boundprocedure-create%7E2">create</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/base_object_constructor.html#src">base_object_constructor</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-0">All Derived Types</a></h3></div>
+  <div id="alltypes-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/adams_bashforth_integrator.html">adams_bashforth_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_bashforth_moulton_integrator.html">adams_bashforth_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_moulton_integrator.html">adams_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/alpha_factory.html">alpha_factory</a>
+      
+      <a class="list-group-item" href="../type/alpha_object.html">alpha_object</a>
+      
+      <a class="list-group-item" href="../type/alpha_object_constructor.html">alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js.html">alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js_constructor.html">alpha_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m.html">alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m_constructor.html">alpha_rec_m_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z.html">alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z_constructor.html">alpha_rec_z_constructor</a>
+      
+      <a class="list-group-item" href="../type/back_df_integrator.html">back_df_integrator</a>
+      
+      <a class="list-group-item" href="../type/base_object.html">base_object</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html">base_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_factory.html">beta_factory</a>
+      
+      <a class="list-group-item" href="../type/beta_object.html">beta_object</a>
+      
+      <a class="list-group-item" href="../type/beta_object_constructor.html">beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js.html">beta_rec_js</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js_constructor.html">beta_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/command_line_argument.html">command_line_argument</a>
+      
+      <a class="list-group-item" href="../type/command_line_arguments_group.html">command_line_arguments_group</a>
+      
+      <a class="list-group-item" href="../type/command_line_interface.html">command_line_interface</a>
+      
+      <a class="list-group-item" href="../type/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../type/conservative_object.html">conservative_object</a>
+      
+      <a class="list-group-item" href="../type/emd_runge_kutta_integrator.html">emd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../type/eos_object.html">eos_object</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html">euler_1d</a>
+      
+      <a class="list-group-item" href="../type/euler_explicit_integrator.html">euler_explicit_integrator</a>
+      
+      <a class="list-group-item" href="../type/integrand.html">integrand</a>
+      
+      <a class="list-group-item" href="../type/interpolations_factory.html">interpolations_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object.html">interpolations_object</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object_constructor.html">interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js.html">interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js_constructor.html">interpolations_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_factory.html">interpolator_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js.html">interpolator_js</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js_constructor.html">interpolator_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object.html">interpolator_object</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object_constructor.html">interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_factory.html">kappa_factory</a>
+      
+      <a class="list-group-item" href="../type/kappa_object.html">kappa_object</a>
+      
+      <a class="list-group-item" href="../type/kappa_object_constructor.html">kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js.html">kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js_constructor.html">kappa_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/leapfrog_integrator.html">leapfrog_integrator</a>
+      
+      <a class="list-group-item" href="../type/ls_runge_kutta_integrator.html">ls_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/object.html">object</a>
+      
+      <a class="list-group-item" href="../type/objects_factory.html">objects_factory</a>
+      
+      <a class="list-group-item" href="../type/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js.html">reconstructor_js</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js_constructor.html">reconstructor_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_object.html">riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../type/tvd_runge_kutta_integrator.html">tvd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/weights_factory.html">weights_factory</a>
+      
+      <a class="list-group-item" href="../type/weights_js.html">weights_js</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html">weights_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_object.html">weights_object</a>
+      
+      <a class="list-group-item" href="../type/weights_object_constructor.html">weights_object_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      <h2>type, public, abstract :: base_object_constructor</h2>
+    
+    <p>Abstract base object constructor.</p>
+    
+    
+    <h3>Inherited By</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: type~~base_object_constructor~~InheritedByGraph Pages: 1 -->
+<svg id="typebase_object_constructorInheritedByGraph" width="641pt" height="386pt"
+ viewBox="0.00 0.00 641.00 385.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="type~~base_object_constructor~~InheritedByGraph" class="graph" transform="scale(.7559 .7559) rotate(0) translate(4 506)">
+<title>type~~base_object_constructor~~InheritedByGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-506 844,-506 844,4 -4,4"/>
+<!-- type~base_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node1" class="node">
+<title>type~base_object_constructor</title>
+<polygon fill="none" stroke="#000000" points="130,-287 0,-287 0,-263 130,-263 130,-287"/>
+<text text-anchor="middle" x="65" y="-272.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">base_object_constructor</text>
+</g>
+<!-- type~alpha_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node2" class="node">
+<title>type~alpha_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node2"><a xlink:href="../type/alpha_object_constructor.html" xlink:title="alpha_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="318.5,-205 185.5,-205 185.5,-181 318.5,-181 318.5,-205"/>
+<text text-anchor="middle" x="252" y="-190.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">alpha_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~alpha_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge19" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~alpha_object_constructor</title>
+<path fill="none" stroke="#000000" d="M130.3142,-273.1949C136.4782,-273.5671 142.618,-274.1469 148.5,-275"/>
+<path fill="none" stroke="#000000" d="M148.5,-275C176.5372,-279.0663 146.4508,-233.5025 167,-214 169.8115,-211.3317 172.9063,-208.9866 176.2,-206.9268"/>
+<polygon fill="#000000" stroke="#000000" points="178.1126,-209.8751 185.3254,-202.1147 174.8474,-203.6833 178.1126,-209.8751"/>
+</g>
+<!-- type~beta_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node3" class="node">
+<title>type~beta_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node3"><a xlink:href="../type/beta_object_constructor.html" xlink:title="beta_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="315.5,-450 188.5,-450 188.5,-426 315.5,-426 315.5,-450"/>
+<text text-anchor="middle" x="252" y="-435.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">beta_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~beta_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge20" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~beta_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-275C176.0721,-278.9988 150.2644,-376.726 167,-399 174.3147,-408.7354 184.639,-416.1138 195.5817,-421.6807"/>
+<polygon fill="#000000" stroke="#000000" points="194.3181,-424.9518 204.8665,-425.9429 197.2385,-418.5901 194.3181,-424.9518"/>
+</g>
+<!-- type~interpolations_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node4" class="node">
+<title>type~interpolations_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node4"><a xlink:href="../type/interpolations_object_constructor.html" xlink:title="interpolations_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="337,-247 167,-247 167,-223 337,-223 337,-247"/>
+<text text-anchor="middle" x="252" y="-232.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">interpolations_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~interpolations_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge21" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~interpolations_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-275C158.7044,-276.48 157.8178,-265.6912 167,-261 175.0736,-256.8752 183.9182,-253.2743 192.7547,-250.1741"/>
+<polygon fill="#000000" stroke="#000000" points="193.9146,-253.4769 202.3032,-247.0054 191.7098,-246.8332 193.9146,-253.4769"/>
+</g>
+<!-- type~kappa_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node5" class="node">
+<title>type~kappa_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node5"><a xlink:href="../type/kappa_object_constructor.html" xlink:title="kappa_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="320,-390 184,-390 184,-366 320,-366 320,-390"/>
+<text text-anchor="middle" x="252" y="-375.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">kappa_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~kappa_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge22" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~kappa_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-275C176.5372,-279.0663 148.6805,-314.3895 167,-336 176.3357,-347.0128 189.2522,-355.4095 202.2,-361.69"/>
+<polygon fill="#000000" stroke="#000000" points="201.0259,-364.9992 211.5827,-365.8963 203.8895,-358.6117 201.0259,-364.9992"/>
+</g>
+<!-- type~weights_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node6" class="node">
+<title>type~weights_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node6"><a xlink:href="../type/weights_object_constructor.html" xlink:title="weights_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="323,-327 181,-327 181,-303 323,-303 323,-327"/>
+<text text-anchor="middle" x="252" y="-312.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">weights_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~weights_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge23" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~weights_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-275C158.7044,-276.48 157.8178,-284.3088 167,-289 175.0736,-293.1248 183.9182,-296.7257 192.7547,-299.8259"/>
+<polygon fill="#000000" stroke="#000000" points="191.7098,-303.1668 202.3032,-302.9946 193.9146,-296.5231 191.7098,-303.1668"/>
+</g>
+<!-- type~interpolator_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node7" class="node">
+<title>type~interpolator_object_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node7"><a xlink:href="../type/interpolator_object_constructor.html" xlink:title="interpolator_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="650,-238 490,-238 490,-214 650,-214 650,-238"/>
+<text text-anchor="middle" x="570" y="-223.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">interpolator_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~interpolator_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge24" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~interpolator_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-275C281.5167,-294.2917 439.0229,-261.1977 518.5507,-240.5883"/>
+<polygon fill="#000000" stroke="#000000" points="519.539,-243.9474 528.3189,-238.0175 517.7574,-237.1779 519.539,-243.9474"/>
+</g>
+<!-- type~weights_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node8" class="node">
+<title>type~weights_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node8"><a xlink:href="../type/weights_js_constructor.html" xlink:title="weights_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="630.5,-418 509.5,-418 509.5,-394 630.5,-394 630.5,-418"/>
+<text text-anchor="middle" x="570" y="-403.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">weights_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~alpha_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge1" class="edge">
+<title>type~alpha_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M318.8915,-201.2965C325.6755,-204.4171 331.923,-208.5501 337,-214 368.9747,-248.3236 322.4952,-284.178 355,-318 390.2754,-354.7049 427.0897,-310.3966 467,-342 481.6507,-353.6013 470.86,-367.7814 485,-380 489.4881,-383.8783 494.5447,-387.1781 499.8979,-389.9857"/>
+<polygon fill="#000000" stroke="#000000" points="498.5936,-393.2386 509.139,-394.2612 501.533,-386.8856 498.5936,-393.2386"/>
+<text text-anchor="middle" x="411" y="-344.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">alpha_constructor</text>
+</g>
+<!-- type~alpha_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node9" class="node">
+<title>type~alpha_rec_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node9"><a xlink:href="../type/alpha_rec_js_constructor.html" xlink:title="alpha_rec_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="636.5,-66 503.5,-66 503.5,-42 636.5,-42 636.5,-66"/>
+<text text-anchor="middle" x="570" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">alpha_rec_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~alpha_object_constructor&#45;&gt;type~alpha_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge2" class="edge">
+<title>type~alpha_object_constructor&#45;&gt;type~alpha_rec_js_constructor</title>
+<path fill="none" stroke="#000000" d="M411,-54C436.6648,-44.3633 466.3459,-42.2036 493.0646,-43.1698"/>
+<polygon fill="#000000" stroke="#000000" points="492.9798,-46.6699 503.1452,-43.6841 493.3366,-39.679 492.9798,-46.6699"/>
+</g>
+<!-- type~alpha_rec_m_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node10" class="node">
+<title>type~alpha_rec_m_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node10"><a xlink:href="../type/alpha_rec_m_constructor.html" xlink:title="alpha_rec_m_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="637,-24 503,-24 503,0 637,0 637,-24"/>
+<text text-anchor="middle" x="570" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">alpha_rec_m_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~alpha_object_constructor&#45;&gt;type~alpha_rec_m_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge3" class="edge">
+<title>type~alpha_object_constructor&#45;&gt;type~alpha_rec_m_constructor</title>
+<path fill="none" stroke="#000000" d="M260.6634,-180.9578C282.1689,-152.2365 341.3196,-80.1637 411,-54"/>
+<path fill="none" stroke="#000000" d="M411,-54C440.6482,-42.8677 474.4544,-33.4973 503.2493,-26.452"/>
+<polygon fill="#000000" stroke="#000000" points="504.3052,-29.798 513.2104,-24.0579 502.6693,-22.9918 504.3052,-29.798"/>
+</g>
+<!-- type~alpha_rec_z_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node11" class="node">
+<title>type~alpha_rec_z_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node11"><a xlink:href="../type/alpha_rec_z_constructor.html" xlink:title="alpha_rec_z_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="635,-108 505,-108 505,-84 635,-84 635,-108"/>
+<text text-anchor="middle" x="570" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">alpha_rec_z_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~alpha_object_constructor&#45;&gt;type~alpha_rec_z_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge4" class="edge">
+<title>type~alpha_object_constructor&#45;&gt;type~alpha_rec_z_constructor</title>
+<path fill="none" stroke="#000000" d="M411,-54C443.0058,-41.9824 451.9559,-66.2321 485,-75 493.1312,-77.1575 501.7194,-79.3637 510.1868,-81.4966"/>
+<polygon fill="#000000" stroke="#000000" points="509.4864,-84.9291 520.0368,-83.9594 511.1845,-78.1382 509.4864,-84.9291"/>
+</g>
+<!-- type~beta_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge5" class="edge">
+<title>type~beta_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.5878,-431.6012C368.7392,-426.2527 444.4638,-418.6326 499.468,-413.0976"/>
+<polygon fill="#000000" stroke="#000000" points="499.8879,-416.5731 509.4872,-412.0893 499.187,-409.6082 499.8879,-416.5731"/>
+<text text-anchor="middle" x="411" y="-428.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">beta_constructor</text>
+</g>
+<!-- type~beta_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node12" class="node">
+<title>type~beta_rec_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node12"><a xlink:href="../type/beta_rec_js_constructor.html" xlink:title="beta_rec_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="633.5,-502 506.5,-502 506.5,-478 633.5,-478 633.5,-502"/>
+<text text-anchor="middle" x="570" y="-487.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">beta_rec_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~beta_object_constructor&#45;&gt;type~beta_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge6" class="edge">
+<title>type~beta_object_constructor&#45;&gt;type~beta_rec_js_constructor</title>
+<path fill="none" stroke="#000000" d="M315.5878,-448.398C367.7155,-456.922 441.555,-468.9964 496.2668,-477.943"/>
+<polygon fill="#000000" stroke="#000000" points="495.8168,-481.4158 506.2505,-479.5756 496.9465,-474.5076 495.8168,-481.4158"/>
+</g>
+<!-- type~interpolations_object_constructor&#45;&gt;type~interpolator_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge8" class="edge">
+<title>type~interpolations_object_constructor&#45;&gt;type~interpolator_object_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M337.1143,-226.9795C343.1633,-226.5888 349.1718,-226.2541 355,-226 395.9072,-224.2162 441.234,-223.9611 479.6816,-224.2522"/>
+<polygon fill="#000000" stroke="#000000" points="479.7851,-227.7532 489.816,-224.3426 479.8476,-220.7534 479.7851,-227.7532"/>
+<text text-anchor="middle" x="411" y="-228.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">interpolations_constructor</text>
+</g>
+<!-- type~reconstructor_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node13" class="node">
+<title>type~reconstructor_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node13"><a xlink:href="../type/reconstructor_js_constructor.html" xlink:title="reconstructor_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="840,-251 692,-251 692,-227 840,-227 840,-251"/>
+<text text-anchor="middle" x="766" y="-236.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">reconstructor_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~interpolations_object_constructor&#45;&gt;type~reconstructor_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge7" class="edge">
+<title>type~interpolations_object_constructor&#45;&gt;type~reconstructor_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M312.334,-222.9051C320.7783,-220.4066 329.2213,-217.4571 337,-214 373.2718,-197.8798 372.1793,-172.2738 411,-164"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M411,-164C517.17,-141.3721 552.2882,-117.8663 655,-153 693.247,-166.0828 728.5164,-198.2982 748.6193,-219.3723"/>
+<polygon fill="#000000" stroke="#000000" points="746.1859,-221.8953 755.5559,-226.8405 751.3149,-217.1315 746.1859,-221.8953"/>
+<text text-anchor="middle" x="570" y="-155.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">interpolations_constructor</text>
+</g>
+<!-- type~interpolator_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node14" class="node">
+<title>type~interpolator_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node14"><a xlink:href="../type/interpolator_js_constructor.html" xlink:title="interpolator_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="835.5,-293 696.5,-293 696.5,-269 835.5,-269 835.5,-293"/>
+<text text-anchor="middle" x="766" y="-278.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">interpolator_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~interpolations_object_constructor&#45;&gt;type~interpolator_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge9" class="edge">
+<title>type~interpolations_object_constructor&#45;&gt;type~interpolator_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M337.1882,-241.208C448.3284,-250.0622 631.4766,-267.5311 655,-288 678.3046,-308.2785 643.1118,-360.5566 673.5,-355"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M673.5,-355C705.8996,-348.025 734.1632,-320.5074 750.659,-301.0744"/>
+<polygon fill="#000000" stroke="#000000" points="753.5778,-303.0332 757.1843,-293.0711 748.1525,-298.6098 753.5778,-303.0332"/>
+<text text-anchor="middle" x="570" y="-290.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">interpolations_constructor</text>
+</g>
+<!-- type~interpolations_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node15" class="node">
+<title>type~interpolations_rec_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node15"><a xlink:href="../type/interpolations_rec_js_constructor.html" xlink:title="interpolations_rec_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="655,-196 485,-196 485,-172 655,-172 655,-196"/>
+<text text-anchor="middle" x="570" y="-181.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">interpolations_rec_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~interpolations_object_constructor&#45;&gt;type~interpolations_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge10" class="edge">
+<title>type~interpolations_object_constructor&#45;&gt;type~interpolations_rec_js_constructor</title>
+<path fill="none" stroke="#000000" d="M411,-164C447.7071,-156.1767 489.8796,-162.152 521.5645,-169.5559"/>
+<polygon fill="#000000" stroke="#000000" points="520.9162,-173.0008 531.4631,-171.9943 522.5906,-166.204 520.9162,-173.0008"/>
+</g>
+<!-- type~kappa_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge11" class="edge">
+<title>type~kappa_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320.219,-384.0067C373.025,-388.6563 445.9213,-395.0748 499.3348,-399.7779"/>
+<polygon fill="#000000" stroke="#000000" points="499.1403,-403.2742 509.4088,-400.6649 499.7544,-396.3012 499.1403,-403.2742"/>
+<text text-anchor="middle" x="411" y="-398.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">kappa_constructor</text>
+</g>
+<!-- type~kappa_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_node16" class="node">
+<title>type~kappa_rec_js_constructor</title>
+<g id="a_type~~base_object_constructor~~InheritedByGraph_node16"><a xlink:href="../type/kappa_rec_js_constructor.html" xlink:title="kappa_rec_js_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="638,-460 502,-460 502,-436 638,-436 638,-460"/>
+<text text-anchor="middle" x="570" y="-445.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">kappa_rec_js_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~kappa_object_constructor&#45;&gt;type~kappa_rec_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge12" class="edge">
+<title>type~kappa_object_constructor&#45;&gt;type~kappa_rec_js_constructor</title>
+<path fill="none" stroke="#000000" d="M286.9693,-390.0703C306.7621,-396.5968 332.0719,-404.4357 355,-410 399.9194,-420.9012 450.8295,-430.0394 491.8303,-436.6206"/>
+<polygon fill="#000000" stroke="#000000" points="491.3363,-440.0859 501.7612,-438.1959 492.433,-433.1723 491.3363,-440.0859"/>
+</g>
+<!-- type~weights_object_constructor&#45;&gt;type~interpolator_object_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge14" class="edge">
+<title>type~weights_object_constructor&#45;&gt;type~interpolator_object_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M323.237,-308.6402C381.1809,-302.9329 455.2219,-294.2142 467,-286 481.0244,-276.2193 471.8172,-262.8885 485,-252 489.5733,-248.2226 494.6896,-244.9934 500.0826,-242.2329"/>
+<polygon fill="#000000" stroke="#000000" points="501.7139,-245.3362 509.3729,-238.0157 498.8204,-238.9622 501.7139,-245.3362"/>
+<text text-anchor="middle" x="411" y="-306.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">weights_constructor</text>
+</g>
+<!-- type~weights_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge16" class="edge">
+<title>type~weights_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" d="M411,-366C448.5925,-371.6394 490.2332,-382.2805 521.4682,-391.1702"/>
+<polygon fill="#000000" stroke="#000000" points="520.647,-394.576 531.2254,-393.9863 522.5882,-387.8505 520.647,-394.576"/>
+</g>
+<!-- type~weights_object_constructor&#45;&gt;type~reconstructor_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge13" class="edge">
+<title>type~weights_object_constructor&#45;&gt;type~reconstructor_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M280.0665,-327.005C311.3345,-339.6629 363.7193,-358.7551 411,-366"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M411,-366C436.3589,-369.8858 442.7427,-360.3521 467,-352 475.2776,-349.1499 476.7502,-346.9298 485,-344 558.7595,-317.8054 587.525,-337.6704 655,-298 675.3205,-286.053 671.7531,-272.0713 692,-260 695.0164,-258.2016 698.1939,-256.5511 701.4677,-255.0371"/>
+<polygon fill="#000000" stroke="#000000" points="703.0017,-258.1899 710.8945,-251.1221 700.3169,-251.7252 703.0017,-258.1899"/>
+<text text-anchor="middle" x="570" y="-346.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">weights_constructor</text>
+</g>
+<!-- type~weights_object_constructor&#45;&gt;type~interpolator_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge15" class="edge">
+<title>type~weights_object_constructor&#45;&gt;type~interpolator_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M411,-366C468.7385,-374.6616 616.0004,-365.1264 673.5,-355"/>
+<text text-anchor="middle" x="570" y="-371.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">weights_constructor</text>
+</g>
+<!-- type~interpolator_object_constructor&#45;&gt;type~reconstructor_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge17" class="edge">
+<title>type~interpolator_object_constructor&#45;&gt;type~reconstructor_js_constructor</title>
+<path fill="none" stroke="#000000" d="M612.68,-238.0414C626.3095,-242.1562 641.386,-246.9919 655,-252 663.4073,-255.0927 664.6545,-258.5843 673.5,-260"/>
+<path fill="none" stroke="#000000" d="M673.5,-260C682.0636,-261.3705 699.2389,-258.0584 716.4899,-253.6848"/>
+<polygon fill="#000000" stroke="#000000" points="717.8179,-256.9541 726.5913,-251.0145 716.0288,-250.1865 717.8179,-256.9541"/>
+</g>
+<!-- type~interpolator_object_constructor&#45;&gt;type~interpolator_js_constructor -->
+<g id="type~~base_object_constructor~~InheritedByGraph_edge18" class="edge">
+<title>type~interpolator_object_constructor&#45;&gt;type~interpolator_js_constructor</title>
+<path fill="none" stroke="#000000" d="M673.5,-260C684.819,-261.8115 696.8215,-264.1906 708.299,-266.6946"/>
+<polygon fill="#000000" stroke="#000000" points="707.6966,-270.1463 718.2197,-268.9161 709.2262,-263.3154 707.6966,-270.1463"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pantypebase_object_constructorInheritedByGraph = svgPanZoom('#typebase_object_constructorInheritedByGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="178pt" height="32pt"
+ viewBox="0.00 0.00 177.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 173.5,-28 173.5,4 -4,4"/>
+<!-- Type -->
+<g id="node1" class="node">
+<title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Type</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="169.5,-24 72.5,-24 72.5,0 169.5,0 169.5,-24"/>
+<text text-anchor="middle" x="121" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from one derived type to another which extends
+    (inherits from) it. Dashed arrows point from a derived type to another
+    type containing it as a components, with a label listing the name(s) of
+    said component(s).
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-s%7E2">S</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-eps%7E2">eps</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-face_left">face_left</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#variable-face_right">face_right</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-1">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html#boundprocedure-create%7E2">create</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/base_object_constructor.html#src">base_object_constructor</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+    <section>
+    <h2>Components</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-s%7E2"></span>integer(kind=I_P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>S</strong></td><td> =</td><td>0_I_P</td><td><p>Stencils dimension.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eps%7E2"></span>real(kind=RPP),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>eps</strong></td><td> =</td><td>EPS_DEF</td><td><p>Small epsilon to avoid division by zero.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_left"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td> =</td><td>.true.</td><td><p>Activate left-face interpolation computation.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_right"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td> =</td><td>.true.</td><td><p>Activate right-face interpolation computation.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+    
+     
+    <section>
+    <h2>Type-Bound Procedures</h2>
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-create%7E2"></span><h3>procedure, public, pass(self) :: <strong>create</strong>  => <a href='../proc/create_base_object_constructor.html'>create_base_object_constructor</a> 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine <a href='../proc/create_base_object_constructor.html'>create_base_object_constructor</a>(self, S, face_left, face_right, eps)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Create alpha constructor.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/base_object_constructor.html'>base_object_constructor</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I_P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>S</strong></td><td><p>Stencils dimension.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td><p>Activate left-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td><p>Activate right-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=RPP),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>eps</strong></td><td><p>Small epsilon to avoid division by zero.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+    </section>
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">abstract</span> <span class="kd">::</span> <span class="n">base_object_constructor</span>
+  <span class="c">!&lt; Abstract base object constructor.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I_P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">S</span><span class="o">=</span><span class="mi">0_I_P</span>           <span class="c">!&lt; Stencils dimension.</span>
+  <span class="kt">logical</span>      <span class="kd">::</span> <span class="n">face_left</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>  <span class="c">!&lt; Activate left-face interpolation computation.</span>
+  <span class="kt">logical</span>      <span class="kd">::</span> <span class="n">face_right</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span> <span class="c">!&lt; Activate right-face interpolation computation.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">RPP</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eps</span><span class="o">=</span><span class="n">EPS_DEF</span>       <span class="c">!&lt; Small epsilon to avoid division by zero.</span>
+  <span class="k">contains</span>
+<span class="k">    procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">create</span> <span class="o">=&gt;</span> <span class="n">create_base_object_constructor</span>
+<span class="n">endtype</span> <span class="n">base_object_constructor</span>
+</pre></div>
+
+    </section>
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-1">All Derived Types</a></h3></div>
+  <div id="alltypes-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/adams_bashforth_integrator.html">adams_bashforth_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_bashforth_moulton_integrator.html">adams_bashforth_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_moulton_integrator.html">adams_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/alpha_factory.html">alpha_factory</a>
+      
+      <a class="list-group-item" href="../type/alpha_object.html">alpha_object</a>
+      
+      <a class="list-group-item" href="../type/alpha_object_constructor.html">alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js.html">alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js_constructor.html">alpha_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m.html">alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m_constructor.html">alpha_rec_m_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z.html">alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z_constructor.html">alpha_rec_z_constructor</a>
+      
+      <a class="list-group-item" href="../type/back_df_integrator.html">back_df_integrator</a>
+      
+      <a class="list-group-item" href="../type/base_object.html">base_object</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html">base_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_factory.html">beta_factory</a>
+      
+      <a class="list-group-item" href="../type/beta_object.html">beta_object</a>
+      
+      <a class="list-group-item" href="../type/beta_object_constructor.html">beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js.html">beta_rec_js</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js_constructor.html">beta_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/command_line_argument.html">command_line_argument</a>
+      
+      <a class="list-group-item" href="../type/command_line_arguments_group.html">command_line_arguments_group</a>
+      
+      <a class="list-group-item" href="../type/command_line_interface.html">command_line_interface</a>
+      
+      <a class="list-group-item" href="../type/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../type/conservative_object.html">conservative_object</a>
+      
+      <a class="list-group-item" href="../type/emd_runge_kutta_integrator.html">emd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../type/eos_object.html">eos_object</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html">euler_1d</a>
+      
+      <a class="list-group-item" href="../type/euler_explicit_integrator.html">euler_explicit_integrator</a>
+      
+      <a class="list-group-item" href="../type/integrand.html">integrand</a>
+      
+      <a class="list-group-item" href="../type/interpolations_factory.html">interpolations_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object.html">interpolations_object</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object_constructor.html">interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js.html">interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js_constructor.html">interpolations_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_factory.html">interpolator_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js.html">interpolator_js</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js_constructor.html">interpolator_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object.html">interpolator_object</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object_constructor.html">interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_factory.html">kappa_factory</a>
+      
+      <a class="list-group-item" href="../type/kappa_object.html">kappa_object</a>
+      
+      <a class="list-group-item" href="../type/kappa_object_constructor.html">kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js.html">kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js_constructor.html">kappa_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/leapfrog_integrator.html">leapfrog_integrator</a>
+      
+      <a class="list-group-item" href="../type/ls_runge_kutta_integrator.html">ls_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/object.html">object</a>
+      
+      <a class="list-group-item" href="../type/objects_factory.html">objects_factory</a>
+      
+      <a class="list-group-item" href="../type/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js.html">reconstructor_js</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js_constructor.html">reconstructor_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_object.html">riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../type/tvd_runge_kutta_integrator.html">tvd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/weights_factory.html">weights_factory</a>
+      
+      <a class="list-group-item" href="../type/weights_js.html">weights_js</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html">weights_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_object.html">weights_object</a>
+      
+      <a class="list-group-item" href="../type/weights_object_constructor.html">weights_object_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

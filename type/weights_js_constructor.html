@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>weights_js_constructor &ndash; FORESEER </title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>weights_js_constructor
+    <small>Derived Type</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title="<p> 0.7% of total for derived types.</p>Including implementation: 16 statements,  0.1% of total for derived types.">5 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/wenoof_weights_js.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/wenoof_weights_js.f90.html'>wenoof_weights_js.F90</a></li>
+  
+     <li><a href='../module/wenoof_weights_js.html'>wenoof_weights_js</a></li>
+  
+     <li class="active">weights_js_constructor</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-s%7E2">S</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-alpha_constructor">alpha_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-beta_constructor">beta_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-eps%7E2">eps</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-face_left">face_left</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-face_right">face_right</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-kappa_constructor">kappa_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-0">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#boundprocedure-create%7E2">create</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/weights_js_constructor.html#src">weights_js_constructor</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-0">All Derived Types</a></h3></div>
+  <div id="alltypes-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/adams_bashforth_integrator.html">adams_bashforth_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_bashforth_moulton_integrator.html">adams_bashforth_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_moulton_integrator.html">adams_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/alpha_factory.html">alpha_factory</a>
+      
+      <a class="list-group-item" href="../type/alpha_object.html">alpha_object</a>
+      
+      <a class="list-group-item" href="../type/alpha_object_constructor.html">alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js.html">alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js_constructor.html">alpha_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m.html">alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m_constructor.html">alpha_rec_m_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z.html">alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z_constructor.html">alpha_rec_z_constructor</a>
+      
+      <a class="list-group-item" href="../type/back_df_integrator.html">back_df_integrator</a>
+      
+      <a class="list-group-item" href="../type/base_object.html">base_object</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html">base_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_factory.html">beta_factory</a>
+      
+      <a class="list-group-item" href="../type/beta_object.html">beta_object</a>
+      
+      <a class="list-group-item" href="../type/beta_object_constructor.html">beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js.html">beta_rec_js</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js_constructor.html">beta_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/command_line_argument.html">command_line_argument</a>
+      
+      <a class="list-group-item" href="../type/command_line_arguments_group.html">command_line_arguments_group</a>
+      
+      <a class="list-group-item" href="../type/command_line_interface.html">command_line_interface</a>
+      
+      <a class="list-group-item" href="../type/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../type/conservative_object.html">conservative_object</a>
+      
+      <a class="list-group-item" href="../type/emd_runge_kutta_integrator.html">emd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../type/eos_object.html">eos_object</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html">euler_1d</a>
+      
+      <a class="list-group-item" href="../type/euler_explicit_integrator.html">euler_explicit_integrator</a>
+      
+      <a class="list-group-item" href="../type/integrand.html">integrand</a>
+      
+      <a class="list-group-item" href="../type/interpolations_factory.html">interpolations_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object.html">interpolations_object</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object_constructor.html">interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js.html">interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js_constructor.html">interpolations_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_factory.html">interpolator_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js.html">interpolator_js</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js_constructor.html">interpolator_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object.html">interpolator_object</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object_constructor.html">interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_factory.html">kappa_factory</a>
+      
+      <a class="list-group-item" href="../type/kappa_object.html">kappa_object</a>
+      
+      <a class="list-group-item" href="../type/kappa_object_constructor.html">kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js.html">kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js_constructor.html">kappa_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/leapfrog_integrator.html">leapfrog_integrator</a>
+      
+      <a class="list-group-item" href="../type/ls_runge_kutta_integrator.html">ls_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/object.html">object</a>
+      
+      <a class="list-group-item" href="../type/objects_factory.html">objects_factory</a>
+      
+      <a class="list-group-item" href="../type/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js.html">reconstructor_js</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js_constructor.html">reconstructor_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_object.html">riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../type/tvd_runge_kutta_integrator.html">tvd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/weights_factory.html">weights_factory</a>
+      
+      <a class="list-group-item" href="../type/weights_js.html">weights_js</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html">weights_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_object.html">weights_object</a>
+      
+      <a class="list-group-item" href="../type/weights_object_constructor.html">weights_object_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      <h2>type, public, extends(<a href='../type/weights_object_constructor.html'>weights_object_constructor</a>) :: weights_js_constructor</h2>
+    
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: type~~weights_js_constructor~~InheritsGraph Pages: 1 -->
+<svg id="typeweights_js_constructorInheritsGraph" width="555pt" height="158pt"
+ viewBox="0.00 0.00 555.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="type~~weights_js_constructor~~InheritsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
+<title>type~~weights_js_constructor~~InheritsGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-154 551,-154 551,4 -4,4"/>
+<!-- type~weights_js_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node1" class="node">
+<title>type~weights_js_constructor</title>
+<polygon fill="none" stroke="#000000" points="547,-87 426,-87 426,-63 547,-63 547,-87"/>
+<text text-anchor="middle" x="486.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">weights_js_constructor</text>
+</g>
+<!-- type~alpha_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node2" class="node">
+<title>type~alpha_object_constructor</title>
+<g id="a_type~~weights_js_constructor~~InheritsGraph_node2"><a xlink:href="../type/alpha_object_constructor.html" xlink:title="alpha_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="304.5,-150 171.5,-150 171.5,-126 304.5,-126 304.5,-150"/>
+<text text-anchor="middle" x="238" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">alpha_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~alpha_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge4" class="edge">
+<title>type~alpha_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M300.9564,-125.9489C333.171,-119.366 372.8935,-110.6054 408,-101 419.46,-97.8645 431.7142,-94.0391 443.0515,-90.2975"/>
+<polygon fill="#000000" stroke="#000000" points="444.3671,-93.548 452.7356,-87.0505 442.1417,-86.9111 444.3671,-93.548"/>
+<text text-anchor="middle" x="367.5" y="-121.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">alpha_constructor</text>
+</g>
+<!-- type~kappa_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node3" class="node">
+<title>type~kappa_object_constructor</title>
+<g id="a_type~~weights_js_constructor~~InheritsGraph_node3"><a xlink:href="../type/kappa_object_constructor.html" xlink:title="kappa_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="306,-108 170,-108 170,-84 306,-84 306,-108"/>
+<text text-anchor="middle" x="238" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">kappa_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~kappa_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge5" class="edge">
+<title>type~kappa_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M306.2324,-90.2339C340.0878,-87.3729 380.961,-83.9188 415.2225,-81.0234"/>
+<polygon fill="#000000" stroke="#000000" points="415.9583,-84.4738 425.6281,-80.1441 415.3688,-77.4987 415.9583,-84.4738"/>
+<text text-anchor="middle" x="367.5" y="-89.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">kappa_constructor</text>
+</g>
+<!-- type~beta_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node4" class="node">
+<title>type~beta_object_constructor</title>
+<g id="a_type~~weights_js_constructor~~InheritsGraph_node4"><a xlink:href="../type/beta_object_constructor.html" xlink:title="beta_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="301.5,-66 174.5,-66 174.5,-42 301.5,-42 301.5,-66"/>
+<text text-anchor="middle" x="238" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">beta_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~beta_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge6" class="edge">
+<title>type~beta_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M301.806,-58.4963C333.7147,-60.8422 372.9152,-63.8713 408,-67 410.5073,-67.2236 413.059,-67.4563 415.636,-67.6957"/>
+<polygon fill="#000000" stroke="#000000" points="415.3736,-71.1864 425.6596,-68.6467 416.0349,-64.2177 415.3736,-71.1864"/>
+<text text-anchor="middle" x="367.5" y="-69.4" font-family="Helvetica,sans-Serif" font-size="9.50" fill="#000000">beta_constructor</text>
+</g>
+<!-- type~base_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node5" class="node">
+<title>type~base_object_constructor</title>
+<g id="a_type~~weights_js_constructor~~InheritsGraph_node5"><a xlink:href="../type/base_object_constructor.html" xlink:title="base_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="130,-108 0,-108 0,-84 130,-84 130,-108"/>
+<text text-anchor="middle" x="65" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">base_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~alpha_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge1" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~alpha_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-96C160.856,-94.5698 156.5152,-110.3078 167,-117 169.763,-118.7636 172.68,-120.3841 175.6929,-121.8727"/>
+<polygon fill="#000000" stroke="#000000" points="174.3989,-125.1271 184.9614,-125.9535 177.2196,-118.7206 174.3989,-125.1271"/>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~kappa_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge2" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~kappa_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-96C152.19,-95.5729 155.9713,-95.2256 159.7946,-94.9468"/>
+<polygon fill="#000000" stroke="#000000" points="160.1971,-98.4296 169.9798,-94.3615 159.7954,-91.4411 160.1971,-98.4296"/>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~beta_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge3" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~beta_object_constructor</title>
+<path fill="none" stroke="#000000" d="M148.5,-96C160.856,-94.5698 156.5152,-81.6922 167,-75 169.763,-73.2364 172.68,-71.6159 175.6929,-70.1273"/>
+<polygon fill="#000000" stroke="#000000" points="177.2196,-73.2794 184.9614,-66.0465 174.3989,-66.8729 177.2196,-73.2794"/>
+</g>
+<!-- type~weights_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_node6" class="node">
+<title>type~weights_object_constructor</title>
+<g id="a_type~~weights_js_constructor~~InheritsGraph_node6"><a xlink:href="../type/weights_object_constructor.html" xlink:title="weights_object_constructor">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="309,-24 167,-24 167,0 309,0 309,-24"/>
+<text text-anchor="middle" x="238" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">weights_object_constructor</text>
+</a>
+</g>
+</g>
+<!-- type~base_object_constructor&#45;&gt;type~weights_object_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge7" class="edge">
+<title>type~base_object_constructor&#45;&gt;type~weights_object_constructor</title>
+<path fill="none" stroke="#000000" d="M130.2674,-97.4461C136.4411,-97.1479 142.5958,-96.6834 148.5,-96"/>
+<path fill="none" stroke="#000000" d="M148.5,-96C177.4887,-92.6447 146.3852,-53.6551 167,-33 168.1067,-31.8912 169.2689,-30.8403 170.4789,-29.8444"/>
+<polygon fill="#000000" stroke="#000000" points="172.7476,-32.5357 179.075,-24.0378 168.8293,-26.735 172.7476,-32.5357"/>
+</g>
+<!-- type~weights_object_constructor&#45;&gt;type~weights_js_constructor -->
+<g id="type~~weights_js_constructor~~InheritsGraph_edge8" class="edge">
+<title>type~weights_object_constructor&#45;&gt;type~weights_js_constructor</title>
+<path fill="none" stroke="#000000" d="M285.6193,-24.0725C326.5426,-34.4474 385.6618,-49.4354 429.1738,-60.4666"/>
+<polygon fill="#000000" stroke="#000000" points="428.4884,-63.9035 439.0418,-62.9684 430.2086,-57.1181 428.4884,-63.9035"/>
+</g>
+</g>
+</svg>
+</div>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="178pt" height="32pt"
+ viewBox="0.00 0.00 177.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 173.5,-28 173.5,4 -4,4"/>
+<!-- Type -->
+<g id="node1" class="node">
+<title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Type</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="169.5,-24 72.5,-24 72.5,0 169.5,0 169.5,-24"/>
+<text text-anchor="middle" x="121" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from one derived type to another which extends
+    (inherits from) it. Dashed arrows point from a derived type to another
+    type containing it as a components, with a label listing the name(s) of
+    said component(s).
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    <br><br>
+    
+    <p>Jiang-Shu and Gerolymos-Senechal-Vallet optimal weights object constructor.</p>
+    <br>
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-s%7E2">S</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-alpha_constructor">alpha_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-beta_constructor">beta_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-eps%7E2">eps</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-face_left">face_left</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-face_right">face_right</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#variable-kappa_constructor">kappa_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-1">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html#boundprocedure-create%7E2">create</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/weights_js_constructor.html#src">weights_js_constructor</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+    <section>
+    <h2>Components</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-s%7E2"></span>integer(kind=I_P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>S</strong></td><td> =</td><td>0_I_P</td><td><p>Stencils dimension.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-alpha_constructor"></span>class(<a href='../type/alpha_object_constructor.html'>alpha_object_constructor</a>),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>alpha_constructor</strong></td><td></td><td></td><td><p>Alpha coefficients (non linear weights) constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-beta_constructor"></span>class(<a href='../type/beta_object_constructor.html'>beta_object_constructor</a>),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>beta_constructor</strong></td><td></td><td></td><td><p>Beta coefficients (smoothness indicators) constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eps%7E2"></span>real(kind=RPP),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>eps</strong></td><td> =</td><td>EPS_DEF</td><td><p>Small epsilon to avoid division by zero.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_left"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td> =</td><td>.true.</td><td><p>Activate left-face interpolation computation.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-face_right"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td> =</td><td>.true.</td><td><p>Activate right-face interpolation computation.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kappa_constructor"></span>class(<a href='../type/kappa_object_constructor.html'>kappa_object_constructor</a>),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>kappa_constructor</strong></td><td></td><td></td><td><p>kappa coefficients (optimal, linear weights) constructor.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+    
+     
+    <section>
+    <h2>Type-Bound Procedures</h2>
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-create%7E2"></span><h3>procedure, public, pass(self) :: <strong>create</strong>  => <a href='../proc/create_base_object_constructor.html'>create_base_object_constructor</a> 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine <a href='../proc/create_base_object_constructor.html'>create_base_object_constructor</a>(self, S, face_left, face_right, eps)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Create alpha constructor.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/base_object_constructor.html'>base_object_constructor</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Constructor.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I_P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>S</strong></td><td><p>Stencils dimension.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_left</strong></td><td><p>Activate left-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>face_right</strong></td><td><p>Activate right-face interpolations.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=RPP),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>eps</strong></td><td><p>Small epsilon to avoid division by zero.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+    </section>
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">weights_object_constructor</span><span class="p">)</span> <span class="kd">::</span> <span class="n">weights_js_constructor</span>
+  <span class="c">!&lt; Jiang-Shu and Gerolymos-Senechal-Vallet optimal weights object constructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">alpha_object_constructor</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">alpha_constructor</span> <span class="c">!&lt; Alpha coefficients (non linear weights) constructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">beta_object_constructor</span><span class="p">),</span>  <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">beta_constructor</span>  <span class="c">!&lt; Beta coefficients (smoothness indicators) constructor.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">kappa_object_constructor</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">kappa_constructor</span> <span class="c">!&lt; kappa coefficients (optimal, linear weights) constructor.</span>
+<span class="n">endtype</span> <span class="n">weights_js_constructor</span>
+</pre></div>
+
+    </section>
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-1">All Derived Types</a></h3></div>
+  <div id="alltypes-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/adams_bashforth_integrator.html">adams_bashforth_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_bashforth_moulton_integrator.html">adams_bashforth_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/adams_moulton_integrator.html">adams_moulton_integrator</a>
+      
+      <a class="list-group-item" href="../type/alpha_factory.html">alpha_factory</a>
+      
+      <a class="list-group-item" href="../type/alpha_object.html">alpha_object</a>
+      
+      <a class="list-group-item" href="../type/alpha_object_constructor.html">alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js.html">alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_js_constructor.html">alpha_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m.html">alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_m_constructor.html">alpha_rec_m_constructor</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z.html">alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../type/alpha_rec_z_constructor.html">alpha_rec_z_constructor</a>
+      
+      <a class="list-group-item" href="../type/back_df_integrator.html">back_df_integrator</a>
+      
+      <a class="list-group-item" href="../type/base_object.html">base_object</a>
+      
+      <a class="list-group-item" href="../type/base_object_constructor.html">base_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_factory.html">beta_factory</a>
+      
+      <a class="list-group-item" href="../type/beta_object.html">beta_object</a>
+      
+      <a class="list-group-item" href="../type/beta_object_constructor.html">beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js.html">beta_rec_js</a>
+      
+      <a class="list-group-item" href="../type/beta_rec_js_constructor.html">beta_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/command_line_argument.html">command_line_argument</a>
+      
+      <a class="list-group-item" href="../type/command_line_arguments_group.html">command_line_arguments_group</a>
+      
+      <a class="list-group-item" href="../type/command_line_interface.html">command_line_interface</a>
+      
+      <a class="list-group-item" href="../type/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../type/conservative_object.html">conservative_object</a>
+      
+      <a class="list-group-item" href="../type/emd_runge_kutta_integrator.html">emd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../type/eos_object.html">eos_object</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html">euler_1d</a>
+      
+      <a class="list-group-item" href="../type/euler_explicit_integrator.html">euler_explicit_integrator</a>
+      
+      <a class="list-group-item" href="../type/integrand.html">integrand</a>
+      
+      <a class="list-group-item" href="../type/interpolations_factory.html">interpolations_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object.html">interpolations_object</a>
+      
+      <a class="list-group-item" href="../type/interpolations_object_constructor.html">interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js.html">interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../type/interpolations_rec_js_constructor.html">interpolations_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_factory.html">interpolator_factory</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js.html">interpolator_js</a>
+      
+      <a class="list-group-item" href="../type/interpolator_js_constructor.html">interpolator_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object.html">interpolator_object</a>
+      
+      <a class="list-group-item" href="../type/interpolator_object_constructor.html">interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_factory.html">kappa_factory</a>
+      
+      <a class="list-group-item" href="../type/kappa_object.html">kappa_object</a>
+      
+      <a class="list-group-item" href="../type/kappa_object_constructor.html">kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js.html">kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../type/kappa_rec_js_constructor.html">kappa_rec_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/leapfrog_integrator.html">leapfrog_integrator</a>
+      
+      <a class="list-group-item" href="../type/ls_runge_kutta_integrator.html">ls_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/object.html">object</a>
+      
+      <a class="list-group-item" href="../type/objects_factory.html">objects_factory</a>
+      
+      <a class="list-group-item" href="../type/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js.html">reconstructor_js</a>
+      
+      <a class="list-group-item" href="../type/reconstructor_js_constructor.html">reconstructor_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_object.html">riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../type/tvd_runge_kutta_integrator.html">tvd_runge_kutta_integrator</a>
+      
+      <a class="list-group-item" href="../type/weights_factory.html">weights_factory</a>
+      
+      <a class="list-group-item" href="../type/weights_js.html">weights_js</a>
+      
+      <a class="list-group-item" href="../type/weights_js_constructor.html">weights_js_constructor</a>
+      
+      <a class="list-group-item" href="../type/weights_object.html">weights_object</a>
+      
+      <a class="list-group-item" href="../type/weights_object_constructor.html">weights_object_constructor</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

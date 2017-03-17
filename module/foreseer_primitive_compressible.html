@@ -1,0 +1,3027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>foreseer_primitive_compressible &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>foreseer_primitive_compressible 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 2.2% of total for modules and submodules.">265 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_primitive_compressible.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/foreseer_primitive_compressible.f90.html'>foreseer_primitive_compressible.f90</a></li>
+  
+     <li class="active">foreseer_primitive_compressible</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#interface-primitive_compressible">primitive_compressible</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-0">Derived Types</a></h3></div>
+  <div id="types-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#type-primitive_compressible">primitive_compressible</a>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
+  <div id="funcs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-add">add</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-array">array</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-description">description</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-energy%7E2">energy</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-left_eigenvectors">left_eigenvectors</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-momentum">momentum</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-negative">negative</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-positive">positive</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_divide_real">prim_divide_real</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_multiply_prim">prim_multiply_prim</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_multiply_real">prim_multiply_real</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-primitive_compressible_instance">primitive_compressible_instance</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-primitive_compressible_pointer">primitive_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-real_multiply_prim">real_multiply_prim</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-right_eigenvectors">right_eigenvectors</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-sub">sub</a>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-destroy">destroy</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-initialize%7E3">initialize</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_assign_prim">prim_assign_prim</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
+  <div id="allmods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/face.html">face</a>
+      
+      <a class="list-group-item" href="../module/flap.html">flap</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_argument_t.html">flap_command_line_argument_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_arguments_group_t.html">flap_command_line_arguments_group_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_interface_t.html">flap_command_line_interface_t</a>
+      
+      <a class="list-group-item" href="../module/flap_object_t.html">flap_object_t</a>
+      
+      <a class="list-group-item" href="../module/flap_utils_m.html">flap_utils_m</a>
+      
+      <a class="list-group-item" href="../module/foodie.html">foodie</a>
+      
+      <a class="list-group-item" href="../module/foodie_adt_integrand.html">foodie_adt_integrand</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth.html">foodie_integrator_adams_bashforth</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth_moulton.html">foodie_integrator_adams_bashforth_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_moulton.html">foodie_integrator_adams_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_backward_differentiation_formula.html">foodie_integrator_backward_differentiation_formula</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_emd_runge_kutta.html">foodie_integrator_emd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_euler_explicit.html">foodie_integrator_euler_explicit</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_leapfrog.html">foodie_integrator_leapfrog</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_low_storage_runge_kutta.html">foodie_integrator_low_storage_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_tvd_runge_kutta.html">foodie_integrator_tvd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_kinds.html">foodie_kinds</a>
+      
+      <a class="list-group-item" href="../module/foodie_utils.html">foodie_utils</a>
+      
+      <a class="list-group-item" href="../module/foreseer.html">foreseer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_compressible_transformations.html">foreseer_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_compressible.html">foreseer_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_object.html">foreseer_conservative_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_compressible.html">foreseer_eos_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_object.html">foreseer_eos_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_euler_1d.html">foreseer_euler_1d</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html">foreseer_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_object.html">foreseer_primitive_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_llf.html">foreseer_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_pvl.html">foreseer_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_object.html">foreseer_riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../module/penf.html">penf</a>
+      
+      <a class="list-group-item" href="../module/penf_b_size.html">penf_b_size</a>
+      
+      <a class="list-group-item" href="../module/penf_global_parameters_variables.html">penf_global_parameters_variables</a>
+      
+      <a class="list-group-item" href="../module/penf_stringify.html">penf_stringify</a>
+      
+      <a class="list-group-item" href="../module/wenoof.html">wenoof</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_factory.html">wenoof_alpha_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_object.html">wenoof_alpha_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_js.html">wenoof_alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_m.html">wenoof_alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_z.html">wenoof_alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../module/wenoof_base_object.html">wenoof_base_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html">wenoof_beta_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_object.html">wenoof_beta_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_rec_js.html">wenoof_beta_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_factory.html">wenoof_interpolations_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_object.html">wenoof_interpolations_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_rec_js.html">wenoof_interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_factory.html">wenoof_interpolator_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_js.html">wenoof_interpolator_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_object.html">wenoof_interpolator_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_factory.html">wenoof_kappa_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_object.html">wenoof_kappa_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_rec_js.html">wenoof_kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_objects_factory.html">wenoof_objects_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_reconstructor_js.html">wenoof_reconstructor_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_factory.html">wenoof_weights_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_js.html">wenoof_weights_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      
+    
+  
+    <ul class="list-inline">
+      <li><h4>Uses:</h4></li>
+      
+      <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
+      
+      <li><a href='../module/foreseer_primitive_object.html'>foreseer_primitive_object</a></li>
+      
+      <li><a href='../module/foreseer_eos_object.html'>foreseer_eos_object</a></li>
+      
+      <li><a href='../module/penf.html'>penf</a></li>
+      
+      <li>vecfor</li>
+      
+    </ul>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: module~~foreseer_primitive_compressible~~UsesGraph Pages: 1 -->
+<svg id="moduleforeseer_primitive_compressibleUsesGraph" width="641pt" height="107pt"
+ viewBox="0.00 0.00 641.00 107.14" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~foreseer_primitive_compressible~~UsesGraph" class="graph" transform="scale(.6229 .6229) rotate(0) translate(4 168)">
+<title>module~~foreseer_primitive_compressible~~UsesGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-168 1025,-168 1025,4 -4,4"/>
+<!-- module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node1" class="node">
+<title>module~foreseer_primitive_compressible</title>
+<polygon fill="none" stroke="#000000" points="1021,-124 854,-124 854,-100 1021,-100 1021,-124"/>
+<text text-anchor="middle" x="937.5" y="-109.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">foreseer_primitive_compressible</text>
+</g>
+<!-- module~penf -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node2" class="node">
+<title>module~penf</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node2"><a xlink:href="../module/penf.html" xlink:title="penf">
+<polygon fill="#337ab7" stroke="#337ab7" points="503,-64 449,-64 449,-40 503,-40 503,-64"/>
+<text text-anchor="middle" x="476" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge12" class="edge">
+<title>module~penf&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M503.4342,-44.6663C527.2085,-38.9583 562.6248,-32 594,-32"/>
+</g>
+<!-- module~foreseer_primitive_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node3" class="node">
+<title>module~foreseer_primitive_object</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node3"><a xlink:href="../module/foreseer_primitive_object.html" xlink:title="foreseer_primitive_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="818,-124 685,-124 685,-100 818,-100 818,-124"/>
+<text text-anchor="middle" x="751.5" y="-109.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_primitive_object</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~foreseer_primitive_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge10" class="edge">
+<title>module~penf&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M490.4317,-64.363C502.5432,-73.969 520.7477,-86.6858 539,-93 582.2411,-107.9588 633.231,-112.9052 674.4229,-114.0189"/>
+<polygon fill="#000000" stroke="#000000" points="674.6059,-117.5231 684.6737,-114.2232 674.7454,-110.5245 674.6059,-117.5231"/>
+</g>
+<!-- module~foreseer_eos_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node6" class="node">
+<title>module~foreseer_eos_object</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node6"><a xlink:href="../module/foreseer_eos_object.html" xlink:title="foreseer_eos_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="649,-164 539,-164 539,-140 649,-140 649,-164"/>
+<text text-anchor="middle" x="594" y="-149.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_eos_object</text>
+</a>
+</g>
+</g>
+<!-- module~penf&#45;&gt;module~foreseer_eos_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge11" class="edge">
+<title>module~penf&#45;&gt;module~foreseer_eos_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M483.8895,-64.1451C494.7256,-80.0591 515.5579,-108.0473 539,-126 543.4023,-129.3714 548.3121,-132.4535 553.3361,-135.2231"/>
+<polygon fill="#000000" stroke="#000000" points="551.9205,-138.4303 562.4177,-139.866 555.107,-132.1976 551.9205,-138.4303"/>
+</g>
+<!-- module~foreseer_primitive_object&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge13" class="edge">
+<title>module~foreseer_primitive_object&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M818.1249,-112C826.4413,-112 835.0644,-112 843.6968,-112"/>
+<polygon fill="#000000" stroke="#000000" points="843.8168,-115.5001 853.8168,-112 843.8168,-108.5001 843.8168,-115.5001"/>
+</g>
+<!-- vecfor -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node4" class="node">
+<title>vecfor</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="621,-84 567,-84 567,-60 621,-60 621,-84"/>
+<text text-anchor="middle" x="594" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">vecfor</text>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge14" class="edge">
+<title>vecfor&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M617.6918,-59.9655C648.2343,-45.8528 703.1707,-25.1923 751.5,-32"/>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_primitive_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge9" class="edge">
+<title>vecfor&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M621.0752,-78.8762C641.1854,-83.9836 669.345,-91.1352 694.3539,-97.4867"/>
+<polygon fill="#000000" stroke="#000000" points="693.5666,-100.8978 704.1205,-99.9671 695.2898,-94.1132 693.5666,-100.8978"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node5" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node5"><a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="301,-24 214,-24 214,0 301,0 301,-24"/>
+<text text-anchor="middle" x="257.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge15" class="edge">
+<title>iso_fortran_env&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M301.0102,-16.2415C365.0928,-22.1123 488.6582,-32 594,-32"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M594,-32C663.9548,-29.4837 682.1843,-22.2361 751.5,-32"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M751.5,-32C811.4116,-40.4392 874.841,-73.6937 909.9753,-94.58"/>
+<polygon fill="#000000" stroke="#000000" points="908.3263,-97.673 918.6937,-99.8564 911.9507,-91.6844 908.3263,-97.673"/>
+</g>
+<!-- module~penf_stringify -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node9" class="node">
+<title>module~penf_stringify</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node9"><a xlink:href="../module/penf_stringify.html" xlink:title="penf_stringify">
+<polygon fill="#337ab7" stroke="#337ab7" points="413,-64 337,-64 337,-40 413,-40 413,-64"/>
+<text text-anchor="middle" x="375" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_stringify</text>
+</a>
+</g>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~penf_stringify -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge3" class="edge">
+<title>iso_fortran_env&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M292.7539,-24.0013C304.3818,-27.9598 317.4801,-32.4187 329.7481,-36.5951"/>
+<polygon fill="#000000" stroke="#000000" points="328.7704,-39.9595 339.3649,-39.8689 331.0263,-33.3329 328.7704,-39.9595"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge16" class="edge">
+<title>module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M649.3797,-148.6847C694.8027,-145.6339 760.7199,-140.4471 818,-133 833.336,-131.0061 849.7042,-128.4287 865.2513,-125.7664"/>
+<polygon fill="#000000" stroke="#000000" points="866.0796,-129.1749 875.3302,-124.0099 864.8778,-122.2788 866.0796,-129.1749"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_object -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge8" class="edge">
+<title>module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M641.2552,-139.9987C657.8433,-135.7858 676.6636,-131.0061 693.999,-126.6034"/>
+<polygon fill="#000000" stroke="#000000" points="695.1754,-129.9158 704.0062,-124.0619 693.4523,-123.1312 695.1754,-129.9158"/>
+</g>
+<!-- module~penf_global_parameters_variables -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node7" class="node">
+<title>module~penf_global_parameters_variables</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node7"><a xlink:href="../module/penf_global_parameters_variables.html" xlink:title="penf_global_parameters_variables">
+<polygon fill="#337ab7" stroke="#337ab7" points="178,-104 0,-104 0,-80 178,-80 178,-104"/>
+<text text-anchor="middle" x="89" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_global_parameters_variables</text>
+</a>
+</g>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge5" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M119.9119,-104.0673C172.8422,-123.0202 283.9324,-155.3162 375,-132"/>
+</g>
+<!-- module~penf_b_size -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_node8" class="node">
+<title>module~penf_b_size</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsesGraph_node8"><a xlink:href="../module/penf_b_size.html" xlink:title="penf_b_size">
+<polygon fill="#337ab7" stroke="#337ab7" points="292.5,-104 222.5,-104 222.5,-80 292.5,-80 292.5,-104"/>
+<text text-anchor="middle" x="257.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">penf_b_size</text>
+</a>
+</g>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_b_size -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge1" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf_b_size</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M178.184,-92C189.9067,-92 201.5016,-92 212.0567,-92"/>
+<polygon fill="#000000" stroke="#000000" points="212.2314,-95.5001 222.2314,-92 212.2314,-88.5001 212.2314,-95.5001"/>
+</g>
+<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_stringify -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge2" class="edge">
+<title>module~penf_global_parameters_variables&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M157.0242,-79.9503C175.4825,-76.8505 195.4835,-73.6464 214,-71 251.8377,-65.5923 294.8379,-60.5752 326.8756,-57.056"/>
+<polygon fill="#000000" stroke="#000000" points="327.3095,-60.5296 336.8718,-55.9675 326.5516,-53.5707 327.3095,-60.5296"/>
+</g>
+<!-- module~penf_b_size&#45;&gt;module~penf -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge6" class="edge">
+<title>module~penf_b_size&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M282.3642,-104.0476C311.2631,-117.4132 357.2558,-136.5431 375,-132"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M375,-132C410.6157,-122.8812 442.1302,-92.4967 460.1294,-71.9108"/>
+<polygon fill="#000000" stroke="#000000" points="462.9971,-73.9397 466.7748,-64.0412 457.6489,-69.4234 462.9971,-73.9397"/>
+</g>
+<!-- module~penf_b_size&#45;&gt;module~penf_stringify -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge4" class="edge">
+<title>module~penf_b_size&#45;&gt;module~penf_stringify</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M292.7539,-79.9987C304.3818,-76.0402 317.4801,-71.5813 329.7481,-67.4049"/>
+<polygon fill="#000000" stroke="#000000" points="331.0263,-70.6671 339.3649,-64.1311 328.7704,-64.0405 331.0263,-70.6671"/>
+</g>
+<!-- module~penf_stringify&#45;&gt;module~penf -->
+<g id="module~~foreseer_primitive_compressible~~UsesGraph_edge7" class="edge">
+<title>module~penf_stringify&#45;&gt;module~penf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M413.1838,-52C421.5107,-52 430.3135,-52 438.6092,-52"/>
+<polygon fill="#000000" stroke="#000000" points="438.7719,-55.5001 448.7719,-52 438.7719,-48.5001 438.7719,-55.5001"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var panmoduleforeseer_primitive_compressibleUsesGraph = svgPanZoom('#moduleforeseer_primitive_compressibleUsesGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="490pt" height="32pt"
+ viewBox="0.00 0.00 489.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 485.5,-28 485.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="139.5,-24 72.5,-24 72.5,0 139.5,0 139.5,-24"/>
+<text text-anchor="middle" x="106" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-24 158,-24 158,0 222,0 222,-24"/>
+<text text-anchor="middle" x="190" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="294,-24 240,-24 240,0 294,0 294,-24"/>
+<text text-anchor="middle" x="267" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="366,-24 312,-24 312,0 366,0 366,-24"/>
+<text text-anchor="middle" x="339" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="481.5,-24 384.5,-24 384.5,0 481.5,0 481.5,-24"/>
+<text text-anchor="middle" x="433" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+
+    
+    <p>Define the abstract primitive compressible state of a Riemann Problem for FORESEER library.</p>
+    
+    
+    <h3>Used By</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: module~~foreseer_primitive_compressible~~UsedByGraph Pages: 1 -->
+<svg id="moduleforeseer_primitive_compressibleUsedByGraph" width="641pt" height="160pt"
+ viewBox="0.00 0.00 641.00 159.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph" class="graph" transform="scale(.6712 .6712) rotate(0) translate(4 234)">
+<title>module~~foreseer_primitive_compressible~~UsedByGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-234 951,-234 951,4 -4,4"/>
+<!-- module~foreseer_primitive_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node1" class="node">
+<title>module~foreseer_primitive_compressible</title>
+<polygon fill="none" stroke="#000000" points="167,-128 0,-128 0,-104 167,-104 167,-128"/>
+<text text-anchor="middle" x="83.5" y="-113.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">foreseer_primitive_compressible</text>
+</g>
+<!-- module~foreseer_compressible_transformations -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node2" class="node">
+<title>module~foreseer_compressible_transformations</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node2"><a xlink:href="../module/foreseer_compressible_transformations.html" xlink:title="foreseer_compressible_transformations">
+<polygon fill="#337ab7" stroke="#337ab7" points="405,-148 203,-148 203,-124 405,-124 405,-148"/>
+<text text-anchor="middle" x="304" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_compressible_transformations</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer_primitive_compressible&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge9" class="edge">
+<title>module~foreseer_primitive_compressible&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M167.176,-123.5897C175.5824,-124.3521 184.2079,-125.1345 192.8409,-125.9175"/>
+<polygon fill="#000000" stroke="#000000" points="192.6908,-129.4182 202.9661,-126.8359 193.3231,-122.4468 192.6908,-129.4182"/>
+</g>
+<!-- module~foreseer -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node3" class="node">
+<title>module~foreseer</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node3"><a xlink:href="../module/foreseer.html" xlink:title="foreseer">
+<polygon fill="#337ab7" stroke="#337ab7" points="495,-128 441,-128 441,-104 495,-104 495,-128"/>
+<text text-anchor="middle" x="468" y="-113.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer_primitive_compressible&#45;&gt;module~foreseer -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge10" class="edge">
+<title>module~foreseer_primitive_compressible&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M167.0731,-115.2116C179.128,-115.1238 191.3816,-115.0486 203,-115 292.777,-114.6244 315.225,-114.2875 405,-115 413.2295,-115.0653 422.0632,-115.1786 430.4351,-115.306"/>
+<polygon fill="#000000" stroke="#000000" points="430.657,-118.81 440.7124,-115.4725 430.7704,-111.8109 430.657,-118.81"/>
+</g>
+<!-- module~foreseer_compressible_transformations&#45;&gt;module~foreseer -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge1" class="edge">
+<title>module~foreseer_compressible_transformations&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M402.7116,-123.962C412.6467,-122.7504 422.2399,-121.5805 430.874,-120.5276"/>
+<polygon fill="#000000" stroke="#000000" points="431.3858,-123.9912 440.8886,-119.3063 430.5384,-117.0426 431.3858,-123.9912"/>
+</g>
+<!-- program~foreseer_test_riemann_solver_compressible_pvl -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node4" class="node">
+<title>program~foreseer_test_riemann_solver_compressible_pvl</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node4"><a xlink:href="../program/foreseer_test_riemann_solver_compressible_pvl.html" xlink:title="foreseer_test_riemann_solver_compressible_pvl">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="775,-230 531,-230 531,-206 775,-206 775,-230"/>
+<text text-anchor="middle" x="653" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_riemann_solver_compressible_pvl</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_pvl -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge3" class="edge">
+<title>module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M473.7782,-128.2121C483.0811,-146.4208 503.1917,-180.3268 531,-197 533.9939,-198.7951 537.099,-200.4469 540.2891,-201.9664"/>
+<polygon fill="#000000" stroke="#000000" points="538.9127,-205.1843 549.4828,-205.9075 541.6707,-198.7506 538.9127,-205.1843"/>
+</g>
+<!-- program~foreseer_test_conservative_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node5" class="node">
+<title>program~foreseer_test_conservative_compressible</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node5"><a xlink:href="../program/foreseer_test_conservative_compressible.html" xlink:title="foreseer_test_conservative_compressible">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="758.5,-188 547.5,-188 547.5,-164 758.5,-164 758.5,-188"/>
+<text text-anchor="middle" x="653" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_conservative_compressible</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_conservative_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge4" class="edge">
+<title>module~foreseer&#45;&gt;program~foreseer_test_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M486.9109,-128.0528C499.0874,-135.34 515.4859,-144.2941 531,-150 543.3094,-154.5272 556.6226,-158.3675 569.7757,-161.5926"/>
+<polygon fill="#000000" stroke="#000000" points="569.2484,-165.0638 579.7835,-163.9401 570.8471,-158.2488 569.2484,-165.0638"/>
+</g>
+<!-- program~foreseer_test_shock_tube -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node6" class="node">
+<title>program~foreseer_test_shock_tube</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node6"><a xlink:href="../program/foreseer_test_shock_tube.html" xlink:title="foreseer_test_shock_tube">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="947,-86 811,-86 811,-62 947,-62 947,-86"/>
+<text text-anchor="middle" x="879" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_shock_tube</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_shock_tube -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge5" class="edge">
+<title>module~foreseer&#45;&gt;program~foreseer_test_shock_tube</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495.0356,-119.6413C548.9316,-126.1242 673.3191,-137.1917 775,-117 800.6428,-111.9079 827.8924,-100.3912 848.0634,-90.5572"/>
+<polygon fill="#000000" stroke="#000000" points="849.7043,-93.6499 857.0798,-86.0437 846.5708,-87.3903 849.7043,-93.6499"/>
+</g>
+<!-- program~foreseer_test_eos_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node7" class="node">
+<title>program~foreseer_test_eos_compressible</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node7"><a xlink:href="../program/foreseer_test_eos_compressible.html" xlink:title="foreseer_test_eos_compressible">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="737,-108 569,-108 569,-84 737,-84 737,-108"/>
+<text text-anchor="middle" x="653" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_eos_compressible</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_eos_compressible -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge6" class="edge">
+<title>module~foreseer&#45;&gt;program~foreseer_test_eos_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495.2974,-113.0489C512.3589,-111.2044 535.4419,-108.709 558.6783,-106.1969"/>
+<polygon fill="#000000" stroke="#000000" points="559.0632,-109.6758 568.629,-105.1212 558.3107,-102.7164 559.0632,-109.6758"/>
+</g>
+<!-- program~foreseer_test_riemann_solver_compressible_llf -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node8" class="node">
+<title>program~foreseer_test_riemann_solver_compressible_llf</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node8"><a xlink:href="../program/foreseer_test_riemann_solver_compressible_llf.html" xlink:title="foreseer_test_riemann_solver_compressible_llf">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="772,-66 534,-66 534,-42 772,-42 772,-66"/>
+<text text-anchor="middle" x="653" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_test_riemann_solver_compressible_llf</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_llf -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge7" class="edge">
+<title>module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M483.0745,-103.6482C495.2655,-94.3128 513.2623,-81.9553 531,-75 536.9745,-72.6573 543.215,-70.5753 549.5782,-68.7253"/>
+<polygon fill="#000000" stroke="#000000" points="550.9155,-71.9896 559.658,-66.0047 549.0914,-65.2315 550.9155,-71.9896"/>
+</g>
+<!-- module~foreseer_euler_1d -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_node9" class="node">
+<title>module~foreseer_euler_1d</title>
+<g id="a_module~~foreseer_primitive_compressible~~UsedByGraph_node9"><a xlink:href="../module/foreseer_euler_1d.html" xlink:title="foreseer_euler_1d">
+<polygon fill="#337ab7" stroke="#337ab7" points="703,-24 603,-24 603,0 703,0 703,-24"/>
+<text text-anchor="middle" x="653" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">foreseer_euler_1d</text>
+</a>
+</g>
+</g>
+<!-- module~foreseer&#45;&gt;module~foreseer_euler_1d -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge8" class="edge">
+<title>module~foreseer&#45;&gt;module~foreseer_euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M473.545,-103.7955C482.6713,-85.2173 502.7075,-50.1909 531,-33 549.3888,-21.8267 572.0539,-16.1809 592.838,-13.4481"/>
+<polygon fill="#000000" stroke="#000000" points="593.3131,-16.9169 602.8631,-12.3291 592.5365,-9.9601 593.3131,-16.9169"/>
+</g>
+<!-- module~foreseer_euler_1d&#45;&gt;program~foreseer_test_shock_tube -->
+<g id="module~~foreseer_primitive_compressible~~UsedByGraph_edge2" class="edge">
+<title>module~foreseer_euler_1d&#45;&gt;program~foreseer_test_shock_tube</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M703.0783,-18.253C725.3368,-21.6362 751.7168,-26.4811 775,-33 798.2886,-39.5204 823.5463,-49.4073 843.3384,-57.8384"/>
+<polygon fill="#000000" stroke="#000000" points="842.0153,-61.0795 852.5828,-61.8393 844.7956,-54.6553 842.0153,-61.0795"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var panmoduleforeseer_primitive_compressibleUsedByGraph = svgPanZoom('#moduleforeseer_primitive_compressibleUsedByGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="490pt" height="32pt"
+ viewBox="0.00 0.00 489.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 485.5,-28 485.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="139.5,-24 72.5,-24 72.5,0 139.5,0 139.5,-24"/>
+<text text-anchor="middle" x="106" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-24 158,-24 158,0 222,0 222,-24"/>
+<text text-anchor="middle" x="190" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="294,-24 240,-24 240,0 294,0 294,-24"/>
+<text text-anchor="middle" x="267" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="366,-24 312,-24 312,0 366,0 366,-24"/>
+<text text-anchor="middle" x="339" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="481.5,-24 384.5,-24 384.5,0 481.5,0 481.5,-24"/>
+<text text-anchor="middle" x="433" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    <br>
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#interface-primitive_compressible">primitive_compressible</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-1">Derived Types</a></h3></div>
+  <div id="types-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#type-primitive_compressible">primitive_compressible</a>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
+  <div id="funcs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-add">add</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-array">array</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-description">description</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-energy%7E2">energy</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-left_eigenvectors">left_eigenvectors</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-momentum">momentum</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-negative">negative</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-positive">positive</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_divide_real">prim_divide_real</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_multiply_prim">prim_multiply_prim</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_multiply_real">prim_multiply_real</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-primitive_compressible_instance">primitive_compressible_instance</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-primitive_compressible_pointer">primitive_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-real_multiply_prim">real_multiply_prim</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-right_eigenvectors">right_eigenvectors</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-sub">sub</a>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-destroy">destroy</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-initialize%7E3">initialize</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html#proc-prim_assign_prim">prim_assign_prim</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+    <section>
+	 <h2>Interfaces</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-primitive_compressible"></span><h3>public interface <a href='../interface/primitive_compressible.html'>primitive_compressible</a>
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+    <p>Overload <a href="../interface/primitive_compressible.html">primitive_compressible</a> name with its constructor.</p>
+  </div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private elemental function <a href='../proc/primitive_compressible_instance.html'>primitive_compressible_instance</a>(density, velocity, pressure) result(instance)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Return and instance of <a href="../interface/primitive_compressible.html">primitive_compressible</a>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>density</strong></td><td><p>Density, <code>rho</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(vector),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>velocity</strong></td><td><p>Velocity, <code>v</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pressure</strong></td><td><p>Pressure, <code>p</code>.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/primitive_compressible.html'>primitive_compressible</a>)
+  </small></h4>
+  <p>Instance of <a href="../interface/primitive_compressible.html">primitive_compressible</a>.</p>
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+    </section>
+	<br>
+    
+
+    
+    
+    
+    <section>
+     <h2>Derived Types</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-primitive_compressible"></span><h3>type, public, extends(<a href='../type/primitive_object.html'>primitive_object</a>) :: <a href='../type/primitive_compressible.html'>primitive_compressible</a>
+    
+  </h3></div>
+  <div class="panel-body">
+    
+    
+    <p>Convervative compressible object class.</p>
+    
+     
+     <h4>Components</h4>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-density%7E3"></span>real(kind=R8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>density</strong></td><td> =</td><td>0._R8P</td><td><p>Density, <code>rho</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pressure%7E3"></span>real(kind=R8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>pressure</strong></td><td> =</td><td>0._R8P</td><td><p>Pressure, <code>p</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-velocity"></span>type(vector),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>velocity</strong></td><td></td><td></td><td><p>Velocity, <code>v</code>.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+     
+     
+     <h4>Constructor</h4>
+       
+         <p>Overload <a href="../interface/primitive_compressible.html">primitive_compressible</a> name with its constructor.</p>
+       
+       <table class="table table-striped varlist">
+      <tbody>
+        
+             
+             
+             
+             <tr><td>private elemental function <strong><a href='../proc/primitive_compressible_instance.html'>primitive_compressible_instance</a></strong>(density, velocity, pressure)</td><td><p>Return and instance of <a href="../interface/primitive_compressible.html">primitive_compressible</a>.</p></td></tr>
+             
+        
+       </tbody>
+       </table>
+     
+          
+     
+     <h4>Type-Bound Procedures</h4>
+      <table class="table table-striped varlist">
+      <tbody>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-add'>add</a></strong>  </td>
+       <td><p>Operator <code>+</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-array'>array</a></strong>  </td>
+       <td><p>Return serialized array of primitive.</p></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/primitive_compressible.html#boundprocedure-assignment%28%3D%29'>assignment(=)</a></strong>  => prim_assign_prim </td>
+       <td><p>Overload <code>=</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-description%7E3'>description</a></strong>  </td>
+       <td><p>Return pretty-printed object description.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-destroy'>destroy</a></strong>  </td>
+       <td><p>Destroy primitive.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-energy%7E3'>energy</a></strong>  </td>
+       <td><p>Return energy value.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-initialize%7E4'>initialize</a></strong>  </td>
+       <td><p>Initialize primitive.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-left_eigenvectors'>left_eigenvectors</a></strong>  </td>
+       <td><p>Return the left eigenvectors matrix <code>L</code> as <code>dF/dP = A = R ^ L</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-momentum'>momentum</a></strong>  </td>
+       <td><p>Return momentum vector.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-negative'>negative</a></strong>  </td>
+       <td><p>Unary operator <code>- prim</code>.</p></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/primitive_compressible.html#boundprocedure-operator%28%2A%29'>operator(*)</a></strong>  => prim_multiply_prim, prim_multiply_real, real_multiply_prim </td>
+       <td><p>Overload <code>*</code>.</p></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/primitive_compressible.html#boundprocedure-operator%28%2B%29'>operator(+)</a></strong>  => add, positive </td>
+       <td><p>Overload <code>+</code>.</p></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/primitive_compressible.html#boundprocedure-operator%28-%29'>operator(-)</a></strong>  => sub, negative </td>
+       <td><p>Overload <code>-</code>.</p></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/primitive_compressible.html#boundprocedure-operator%28SLASH%29'>operator(/)</a></strong>  => prim_divide_real </td>
+       <td><p>Overload <code>/</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-positive'>positive</a></strong>  </td>
+       <td><p>Unary operator <code>+ prim</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-prim_assign_prim'>prim_assign_prim</a></strong>  </td>
+       <td><p>Operator <code>=</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-prim_divide_real'>prim_divide_real</a></strong>  </td>
+       <td><p>Operator <code>prim / real</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-prim_multiply_prim'>prim_multiply_prim</a></strong>  </td>
+       <td><p>Operator <code>*</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-prim_multiply_real'>prim_multiply_real</a></strong>  </td>
+       <td><p>Operator <code>prim * real</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(rhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-real_multiply_prim'>real_multiply_prim</a></strong>  </td>
+       <td><p>Operator <code>real * prim</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(self) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-right_eigenvectors'>right_eigenvectors</a></strong>  </td>
+       <td><p>Return the right eigenvectors matrix <code>R</code> as <code>dF/dP = A = R ^ L</code>.</p></td></tr>
+      
+       <tr><td>procedure, public, pass(lhs) :: <strong><a href='../type/primitive_compressible.html#boundprocedure-sub'>sub</a></strong>  </td>
+       <td><p>Operator <code>-</code>.</p></td></tr>
+      
+       </tbody>
+       </table>
+     
+  </div>
+</div>
+
+     
+    </section>
+	<br>
+    
+    
+     
+    <section>
+    <h2>Functions</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-add"></span><h3>
+private function <a href='../proc/add.html'>add</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>+</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-array"></span><h3>
+private pure function <a href='../proc/array.html'>array</a>(self) result(array_)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return serialized array of primitive.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=R8P),
+  allocatable, (:)</small></h4>
+  <p>Serialized array of primitive.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-description"></span><h3>
+private pure function <a href='../proc/description.html'>description</a>(self, prefix) result(desc)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return a pretty-formatted object description.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>prefix</strong></td><td><p>Prefixing string.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>character(len=:),
+  allocatable</small></h4>
+  <p>Description.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-energy%7E2"></span><h3>
+private elemental function <a href='../proc/energy%7E2.html'>energy</a>(self, eos) result(energy_)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return energy value.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>eos</strong></td><td><p>Equation of state.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=R8P)
+  </small></h4>
+  <p>Energy value.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-left_eigenvectors"></span><h3>
+private pure function <a href='../proc/left_eigenvectors.html'>left_eigenvectors</a>(self, eos) result(eig)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return the left eigenvectors matrix <code>L</code> as <code>dF/dP = A = R ^ L</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>eos</strong></td><td><p>Equation of state.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=R8P)
+  (1:3,1:3)</small></h4>
+  <p>Eigenvectors.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-momentum"></span><h3>
+private elemental function <a href='../proc/momentum.html'>momentum</a>(self) result(momentum_)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return momentum vector.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(vector)
+  </small></h4>
+  <p>Momentum vector.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-negative"></span><h3>
+private function <a href='../proc/negative.html'>negative</a>(self) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Unary operator <code>- prim</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-positive"></span><h3>
+private function <a href='../proc/positive.html'>positive</a>(self) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Unary operator <code>+ prim</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-prim_divide_real"></span><h3>
+private function <a href='../proc/prim_divide_real.html'>prim_divide_real</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>prim / real</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-prim_multiply_prim"></span><h3>
+private function <a href='../proc/prim_multiply_prim.html'>prim_multiply_prim</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>*</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-prim_multiply_real"></span><h3>
+private function <a href='../proc/prim_multiply_real.html'>prim_multiply_real</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>prim * real</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-primitive_compressible_instance"></span><h3>
+private elemental function <a href='../proc/primitive_compressible_instance.html'>primitive_compressible_instance</a>(density, velocity, pressure) result(instance)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return and instance of <a href="../interface/primitive_compressible.html">primitive_compressible</a>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>density</strong></td><td><p>Density, <code>rho</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(vector),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>velocity</strong></td><td><p>Velocity, <code>v</code>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pressure</strong></td><td><p>Pressure, <code>p</code>.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/primitive_compressible.html'>primitive_compressible</a>)
+  </small></h4>
+  <p>Instance of <a href="../interface/primitive_compressible.html">primitive_compressible</a>.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-primitive_compressible_pointer"></span><h3>
+public function <a href='../proc/primitive_compressible_pointer.html'>primitive_compressible_pointer</a>(to, error_message) result(pointer_)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return <a href="../interface/primitive_compressible.html">primitive_compressible</a> pointer associated to <a href="../type/primitive_object.html">primitive_object</a> or its extensions until
+ <a href="../interface/primitive_compressible.html">primitive_compressible</a> included.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>target</td><td>::</td>
+  <td><strong>to</strong></td><td><p>Target of associate.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error_message</strong></td><td><p>Auxiliary error message.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),
+  pointer</small></h4>
+  <p>Associated pointer.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-real_multiply_prim"></span><h3>
+private function <a href='../proc/real_multiply_prim.html'>real_multiply_prim</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>real * prim</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=R8P),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-right_eigenvectors"></span><h3>
+private pure function <a href='../proc/right_eigenvectors.html'>right_eigenvectors</a>(self, eos) result(eig)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Return the right eigenvectors matrix <code>R</code> as <code>dF/dP = A = R ^ L</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>eos</strong></td><td><p>Equation of state.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=R8P)
+  (1:3,1:3)</small></h4>
+  <p>Eigenvectors.</p>
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-sub"></span><h3>
+private function <a href='../proc/sub.html'>sub</a>(lhs, rhs) result(operator_result)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>+</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>class(<a href='../type/primitive_object.html'>primitive_object</a>),
+  allocatable</small></h4>
+  <p>Operator result.</p>
+    
+
+  </div>
+  </div>
+
+    
+    </section>
+    <br>
+    
+
+    
+    <section>
+    <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-destroy"></span><h3>
+private elemental subroutine <a href='../proc/destroy.html'>destroy</a>(self)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Destroy primitive.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-initialize%7E3"></span><h3>
+private subroutine <a href='../proc/initialize%7E3.html'>initialize</a>(self, initial_state)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Initialize primitive.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Primitive.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>initial_state</strong></td><td><p>Initial state.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-prim_assign_prim"></span><h3>
+private pure subroutine <a href='../proc/prim_assign_prim.html'>prim_assign_prim</a>(lhs, rhs)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Operator <code>=</code>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_compressible.html'>primitive_compressible</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/primitive_object.html'>primitive_object</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    </section>    
+    <br>
+    
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
+  <div id="allmods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/face.html">face</a>
+      
+      <a class="list-group-item" href="../module/flap.html">flap</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_argument_t.html">flap_command_line_argument_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_arguments_group_t.html">flap_command_line_arguments_group_t</a>
+      
+      <a class="list-group-item" href="../module/flap_command_line_interface_t.html">flap_command_line_interface_t</a>
+      
+      <a class="list-group-item" href="../module/flap_object_t.html">flap_object_t</a>
+      
+      <a class="list-group-item" href="../module/flap_utils_m.html">flap_utils_m</a>
+      
+      <a class="list-group-item" href="../module/foodie.html">foodie</a>
+      
+      <a class="list-group-item" href="../module/foodie_adt_integrand.html">foodie_adt_integrand</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth.html">foodie_integrator_adams_bashforth</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_bashforth_moulton.html">foodie_integrator_adams_bashforth_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_adams_moulton.html">foodie_integrator_adams_moulton</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_backward_differentiation_formula.html">foodie_integrator_backward_differentiation_formula</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_emd_runge_kutta.html">foodie_integrator_emd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_euler_explicit.html">foodie_integrator_euler_explicit</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_leapfrog.html">foodie_integrator_leapfrog</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_low_storage_runge_kutta.html">foodie_integrator_low_storage_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_integrator_tvd_runge_kutta.html">foodie_integrator_tvd_runge_kutta</a>
+      
+      <a class="list-group-item" href="../module/foodie_kinds.html">foodie_kinds</a>
+      
+      <a class="list-group-item" href="../module/foodie_utils.html">foodie_utils</a>
+      
+      <a class="list-group-item" href="../module/foreseer.html">foreseer</a>
+      
+      <a class="list-group-item" href="../module/foreseer_compressible_transformations.html">foreseer_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_compressible.html">foreseer_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_conservative_object.html">foreseer_conservative_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_compressible.html">foreseer_eos_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_eos_object.html">foreseer_eos_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_euler_1d.html">foreseer_euler_1d</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_compressible.html">foreseer_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../module/foreseer_primitive_object.html">foreseer_primitive_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_llf.html">foreseer_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_object.html">foreseer_riemann_solver_compressible_object</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_pvl.html">foreseer_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_object.html">foreseer_riemann_solver_object</a>
+      
+      <a class="list-group-item" href="../module/penf.html">penf</a>
+      
+      <a class="list-group-item" href="../module/penf_b_size.html">penf_b_size</a>
+      
+      <a class="list-group-item" href="../module/penf_global_parameters_variables.html">penf_global_parameters_variables</a>
+      
+      <a class="list-group-item" href="../module/penf_stringify.html">penf_stringify</a>
+      
+      <a class="list-group-item" href="../module/wenoof.html">wenoof</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_factory.html">wenoof_alpha_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_object.html">wenoof_alpha_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_js.html">wenoof_alpha_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_m.html">wenoof_alpha_rec_m</a>
+      
+      <a class="list-group-item" href="../module/wenoof_alpha_rec_z.html">wenoof_alpha_rec_z</a>
+      
+      <a class="list-group-item" href="../module/wenoof_base_object.html">wenoof_base_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_factory.html">wenoof_beta_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_object.html">wenoof_beta_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_beta_rec_js.html">wenoof_beta_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_factory.html">wenoof_interpolations_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_object.html">wenoof_interpolations_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolations_rec_js.html">wenoof_interpolations_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_factory.html">wenoof_interpolator_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_js.html">wenoof_interpolator_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_interpolator_object.html">wenoof_interpolator_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_factory.html">wenoof_kappa_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_object.html">wenoof_kappa_object</a>
+      
+      <a class="list-group-item" href="../module/wenoof_kappa_rec_js.html">wenoof_kappa_rec_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_objects_factory.html">wenoof_objects_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_reconstructor_js.html">wenoof_reconstructor_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_factory.html">wenoof_weights_factory</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_js.html">wenoof_weights_js</a>
+      
+      <a class="list-group-item" href="../module/wenoof_weights_object.html">wenoof_weights_object</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

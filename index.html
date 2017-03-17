@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> FORESEER </title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="./tipuesearch/tipuesearch_content.js"></script>
+    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="./tipuesearch/tipuesearch_set.js"></script>
+    <script src="./tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="./lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="./lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="./lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="./lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="./lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="./lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="./search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <p>FORESEER, FOrtran RiEmann SolvErs EnviRonment</p>
+        	 
+	<p> Find us on&hellip;</p>
+        <p>
+        	 
+          <a class="btn btn-lg btn-primary" href="https://github.com/szaghi/FORESEER" role="button">GitHub</a>
+			 
+			 
+			 
+			 
+	         
+			 
+          <a class="btn btn-lg btn-danger" style="float:right" href="https://github.com/szaghi/FORESEER/releases/latest" role="button">Download the Source</a>
+			 
+        </p>
+      </div>
+
+      <div class="row" id='text'>
+		  
+        <div class="col-md-8">
+		  
+          <h1>FORESEER</h1>
+          <p><a name="top"></a></p>
+<h1 id="foreseer"><a class="toclink" href="#foreseer">FORESEER <a href=""><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FORESEER.svg"></a> <a href="https://gitter.im/szaghi/FORESEER?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img alt="Join the chat at https://gitter.im/szaghi/FORESEER" src="https://badges.gitter.im/Join%20Chat.svg"></a></a></h1>
+<p><a href=""><img alt="License" src="https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3,%20GPLv3-blue.svg"></a>
+<a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD2-red.svg"></a>
+<a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD3-red.svg"></a>
+<a href=""><img alt="License" src="https://img.shields.io/badge/license-MIT-red.svg"></a></p>
+<p><a href=""><img alt="Status" src="https://img.shields.io/badge/status-unstable-red.svg"></a>
+<a href="https://travis-ci.org/szaghi/FORESEER"><img alt="Build Status" src="https://travis-ci.org/szaghi/FORESEER.svg?branch=master"></a>
+<a href="http://codecov.io/github/szaghi/FORESEER?branch=master"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/szaghi/FORESEER.svg"></a></p>
+<h3 id="foreseer-fortran-riemann-solvers-environment"><a class="toclink" href="#foreseer-fortran-riemann-solvers-environment">FORESEER, FOrtran RiEmann SolvErs EnviRonment</a></h3>
+<p>A KISS pure Fortran Library providing a large set of Riemann Solvers:</p>
+<ul>
+<li>FORESEER is a pure Fortran (KISS) library for solving Riemann problems (1D);</li>
+<li>FORESEER is Fortran 2008+ standard compliant;</li>
+<li>FORESEER is OOP designed;</li>
+<li>FORESEER is TDD developed;</li>
+<li>FORESEER is a Free, Open Source Project.</li>
+</ul>
+<h4 id="a-taste-of-foreseer"><a class="toclink" href="#a-taste-of-foreseer">A taste of FORESEER</a></h4>
+<div class="codehilite"><pre><span></span><span class="k">use </span><span class="n">foreseer</span>
+<span class="k">type</span><span class="p">(</span><span class="n">riemann_solver</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rsolver</span>
+<span class="k">call </span><span class="n">rsolver</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;hllc&#39;</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s1">&#39;conservative&#39;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">rsolver</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">U_left</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">U_right</span><span class="p">,</span> <span class="k">interface</span><span class="o">=</span><span class="n">U_interface</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To be completed.</p>
+<h4 id="issues"><a class="toclink" href="#issues">Issues</a></h4>
+<p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FORESEER.svg"></a>
+<a href="https://waffle.io/szaghi/FORESEER"><img alt="Ready in backlog" src="https://badge.waffle.io/szaghi/FORESEER.png?label=ready&amp;title=Ready"></a>
+<a href="https://waffle.io/szaghi/FORESEER"><img alt="In Progress" src="https://badge.waffle.io/szaghi/FORESEER.png?label=in%20progress&amp;title=In%20Progress"></a>
+<a href="https://waffle.io/szaghi/FORESEER"><img alt="Open bugs" src="https://badge.waffle.io/szaghi/FORESEER.png?label=bug&amp;title=Open%20Bugs"></a></p>
+<h4 id="compiler-support"><a class="toclink" href="#compiler-support">Compiler Support</a></h4>
+<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v6.1.1+-brightgreen.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v16.1+-brightgreen.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/g95-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/NAG-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/PGI-not%20tested-yellow.svg"></a></p>
+<hr>
+<p><a href="#what-is-foreseer">What is FORESEER?</a> | <a href="#main-features">Main features</a> | <a href="#copyrights">Copyrights</a> | <a href="#download">Download</a> | <a href="#compilation">Compilation</a> | <a href="#documentation">Documentation</a> | <a href="#references">References</a></p>
+<hr>
+<h2 id="what-is-foreseer"><a class="toclink" href="#what-is-foreseer">What is FORESEER?</a></h2>
+<blockquote>
+<p><strong>FORESEER</strong> is a modern Fortran library providing a large set of Riemann Solvers.</p>
+</blockquote>
+<p>To be completed.</p>
+<h3 id="how-to-use"><a class="toclink" href="#how-to-use">How to use</a></h3>
+<p>To be written.</p>
+<p>Go to <a href="#top">Top</a></p>
+<h2 id="main-features"><a class="toclink" href="#main-features">Main features</a></h2>
+<p>To be written.</p>
+<p>Any feature request is welcome.</p>
+<p>Go to <a href="#top">Top</a></p>
+<h2 id="copyrights"><a class="toclink" href="#copyrights">Copyrights</a></h2>
+<p>HASTY is a Free and Open Source Software (FOSS), it is distributed under a <strong>very permissive</strong> multi-licensing system: selectable licenses are <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>, <a href="http://opensource.org/licenses/BSD-2-Clause">BSD2-Clause</a>, <a href="http://opensource.org/licenses/BSD-3-Clause">BSD3-Clause</a> and <a href="http://opensource.org/licenses/MIT">MIT</a>, feel free to select the license that best matches your workflow.</p>
+<blockquote>
+<p>Anyone is interest to use, to develop or to contribute to HASTY is welcome.</p>
+</blockquote>
+<p>More details can be found on <a href="https://github.com/szaghi/HASTY/wiki/Copyrights">wiki</a>.</p>
+<p>Go to <a href="#top">Top</a></p>
+<h2 id="download"><a class="toclink" href="#download">Download</a></h2>
+<p>To be written.</p>
+<p>Go to <a href="#top">Top</a></p>
+<h2 id="compilation"><a class="toclink" href="#compilation">Compilation</a></h2>
+<p>To be written.</p>
+<h2 id="documentation"><a class="toclink" href="#documentation">Documentation</a></h2>
+<p>Besides this README file the FORESEER documentation is contained into its own <a href="https://github.com/szaghi/FORESEER/wiki">wiki</a>. Detailed documentation of the API is contained into the <a href="http://szaghi.github.io/FORESEER/index.html">GitHub Pages</a> that can also be created locally by means of <a href="https://github.com/cmacmackin/ford">ford tool</a>.</p>
+<h2 id="go-to-top"><a class="toclink" href="#go-to-top">Go to <a href="#top">Top</a></a></h2>
+        </div>
+		  
+        <div class="col-md-4">
+	  <div class="well">
+          <h2>Developer Info</h2>
+          <h4>Stefano Zaghi</h4>
+          
+          
+			   
+            <div class="text-center"><div class="btn-group" role="group">
+              
+              <a class="btn btn-lg btn-primary" href="mailto:stefano.zaghi@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+              
+              
+              
+              <a class="btn btn-lg btn-primary" href="https://github.com/szaghi"><i class="fa fa-github fa-lg"></i></a>
+				  
+				  
+              
+              
+              
+              
+            </div></div>
+            
+       </div>
+       </div>
+       
+      </div>
+      
+      
+      
+      
+		
+      <div class="row">
+        <div class="col-xs-6 col-sm-3">
+              <h3>Source Files</h3>
+              <ul>
+                
+                  
+                    <li><a href='./sourcefile/face.f90.html'>face.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap.f90.html'>flap.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap_command_line_argument_t.f90.html'>flap_command_line_argument_t.F90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap_command_line_arguments_group_t.f90.html'>flap_command_line_arguments_group_t.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap_command_line_interface_t.f90.html'>flap_command_line_interface_t.F90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap_object_t.f90.html'>flap_object_t.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/flap_utils_m.f90.html'>flap_utils_m.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/foodie.f90.html'>foodie.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/foodie_adt_integrand.f90.html'>foodie_adt_integrand.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/foodie_integrator_adams_bashforth.f90.html'>foodie_integrator_adams_bashforth.f90</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+          </div>
+          
+		  <div class="col-xs-6 col-sm-3">
+              <h3>Modules</h3>
+              <ul>
+                
+                  
+                    <li><a href='./module/face.html'>face</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap.html'>flap</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap_command_line_argument_t.html'>flap_command_line_argument_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap_command_line_arguments_group_t.html'>flap_command_line_arguments_group_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap_command_line_interface_t.html'>flap_command_line_interface_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap_object_t.html'>flap_object_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/flap_utils_m.html'>flap_utils_m</a></li>
+                  
+                
+                  
+                    <li><a href='./module/foodie.html'>foodie</a></li>
+                  
+                
+                  
+                    <li><a href='./module/foodie_adt_integrand.html'>foodie_adt_integrand</a></li>
+                  
+                
+                  
+                    <li><a href='./module/foodie_integrator_adams_bashforth.html'>foodie_integrator_adams_bashforth</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+          </div>
+          
+          
+		  <div class="col-xs-6 col-sm-3">
+              <h3>Procedures</h3>
+              <ul>
+                
+                  
+                    <li><a href='./proc/add.html'>add</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/add%7E2.html'>add</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/add%7E3.html'>add</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/add%7E4.html'>add</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/add_euler.html'>add_euler</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/add_group.html'>add_group</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/array.html'>array</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/array%7E2.html'>array</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/assign_object.html'>assign_object</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/bctoi_i1p.html'>bctoi_I1P</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+          </div>
+          
+          
+		  <div class="col-xs-6 col-sm-3">
+              <h3>Derived Types</h3>
+              <ul>
+                
+                  
+                    <li><a href='./type/adams_bashforth_integrator.html'>adams_bashforth_integrator</a></li>
+                  
+                
+                  
+                    <li><a href='./type/adams_bashforth_moulton_integrator.html'>adams_bashforth_moulton_integrator</a></li>
+                  
+                
+                  
+                    <li><a href='./type/adams_moulton_integrator.html'>adams_moulton_integrator</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_factory.html'>alpha_factory</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_object.html'>alpha_object</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_object_constructor.html'>alpha_object_constructor</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_rec_js.html'>alpha_rec_js</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_rec_js_constructor.html'>alpha_rec_js_constructor</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_rec_m.html'>alpha_rec_m</a></li>
+                  
+                
+                  
+                    <li><a href='./type/alpha_rec_m_constructor.html'>alpha_rec_m_constructor</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+          </div>
+          
+      </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

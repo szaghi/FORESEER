@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>usage &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>usage
+      <small>Function</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 1.1% of total for procedures.">116 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/flap_command_line_argument_t.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/flap_command_line_argument_t.f90.html'>flap_command_line_argument_t.F90</a></li>
+  
+     <li><a href='../module/flap_command_line_argument_t.html'>flap_command_line_argument_t</a></li>
+  
+     <li class="active">usage</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/usage%7E3.html#src">usage</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-0">All Procedures</a></h3></div>
+  <div id="allprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/add.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E2.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E3.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E4.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add_euler.html">add_euler</a>
+      
+      <a class="list-group-item" href="../proc/add_group.html">add_group</a>
+      
+      <a class="list-group-item" href="../proc/array.html">array</a>
+      
+      <a class="list-group-item" href="../proc/array%7E2.html">array</a>
+      
+      <a class="list-group-item" href="../proc/assign_object.html">assign_object</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i1p.html">bctoi_I1P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i2p.html">bctoi_I2P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i4p.html">bctoi_I4P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i8p.html">bctoi_I8P</a>
+      
+      <a class="list-group-item" href="../interface/bcton.html">bcton</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r16p.html">bctor_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r4p.html">bctor_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r8p.html">bctor_R8P</a>
+      
+      <a class="list-group-item" href="../interface/bit_size.html">bit_size</a>
+      
+      <a class="list-group-item" href="../interface/bit_size%7E2.html">bit_size</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_chr.html">bit_size_chr</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r16p.html">bit_size_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r4p.html">bit_size_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r8p.html">bit_size_R8P</a>
+      
+      <a class="list-group-item" href="../interface/bstr.html">bstr</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i1p.html">bstr_I1P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i2p.html">bstr_I2P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i4p.html">bstr_I4P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i8p.html">bstr_I8P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r16p.html">bstr_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r4p.html">bstr_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r8p.html">bstr_R8P</a>
+      
+      <a class="list-group-item" href="../interface/byte_size.html">byte_size</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_chr.html">byte_size_chr</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i1p.html">byte_size_I1P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i2p.html">byte_size_I2P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i4p.html">byte_size_I4P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i8p.html">byte_size_I8P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r16p.html">byte_size_R16P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r4p.html">byte_size_R4P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r8p.html">byte_size_R8P</a>
+      
+      <a class="list-group-item" href="../proc/check.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check%7E2.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check%7E3.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check_action_consistency.html">check_action_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_choices.html">check_choices</a>
+      
+      <a class="list-group-item" href="../proc/check_endian.html">check_endian</a>
+      
+      <a class="list-group-item" href="../proc/check_envvar_consistency.html">check_envvar_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_list_size.html">check_list_size</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclude_consistency.html">check_m_exclude_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclusive.html">check_m_exclusive</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclusive%7E2.html">check_m_exclusive</a>
+      
+      <a class="list-group-item" href="../proc/check_named_consistency.html">check_named_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_optional_consistency.html">check_optional_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_positional_consistency.html">check_positional_consistency</a>
+      
+      <a class="list-group-item" href="../proc/cla_assign_cla.html">cla_assign_cla</a>
+      
+      <a class="list-group-item" href="../proc/clasg_assign_clasg.html">clasg_assign_clasg</a>
+      
+      <a class="list-group-item" href="../proc/cli_assign_cli.html">cli_assign_cli</a>
+      
+      <a class="list-group-item" href="../proc/color_index.html">color_index</a>
+      
+      <a class="list-group-item" href="../proc/colorize.html">colorize</a>
+      
+      <a class="list-group-item" href="../proc/colors_samples.html">colors_samples</a>
+      
+      <a class="list-group-item" href="../proc/compact_real_string.html">compact_real_string</a>
+      
+      <a class="list-group-item" href="../proc/compute.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E2.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E3.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E4.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E5.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E6.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E7.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_p23.html">compute_p23</a>
+      
+      <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
+      
+      <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves_up23.html">compute_waves_up23</a>
+      
+      <a class="list-group-item" href="../proc/cons_assign_cons.html">cons_assign_cons</a>
+      
+      <a class="list-group-item" href="../proc/cons_divide_real.html">cons_divide_real</a>
+      
+      <a class="list-group-item" href="../proc/cons_multiply_cons.html">cons_multiply_cons</a>
+      
+      <a class="list-group-item" href="../proc/cons_multiply_real.html">cons_multiply_real</a>
+      
+      <a class="list-group-item" href="../interface/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../proc/conservative_compressible_instance.html">conservative_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/conservative_compressible_pointer.html">conservative_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../proc/conservative_to_primitive_compressible.html">conservative_to_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../interface/count.html">count</a>
+      
+      <a class="list-group-item" href="../proc/count_substring.html">count_substring</a>
+      
+      <a class="list-group-item" href="../proc/cp.html">cp</a>
+      
+      <a class="list-group-item" href="../proc/create.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E2.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E3.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E4.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E5.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E6.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E7.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E8.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E9.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E10.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E11.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E12.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E13.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E14.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create_.html">create_</a>
+      
+      <a class="list-group-item" href="../proc/create_alpha_object.html">create_alpha_object</a>
+      
+      <a class="list-group-item" href="../proc/create_alpha_object_constructor.html">create_alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_base_object_constructor.html">create_base_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_beta_object.html">create_beta_object</a>
+      
+      <a class="list-group-item" href="../proc/create_beta_object_constructor.html">create_beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E2.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E3.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E4.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E5.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E6.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolations_object.html">create_interpolations_object</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolations_object_constructor.html">create_interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator.html">create_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator_object.html">create_interpolator_object</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator_object_constructor.html">create_interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_kappa_object.html">create_kappa_object</a>
+      
+      <a class="list-group-item" href="../proc/create_kappa_object_constructor.html">create_kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_weights_object.html">create_weights_object</a>
+      
+      <a class="list-group-item" href="../proc/create_weights_object_constructor.html">create_weights_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i1p.html">ctoi_I1P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i2p.html">ctoi_I2P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i4p.html">ctoi_I4P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i8p.html">ctoi_I8P</a>
+      
+      <a class="list-group-item" href="../interface/cton.html">cton</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r16p.html">ctor_R16P</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r4p.html">ctor_R4P</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r8p.html">ctor_R8P</a>
+      
+      <a class="list-group-item" href="../proc/cv.html">cv</a>
+      
+      <a class="list-group-item" href="../proc/density.html">density</a>
+      
+      <a class="list-group-item" href="../proc/description.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E2.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E5.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E6.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E7.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E8.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E9.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E10.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E11.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E12.html">description</a>
+      
+      <a class="list-group-item" href="../proc/destroy.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E2.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E3.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E4.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E5.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E6.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E7.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E8.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E9.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E10.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E11.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E12.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E13.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E14.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E15.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E16.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E17.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E18.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy_.html">destroy_</a>
+      
+      <a class="list-group-item" href="../proc/deuler_dt.html">dEuler_dt</a>
+      
+      <a class="list-group-item" href="../interface/digit.html">digit</a>
+      
+      <a class="list-group-item" href="../proc/digit_i1.html">digit_I1</a>
+      
+      <a class="list-group-item" href="../proc/digit_i2.html">digit_I2</a>
+      
+      <a class="list-group-item" href="../proc/digit_i4.html">digit_I4</a>
+      
+      <a class="list-group-item" href="../proc/digit_i8.html">digit_I8</a>
+      
+      <a class="list-group-item" href="../proc/energy.html">energy</a>
+      
+      <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
+      
+      <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/errored.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/errored%7E2.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/errored%7E3.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
+      
+      <a class="list-group-item" href="../proc/euler_assign_real.html">euler_assign_real</a>
+      
+      <a class="list-group-item" href="../proc/euler_local_error.html">euler_local_error</a>
+      
+      <a class="list-group-item" href="../proc/euler_multiply_euler.html">euler_multiply_euler</a>
+      
+      <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
+      
+      <a class="list-group-item" href="../proc/finalize.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/finalize%7E2.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/finalize%7E3.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/free.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free%7E2.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free%7E3.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free_object.html">free_object</a>
+      
+      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      
+      <a class="list-group-item" href="../proc/get_args_from_invocation.html">get_args_from_invocation</a>
+      
+      <a class="list-group-item" href="../proc/get_args_from_string.html">get_args_from_string</a>
+      
+      <a class="list-group-item" href="../proc/get_cla.html">get_cla</a>
+      
+      <a class="list-group-item" href="../proc/get_cla%7E2.html">get_cla</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_from_buffer.html">get_cla_from_buffer</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list.html">get_cla_list</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list%7E2.html">get_cla_list</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_from_buffer.html">get_cla_list_from_buffer</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_char.html">get_cla_list_varying_char</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_char%7E2.html">get_cla_list_varying_char</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i1p.html">get_cla_list_varying_I1P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i1p%7E2.html">get_cla_list_varying_I1P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i2p.html">get_cla_list_varying_I2P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i2p%7E2.html">get_cla_list_varying_I2P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i4p.html">get_cla_list_varying_I4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i4p%7E2.html">get_cla_list_varying_I4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i8p.html">get_cla_list_varying_I8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i8p%7E2.html">get_cla_list_varying_I8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_logical.html">get_cla_list_varying_logical</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_logical%7E2.html">get_cla_list_varying_logical</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r16p.html">get_cla_list_varying_R16P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r16p%7E2.html">get_cla_list_varying_R16P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r4p.html">get_cla_list_varying_R4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r4p%7E2.html">get_cla_list_varying_R4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r8p.html">get_cla_list_varying_R8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r8p%7E2.html">get_cla_list_varying_R8P</a>
+      
+      <a class="list-group-item" href="../proc/get_clasg_indexes.html">get_clasg_indexes</a>
+      
+      <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
+      
+      <a class="list-group-item" href="../proc/init.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E2.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E3.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E4.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E5.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E6.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E7.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E8.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E9.html">init</a>
+      
+      <a class="list-group-item" href="../proc/initialize.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E2.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E3.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E4.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E5.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E2.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E3.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E4.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E5.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E6.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E7.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E8.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E9.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_debug.html">interpolate_debug</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_debug%7E2.html">interpolate_debug</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_standard.html">interpolate_standard</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_standard%7E2.html">interpolate_standard</a>
+      
+      <a class="list-group-item" href="../proc/is_admissible.html">is_admissible</a>
+      
+      <a class="list-group-item" href="../proc/is_called_group.html">is_called_group</a>
+      
+      <a class="list-group-item" href="../proc/is_defined.html">is_defined</a>
+      
+      <a class="list-group-item" href="../proc/is_defined%7E2.html">is_defined</a>
+      
+      <a class="list-group-item" href="../proc/is_defined_group.html">is_defined_group</a>
+      
+      <a class="list-group-item" href="../proc/is_parsed.html">is_parsed</a>
+      
+      <a class="list-group-item" href="../proc/is_passed.html">is_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_passed%7E2.html">is_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_required_passed.html">is_required_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_required_passed%7E2.html">is_required_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_supported.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E2.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E3.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E4.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E5.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E6.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E7.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E8.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E9.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
+      
+      <a class="list-group-item" href="../proc/max_stages.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages%7E2.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages%7E3.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages_steps.html">max_stages_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E2.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E3.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E4.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E5.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_stages.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages%7E2.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages%7E3.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages_steps.html">min_stages_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E2.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E3.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E4.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E5.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/momentum.html">momentum</a>
+      
+      <a class="list-group-item" href="../proc/negative.html">negative</a>
+      
+      <a class="list-group-item" href="../proc/negative%7E2.html">negative</a>
+      
+      <a class="list-group-item" href="../proc/new_dt.html">new_Dt</a>
+      
+      <a class="list-group-item" href="../proc/output.html">output</a>
+      
+      <a class="list-group-item" href="../proc/parse.html">parse</a>
+      
+      <a class="list-group-item" href="../proc/parse%7E2.html">parse</a>
+      
+      <a class="list-group-item" href="../proc/parse_command_line_interface.html">parse_command_line_interface</a>
+      
+      <a class="list-group-item" href="../proc/penf_init.html">penf_init</a>
+      
+      <a class="list-group-item" href="../proc/penf_print.html">penf_print</a>
+      
+      <a class="list-group-item" href="../proc/positive.html">positive</a>
+      
+      <a class="list-group-item" href="../proc/positive%7E2.html">positive</a>
+      
+      <a class="list-group-item" href="../proc/pressure.html">pressure</a>
+      
+      <a class="list-group-item" href="../proc/pressure%7E2.html">pressure</a>
+      
+      <a class="list-group-item" href="../proc/prim_assign_prim.html">prim_assign_prim</a>
+      
+      <a class="list-group-item" href="../proc/prim_divide_real.html">prim_divide_real</a>
+      
+      <a class="list-group-item" href="../proc/prim_multiply_prim.html">prim_multiply_prim</a>
+      
+      <a class="list-group-item" href="../proc/prim_multiply_real.html">prim_multiply_real</a>
+      
+      <a class="list-group-item" href="../interface/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../proc/primitive_compressible_instance.html">primitive_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/primitive_compressible_pointer.html">primitive_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../proc/primitive_to_conservative_compressible.html">primitive_to_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../proc/print_error_message.html">print_error_message</a>
+      
+      <a class="list-group-item" href="../proc/print_usage.html">print_usage</a>
+      
+      <a class="list-group-item" href="../proc/print_version.html">print_version</a>
+      
+      <a class="list-group-item" href="../proc/r.html">R</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_m_exclude.html">raise_error_m_exclude</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_m_exclude%7E2.html">raise_error_m_exclude</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_nargs_insufficient.html">raise_error_nargs_insufficient</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_switch_unknown.html">raise_error_switch_unknown</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_value_missing.html">raise_error_value_missing</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_cons.html">real_multiply_cons</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_euler.html">real_multiply_euler</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_prim.html">real_multiply_prim</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_characteristic.html">reconstruct_interfaces_characteristic</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_conservative.html">reconstruct_interfaces_conservative</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
+      
+      <a class="list-group-item" href="../proc/replace.html">replace</a>
+      
+      <a class="list-group-item" href="../proc/replace_all.html">replace_all</a>
+      
+      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
+      
+      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
+      
+      <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
+      
+      <a class="list-group-item" href="../proc/sanitize_defaults.html">sanitize_defaults</a>
+      
+      <a class="list-group-item" href="../proc/sanitize_defaults%7E2.html">sanitize_defaults</a>
+      
+      <a class="list-group-item" href="../proc/save_man_page.html">save_man_page</a>
+      
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      
+      <a class="list-group-item" href="../proc/save_usage_to_markdown.html">save_usage_to_markdown</a>
+      
+      <a class="list-group-item" href="../proc/set_mutually_exclusive_groups.html">set_mutually_exclusive_groups</a>
+      
+      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      
+      <a class="list-group-item" href="../proc/signature.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/signature%7E2.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/signature%7E3.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/smoothness_indicators.html">smoothness_indicators</a>
+      
+      <a class="list-group-item" href="../proc/solve.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
+      
+      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
+      
+      <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
+      
+      <a class="list-group-item" href="../interface/str.html">str</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i1p.html">str_a_I1P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i2p.html">str_a_I2P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i4p.html">str_a_I4P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i8p.html">str_a_I8P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r16p.html">str_a_R16P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r4p.html">str_a_R4P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r8p.html">str_a_R8P</a>
+      
+      <a class="list-group-item" href="../proc/str_bol.html">str_bol</a>
+      
+      <a class="list-group-item" href="../proc/str_i1p.html">str_I1P</a>
+      
+      <a class="list-group-item" href="../proc/str_i2p.html">str_I2P</a>
+      
+      <a class="list-group-item" href="../proc/str_i4p.html">str_I4P</a>
+      
+      <a class="list-group-item" href="../proc/str_i8p.html">str_I8P</a>
+      
+      <a class="list-group-item" href="../proc/str_r16p.html">str_R16P</a>
+      
+      <a class="list-group-item" href="../proc/str_r4p.html">str_R4P</a>
+      
+      <a class="list-group-item" href="../proc/str_r8p.html">str_R8P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i1p.html">strf_I1P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i2p.html">strf_I2P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i4p.html">strf_I4P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i8p.html">strf_I8P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r16p.html">strf_R16P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r4p.html">strf_R4P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r8p.html">strf_R8P</a>
+      
+      <a class="list-group-item" href="../interface/strz.html">strz</a>
+      
+      <a class="list-group-item" href="../proc/strz_i1p.html">strz_I1P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i2p.html">strz_I2P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i4p.html">strz_I4P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i8p.html">strz_I8P</a>
+      
+      <a class="list-group-item" href="../proc/style_index.html">style_index</a>
+      
+      <a class="list-group-item" href="../proc/styles_samples.html">styles_samples</a>
+      
+      <a class="list-group-item" href="../proc/sub.html">sub</a>
+      
+      <a class="list-group-item" href="../proc/sub%7E2.html">sub</a>
+      
+      <a class="list-group-item" href="../proc/sub_euler.html">sub_euler</a>
+      
+      <a class="list-group-item" href="../proc/tau.html">tau</a>
+      
+      <a class="list-group-item" href="../proc/temperature.html">temperature</a>
+      
+      <a class="list-group-item" href="../proc/tokenize.html">tokenize</a>
+      
+      <a class="list-group-item" href="../proc/tokenize%7E2.html">tokenize</a>
+      
+      <a class="list-group-item" href="../proc/unique.html">unique</a>
+      
+      <a class="list-group-item" href="../proc/update_previous.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/update_previous%7E2.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/update_previous%7E3.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/upper.html">upper</a>
+      
+      <a class="list-group-item" href="../proc/upper_case.html">upper_case</a>
+      
+      <a class="list-group-item" href="../proc/usage.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/usage%7E2.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/usage%7E3.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/used_registers.html">used_registers</a>
+      
+      <a class="list-group-item" href="../proc/velocity.html">velocity</a>
+      
+      <a class="list-group-item" href="../proc/weno_exp.html">weno_exp</a>
+      
+      <a class="list-group-item" href="../proc/weno_odd.html">weno_odd</a>
+      
+      <a class="list-group-item" href="../proc/wenoof_create.html">wenoof_create</a>
+      
+      <a class="list-group-item" href="../proc/wstrip.html">wstrip</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>
+private function usage(self, pref, markdown)
+    
+    
+	 
+</h2>
+    
+  
+
+
+    
+    <p>Get correct usage.</p>
+    
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-self%7E152"></span>class(<a href='../type/command_line_argument.html'>command_line_argument</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>CLAs group data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pref%7E29"></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pref</strong></td><td><p>Prefixing string.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-markdown%7E3"></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>markdown</strong></td><td><p>Format for markdown</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-usage%7E5"></span>character(len=:),
+  allocatable</small></h3>
+    <p>Usage string.</p>
+    
+    
+     <h3>Calls</h3>
+     
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: proc~~usage~3~~CallsGraph Pages: 1 -->
+<svg id="procusage3CallsGraph" width="500pt" height="1226pt"
+ viewBox="0.00 0.00 500.00 1226.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~usage~3~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1222)">
+<title>proc~~usage~3~~CallsGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1222 496,-1222 496,4 -4,4"/>
+<!-- proc~usage~3 -->
+<g id="proc~~usage~3~~CallsGraph_node1" class="node">
+<title>proc~usage~3</title>
+<polygon fill="none" stroke="#000000" points="54,-381 0,-381 0,-357 54,-357 54,-381"/>
+<text text-anchor="middle" x="27" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">usage</text>
+</g>
+<!-- interface~str -->
+<g id="proc~~usage~3~~CallsGraph_node2" class="node">
+<title>interface~str</title>
+<g id="a_proc~~usage~3~~CallsGraph_node2"><a xlink:href="../interface/str.html" xlink:title="str">
+<polygon fill="#a7506f" stroke="#a7506f" points="149,-834 95,-834 95,-810 149,-810 149,-834"/>
+<text text-anchor="middle" x="122" y="-819.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str</text>
+</a>
+</g>
+</g>
+<!-- proc~usage~3&#45;&gt;interface~str -->
+<g id="proc~~usage~3~~CallsGraph_edge39" class="edge">
+<title>proc~usage~3&#45;&gt;interface~str</title>
+<path fill="none" stroke="#000000" d="M29.541,-381.1167C42.3919,-442.3949 100.279,-718.425 117.287,-799.5263"/>
+<polygon fill="#000000" stroke="#000000" points="113.9286,-800.5649 119.4066,-809.6337 120.7795,-799.1282 113.9286,-800.5649"/>
+</g>
+<!-- proc~replace_all -->
+<g id="proc~~usage~3~~CallsGraph_node3" class="node">
+<title>proc~replace_all</title>
+<g id="a_proc~~usage~3~~CallsGraph_node3"><a xlink:href="../proc/replace_all.html" xlink:title="replace_all">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="154,-402 90,-402 90,-378 154,-378 154,-402"/>
+<text text-anchor="middle" x="122" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">replace_all</text>
+</a>
+</g>
+</g>
+<!-- proc~usage~3&#45;&gt;proc~replace_all -->
+<g id="proc~~usage~3~~CallsGraph_edge40" class="edge">
+<title>proc~usage~3&#45;&gt;proc~replace_all</title>
+<path fill="none" stroke="#000000" d="M54.2232,-375.0178C62.1836,-376.7774 71.0794,-378.7439 79.74,-380.6583"/>
+<polygon fill="#000000" stroke="#000000" points="79.2088,-384.1253 89.7286,-382.8663 80.7198,-377.2903 79.2088,-384.1253"/>
+</g>
+<!-- proc~colorize -->
+<g id="proc~~usage~3~~CallsGraph_node4" class="node">
+<title>proc~colorize</title>
+<g id="a_proc~~usage~3~~CallsGraph_node4"><a xlink:href="../proc/colorize.html" xlink:title="colorize">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="149,-339 95,-339 95,-315 149,-315 149,-339"/>
+<text text-anchor="middle" x="122" y="-324.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">colorize</text>
+</a>
+</g>
+</g>
+<!-- proc~usage~3&#45;&gt;proc~colorize -->
+<g id="proc~~usage~3~~CallsGraph_edge41" class="edge">
+<title>proc~usage~3&#45;&gt;proc~colorize</title>
+<path fill="none" stroke="#000000" d="M54.2232,-356.9645C63.9621,-352.6588 75.1011,-347.7342 85.4965,-343.1384"/>
+<polygon fill="#000000" stroke="#000000" points="87.042,-346.282 94.7728,-339.0373 84.2115,-339.8797 87.042,-346.282"/>
+</g>
+<!-- interface~cton -->
+<g id="proc~~usage~3~~CallsGraph_node5" class="node">
+<title>interface~cton</title>
+<g id="a_proc~~usage~3~~CallsGraph_node5"><a xlink:href="../interface/cton.html" xlink:title="cton">
+<polygon fill="#a7506f" stroke="#a7506f" points="149,-150 95,-150 95,-126 149,-126 149,-150"/>
+<text text-anchor="middle" x="122" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">cton</text>
+</a>
+</g>
+</g>
+<!-- proc~usage~3&#45;&gt;interface~cton -->
+<g id="proc~~usage~3~~CallsGraph_edge42" class="edge">
+<title>proc~usage~3&#45;&gt;interface~cton</title>
+<path fill="none" stroke="#000000" d="M31.9739,-356.9057C47.2325,-319.8032 93.527,-207.2344 113.1054,-159.628"/>
+<polygon fill="#000000" stroke="#000000" points="116.3942,-160.833 116.9608,-150.2533 109.9203,-158.1705 116.3942,-160.833"/>
+</g>
+<!-- proc~strf_i4p -->
+<g id="proc~~usage~3~~CallsGraph_node6" class="node">
+<title>proc~strf_i4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node6"><a xlink:href="../proc/strf_i4p.html" xlink:title="strf_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-772 196.5,-772 196.5,-748 250.5,-748 250.5,-772"/>
+<text text-anchor="middle" x="223.5" y="-757.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i4p -->
+<g id="proc~~usage~3~~CallsGraph_edge9" class="edge">
+<title>interface~str&#45;&gt;proc~strf_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M142.0531,-809.7508C157.1646,-800.5201 178.0924,-787.7366 194.9501,-777.4394"/>
+<polygon fill="#000000" stroke="#000000" points="197.1245,-780.2125 203.8339,-772.0128 193.4755,-774.2388 197.1245,-780.2125"/>
+</g>
+<!-- proc~str_r4p -->
+<g id="proc~~usage~3~~CallsGraph_node7" class="node">
+<title>proc~str_r4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node7"><a xlink:href="../proc/str_r4p.html" xlink:title="str_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-1098 293,-1098 293,-1074 347,-1074 347,-1098"/>
+<text text-anchor="middle" x="320" y="-1083.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_r4p -->
+<g id="proc~~usage~3~~CallsGraph_edge10" class="edge">
+<title>interface~str&#45;&gt;proc~str_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.6213,-834.1781C129.8649,-879.1765 153.8261,-1035.1067 190,-1067 215.0661,-1089.0999 254.0197,-1092.1274 282.7556,-1090.6743"/>
+<polygon fill="#000000" stroke="#000000" points="283.1066,-1094.1584 292.8355,-1089.9633 282.614,-1087.1757 283.1066,-1094.1584"/>
+</g>
+<!-- proc~str_a_i4p -->
+<g id="proc~~usage~3~~CallsGraph_node8" class="node">
+<title>proc~str_a_i4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node8"><a xlink:href="../proc/str_a_i4p.html" xlink:title="str_a_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252.5,-936 194.5,-936 194.5,-912 252.5,-912 252.5,-936"/>
+<text text-anchor="middle" x="223.5" y="-921.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i4p -->
+<g id="proc~~usage~3~~CallsGraph_edge11" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M130.2255,-834.0008C142.1018,-850.7648 165.347,-881.5436 190,-903 191.1326,-903.9858 192.3163,-904.9564 193.534,-905.9073"/>
+<polygon fill="#000000" stroke="#000000" points="191.707,-908.9028 201.8844,-911.8474 195.7646,-903.1988 191.707,-908.9028"/>
+</g>
+<!-- proc~strf_i2p -->
+<g id="proc~~usage~3~~CallsGraph_node9" class="node">
+<title>proc~strf_i2p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node9"><a xlink:href="../proc/strf_i2p.html" xlink:title="strf_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-654 196.5,-654 196.5,-630 250.5,-630 250.5,-654"/>
+<text text-anchor="middle" x="223.5" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i2p -->
+<g id="proc~~usage~3~~CallsGraph_edge12" class="edge">
+<title>interface~str&#45;&gt;proc~strf_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M125.1715,-809.7286C132.7501,-782.1449 154.0093,-714.059 190,-668 192.0399,-665.3895 194.3977,-662.8934 196.8987,-660.5521"/>
+<polygon fill="#000000" stroke="#000000" points="199.2522,-663.1461 204.6563,-654.0332 194.7488,-657.787 199.2522,-663.1461"/>
+</g>
+<!-- proc~strf_i1p -->
+<g id="proc~~usage~3~~CallsGraph_node10" class="node">
+<title>proc~strf_i1p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node10"><a xlink:href="../proc/strf_i1p.html" xlink:title="strf_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-612 196.5,-612 196.5,-588 250.5,-588 250.5,-612"/>
+<text text-anchor="middle" x="223.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i1p -->
+<g id="proc~~usage~3~~CallsGraph_edge13" class="edge">
+<title>interface~str&#45;&gt;proc~strf_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.2662,-809.7925C127.2988,-776.2399 142.5051,-681.1294 190,-621 190.577,-620.2694 191.187,-619.5574 191.8247,-618.8638"/>
+<polygon fill="#000000" stroke="#000000" points="194.2742,-621.371 199.4878,-612.1477 189.6604,-616.1067 194.2742,-621.371"/>
+</g>
+<!-- proc~strf_r4p -->
+<g id="proc~~usage~3~~CallsGraph_node11" class="node">
+<title>proc~strf_r4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node11"><a xlink:href="../proc/strf_r4p.html" xlink:title="strf_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-570 196.5,-570 196.5,-546 250.5,-546 250.5,-570"/>
+<text text-anchor="middle" x="223.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_r4p -->
+<g id="proc~~usage~3~~CallsGraph_edge14" class="edge">
+<title>interface~str&#45;&gt;proc~strf_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M122.3953,-809.7946C124.2055,-771.7749 134.2671,-653.5657 190,-579 190.5574,-578.2543 191.1497,-577.5287 191.7717,-576.8231"/>
+<polygon fill="#000000" stroke="#000000" points="194.2341,-579.3159 199.3326,-570.0285 189.5552,-574.1093 194.2341,-579.3159"/>
+</g>
+<!-- proc~str_a_r8p -->
+<g id="proc~~usage~3~~CallsGraph_node12" class="node">
+<title>proc~str_a_r8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node12"><a xlink:href="../proc/str_a_r8p.html" xlink:title="str_a_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="255,-528 192,-528 192,-504 255,-504 255,-528"/>
+<text text-anchor="middle" x="223.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_r8p -->
+<g id="proc~~usage~3~~CallsGraph_edge15" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.6737,-809.7068C130.4822,-761.0736 157.2987,-582.5611 190,-537 190.4503,-536.3726 190.9257,-535.7599 191.4231,-535.1616"/>
+<polygon fill="#000000" stroke="#000000" points="193.9619,-537.5797 198.8812,-528.1961 189.1839,-532.4638 193.9619,-537.5797"/>
+</g>
+<!-- proc~strf_i8p -->
+<g id="proc~~usage~3~~CallsGraph_node13" class="node">
+<title>proc~strf_i8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node13"><a xlink:href="../proc/strf_i8p.html" xlink:title="strf_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-486 196.5,-486 196.5,-462 250.5,-462 250.5,-486"/>
+<text text-anchor="middle" x="223.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i8p -->
+<g id="proc~~usage~3~~CallsGraph_edge16" class="edge">
+<title>interface~str&#45;&gt;proc~strf_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.2576,-809.7453C128.8806,-756.8109 153.0711,-548.0693 190,-495 190.4411,-494.3661 190.9081,-493.7474 191.3979,-493.1438"/>
+<polygon fill="#000000" stroke="#000000" points="193.9431,-495.5538 198.7949,-486.1351 189.1285,-490.4724 193.9431,-495.5538"/>
+</g>
+<!-- proc~str_a_i2p -->
+<g id="proc~~usage~3~~CallsGraph_node14" class="node">
+<title>proc~str_a_i2p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node14"><a xlink:href="../proc/str_a_i2p.html" xlink:title="str_a_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252.5,-1218 194.5,-1218 194.5,-1194 252.5,-1194 252.5,-1218"/>
+<text text-anchor="middle" x="223.5" y="-1203.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i2p -->
+<g id="proc~~usage~3~~CallsGraph_edge17" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.1514,-834.1759C128.5815,-889.7756 152.9275,-1119.431 190,-1180 191.5494,-1182.5313 193.4415,-1184.9102 195.5299,-1187.1218"/>
+<polygon fill="#000000" stroke="#000000" points="193.3922,-1189.9059 203.1744,-1193.9753 198.065,-1184.6939 193.3922,-1189.9059"/>
+</g>
+<!-- proc~str_a_r4p -->
+<g id="proc~~usage~3~~CallsGraph_node15" class="node">
+<title>proc~str_a_r4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node15"><a xlink:href="../proc/str_a_r4p.html" xlink:title="str_a_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="255,-1138 192,-1138 192,-1114 255,-1114 255,-1138"/>
+<text text-anchor="middle" x="223.5" y="-1123.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_r4p -->
+<g id="proc~~usage~3~~CallsGraph_edge18" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.8917,-834.226C131.4161,-881.7929 160.2609,-1054.1437 190,-1100 191.6149,-1102.49 193.5519,-1104.8406 195.6695,-1107.0338"/>
+<polygon fill="#000000" stroke="#000000" points="193.5568,-1109.8385 203.3593,-1113.8588 198.2034,-1104.6031 193.5568,-1109.8385"/>
+</g>
+<!-- proc~str_i4p -->
+<g id="proc~~usage~3~~CallsGraph_node16" class="node">
+<title>proc~str_i4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node16"><a xlink:href="../proc/str_i4p.html" xlink:title="str_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-895 293,-895 293,-871 347,-871 347,-895"/>
+<text text-anchor="middle" x="320" y="-880.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i4p -->
+<g id="proc~~usage~3~~CallsGraph_edge19" class="edge">
+<title>interface~str&#45;&gt;proc~str_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.0255,-829.3383C176.3735,-836.874 219.8105,-849.1446 257,-861 265.5811,-863.7355 274.7604,-866.8385 283.3831,-869.8334"/>
+<polygon fill="#000000" stroke="#000000" points="282.2256,-873.1364 292.8205,-873.1436 284.5425,-866.531 282.2256,-873.1364"/>
+</g>
+<!-- proc~str_a_i1p -->
+<g id="proc~~usage~3~~CallsGraph_node17" class="node">
+<title>proc~str_a_i1p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node17"><a xlink:href="../proc/str_a_i1p.html" xlink:title="str_a_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252.5,-814 194.5,-814 194.5,-790 252.5,-790 252.5,-814"/>
+<text text-anchor="middle" x="223.5" y="-799.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i1p -->
+<g id="proc~~usage~3~~CallsGraph_edge20" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.2001,-816.6404C160.0095,-814.5104 172.6504,-812.0196 184.4085,-809.7028"/>
+<polygon fill="#000000" stroke="#000000" points="185.3114,-813.0922 194.446,-807.7249 183.958,-806.2243 185.3114,-813.0922"/>
+</g>
+<!-- proc~str_i2p -->
+<g id="proc~~usage~3~~CallsGraph_node18" class="node">
+<title>proc~str_i2p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node18"><a xlink:href="../proc/str_i2p.html" xlink:title="str_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-1198 293,-1198 293,-1174 347,-1174 347,-1198"/>
+<text text-anchor="middle" x="320" y="-1183.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i2p -->
+<g id="proc~~usage~3~~CallsGraph_edge21" class="edge">
+<title>interface~str&#45;&gt;proc~str_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M122.903,-834.0899C127.107,-887.2337 146.4303,-1099.5505 190,-1147 213.5618,-1172.66 253.2671,-1181.6894 282.6112,-1184.7387"/>
+<polygon fill="#000000" stroke="#000000" points="282.6444,-1188.254 292.9043,-1185.6114 283.2357,-1181.279 282.6444,-1188.254"/>
+</g>
+<!-- proc~strf_r8p -->
+<g id="proc~~usage~3~~CallsGraph_node19" class="node">
+<title>proc~strf_r8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node19"><a xlink:href="../proc/strf_r8p.html" xlink:title="strf_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-1016 196.5,-1016 196.5,-992 250.5,-992 250.5,-1016"/>
+<text text-anchor="middle" x="223.5" y="-1001.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">strf_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_r8p -->
+<g id="proc~~usage~3~~CallsGraph_edge22" class="edge">
+<title>interface~str&#45;&gt;proc~strf_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M125.0197,-834.0163C132.4166,-861.6871 153.547,-931.1205 190,-978 192.0336,-980.6153 194.3875,-983.1146 196.886,-985.4577"/>
+<polygon fill="#000000" stroke="#000000" points="194.7345,-988.2215 204.6407,-991.979 199.2399,-982.8641 194.7345,-988.2215"/>
+</g>
+<!-- proc~str_i8p -->
+<g id="proc~~usage~3~~CallsGraph_node20" class="node">
+<title>proc~str_i8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node20"><a xlink:href="../proc/str_i8p.html" xlink:title="str_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-1016 293,-1016 293,-992 347,-992 347,-1016"/>
+<text text-anchor="middle" x="320" y="-1001.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i8p -->
+<g id="proc~~usage~3~~CallsGraph_edge23" class="edge">
+<title>interface~str&#45;&gt;proc~str_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M125.7902,-834.1228C133.8912,-858.2453 155.0535,-912.71 190,-945 204.3317,-958.2423 250.2134,-977.5149 283.4126,-990.3901"/>
+<polygon fill="#000000" stroke="#000000" points="282.2407,-993.6892 292.8308,-994.0039 284.7484,-987.1538 282.2407,-993.6892"/>
+</g>
+<!-- proc~str_a_i8p -->
+<g id="proc~~usage~3~~CallsGraph_node21" class="node">
+<title>proc~str_a_i8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node21"><a xlink:href="../proc/str_a_i8p.html" xlink:title="str_a_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252.5,-1058 194.5,-1058 194.5,-1034 252.5,-1034 252.5,-1058"/>
+<text text-anchor="middle" x="223.5" y="-1043.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_a_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i8p -->
+<g id="proc~~usage~3~~CallsGraph_edge24" class="edge">
+<title>interface~str&#45;&gt;proc~str_a_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.231,-834.3279C127.1737,-868.2115 142.1716,-964.2618 190,-1025 190.576,-1025.7314 191.1849,-1026.4443 191.8217,-1027.1385"/>
+<polygon fill="#000000" stroke="#000000" points="189.6545,-1029.8933 199.4792,-1033.8591 194.272,-1024.6322 189.6545,-1029.8933"/>
+</g>
+<!-- proc~str_bol -->
+<g id="proc~~usage~3~~CallsGraph_node22" class="node">
+<title>proc~str_bol</title>
+<g id="a_proc~~usage~3~~CallsGraph_node22"><a xlink:href="../proc/str_bol.html" xlink:title="str_bol">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-894 196.5,-894 196.5,-870 250.5,-870 250.5,-894"/>
+<text text-anchor="middle" x="223.5" y="-879.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_bol</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_bol -->
+<g id="proc~~usage~3~~CallsGraph_edge25" class="edge">
+<title>interface~str&#45;&gt;proc~str_bol</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M142.54,-834.1419C157.3983,-842.9251 177.6884,-854.9193 194.2388,-864.7028"/>
+<polygon fill="#000000" stroke="#000000" points="192.601,-867.8003 202.9905,-869.8762 196.1631,-861.7744 192.601,-867.8003"/>
+</g>
+<!-- proc~str_i1p -->
+<g id="proc~~usage~3~~CallsGraph_node23" class="node">
+<title>proc~str_i1p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node23"><a xlink:href="../proc/str_i1p.html" xlink:title="str_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-774 293,-774 293,-750 347,-750 347,-774"/>
+<text text-anchor="middle" x="320" y="-759.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i1p -->
+<g id="proc~~usage~3~~CallsGraph_edge26" class="edge">
+<title>interface~str&#45;&gt;proc~str_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.6028,-809.7915C137.2112,-790.5255 158.8527,-753.7476 190,-739 220.9952,-724.3244 260.1678,-734.6608 287.3706,-745.7848"/>
+<polygon fill="#000000" stroke="#000000" points="286.2464,-749.112 296.8139,-749.8739 289.028,-742.6884 286.2464,-749.112"/>
+</g>
+<!-- proc~str_r8p -->
+<g id="proc~~usage~3~~CallsGraph_node24" class="node">
+<title>proc~str_r8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node24"><a xlink:href="../proc/str_r8p.html" xlink:title="str_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="347,-694 293,-694 293,-670 347,-670 347,-694"/>
+<text text-anchor="middle" x="320" y="-679.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">str_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_r8p -->
+<g id="proc~~usage~3~~CallsGraph_edge27" class="edge">
+<title>interface~str&#45;&gt;proc~str_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.5336,-809.9617C137.3337,-789.9237 159.6091,-749.6934 190,-727 217.4897,-706.4729 255.0612,-694.8136 282.7447,-688.5334"/>
+<polygon fill="#000000" stroke="#000000" points="283.779,-691.8916 292.8289,-686.3825 282.3187,-685.0455 283.779,-691.8916"/>
+</g>
+<!-- proc~wstrip -->
+<g id="proc~~usage~3~~CallsGraph_node26" class="node">
+<title>proc~wstrip</title>
+<g id="a_proc~~usage~3~~CallsGraph_node26"><a xlink:href="../proc/wstrip.html" xlink:title="wstrip">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-444 196.5,-444 196.5,-420 250.5,-420 250.5,-444"/>
+<text text-anchor="middle" x="223.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">wstrip</text>
+</a>
+</g>
+</g>
+<!-- proc~replace_all&#45;&gt;proc~wstrip -->
+<g id="proc~~usage~3~~CallsGraph_edge28" class="edge">
+<title>proc~replace_all&#45;&gt;proc~wstrip</title>
+<path fill="none" stroke="#000000" d="M151.0858,-402.0355C162.2527,-406.6563 175.1423,-411.9899 186.9239,-416.8651"/>
+<polygon fill="#000000" stroke="#000000" points="185.9193,-420.2371 196.4977,-420.8266 188.5958,-413.769 185.9193,-420.2371"/>
+</g>
+<!-- proc~replace -->
+<g id="proc~~usage~3~~CallsGraph_node27" class="node">
+<title>proc~replace</title>
+<g id="a_proc~~usage~3~~CallsGraph_node27"><a xlink:href="../proc/replace.html" xlink:title="replace">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-402 196.5,-402 196.5,-378 250.5,-378 250.5,-402"/>
+<text text-anchor="middle" x="223.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">replace</text>
+</a>
+</g>
+</g>
+<!-- proc~replace_all&#45;&gt;proc~replace -->
+<g id="proc~~usage~3~~CallsGraph_edge29" class="edge">
+<title>proc~replace_all&#45;&gt;proc~replace</title>
+<path fill="none" stroke="#000000" d="M154.1152,-390C164.3081,-390 175.6655,-390 186.1915,-390"/>
+<polygon fill="#000000" stroke="#000000" points="186.3666,-393.5001 196.3666,-390 186.3665,-386.5001 186.3666,-393.5001"/>
+</g>
+<!-- proc~style_index -->
+<g id="proc~~usage~3~~CallsGraph_node28" class="node">
+<title>proc~style_index</title>
+<g id="a_proc~~usage~3~~CallsGraph_node28"><a xlink:href="../proc/style_index.html" xlink:title="style_index">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="256.5,-360 190.5,-360 190.5,-336 256.5,-336 256.5,-360"/>
+<text text-anchor="middle" x="223.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">style_index</text>
+</a>
+</g>
+</g>
+<!-- proc~colorize&#45;&gt;proc~style_index -->
+<g id="proc~~usage~3~~CallsGraph_edge30" class="edge">
+<title>proc~colorize&#45;&gt;proc~style_index</title>
+<path fill="none" stroke="#000000" d="M149.2001,-332.6276C158.8122,-334.6163 169.8724,-336.9046 180.4723,-339.0977"/>
+<polygon fill="#000000" stroke="#000000" points="179.9301,-342.5596 190.4319,-341.1583 181.3484,-335.7048 179.9301,-342.5596"/>
+</g>
+<!-- proc~color_index -->
+<g id="proc~~usage~3~~CallsGraph_node29" class="node">
+<title>proc~color_index</title>
+<g id="a_proc~~usage~3~~CallsGraph_node29"><a xlink:href="../proc/color_index.html" xlink:title="color_index">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="257,-318 190,-318 190,-294 257,-294 257,-318"/>
+<text text-anchor="middle" x="223.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">color_index</text>
+</a>
+</g>
+</g>
+<!-- proc~colorize&#45;&gt;proc~color_index -->
+<g id="proc~~usage~3~~CallsGraph_edge31" class="edge">
+<title>proc~colorize&#45;&gt;proc~color_index</title>
+<path fill="none" stroke="#000000" d="M149.2001,-321.3724C158.6342,-319.4205 169.4632,-317.18 179.883,-315.0242"/>
+<polygon fill="#000000" stroke="#000000" points="180.6053,-318.449 189.6887,-312.9954 179.187,-311.5942 180.6053,-318.449"/>
+</g>
+<!-- proc~upper -->
+<g id="proc~~usage~3~~CallsGraph_node30" class="node">
+<title>proc~upper</title>
+<g id="a_proc~~usage~3~~CallsGraph_node30"><a xlink:href="../proc/upper.html" xlink:title="upper">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-276 196.5,-276 196.5,-252 250.5,-252 250.5,-276"/>
+<text text-anchor="middle" x="223.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">upper</text>
+</a>
+</g>
+</g>
+<!-- proc~colorize&#45;&gt;proc~upper -->
+<g id="proc~~usage~3~~CallsGraph_edge32" class="edge">
+<title>proc~colorize&#45;&gt;proc~upper</title>
+<path fill="none" stroke="#000000" d="M141.5702,-314.853C156.8756,-305.353 178.3584,-292.0189 195.486,-281.388"/>
+<polygon fill="#000000" stroke="#000000" points="197.3392,-284.3572 203.9899,-276.1097 193.6477,-278.4097 197.3392,-284.3572"/>
+</g>
+<!-- proc~ctor_r8p -->
+<g id="proc~~usage~3~~CallsGraph_node31" class="node">
+<title>proc~ctor_r8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node31"><a xlink:href="../proc/ctor_r8p.html" xlink:title="ctor_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252,-234 195,-234 195,-210 252,-210 252,-234"/>
+<text text-anchor="middle" x="223.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctor_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctor_r8p -->
+<g id="proc~~usage~3~~CallsGraph_edge33" class="edge">
+<title>interface~cton&#45;&gt;proc~ctor_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M133.9159,-150.3434C147.0323,-163.6101 169.0463,-184.9517 190,-201 191.3862,-202.0617 192.8277,-203.1197 194.2998,-204.1644"/>
+<polygon fill="#000000" stroke="#000000" points="192.6403,-207.2658 202.8939,-209.9329 196.5415,-201.4536 192.6403,-207.2658"/>
+</g>
+<!-- proc~ctoi_i1p -->
+<g id="proc~~usage~3~~CallsGraph_node32" class="node">
+<title>proc~ctoi_i1p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node32"><a xlink:href="../proc/ctoi_i1p.html" xlink:title="ctoi_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-192 196.5,-192 196.5,-168 250.5,-168 250.5,-192"/>
+<text text-anchor="middle" x="223.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctoi_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctoi_i1p -->
+<g id="proc~~usage~3~~CallsGraph_edge34" class="edge">
+<title>interface~cton&#45;&gt;proc~ctoi_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.2001,-149.2552C160.6912,-154.0102 174.2521,-159.6216 186.622,-164.7401"/>
+<polygon fill="#000000" stroke="#000000" points="185.6464,-168.1242 196.2248,-168.7137 188.3229,-161.6561 185.6464,-168.1242"/>
+</g>
+<!-- proc~ctoi_i4p -->
+<g id="proc~~usage~3~~CallsGraph_node33" class="node">
+<title>proc~ctoi_i4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node33"><a xlink:href="../proc/ctoi_i4p.html" xlink:title="ctoi_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-150 196.5,-150 196.5,-126 250.5,-126 250.5,-150"/>
+<text text-anchor="middle" x="223.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctoi_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctoi_i4p -->
+<g id="proc~~usage~3~~CallsGraph_edge35" class="edge">
+<title>interface~cton&#45;&gt;proc~ctoi_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.2001,-138C160.4637,-138 173.7159,-138 185.8858,-138"/>
+<polygon fill="#000000" stroke="#000000" points="186.2248,-141.5001 196.2248,-138 186.2247,-134.5001 186.2248,-141.5001"/>
+</g>
+<!-- proc~ctoi_i2p -->
+<g id="proc~~usage~3~~CallsGraph_node34" class="node">
+<title>proc~ctoi_i2p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node34"><a xlink:href="../proc/ctoi_i2p.html" xlink:title="ctoi_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-108 196.5,-108 196.5,-84 250.5,-84 250.5,-108"/>
+<text text-anchor="middle" x="223.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctoi_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctoi_i2p -->
+<g id="proc~~usage~3~~CallsGraph_edge36" class="edge">
+<title>interface~cton&#45;&gt;proc~ctoi_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.2001,-126.7448C160.6912,-121.9898 174.2521,-116.3784 186.622,-111.2599"/>
+<polygon fill="#000000" stroke="#000000" points="188.3229,-114.3439 196.2248,-107.2863 185.6464,-107.8758 188.3229,-114.3439"/>
+</g>
+<!-- proc~ctoi_i8p -->
+<g id="proc~~usage~3~~CallsGraph_node35" class="node">
+<title>proc~ctoi_i8p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node35"><a xlink:href="../proc/ctoi_i8p.html" xlink:title="ctoi_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250.5,-66 196.5,-66 196.5,-42 250.5,-42 250.5,-66"/>
+<text text-anchor="middle" x="223.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctoi_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctoi_i8p -->
+<g id="proc~~usage~3~~CallsGraph_edge37" class="edge">
+<title>interface~cton&#45;&gt;proc~ctoi_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M133.9159,-125.6566C147.0323,-112.3899 169.0463,-91.0483 190,-75 191.3862,-73.9383 192.8277,-72.8803 194.2998,-71.8356"/>
+<polygon fill="#000000" stroke="#000000" points="196.5415,-74.5464 202.8939,-66.0671 192.6403,-68.7342 196.5415,-74.5464"/>
+</g>
+<!-- proc~ctor_r4p -->
+<g id="proc~~usage~3~~CallsGraph_node36" class="node">
+<title>proc~ctor_r4p</title>
+<g id="a_proc~~usage~3~~CallsGraph_node36"><a xlink:href="../proc/ctor_r4p.html" xlink:title="ctor_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="252,-24 195,-24 195,0 252,0 252,-24"/>
+<text text-anchor="middle" x="223.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">ctor_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~cton&#45;&gt;proc~ctor_r4p -->
+<g id="proc~~usage~3~~CallsGraph_edge38" class="edge">
+<title>interface~cton&#45;&gt;proc~ctor_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.6886,-125.7763C137.8766,-104.8514 160.9166,-61.6573 190,-33 190.9351,-32.0786 191.9175,-31.1777 192.9348,-30.2993"/>
+<polygon fill="#000000" stroke="#000000" points="195.347,-32.8634 201.2145,-24.0416 191.1264,-27.2789 195.347,-32.8634"/>
+</g>
+<!-- proc~compact_real_string -->
+<g id="proc~~usage~3~~CallsGraph_node25" class="node">
+<title>proc~compact_real_string</title>
+<g id="a_proc~~usage~3~~CallsGraph_node25"><a xlink:href="../proc/compact_real_string.html" xlink:title="compact_real_string">
+<polygon fill="#d9534f" stroke="#d9534f" points="492,-896 383,-896 383,-872 492,-872 492,-896"/>
+<text text-anchor="middle" x="437.5" y="-881.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">compact_real_string</text>
+</a>
+</g>
+</g>
+<!-- proc~str_r4p&#45;&gt;proc~compact_real_string -->
+<g id="proc~~usage~3~~CallsGraph_edge1" class="edge">
+<title>proc~str_r4p&#45;&gt;proc~compact_real_string</title>
+<path fill="none" stroke="#000000" d="M326.9983,-1073.9689C346.3407,-1040.7164 400.7128,-947.2428 425.2337,-905.0876"/>
+<polygon fill="#000000" stroke="#000000" points="428.3871,-906.6273 430.3898,-896.2234 422.3363,-903.1076 428.3871,-906.6273"/>
+</g>
+<!-- proc~str_a_i4p&#45;&gt;proc~str_i4p -->
+<g id="proc~~usage~3~~CallsGraph_edge2" class="edge">
+<title>proc~str_a_i4p&#45;&gt;proc~str_i4p</title>
+<path fill="none" stroke="#000000" d="M251.9312,-911.9204C261.8065,-907.7247 273.0223,-902.9594 283.46,-898.5248"/>
+<polygon fill="#000000" stroke="#000000" points="284.931,-901.7027 292.7661,-894.5709 282.1937,-895.26 284.931,-901.7027"/>
+</g>
+<!-- proc~str_a_r8p&#45;&gt;proc~str_r8p -->
+<g id="proc~~usage~3~~CallsGraph_edge3" class="edge">
+<title>proc~str_a_r8p&#45;&gt;proc~str_r8p</title>
+<path fill="none" stroke="#000000" d="M246.9313,-528.0985C250.6091,-530.6917 254.1352,-533.6695 257,-537 288.7223,-573.8793 306.717,-629.1938 314.7872,-659.7407"/>
+<polygon fill="#000000" stroke="#000000" points="311.4827,-660.9514 317.3184,-669.7942 318.2708,-659.2423 311.4827,-660.9514"/>
+</g>
+<!-- proc~str_a_i2p&#45;&gt;proc~str_i2p -->
+<g id="proc~~usage~3~~CallsGraph_edge4" class="edge">
+<title>proc~str_a_i2p&#45;&gt;proc~str_i2p</title>
+<path fill="none" stroke="#000000" d="M252.7151,-1199.9451C262.1846,-1197.9825 272.819,-1195.7784 282.789,-1193.7121"/>
+<polygon fill="#000000" stroke="#000000" points="283.78,-1197.0812 292.8616,-1191.6245 282.3593,-1190.2269 283.78,-1197.0812"/>
+</g>
+<!-- proc~str_a_r4p&#45;&gt;proc~str_r4p -->
+<g id="proc~~usage~3~~CallsGraph_edge5" class="edge">
+<title>proc~str_a_r4p&#45;&gt;proc~str_r4p</title>
+<path fill="none" stroke="#000000" d="M252.4532,-1113.9987C262.1296,-1109.9877 273.0458,-1105.4629 283.2362,-1101.2389"/>
+<polygon fill="#000000" stroke="#000000" points="284.8222,-1104.3703 292.7198,-1097.3078 282.1418,-1097.9038 284.8222,-1104.3703"/>
+</g>
+<!-- proc~str_a_i1p&#45;&gt;proc~str_i1p -->
+<g id="proc~~usage~3~~CallsGraph_edge6" class="edge">
+<title>proc~str_a_i1p&#45;&gt;proc~str_i1p</title>
+<path fill="none" stroke="#000000" d="M252.4532,-789.9987C262.1296,-785.9877 273.0458,-781.4629 283.2362,-777.2389"/>
+<polygon fill="#000000" stroke="#000000" points="284.8222,-780.3703 292.7198,-773.3078 282.1418,-773.9038 284.8222,-780.3703"/>
+</g>
+<!-- proc~str_a_i8p&#45;&gt;proc~str_i8p -->
+<g id="proc~~usage~3~~CallsGraph_edge7" class="edge">
+<title>proc~str_a_i8p&#45;&gt;proc~str_i8p</title>
+<path fill="none" stroke="#000000" d="M251.153,-1033.9645C261.131,-1029.6217 272.5558,-1024.6493 283.1931,-1020.0196"/>
+<polygon fill="#000000" stroke="#000000" points="284.9042,-1023.0921 292.6766,-1015.8921 282.1106,-1016.6736 284.9042,-1023.0921"/>
+</g>
+<!-- proc~str_r8p&#45;&gt;proc~compact_real_string -->
+<g id="proc~~usage~3~~CallsGraph_edge8" class="edge">
+<title>proc~str_r8p&#45;&gt;proc~compact_real_string</title>
+<path fill="none" stroke="#000000" d="M326.9983,-694.0311C346.3407,-727.2836 400.7128,-820.7572 425.2337,-862.9124"/>
+<polygon fill="#000000" stroke="#000000" points="422.3363,-864.8924 430.3898,-871.7766 428.3871,-861.3727 422.3363,-864.8924"/>
+</g>
+</g>
+</svg>
+</div>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="560pt" height="32pt"
+ viewBox="0.00 0.00 559.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 555.5,-28 555.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,0 64,0 64,-24"/>
+<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,0 136,0 136,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="209.5,-24 154.5,-24 154.5,0 209.5,0 209.5,-24"/>
+<text text-anchor="middle" x="182" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="364,-24 228,-24 228,0 364,0 364,-24"/>
+<text text-anchor="middle" x="296" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="436,-24 382,-24 382,0 436,0 436,-24"/>
+<text text-anchor="middle" x="409" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="#000000" points="551.5,-24 454.5,-24 454.5,0 551.5,0 551.5,-24"/>
+<text text-anchor="middle" x="503" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+     
+     
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/usage%7E3.html#src">usage</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">usage</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pref</span><span class="p">,</span> <span class="n">markdown</span><span class="p">)</span>
+  <span class="c">!&lt; Get correct usage.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">command_line_argument</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>       <span class="c">!&lt; CLAs group data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">pref</span>       <span class="c">!&lt; Prefixing string.</span>
+  <span class="kt">logical</span><span class="p">,</span>      <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">markdown</span>   <span class="c">!&lt; Format for markdown</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>            <span class="kd">::</span> <span class="n">usage</span>      <span class="c">!&lt; Usage string.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>            <span class="kd">::</span> <span class="n">prefd</span>      <span class="c">!&lt; Prefixing string.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>            <span class="kd">::</span> <span class="n">switch_</span>    <span class="c">!&lt; Switch name, local variable.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>            <span class="kd">::</span> <span class="n">switch_ab_</span> <span class="c">!&lt; Abbreviated switch name, local variable.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">a</span>          <span class="c">!&lt; Counter.</span>
+  <span class="kt">logical</span>                                  <span class="kd">::</span> <span class="n">markdownd</span>  <span class="c">!&lt; Format for markdown</span>
+  <span class="kt">integer</span>                                  <span class="kd">::</span> <span class="n">indent</span>     <span class="c">!&lt; how many spaces to indent</span>
+
+  <span class="n">markdownd</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">markdown</span><span class="p">))</span> <span class="n">markdownd</span> <span class="o">=</span> <span class="n">markdown</span>
+  <span class="n">indent</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="n">switch_</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">)),</span> <span class="n">color_fg</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">help_color</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">help_style</span><span class="p">)</span>
+  <span class="n">switch_ab_</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">)),</span> <span class="n">color_fg</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">help_color</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">help_style</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_hidden</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">act</span><span class="o">==</span><span class="n">action_store</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_positional</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">nargs</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+          <span class="k">select case</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">nargs</span><span class="p">)</span>
+          <span class="k">case</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+            <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39; value#1 [value#2...]&#39;</span>
+          <span class="k">case</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+            <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39; [value#1 value#2...]&#39;</span>
+          <span class="k">case </span><span class="n">default</span>
+            <span class="k">do </span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cton</span><span class="p">(</span><span class="n">str</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">nargs</span><span class="p">)),</span><span class="n">knd</span><span class="o">=</span><span class="mi">1_I4P</span><span class="p">)</span>
+              <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39; value#&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.))</span>
+            <span class="n">enddo</span>
+          <span class="n">endselect</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">/=</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">)))</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="n">usage</span><span class="o">//</span><span class="s1">&#39;`, `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">))</span><span class="o">//</span><span class="n">usage</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+            <span class="k">else</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span><span class="o">//</span><span class="n">usage</span><span class="o">//</span><span class="s1">&#39;, &#39;</span><span class="o">//</span><span class="n">switch_ab_</span><span class="o">//</span><span class="n">usage</span>
+            <span class="n">endif</span>
+          <span class="k">else</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="n">usage</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+            <span class="k">else</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span><span class="o">//</span><span class="n">usage</span>
+            <span class="n">endif</span>
+          <span class="n">endif</span>
+        <span class="k">else</span>
+<span class="k">          if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">/=</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">)))</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39; value`, `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39; value&#39;</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+            <span class="k">else</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span><span class="o">//</span><span class="s1">&#39; value, &#39;</span><span class="o">//</span><span class="n">switch_ab_</span><span class="o">//</span><span class="s1">&#39; value&#39;</span>
+            <span class="n">endif</span>
+          <span class="k">else</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39; value`&#39;</span>
+            <span class="k">else</span>
+<span class="k">              </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span><span class="o">//</span><span class="s1">&#39; value&#39;</span>
+            <span class="n">endif</span>
+          <span class="n">endif</span>
+        <span class="n">endif</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;  value&#39;</span>
+      <span class="n">endif</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39;, value in: `&#39;</span><span class="o">//</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+      <span class="n">endif</span>
+    <span class="n">elseif</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">act</span><span class="o">==</span><span class="n">action_store_star</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;  [value]&#39;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39;, value in: (&#39;</span><span class="o">//</span><span class="n">self</span><span class="p">%</span><span class="n">choices</span><span class="o">//</span><span class="s1">&#39;)&#39;</span>
+      <span class="n">endif</span>
+    <span class="k">else</span>
+<span class="k">      if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">/=</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">)))</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;`, `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch_ab</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span><span class="o">//</span><span class="s1">&#39;, &#39;</span><span class="o">//</span><span class="n">switch_ab_</span>
+        <span class="n">endif</span>
+      <span class="k">else</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;* `&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">switch</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;`&#39;</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span><span class="o">//</span><span class="n">switch_</span>
+        <span class="n">endif</span>
+      <span class="n">endif</span>
+    <span class="n">endif</span>
+    <span class="n">prefd</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">pref</span><span class="p">))</span> <span class="n">prefd</span> <span class="o">=</span> <span class="n">pref</span>
+    <span class="n">usage</span> <span class="o">=</span> <span class="n">prefd</span><span class="o">//</span><span class="n">usage</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">is_positional</span><span class="p">)</span> <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">indent</span><span class="p">)</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">position</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.))</span><span class="o">//</span><span class="p">&amp;</span>
+      <span class="s1">&#39;-th argument&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">envvar</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">envvar</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;environment variable name &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">envvar</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+      <span class="n">endif</span>
+    <span class="n">endif</span>
+    <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">self</span><span class="p">%</span><span class="n">is_required</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+          <span class="c">! two spaces make a line break in markdown.</span>
+          <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39;  &#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;default value &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">replace_all</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span><span class="p">,</span><span class="n">ARGS_SEP</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;default value &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">replace_all</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">def</span><span class="p">,</span><span class="n">ARGS_SEP</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+        <span class="n">endif</span>
+      <span class="n">endif</span>
+    <span class="n">endif</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">m_exclude</span><span class="o">/=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;mutually exclude &quot;&#39;</span><span class="o">//</span><span class="n">self</span><span class="p">%</span><span class="n">m_exclude</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">markdownd</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="s1">&#39;  &#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">help</span><span class="p">))</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">help_markdown</span><span class="o">/=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">help_markdown</span><span class="p">))</span>
+      <span class="n">endif</span>
+    <span class="k">else</span>
+<span class="k">      </span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">prefd</span><span class="o">//</span><span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">help</span><span class="p">))</span>
+    <span class="n">endif</span>
+  <span class="k">else</span>
+<span class="k">    </span><span class="n">usage</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+  <span class="n">endif</span>
+  <span class="n">endfunction</span> <span class="n">usage</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-1">All Procedures</a></h3></div>
+  <div id="allprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/add.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E2.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E3.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add%7E4.html">add</a>
+      
+      <a class="list-group-item" href="../proc/add_euler.html">add_euler</a>
+      
+      <a class="list-group-item" href="../proc/add_group.html">add_group</a>
+      
+      <a class="list-group-item" href="../proc/array.html">array</a>
+      
+      <a class="list-group-item" href="../proc/array%7E2.html">array</a>
+      
+      <a class="list-group-item" href="../proc/assign_object.html">assign_object</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i1p.html">bctoi_I1P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i2p.html">bctoi_I2P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i4p.html">bctoi_I4P</a>
+      
+      <a class="list-group-item" href="../proc/bctoi_i8p.html">bctoi_I8P</a>
+      
+      <a class="list-group-item" href="../interface/bcton.html">bcton</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r16p.html">bctor_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r4p.html">bctor_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bctor_r8p.html">bctor_R8P</a>
+      
+      <a class="list-group-item" href="../interface/bit_size.html">bit_size</a>
+      
+      <a class="list-group-item" href="../interface/bit_size%7E2.html">bit_size</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_chr.html">bit_size_chr</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r16p.html">bit_size_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r4p.html">bit_size_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bit_size_r8p.html">bit_size_R8P</a>
+      
+      <a class="list-group-item" href="../interface/bstr.html">bstr</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i1p.html">bstr_I1P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i2p.html">bstr_I2P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i4p.html">bstr_I4P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_i8p.html">bstr_I8P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r16p.html">bstr_R16P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r4p.html">bstr_R4P</a>
+      
+      <a class="list-group-item" href="../proc/bstr_r8p.html">bstr_R8P</a>
+      
+      <a class="list-group-item" href="../interface/byte_size.html">byte_size</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_chr.html">byte_size_chr</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i1p.html">byte_size_I1P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i2p.html">byte_size_I2P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i4p.html">byte_size_I4P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_i8p.html">byte_size_I8P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r16p.html">byte_size_R16P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r4p.html">byte_size_R4P</a>
+      
+      <a class="list-group-item" href="../proc/byte_size_r8p.html">byte_size_R8P</a>
+      
+      <a class="list-group-item" href="../proc/check.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check%7E2.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check%7E3.html">check</a>
+      
+      <a class="list-group-item" href="../proc/check_action_consistency.html">check_action_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_choices.html">check_choices</a>
+      
+      <a class="list-group-item" href="../proc/check_endian.html">check_endian</a>
+      
+      <a class="list-group-item" href="../proc/check_envvar_consistency.html">check_envvar_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_list_size.html">check_list_size</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclude_consistency.html">check_m_exclude_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclusive.html">check_m_exclusive</a>
+      
+      <a class="list-group-item" href="../proc/check_m_exclusive%7E2.html">check_m_exclusive</a>
+      
+      <a class="list-group-item" href="../proc/check_named_consistency.html">check_named_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_optional_consistency.html">check_optional_consistency</a>
+      
+      <a class="list-group-item" href="../proc/check_positional_consistency.html">check_positional_consistency</a>
+      
+      <a class="list-group-item" href="../proc/cla_assign_cla.html">cla_assign_cla</a>
+      
+      <a class="list-group-item" href="../proc/clasg_assign_clasg.html">clasg_assign_clasg</a>
+      
+      <a class="list-group-item" href="../proc/cli_assign_cli.html">cli_assign_cli</a>
+      
+      <a class="list-group-item" href="../proc/color_index.html">color_index</a>
+      
+      <a class="list-group-item" href="../proc/colorize.html">colorize</a>
+      
+      <a class="list-group-item" href="../proc/colors_samples.html">colors_samples</a>
+      
+      <a class="list-group-item" href="../proc/compact_real_string.html">compact_real_string</a>
+      
+      <a class="list-group-item" href="../proc/compute.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E2.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E3.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E4.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E5.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E6.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute%7E7.html">compute</a>
+      
+      <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
+      
+      <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_p23.html">compute_p23</a>
+      
+      <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
+      
+      <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves_up23.html">compute_waves_up23</a>
+      
+      <a class="list-group-item" href="../proc/cons_assign_cons.html">cons_assign_cons</a>
+      
+      <a class="list-group-item" href="../proc/cons_divide_real.html">cons_divide_real</a>
+      
+      <a class="list-group-item" href="../proc/cons_multiply_cons.html">cons_multiply_cons</a>
+      
+      <a class="list-group-item" href="../proc/cons_multiply_real.html">cons_multiply_real</a>
+      
+      <a class="list-group-item" href="../interface/conservative_compressible.html">conservative_compressible</a>
+      
+      <a class="list-group-item" href="../proc/conservative_compressible_instance.html">conservative_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/conservative_compressible_pointer.html">conservative_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../proc/conservative_to_primitive_compressible.html">conservative_to_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../interface/count.html">count</a>
+      
+      <a class="list-group-item" href="../proc/count_substring.html">count_substring</a>
+      
+      <a class="list-group-item" href="../proc/cp.html">cp</a>
+      
+      <a class="list-group-item" href="../proc/create.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E2.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E3.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E4.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E5.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E6.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E7.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E8.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E9.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E10.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E11.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E12.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E13.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create%7E14.html">create</a>
+      
+      <a class="list-group-item" href="../proc/create_.html">create_</a>
+      
+      <a class="list-group-item" href="../proc/create_alpha_object.html">create_alpha_object</a>
+      
+      <a class="list-group-item" href="../proc/create_alpha_object_constructor.html">create_alpha_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_base_object_constructor.html">create_base_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_beta_object.html">create_beta_object</a>
+      
+      <a class="list-group-item" href="../proc/create_beta_object_constructor.html">create_beta_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E2.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E3.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E4.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E5.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_constructor%7E6.html">create_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolations_object.html">create_interpolations_object</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolations_object_constructor.html">create_interpolations_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator.html">create_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator_object.html">create_interpolator_object</a>
+      
+      <a class="list-group-item" href="../proc/create_interpolator_object_constructor.html">create_interpolator_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_kappa_object.html">create_kappa_object</a>
+      
+      <a class="list-group-item" href="../proc/create_kappa_object_constructor.html">create_kappa_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/create_weights_object.html">create_weights_object</a>
+      
+      <a class="list-group-item" href="../proc/create_weights_object_constructor.html">create_weights_object_constructor</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i1p.html">ctoi_I1P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i2p.html">ctoi_I2P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i4p.html">ctoi_I4P</a>
+      
+      <a class="list-group-item" href="../proc/ctoi_i8p.html">ctoi_I8P</a>
+      
+      <a class="list-group-item" href="../interface/cton.html">cton</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r16p.html">ctor_R16P</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r4p.html">ctor_R4P</a>
+      
+      <a class="list-group-item" href="../proc/ctor_r8p.html">ctor_R8P</a>
+      
+      <a class="list-group-item" href="../proc/cv.html">cv</a>
+      
+      <a class="list-group-item" href="../proc/density.html">density</a>
+      
+      <a class="list-group-item" href="../proc/description.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E2.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E5.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E6.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E7.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E8.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E9.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E10.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E11.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E12.html">description</a>
+      
+      <a class="list-group-item" href="../proc/destroy.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E2.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E3.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E4.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E5.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E6.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E7.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E8.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E9.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E10.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E11.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E12.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E13.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E14.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E15.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E16.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E17.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy%7E18.html">destroy</a>
+      
+      <a class="list-group-item" href="../proc/destroy_.html">destroy_</a>
+      
+      <a class="list-group-item" href="../proc/deuler_dt.html">dEuler_dt</a>
+      
+      <a class="list-group-item" href="../interface/digit.html">digit</a>
+      
+      <a class="list-group-item" href="../proc/digit_i1.html">digit_I1</a>
+      
+      <a class="list-group-item" href="../proc/digit_i2.html">digit_I2</a>
+      
+      <a class="list-group-item" href="../proc/digit_i4.html">digit_I4</a>
+      
+      <a class="list-group-item" href="../proc/digit_i8.html">digit_I8</a>
+      
+      <a class="list-group-item" href="../proc/energy.html">energy</a>
+      
+      <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
+      
+      <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
+      
+      <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/errored.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/errored%7E2.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/errored%7E3.html">errored</a>
+      
+      <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
+      
+      <a class="list-group-item" href="../proc/euler_assign_real.html">euler_assign_real</a>
+      
+      <a class="list-group-item" href="../proc/euler_local_error.html">euler_local_error</a>
+      
+      <a class="list-group-item" href="../proc/euler_multiply_euler.html">euler_multiply_euler</a>
+      
+      <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
+      
+      <a class="list-group-item" href="../proc/finalize.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/finalize%7E2.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/finalize%7E3.html">finalize</a>
+      
+      <a class="list-group-item" href="../proc/free.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free%7E2.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free%7E3.html">free</a>
+      
+      <a class="list-group-item" href="../proc/free_object.html">free_object</a>
+      
+      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      
+      <a class="list-group-item" href="../proc/get_args_from_invocation.html">get_args_from_invocation</a>
+      
+      <a class="list-group-item" href="../proc/get_args_from_string.html">get_args_from_string</a>
+      
+      <a class="list-group-item" href="../proc/get_cla.html">get_cla</a>
+      
+      <a class="list-group-item" href="../proc/get_cla%7E2.html">get_cla</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_from_buffer.html">get_cla_from_buffer</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list.html">get_cla_list</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list%7E2.html">get_cla_list</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_from_buffer.html">get_cla_list_from_buffer</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_char.html">get_cla_list_varying_char</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_char%7E2.html">get_cla_list_varying_char</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i1p.html">get_cla_list_varying_I1P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i1p%7E2.html">get_cla_list_varying_I1P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i2p.html">get_cla_list_varying_I2P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i2p%7E2.html">get_cla_list_varying_I2P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i4p.html">get_cla_list_varying_I4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i4p%7E2.html">get_cla_list_varying_I4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i8p.html">get_cla_list_varying_I8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_i8p%7E2.html">get_cla_list_varying_I8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_logical.html">get_cla_list_varying_logical</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_logical%7E2.html">get_cla_list_varying_logical</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r16p.html">get_cla_list_varying_R16P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r16p%7E2.html">get_cla_list_varying_R16P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r4p.html">get_cla_list_varying_R4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r4p%7E2.html">get_cla_list_varying_R4P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r8p.html">get_cla_list_varying_R8P</a>
+      
+      <a class="list-group-item" href="../proc/get_cla_list_varying_r8p%7E2.html">get_cla_list_varying_R8P</a>
+      
+      <a class="list-group-item" href="../proc/get_clasg_indexes.html">get_clasg_indexes</a>
+      
+      <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
+      
+      <a class="list-group-item" href="../proc/init.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E2.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E3.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E4.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E5.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E6.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E7.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E8.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init%7E9.html">init</a>
+      
+      <a class="list-group-item" href="../proc/initialize.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E2.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E3.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E4.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E5.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/integrate.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E2.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E3.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E4.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E5.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E6.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E7.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E8.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/integrate%7E9.html">integrate</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_debug.html">interpolate_debug</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_debug%7E2.html">interpolate_debug</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_standard.html">interpolate_standard</a>
+      
+      <a class="list-group-item" href="../proc/interpolate_standard%7E2.html">interpolate_standard</a>
+      
+      <a class="list-group-item" href="../proc/is_admissible.html">is_admissible</a>
+      
+      <a class="list-group-item" href="../proc/is_called_group.html">is_called_group</a>
+      
+      <a class="list-group-item" href="../proc/is_defined.html">is_defined</a>
+      
+      <a class="list-group-item" href="../proc/is_defined%7E2.html">is_defined</a>
+      
+      <a class="list-group-item" href="../proc/is_defined_group.html">is_defined_group</a>
+      
+      <a class="list-group-item" href="../proc/is_parsed.html">is_parsed</a>
+      
+      <a class="list-group-item" href="../proc/is_passed.html">is_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_passed%7E2.html">is_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_required_passed.html">is_required_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_required_passed%7E2.html">is_required_passed</a>
+      
+      <a class="list-group-item" href="../proc/is_supported.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E2.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E3.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E4.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E5.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E6.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E7.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E8.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/is_supported%7E9.html">is_supported</a>
+      
+      <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
+      
+      <a class="list-group-item" href="../proc/max_stages.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages%7E2.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages%7E3.html">max_stages</a>
+      
+      <a class="list-group-item" href="../proc/max_stages_steps.html">max_stages_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E2.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E3.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E4.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/max_steps%7E5.html">max_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_stages.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages%7E2.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages%7E3.html">min_stages</a>
+      
+      <a class="list-group-item" href="../proc/min_stages_steps.html">min_stages_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E2.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E3.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E4.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/min_steps%7E5.html">min_steps</a>
+      
+      <a class="list-group-item" href="../proc/momentum.html">momentum</a>
+      
+      <a class="list-group-item" href="../proc/negative.html">negative</a>
+      
+      <a class="list-group-item" href="../proc/negative%7E2.html">negative</a>
+      
+      <a class="list-group-item" href="../proc/new_dt.html">new_Dt</a>
+      
+      <a class="list-group-item" href="../proc/output.html">output</a>
+      
+      <a class="list-group-item" href="../proc/parse.html">parse</a>
+      
+      <a class="list-group-item" href="../proc/parse%7E2.html">parse</a>
+      
+      <a class="list-group-item" href="../proc/parse_command_line_interface.html">parse_command_line_interface</a>
+      
+      <a class="list-group-item" href="../proc/penf_init.html">penf_init</a>
+      
+      <a class="list-group-item" href="../proc/penf_print.html">penf_print</a>
+      
+      <a class="list-group-item" href="../proc/positive.html">positive</a>
+      
+      <a class="list-group-item" href="../proc/positive%7E2.html">positive</a>
+      
+      <a class="list-group-item" href="../proc/pressure.html">pressure</a>
+      
+      <a class="list-group-item" href="../proc/pressure%7E2.html">pressure</a>
+      
+      <a class="list-group-item" href="../proc/prim_assign_prim.html">prim_assign_prim</a>
+      
+      <a class="list-group-item" href="../proc/prim_divide_real.html">prim_divide_real</a>
+      
+      <a class="list-group-item" href="../proc/prim_multiply_prim.html">prim_multiply_prim</a>
+      
+      <a class="list-group-item" href="../proc/prim_multiply_real.html">prim_multiply_real</a>
+      
+      <a class="list-group-item" href="../interface/primitive_compressible.html">primitive_compressible</a>
+      
+      <a class="list-group-item" href="../proc/primitive_compressible_instance.html">primitive_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/primitive_compressible_pointer.html">primitive_compressible_pointer</a>
+      
+      <a class="list-group-item" href="../proc/primitive_to_conservative_compressible.html">primitive_to_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../proc/print_error_message.html">print_error_message</a>
+      
+      <a class="list-group-item" href="../proc/print_usage.html">print_usage</a>
+      
+      <a class="list-group-item" href="../proc/print_version.html">print_version</a>
+      
+      <a class="list-group-item" href="../proc/r.html">R</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_m_exclude.html">raise_error_m_exclude</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_m_exclude%7E2.html">raise_error_m_exclude</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_nargs_insufficient.html">raise_error_nargs_insufficient</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_switch_unknown.html">raise_error_switch_unknown</a>
+      
+      <a class="list-group-item" href="../proc/raise_error_value_missing.html">raise_error_value_missing</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_cons.html">real_multiply_cons</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_euler.html">real_multiply_euler</a>
+      
+      <a class="list-group-item" href="../proc/real_multiply_prim.html">real_multiply_prim</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_characteristic.html">reconstruct_interfaces_characteristic</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_conservative.html">reconstruct_interfaces_conservative</a>
+      
+      <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
+      
+      <a class="list-group-item" href="../proc/replace.html">replace</a>
+      
+      <a class="list-group-item" href="../proc/replace_all.html">replace_all</a>
+      
+      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
+      
+      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
+      
+      <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
+      
+      <a class="list-group-item" href="../proc/sanitize_defaults.html">sanitize_defaults</a>
+      
+      <a class="list-group-item" href="../proc/sanitize_defaults%7E2.html">sanitize_defaults</a>
+      
+      <a class="list-group-item" href="../proc/save_man_page.html">save_man_page</a>
+      
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      
+      <a class="list-group-item" href="../proc/save_usage_to_markdown.html">save_usage_to_markdown</a>
+      
+      <a class="list-group-item" href="../proc/set_mutually_exclusive_groups.html">set_mutually_exclusive_groups</a>
+      
+      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      
+      <a class="list-group-item" href="../proc/signature.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/signature%7E2.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/signature%7E3.html">signature</a>
+      
+      <a class="list-group-item" href="../proc/smoothness_indicators.html">smoothness_indicators</a>
+      
+      <a class="list-group-item" href="../proc/solve.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
+      
+      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
+      
+      <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
+      
+      <a class="list-group-item" href="../interface/str.html">str</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i1p.html">str_a_I1P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i2p.html">str_a_I2P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i4p.html">str_a_I4P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_i8p.html">str_a_I8P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r16p.html">str_a_R16P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r4p.html">str_a_R4P</a>
+      
+      <a class="list-group-item" href="../proc/str_a_r8p.html">str_a_R8P</a>
+      
+      <a class="list-group-item" href="../proc/str_bol.html">str_bol</a>
+      
+      <a class="list-group-item" href="../proc/str_i1p.html">str_I1P</a>
+      
+      <a class="list-group-item" href="../proc/str_i2p.html">str_I2P</a>
+      
+      <a class="list-group-item" href="../proc/str_i4p.html">str_I4P</a>
+      
+      <a class="list-group-item" href="../proc/str_i8p.html">str_I8P</a>
+      
+      <a class="list-group-item" href="../proc/str_r16p.html">str_R16P</a>
+      
+      <a class="list-group-item" href="../proc/str_r4p.html">str_R4P</a>
+      
+      <a class="list-group-item" href="../proc/str_r8p.html">str_R8P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i1p.html">strf_I1P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i2p.html">strf_I2P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i4p.html">strf_I4P</a>
+      
+      <a class="list-group-item" href="../proc/strf_i8p.html">strf_I8P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r16p.html">strf_R16P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r4p.html">strf_R4P</a>
+      
+      <a class="list-group-item" href="../proc/strf_r8p.html">strf_R8P</a>
+      
+      <a class="list-group-item" href="../interface/strz.html">strz</a>
+      
+      <a class="list-group-item" href="../proc/strz_i1p.html">strz_I1P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i2p.html">strz_I2P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i4p.html">strz_I4P</a>
+      
+      <a class="list-group-item" href="../proc/strz_i8p.html">strz_I8P</a>
+      
+      <a class="list-group-item" href="../proc/style_index.html">style_index</a>
+      
+      <a class="list-group-item" href="../proc/styles_samples.html">styles_samples</a>
+      
+      <a class="list-group-item" href="../proc/sub.html">sub</a>
+      
+      <a class="list-group-item" href="../proc/sub%7E2.html">sub</a>
+      
+      <a class="list-group-item" href="../proc/sub_euler.html">sub_euler</a>
+      
+      <a class="list-group-item" href="../proc/tau.html">tau</a>
+      
+      <a class="list-group-item" href="../proc/temperature.html">temperature</a>
+      
+      <a class="list-group-item" href="../proc/tokenize.html">tokenize</a>
+      
+      <a class="list-group-item" href="../proc/tokenize%7E2.html">tokenize</a>
+      
+      <a class="list-group-item" href="../proc/unique.html">unique</a>
+      
+      <a class="list-group-item" href="../proc/update_previous.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/update_previous%7E2.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/update_previous%7E3.html">update_previous</a>
+      
+      <a class="list-group-item" href="../proc/upper.html">upper</a>
+      
+      <a class="list-group-item" href="../proc/upper_case.html">upper_case</a>
+      
+      <a class="list-group-item" href="../proc/usage.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/usage%7E2.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/usage%7E3.html">usage</a>
+      
+      <a class="list-group-item" href="../proc/used_registers.html">used_registers</a>
+      
+      <a class="list-group-item" href="../proc/velocity.html">velocity</a>
+      
+      <a class="list-group-item" href="../proc/weno_exp.html">weno_exp</a>
+      
+      <a class="list-group-item" href="../proc/weno_odd.html">weno_odd</a>
+      
+      <a class="list-group-item" href="../proc/wenoof_create.html">wenoof_create</a>
+      
+      <a class="list-group-item" href="../proc/wstrip.html">wstrip</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-17 15:51  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
