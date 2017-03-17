@@ -158,21 +158,42 @@
 </ul>
 <h4 id="a-taste-of-foreseer"><a class="toclink" href="#a-taste-of-foreseer">A taste of FORESEER</a></h4>
 <div class="codehilite"><pre><span></span><span class="k">use </span><span class="n">foreseer</span>
-<span class="k">type</span><span class="p">(</span><span class="n">riemann_solver</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rsolver</span>
-<span class="k">call </span><span class="n">rsolver</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;hllc&#39;</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s1">&#39;conservative&#39;</span><span class="p">)</span>
-<span class="k">call </span><span class="n">rsolver</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">U_left</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">U_right</span><span class="p">,</span> <span class="k">interface</span><span class="o">=</span><span class="n">U_interface</span><span class="p">)</span>
+<span class="k">type</span><span class="p">(</span><span class="n">eos_compressible</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">eos</span>            <span class="c">! Equation of state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">state_left</span>     <span class="c">! Left state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">state_right</span>    <span class="c">! Right state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">fluxes</span>         <span class="c">! Conservative fluxes.</span>
+<span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_llf</span><span class="p">)</span> <span class="kd">::</span> <span class="n">riemann_solver</span> <span class="c">! Riemman Problem solver.</span>
+
+<span class="c">! air</span>
+<span class="n">eos</span> <span class="o">=</span> <span class="n">eos_compressible</span><span class="p">(</span><span class="n">cp</span><span class="o">=</span><span class="mi">104</span><span class="mf">0.004_R8P</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">74</span><span class="mf">2.86_R8P</span><span class="p">)</span>
+
+<span class="c">! SOD&#39;s Riemann Problem</span>
+<span class="n">state_left</span>  <span class="o">=</span> <span class="n">conservative_compressible</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">,</span>                          <span class="p">&amp;</span>
+                                        <span class="n">energy</span><span class="o">=</span><span class="mf">1._R8P</span><span class="o">*</span><span class="n">eos</span><span class="p">%</span><span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                                 <span class="n">pressure</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">))</span>
+<span class="n">state_right</span> <span class="o">=</span> <span class="n">conservative_compressible</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="p">,</span>                             <span class="p">&amp;</span>
+                                        <span class="n">energy</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="o">*</span><span class="n">eos</span><span class="p">%</span><span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                                    <span class="n">pressure</span><span class="o">=</span><span class="mf">0.1_R8P</span><span class="p">))</span>
+
+<span class="c">! solve Riemann Problem</span>
+<span class="k">call </span><span class="n">riemann_solver</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span>               <span class="p">&amp;</span>
+                          <span class="n">eos_right</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">ex</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
+
+<span class="c">! print results</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Fluxes at interface:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>To be completed.</p>
 <h4 id="issues"><a class="toclink" href="#issues">Issues</a></h4>
 <p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FORESEER.svg"></a>
 <a href="https://waffle.io/szaghi/FORESEER"><img alt="Ready in backlog" src="https://badge.waffle.io/szaghi/FORESEER.png?label=ready&amp;title=Ready"></a>
 <a href="https://waffle.io/szaghi/FORESEER"><img alt="In Progress" src="https://badge.waffle.io/szaghi/FORESEER.png?label=in%20progress&amp;title=In%20Progress"></a>
 <a href="https://waffle.io/szaghi/FORESEER"><img alt="Open bugs" src="https://badge.waffle.io/szaghi/FORESEER.png?label=bug&amp;title=Open%20Bugs"></a></p>
 <h4 id="compiler-support"><a class="toclink" href="#compiler-support">Compiler Support</a></h4>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v6.1.1+-brightgreen.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v16.1+-brightgreen.svg"></a>
+<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v6.3.1+-brightgreen.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v17.0.1+-brightgreen.svg"></a>
 <a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg"></a>
 <a href=""><img alt="Compiler" src="https://img.shields.io/badge/g95-not%20tested-yellow.svg"></a>
 <a href=""><img alt="Compiler" src="https://img.shields.io/badge/NAG-not%20tested-yellow.svg"></a>
@@ -193,11 +214,11 @@
 <p>Any feature request is welcome.</p>
 <p>Go to <a href="#top">Top</a></p>
 <h2 id="copyrights"><a class="toclink" href="#copyrights">Copyrights</a></h2>
-<p>HASTY is a Free and Open Source Software (FOSS), it is distributed under a <strong>very permissive</strong> multi-licensing system: selectable licenses are <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>, <a href="http://opensource.org/licenses/BSD-2-Clause">BSD2-Clause</a>, <a href="http://opensource.org/licenses/BSD-3-Clause">BSD3-Clause</a> and <a href="http://opensource.org/licenses/MIT">MIT</a>, feel free to select the license that best matches your workflow.</p>
+<p>FORESEER is a Free and Open Source Software (FOSS), it is distributed under a <strong>very permissive</strong> multi-licensing system: selectable licenses are <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>, <a href="http://opensource.org/licenses/BSD-2-Clause">BSD2-Clause</a>, <a href="http://opensource.org/licenses/BSD-3-Clause">BSD3-Clause</a> and <a href="http://opensource.org/licenses/MIT">MIT</a>, feel free to select the license that best matches your workflow.</p>
 <blockquote>
-<p>Anyone is interest to use, to develop or to contribute to HASTY is welcome.</p>
+<p>Anyone is interest to use, to develop or to contribute to FORESEER is welcome.</p>
 </blockquote>
-<p>More details can be found on <a href="https://github.com/szaghi/HASTY/wiki/Copyrights">wiki</a>.</p>
+<p>More details can be found on <a href="https://github.com/szaghi/FORESEER/wiki/Copyrights">wiki</a>.</p>
 <p>Go to <a href="#top">Top</a></p>
 <h2 id="download"><a class="toclink" href="#download">Download</a></h2>
 <p>To be written.</p>
@@ -1543,7 +1564,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-17 15:36  
+             on 2017-03-17 15:58  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
