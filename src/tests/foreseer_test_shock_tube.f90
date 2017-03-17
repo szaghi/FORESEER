@@ -812,7 +812,7 @@ contains
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='llf,pvl')
-   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-1',                &
+   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
      choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
              'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
              'weno-prim-1,weno-prim-3,weno-prim-5,weno-prim-7,weno-prim-9,weno-prim-11,weno-prim-13,weno-prim-15,weno-prim-17')
