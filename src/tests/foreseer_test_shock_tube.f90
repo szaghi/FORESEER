@@ -7,7 +7,8 @@ use, intrinsic :: iso_fortran_env, only : stderr=>error_unit
 use foreseer, only : conservative_object, conservative_compressible, primitive_compressible,         &
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_object, eos_compressible,                                                   &
-                     riemann_solver_object, riemann_solver_compressible_llf, riemann_solver_compressible_pvl
+                     riemann_solver_object, riemann_solver_compressible_hllc,                        &
+                     riemann_solver_compressible_llf, riemann_solver_compressible_pvl
 use penf, only : I4P, R8P
 use foodie, only : integrand
 use vecfor, only : ex, vector
@@ -109,6 +110,7 @@ type, extends(integrand) :: euler_1d
       procedure, pass(self), private :: reconstruct_interfaces_characteristic !< Reconstruct (charc.) interface states.
       procedure, pass(self), private :: reconstruct_interfaces_conservative   !< Reconstruct (cons.) interface states.
       procedure, pass(self), private :: reconstruct_interfaces_primitive      !< Reconstruct (prim.) interface states.
+      procedure, pass(self), private :: riemann_solver_hllc                   !< HLLC Riemann Problem solver.
       procedure, pass(self), private :: riemann_solver_llf                    !< LLF Riemann Problem solver.
       procedure, pass(self), private :: riemann_solver_pvl                    !< PVL Riemann Problem solver.
 endtype euler_1d
@@ -168,7 +170,7 @@ contains
    self%BC_R = BC_R
 
    if (self%weno_order>1) call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=self%interpolator)
-   weno_variables_ = 'llf'
+   weno_variables_ = 'characteristic'
    if (present(weno_variables)) weno_variables_ = trim(adjustl(weno_variables))
    select case(weno_variables_)
    case('characteristic')
@@ -185,6 +187,8 @@ contains
    riemann_solver_scheme_ = 'llf'
    if (present(riemann_solver_scheme)) riemann_solver_scheme_ = trim(adjustl(riemann_solver_scheme))
    select case(riemann_solver_scheme_)
+   case('hllc')
+      self%riemann_solver => riemann_solver_hllc
    case('llf')
       self%riemann_solver => riemann_solver_llf
    case('pvl')
@@ -682,8 +686,23 @@ contains
    endselect
    endsubroutine reconstruct_interfaces_primitive
 
+   subroutine riemann_solver_hllc(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   !< Riemann Problem solver by means of HLLC algorithm.
+   class(euler_1d),                  intent(in)    :: self           !< Euler field.
+   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
+   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
+   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
+   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
+   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
+   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
+   type(riemann_solver_compressible_hllc)          :: riemann_solver !< Riemann solver.
+
+   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
+                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
+   endsubroutine riemann_solver_hllc
+
    subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver.
+   !< Riemann Problem solver by means of LLF algorithm.
    class(euler_1d),                  intent(in)    :: self           !< Euler field.
    class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
    class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
@@ -698,7 +717,7 @@ contains
    endsubroutine riemann_solver_llf
 
    subroutine riemann_solver_pvl(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver.
+   !< Riemann Problem solver by means of PVL algorithm.
    class(euler_1d),                  intent(in)    :: self           !< Euler field.
    class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
    class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
@@ -751,7 +770,10 @@ logical                          :: time_serie            !< Flag for activating
 logical                          :: verbose               !< Flag for activating more verbose output.
 
 call initialize
-call save_time_serie(filename='euler_1D-'//trim(adjustl(s_scheme))//'-'//trim(adjustl(t_scheme))//'.dat', t=t)
+call save_time_serie(filename='euler_1D-'//&
+                              trim(adjustl(s_scheme))//'-'//&
+                              trim(adjustl(t_scheme))//'-'//&
+                              trim(adjustl(riemann_solver_scheme))//'.dat', t=t)
 step = 0
 time_loop: do
    step = step + 1
@@ -812,7 +834,7 @@ contains
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
-   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='llf,pvl')
+   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', choices='hllc,llf,pvl')
    call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
      choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
              'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
