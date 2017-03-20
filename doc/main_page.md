@@ -2,11 +2,6 @@
 project: FORESEER
 src_dir: ../src/lib
 src_dir: ../src/tests
-src_dir: ../src/third_party/FACE/src/lib/
-src_dir: ../src/third_party/FLAP/src/lib/
-src_dir: ../src/third_party/FOODIE/src/lib/
-src_dir: ../src/third_party/PENF/src/lib/
-src_dir: ../src/third_party/WenOOF/src/lib/
 output_dir: html/publish/
 project_github: https://github.com/szaghi/FORESEER
 project_download: https://github.com/szaghi/FORESEER/releases/latest
