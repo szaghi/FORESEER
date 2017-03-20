@@ -138,14 +138,14 @@
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_pvl.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_llf.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html'>foreseer_riemann_solver_compressible_pvl.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html'>foreseer_riemann_solver_compressible_llf.F90</a></li>
   
-     <li><a href='../module/foreseer_riemann_solver_compressible_pvl.html'>foreseer_riemann_solver_compressible_pvl</a></li>
+     <li><a href='../module/foreseer_riemann_solver_compressible_llf.html'>foreseer_riemann_solver_compressible_llf</a></li>
   
      <li class="active">compute_waves</li>
   </ol>
@@ -227,6 +227,8 @@
       
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
+      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
       <a class="list-group-item" href="../proc/compute_waves_up23.html">compute_waves_up23</a>
@@ -301,6 +303,8 @@
       
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
+      <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/momentum.html">momentum</a>
@@ -351,6 +355,8 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
@@ -364,6 +370,8 @@
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -425,7 +433,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E70"></span>class(<a href='../type/riemann_solver_compressible_pvl.html'>riemann_solver_compressible_pvl</a>),</td>
+  <td><span class="anchor" id="variable-self%7E65"></span>class(<a href='../type/riemann_solver_compressible_llf.html'>riemann_solver_compressible_llf</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -440,7 +448,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E10"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E8"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -455,7 +463,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_left%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_left%7E8"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -470,7 +478,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E10"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E8"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -485,7 +493,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_right%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_right%7E8"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -500,7 +508,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E13"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E11"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -591,7 +599,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
    <span class="c">!&lt;</span>
    <span class="c">!&lt; The PVL approximation is based on a 3 waves pattern where the acoustic waves are reduced to a single linear wave instead</span>
    <span class="c">!&lt; of a non linear fan one.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_pvl</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Solver.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_llf</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Solver.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>    <span class="c">!&lt; Equation of state for left state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>  <span class="c">!&lt; Left Riemann state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span>   <span class="c">!&lt; Equation of state for right state.</span>
@@ -599,8 +607,8 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
    <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>      <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">waves</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span>   <span class="c">!&lt; Waves pattern.</span>
 
-   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">compute_waves_</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="p">&amp;</span>
-                            <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">waves</span><span class="o">=</span><span class="n">waves</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">compute_waves</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="p">&amp;</span>
+                                      <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">waves</span><span class="o">=</span><span class="n">waves</span><span class="p">)</span>
    <span class="n">endsubroutine</span> <span class="n">compute_waves</span>
 </pre></div>
 
@@ -645,6 +653,8 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -720,6 +730,8 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
       
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
+      <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/momentum.html">momentum</a>
@@ -770,6 +782,8 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
@@ -783,6 +797,8 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -817,7 +833,7 @@ private pure subroutine compute_waves(self, eos_left, state_left, eos_right, sta
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-20 13:34  
+             on 2017-03-20 16:34  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

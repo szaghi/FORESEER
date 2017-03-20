@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.8% of total for procedures.">11 statements</a>
+	  title=" 0.7% of total for procedures.">11 statements</a>
      </li> 
      
      
@@ -227,6 +227,8 @@
       
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
+      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
       <a class="list-group-item" href="../proc/compute_waves_up23.html">compute_waves_up23</a>
@@ -301,6 +303,8 @@
       
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
+      <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/momentum.html">momentum</a>
@@ -351,6 +355,8 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
@@ -364,6 +370,8 @@
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -402,7 +410,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
 
 
     
-    <p>Riemann Problem solver.</p>
+    <p>Riemann Problem solver by means of LLF algorithm.</p>
     
 
     <h3>Arguments</h3>
@@ -423,7 +431,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E86"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
+  <td><span class="anchor" id="variable-self%7E90"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -438,7 +446,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E16"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E19"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -453,7 +461,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_left%7E15"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-state_left%7E18"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -468,7 +476,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E16"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E19"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -483,7 +491,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_right%7E15"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-state_right%7E18"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -498,7 +506,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E19"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E22"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -513,7 +521,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
   
 <tr>
   
-  <td><span class="anchor" id="variable-fluxes%7E11"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-fluxes%7E13"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -585,7 +593,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>   <span class="k">subroutine </span><span class="n">riemann_solver_llf</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
-   <span class="c">!&lt; Riemann Problem solver.</span>
+   <span class="c">!&lt; Riemann Problem solver by means of LLF algorithm.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">euler_1d</span><span class="p">),</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>           <span class="c">!&lt; Euler field.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_compressible</span><span class="p">),</span>          <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>       <span class="c">!&lt; Equation of state for left state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>     <span class="c">!&lt; Left Riemann state.</span>
@@ -641,6 +649,8 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -716,6 +726,8 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
       
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
+      <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/momentum.html">momentum</a>
@@ -766,6 +778,8 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
@@ -779,6 +793,8 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -813,7 +829,7 @@ private subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, sta
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-20 13:34  
+             on 2017-03-20 16:34  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

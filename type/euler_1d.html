@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>15.1% of total for derived types.</p>Including implementation: 517 statements, 27.9% of total for derived types.">33 statements</a>
+	  title="<p>15.0% of total for derived types.</p>Including implementation: 531 statements, 26.2% of total for derived types.">34 statements</a>
      </li> 
      
      
@@ -231,7 +231,7 @@
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-impose_boundary_conditions">impose_boundary_conditions</a>
       
-      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E8">initialize</a>
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E9">initialize</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-integrand_multiply_integrand">integrand_multiply_integrand</a>
       
@@ -248,6 +248,8 @@
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-reconstruct_interfaces_conservative">reconstruct_interfaces_conservative</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-reconstruct_interfaces_primitive">reconstruct_interfaces_primitive</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-riemann_solver_hllc">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-riemann_solver_llf">riemann_solver_llf</a>
       
@@ -292,6 +294,8 @@
       <a class="list-group-item" href="../type/primitive_compressible.html">primitive_compressible</a>
       
       <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
+      
+      <a class="list-group-item" href="../type/riemann_solver_compressible_hllc.html">riemann_solver_compressible_hllc</a>
       
       <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
       
@@ -591,7 +595,7 @@ $$</p>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-impose_boundary_conditions">impose_boundary_conditions</a>
       
-      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E8">initialize</a>
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E9">initialize</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-integrand_multiply_integrand">integrand_multiply_integrand</a>
       
@@ -608,6 +612,8 @@ $$</p>
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-reconstruct_interfaces_conservative">reconstruct_interfaces_conservative</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-reconstruct_interfaces_primitive">reconstruct_interfaces_primitive</a>
+      
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-riemann_solver_hllc">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-riemann_solver_llf">riemann_solver_llf</a>
       
@@ -1418,7 +1424,7 @@ private pure subroutine <a href='../proc/impose_boundary_conditions.html'>impose
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize%7E8"></span><h3>procedure, public, pass(self) :: <strong>initialize</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize%7E9"></span><h3>procedure, public, pass(self) :: <strong>initialize</strong>  
     
   </h3></div>
   
@@ -1436,7 +1442,7 @@ private pure subroutine <a href='../proc/impose_boundary_conditions.html'>impose
          
     
     <h3>
-private subroutine <a href='../proc/initialize%7E5.html'>initialize</a>(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
+private subroutine <a href='../proc/initialize%7E6.html'>initialize</a>(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
     
     
 	 
@@ -2456,6 +2462,173 @@ private subroutine <a href='../proc/reconstruct_interfaces_primitive.html'>recon
     
 	   
 <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-riemann_solver_hllc"></span><h3>procedure, private, pass(self) :: <strong>riemann_solver_hllc</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>HLLC Riemann Problem solver.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine <a href='../proc/riemann_solver_hllc.html'>riemann_solver_hllc</a>(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Riemann Problem solver by means of HLLC algorithm.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Euler field.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>eos_left</strong></td><td><p>Equation of state for left state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>state_left</strong></td><td><p>Left Riemann state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>eos_right</strong></td><td><p>Equation of state for right state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>state_right</strong></td><td><p>Right Riemann state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(vector),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>normal</strong></td><td><p>Normal (versor) of face where fluxes are given.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fluxes</strong></td><td><p>Fluxes of the Riemann Problem solution.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-riemann_solver_llf"></span><h3>procedure, private, pass(self) :: <strong>riemann_solver_llf</strong>  
     
   </h3></div>
@@ -2487,7 +2660,7 @@ private subroutine <a href='../proc/riemann_solver_llf.html'>riemann_solver_llf<
 
 
 
-<p>Riemann Problem solver.</p>
+<p>Riemann Problem solver by means of LLF algorithm.</p>
     
     <h4>Arguments</h4>
     
@@ -2654,7 +2827,7 @@ private subroutine <a href='../proc/riemann_solver_pvl.html'>riemann_solver_pvl<
 
 
 
-<p>Riemann Problem solver.</p>
+<p>Riemann Problem solver by means of PVL algorithm.</p>
     
     <h4>Arguments</h4>
     
@@ -3088,6 +3261,7 @@ private function <a href='../proc/deuler_dt.html'>dEuler_dt</a>(self, t) result(
       <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">reconstruct_interfaces_characteristic</span> <span class="c">!&lt; Reconstruct (charc.) interface states.</span>
       <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">reconstruct_interfaces_conservative</span>   <span class="c">!&lt; Reconstruct (cons.) interface states.</span>
       <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">reconstruct_interfaces_primitive</span>      <span class="c">!&lt; Reconstruct (prim.) interface states.</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">riemann_solver_hllc</span>                   <span class="c">!&lt; HLLC Riemann Problem solver.</span>
       <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">riemann_solver_llf</span>                    <span class="c">!&lt; LLF Riemann Problem solver.</span>
       <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">),</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">riemann_solver_pvl</span>                    <span class="c">!&lt; PVL Riemann Problem solver.</span>
 <span class="n">endtype</span> <span class="n">euler_1d</span>
@@ -3122,6 +3296,8 @@ private function <a href='../proc/deuler_dt.html'>dEuler_dt</a>(self, t) result(
       
       <a class="list-group-item" href="../type/primitive_object.html">primitive_object</a>
       
+      <a class="list-group-item" href="../type/riemann_solver_compressible_hllc.html">riemann_solver_compressible_hllc</a>
+      
       <a class="list-group-item" href="../type/riemann_solver_compressible_llf.html">riemann_solver_compressible_llf</a>
       
       <a class="list-group-item" href="../type/riemann_solver_compressible_object.html">riemann_solver_compressible_object</a>
@@ -3147,7 +3323,7 @@ private function <a href='../proc/deuler_dt.html'>dEuler_dt</a>(self, t) result(
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-20 13:34  
+             on 2017-03-20 16:34  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
