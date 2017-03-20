@@ -27,7 +27,6 @@ type, extends(riemann_solver_compressible_object) :: riemann_solver_compressible
       procedure, pass(self) :: initialize    !< Initialize solver.
       procedure, pass(self) :: solve         !< Solve Riemann Problem.
       ! private methods
-      procedure, pass(self), private :: compute_p23        !< Compute interstates pressure.
       procedure, pass(self), private :: compute_u23        !< Compute interstates velocity.
       procedure, pass(self), private :: compute_up23       !< Compute interstates velocity and pressure.
       procedure, pass(self), private :: compute_waves_u23  !< Compute waves speed by `u23` algorithm.
@@ -118,13 +117,6 @@ contains
    endsubroutine initialize
 
    ! private methods
-   elemental subroutine compute_p23(self)
-   !< Compute interstates pressure.
-   class(riemann_solver_compressible_pvl), intent(inout) :: self !< Solver.
-
-   self%p23 = 0.5_R8P * ((self%p_1 + self%p_4) - 0.25_R8P * (self%u_4 - self%u_1) * (self%r_1 + self%r_4) * (self%a_1 + self%a_4))
-   endsubroutine compute_p23
-
    elemental subroutine compute_u23(self)
    !< Compute interstates velocity.
    class(riemann_solver_compressible_pvl), intent(inout) :: self !< Solver.
