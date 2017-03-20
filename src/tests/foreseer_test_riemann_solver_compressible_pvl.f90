@@ -25,6 +25,8 @@ eos = eos_compressible(cp=1040.004_R8P, cv=742.86_R8P)
 state_left  = conservative_compressible(density=1._R8P,    energy=1._R8P   *eos%energy(density=1._R8P,    pressure=1._R8P) )
 state_right = conservative_compressible(density=0.125_R8P, energy=0.125_R8P*eos%energy(density=0.125_R8P, pressure=0.1_R8P))
 
+print '(A)', 'Test solution with "u23" algorithm:'
+call riemann_solver%initialize(config='u23')
 call riemann_solver%solve(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, fluxes=fluxes)
 print '(A)', 'Fluxes at interface:'
 print '(A)', fluxes%description(prefix='  ')
@@ -36,6 +38,23 @@ print '(A)', '  r_2 = '//str(n=r_2)
 print '(A)', '  r_3 = '//str(n=r_3)
 print '(A)', '  p23 = '//str(n=p23)
 print '(A)', '  u23 = '//str(n=u23)
+print '(A)', 'Riemann solver internal pattern:'
+print '(A)', riemann_solver%description(prefix='  ')
+print '(A)', 'Test solution with "up23" algorithm:'
+call riemann_solver%initialize(config='up23')
+call riemann_solver%solve(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, fluxes=fluxes)
+print '(A)', 'Fluxes at interface:'
+print '(A)', fluxes%description(prefix='  ')
+call fluxes%compute_fluxes_from_primitive(eos=eos, p=p23, r=r_2, u=u23, normal=ex)
+print '(A)', 'Exact fluxes at interface:'
+print '(A)', fluxes%description(prefix='  ')
+print '(A)', 'Exact intemediate states:'
+print '(A)', '  r_2 = '//str(n=r_2)
+print '(A)', '  r_3 = '//str(n=r_3)
+print '(A)', '  p23 = '//str(n=p23)
+print '(A)', '  u23 = '//str(n=u23)
+print '(A)', 'Riemann solver internal pattern:'
+print '(A)', riemann_solver%description(prefix='  ')
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
 endprogram foreseer_test_riemann_solver_compressible_pvl

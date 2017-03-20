@@ -49,10 +49,12 @@ contains
 
    subroutine initialize(self, config)
    !< Initialize solver.
-   class(riemann_solver_compressible_llf), intent(inout)        :: self   !< Solver.
-   character(len=*),                       intent(in), optional :: config !< Configuration for solver algorithm.
+   class(riemann_solver_compressible_llf), intent(inout)        :: self    !< Solver.
+   character(len=*),                       intent(in), optional :: config  !< Configuration for solver algorithm.
+   character(len=:), allocatable                                :: config_ !< Configuration for solver algorithm, local variable.
 
-   call self%solver_pvl%initialize(config='u23')
+   config_ = 'up23' ; if (present(config)) config_ = config
+   call self%solver_pvl%initialize(config=config_)
    endsubroutine initialize
 
    subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
