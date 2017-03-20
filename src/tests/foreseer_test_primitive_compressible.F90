@@ -1,0 +1,98 @@
+!< FORESEER test: primitive compressible class test.
+
+program foreseer_test_primitive_compressible
+!< FORESEER test: primitive compressible class test.
+
+use foreseer, only : eos_compressible, primitive_compressible, primitive_compressible_pointer
+use penf, only : R8P, ZeroR8
+use vecfor, only : ex, vector
+
+implicit none
+type(eos_compressible)                :: eos                  !< An equation of state.
+type(primitive_compressible)          :: p                    !< A primitive compressible instance.
+type(primitive_compressible)          :: another_p            !< A primitive compressible instance.
+type(primitive_compressible), pointer :: p_pointer            !< A primitive compressible pointer.
+type(vector)                          :: momentum             !< Momentum vector.
+real(R8P), allocatable                :: p_serialized(:)      !< Primitive variable serialized.
+#ifdef __GFORTRAN__
+logical                               :: are_tests_passed(11) !< List of passed tests.
+#else
+logical                               :: are_tests_passed(7)  !< List of passed tests.
+#endif
+
+are_tests_passed = .false.
+
+call p%initialize
+
+are_tests_passed(1) = (p%density  == 0._R8P).and. &
+                      (p%velocity == 0._R8P).and. &
+                      (p%pressure == 0._R8P)
+print "(A,L1)", 'primitive = 0, is right? ', are_tests_passed(1)
+
+eos = eos_compressible(cp=1040.004_R8P, cv=742.86_R8P)
+p = primitive_compressible(density=1._R8P, pressure=1._R8P)
+
+are_tests_passed(2) = (p%energy(eos=eos) >= 2.5_R8P - ZeroR8).and.(p%energy(eos=eos) <= 2.5_R8P + ZeroR8)
+print "(A,L1)", 'p%energy() = 2.5, is right? ', are_tests_passed(2)
+
+momentum = p%momentum()
+are_tests_passed(3) = (p%momentum() >= 0._R8P - ZeroR8).and.(p%momentum() <= 0._R8P + ZeroR8)
+print "(A,L1)", 'p%momentum() = 0, is right? ', are_tests_passed(3)
+
+p_serialized = p%array()
+are_tests_passed(4) = (size(p_serialized, dim=1) == 5).and.            &
+                       (p_serialized(1)          == 1._R8P).and.       &
+                       (p_serialized(2)          == 0._R8P).and.       &
+                       (p_serialized(3)          == 0._R8P).and.       &
+                       (p_serialized(4)          == 0._R8P).and.       &
+                       (p_serialized(5)          == 1._R8P)
+print "(A,L1)", 'p => serialized, is done right? ', are_tests_passed(4)
+
+call p%destroy
+are_tests_passed(5) = (p%density  == 0._R8P).and. &
+                      (p%velocity == 0._R8P).and. &
+                      (p%pressure == 0._R8P)
+print "(A,L1)", 'p destroyed, is right? ', are_tests_passed(5)
+
+p = primitive_compressible(density=1._R8P, velocity=ex, pressure=1._R8P)
+
+another_p = p
+are_tests_passed(6) = (another_p%density  >= 1._R8P - ZeroR8).and.(another_p%density  <= 1._R8P + ZeroR8).and. &
+                      (another_p%velocity >= 1._R8P - ZeroR8).and.(another_p%velocity <= 1._R8P + ZeroR8).and. &
+                      (another_p%pressure >= 1._R8P - ZeroR8).and.(another_p%pressure <= 1._R8P + ZeroR8)
+print "(A,L1)", 'another_p = p, is done right? ', are_tests_passed(6)
+
+p_pointer => primitive_compressible_pointer(to=p)
+are_tests_passed(7) = (p_pointer%density  >= 1._R8P - ZeroR8).and.(p_pointer%density  <= 1._R8P + ZeroR8).and. &
+                      (p_pointer%velocity >= 1._R8P - ZeroR8).and.(p_pointer%velocity <= 1._R8P + ZeroR8).and. &
+                      (p_pointer%pressure >= 1._R8P - ZeroR8).and.(p_pointer%pressure <= 1._R8P + ZeroR8)
+print "(A,L1)", 'p => p, is done right? ', are_tests_passed(7)
+
+#ifdef __GFORTRAN__
+p = 2._R8P * p
+are_tests_passed(8) = (p%density  >= 2._R8P - ZeroR8).and.(p%density  <= 2._R8P + ZeroR8).and. &
+                      (p%velocity >= 2._R8P - ZeroR8).and.(p%velocity <= 2._R8P + ZeroR8).and. &
+                      (p%pressure >= 2._R8P - ZeroR8).and.(p%pressure <= 2._R8P + ZeroR8)
+print "(A,L1)", '2 * p, is done right? ', are_tests_passed(8)
+
+p = p * p
+are_tests_passed(9) = (p%density  >= 4._R8P - ZeroR8).and.(p%density  <= 4._R8P + ZeroR8).and. &
+                      (p%velocity >= 4._R8P - ZeroR8).and.(p%velocity <= 4._R8P + ZeroR8).and. &
+                      (p%pressure >= 4._R8P - ZeroR8).and.(p%pressure <= 4._R8P + ZeroR8)
+print "(A,L1)", 'p * p, is done right? ', are_tests_passed(9)
+
+p = p + p
+are_tests_passed(10) = (p%density  >= 8._R8P - ZeroR8).and.(p%density  <= 8._R8P + ZeroR8).and. &
+                       (p%velocity >= 8._R8P - ZeroR8).and.(p%velocity <= 8._R8P + ZeroR8).and. &
+                       (p%pressure >= 8._R8P - ZeroR8).and.(p%pressure <= 8._R8P + ZeroR8)
+print "(A,L1)", 'p + p, is done right? ', are_tests_passed(10)
+
+p = p - p
+are_tests_passed(11) = (p%density  >= 0._R8P - ZeroR8).and.(p%density  <= 0._R8P + ZeroR8).and. &
+                       (p%velocity >= 0._R8P - ZeroR8).and.(p%velocity <= 0._R8P + ZeroR8).and. &
+                       (p%pressure >= 0._R8P - ZeroR8).and.(p%pressure <= 0._R8P + ZeroR8)
+print "(A,L1)", 'p - p, is done right? ', are_tests_passed(11)
+#endif
+
+print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
+endprogram foreseer_test_primitive_compressible

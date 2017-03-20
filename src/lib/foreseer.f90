@@ -21,7 +21,7 @@ public :: conservative_compressible, conservative_compressible_pointer
 public :: conservative_object
 public :: eos_compressible
 public :: eos_object
-public :: primitive_compressible
+public :: primitive_compressible, primitive_compressible_pointer
 public :: primitive_object
 public :: riemann_solver_compressible_llf
 public :: riemann_solver_compressible_object
