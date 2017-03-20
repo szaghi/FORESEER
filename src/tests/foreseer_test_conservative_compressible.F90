@@ -15,7 +15,7 @@ type(conservative_compressible)          :: f                    !< Conservative
 type(vector)                             :: velocity             !< Velocity vector.
 real(R8P), allocatable                   :: u_serialized(:)      !< Conservative variable serialized.
 #ifdef __GFORTRAN__
-logical                                  :: are_tests_passed(12) !< List of passed tests.
+logical                                  :: are_tests_passed(16) !< List of passed tests.
 #else
 logical                                  :: are_tests_passed(8)  !< List of passed tests.
 #endif
@@ -101,6 +101,28 @@ are_tests_passed(12) = (u%density  >= 0._R8P - ZeroR8).and.(u%density  <= 0._R8P
                        (u%momentum >= 0._R8P - ZeroR8).and.(u%momentum <= 0._R8P + ZeroR8).and. &
                        (u%energy   >= 0._R8P - ZeroR8).and.(u%energy   <= 0._R8P + ZeroR8)
 print "(A,L1)", 'u - u, is done right? ', are_tests_passed(12)
+
+u = conservative_compressible(density=1._R8P, energy=2.5_R8P)
+
+u = - u
+are_tests_passed(13) = (u%density >= -1._R8P  - ZeroR8).and.(u%density <= -1._R8P  + ZeroR8).and. &
+                       (u%energy  >= -2.5_R8P - ZeroR8).and.(u%energy  <= -2.5_R8P + ZeroR8)
+print "(A,L1)", 'u = - u, is done right? ', are_tests_passed(12)
+
+u = + u
+are_tests_passed(14) = (u%density >= -1._R8P  - ZeroR8).and.(u%density <= -1._R8P  + ZeroR8).and. &
+                       (u%energy  >= -2.5_R8P - ZeroR8).and.(u%energy  <= -2.5_R8P + ZeroR8)
+print "(A,L1)", 'u = + u, is done right? ', are_tests_passed(14)
+
+u = u * 2._R8P
+are_tests_passed(15) = (u%density >= -2._R8P - ZeroR8).and.(u%density <= -2._R8P + ZeroR8).and. &
+                       (u%energy  >= -5._R8P - ZeroR8).and.(u%energy  <= -5._R8P + ZeroR8)
+print "(A,L1)", 'u * 2, is done right? ', are_tests_passed(15)
+
+u = u / 2._R8P
+are_tests_passed(16) = (u%density >= -1._R8P  - ZeroR8).and.(u%density <= -1._R8P  + ZeroR8).and. &
+                       (u%energy  >= -2.5_R8P - ZeroR8).and.(u%energy  <= -2.5_R8P + ZeroR8)
+print "(A,L1)", 'u / 2, is done right? ', are_tests_passed(16)
 #endif
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
