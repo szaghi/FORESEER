@@ -535,14 +535,12 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', &
-                         S=self%Ng,                            &
-                         interpolator=interpolator)
+      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=1-self%Ng, self%Ni+self%Ng
          primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
       enddo
       do i=0, self%Ni+1
-         ! trasform primitive variables to pseudo charteristic ones
+         ! compute pseudo charteristic variables
          do f=1, 2
             Pm(f) = 0.5_R8P * (primitive(i+f-2) + primitive(i+f-1))
          enddo
