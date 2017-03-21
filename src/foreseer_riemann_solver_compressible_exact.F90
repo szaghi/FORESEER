@@ -9,7 +9,7 @@ use foreseer_eos_object, only : eos_object
 use foreseer_riemann_solver_compressible_object, only : riemann_solver_compressible_object
 use foreseer_riemann_solver_compressible_pvl, only : riemann_solver_compressible_pvl
 use foreseer_riemann_solver_object, only : riemann_solver_object
-use penf, only : R8P
+use penf, only : cton, R8P
 use vecfor, only : vector
 
 implicit none
@@ -56,7 +56,8 @@ contains
    character(len=*),                         intent(in), optional :: config  !< Configuration for solver algorithm.
    character(len=:), allocatable                                  :: config_ !< Configuration for solver algorithm, local variable.
 
-   config_ = '' ; if (present(config)) config_ = config
+   config_ = '1.e-10' ; if (present(config)) config_ = config
+   self%tolerance = cton(config_, knd=1._R8P)
    endsubroutine initialize
 
    pure subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
