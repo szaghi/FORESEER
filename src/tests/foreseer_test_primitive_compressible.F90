@@ -18,9 +18,9 @@ real(R8P), allocatable                :: l_eigenvectors(:,:)  !< Left eigenvecto
 real(R8P), allocatable                :: r_eigenvectors(:,:)  !< Right eigenvectors matrix.
 real(R8P), allocatable                :: identity(:,:)        !< Identity tensor.
 #ifdef __GFORTRAN__
-logical                               :: are_tests_passed(15) !< List of passed tests.
+logical                               :: are_tests_passed(16) !< List of passed tests.
 #else
-logical                               :: are_tests_passed(7)  !< List of passed tests.
+logical                               :: are_tests_passed(8)  !< List of passed tests.
 #endif
 
 are_tests_passed = .false.
@@ -71,52 +71,58 @@ are_tests_passed(7) = (p_pointer%density  >= 1._R8P - ZeroR8).and.(p_pointer%den
                       (p_pointer%pressure >= 1._R8P - ZeroR8).and.(p_pointer%pressure <= 1._R8P + ZeroR8)
 print "(A,L1)", 'p => p, is done right? ', are_tests_passed(7)
 
+call another_p%initialize(initial_state=p)
+are_tests_passed(8) = (another_p%density  >= 1._R8P - ZeroR8).and.(another_p%density  <= 1._R8P + ZeroR8).and. &
+                      (another_p%velocity >= 1._R8P - ZeroR8).and.(another_p%velocity <= 1._R8P + ZeroR8).and. &
+                      (another_p%pressure >= 1._R8P - ZeroR8).and.(another_p%pressure <= 1._R8P + ZeroR8)
+print "(A,L1)", 'antoher_p == p, is right? ', are_tests_passed(8)
+
 #ifdef __GFORTRAN__
 p = 2._R8P * p
-are_tests_passed(8) = (p%density  >= 2._R8P - ZeroR8).and.(p%density  <= 2._R8P + ZeroR8).and. &
+are_tests_passed(9) = (p%density  >= 2._R8P - ZeroR8).and.(p%density  <= 2._R8P + ZeroR8).and. &
                       (p%velocity >= 2._R8P - ZeroR8).and.(p%velocity <= 2._R8P + ZeroR8).and. &
                       (p%pressure >= 2._R8P - ZeroR8).and.(p%pressure <= 2._R8P + ZeroR8)
-print "(A,L1)", '2 * p, is done right? ', are_tests_passed(8)
+print "(A,L1)", '2 * p, is done right? ', are_tests_passed(9)
 
 p = p * p
-are_tests_passed(9) = (p%density  >= 4._R8P - ZeroR8).and.(p%density  <= 4._R8P + ZeroR8).and. &
-                      (p%velocity >= 4._R8P - ZeroR8).and.(p%velocity <= 4._R8P + ZeroR8).and. &
-                      (p%pressure >= 4._R8P - ZeroR8).and.(p%pressure <= 4._R8P + ZeroR8)
-print "(A,L1)", 'p * p, is done right? ', are_tests_passed(9)
+are_tests_passed(10) = (p%density  >= 4._R8P - ZeroR8).and.(p%density  <= 4._R8P + ZeroR8).and. &
+                       (p%velocity >= 4._R8P - ZeroR8).and.(p%velocity <= 4._R8P + ZeroR8).and. &
+                       (p%pressure >= 4._R8P - ZeroR8).and.(p%pressure <= 4._R8P + ZeroR8)
+print "(A,L1)", 'p * p, is done right? ', are_tests_passed(10)
 
 p = p + p
-are_tests_passed(10) = (p%density  >= 8._R8P - ZeroR8).and.(p%density  <= 8._R8P + ZeroR8).and. &
+are_tests_passed(11) = (p%density  >= 8._R8P - ZeroR8).and.(p%density  <= 8._R8P + ZeroR8).and. &
                        (p%velocity >= 8._R8P - ZeroR8).and.(p%velocity <= 8._R8P + ZeroR8).and. &
                        (p%pressure >= 8._R8P - ZeroR8).and.(p%pressure <= 8._R8P + ZeroR8)
-print "(A,L1)", 'p + p, is done right? ', are_tests_passed(10)
+print "(A,L1)", 'p + p, is done right? ', are_tests_passed(11)
 
 p = p - p
-are_tests_passed(11) = (p%density  >= 0._R8P - ZeroR8).and.(p%density  <= 0._R8P + ZeroR8).and. &
+are_tests_passed(12) = (p%density  >= 0._R8P - ZeroR8).and.(p%density  <= 0._R8P + ZeroR8).and. &
                        (p%velocity >= 0._R8P - ZeroR8).and.(p%velocity <= 0._R8P + ZeroR8).and. &
                        (p%pressure >= 0._R8P - ZeroR8).and.(p%pressure <= 0._R8P + ZeroR8)
-print "(A,L1)", 'p - p, is done right? ', are_tests_passed(11)
+print "(A,L1)", 'p - p, is done right? ', are_tests_passed(12)
 
 p = primitive_compressible(density=1._R8P, pressure=1._R8P)
 
 another_p = - p
-are_tests_passed(12) = (another_p%density  >= -1._R8P - ZeroR8).and.(another_p%density  <= -1._R8P + ZeroR8).and. &
+are_tests_passed(13) = (another_p%density  >= -1._R8P - ZeroR8).and.(another_p%density  <= -1._R8P + ZeroR8).and. &
                        (another_p%pressure >= -1._R8P - ZeroR8).and.(another_p%pressure <= -1._R8P + ZeroR8)
-print "(A,L1)", 'another_p = - p, is done right? ', are_tests_passed(12)
+print "(A,L1)", 'another_p = - p, is done right? ', are_tests_passed(13)
 
 another_p = + p
-are_tests_passed(13) = (another_p%density  >= 1._R8P - ZeroR8).and.(another_p%density  <= 1._R8P + ZeroR8).and. &
+are_tests_passed(14) = (another_p%density  >= 1._R8P - ZeroR8).and.(another_p%density  <= 1._R8P + ZeroR8).and. &
                        (another_p%pressure >= 1._R8P - ZeroR8).and.(another_p%pressure <= 1._R8P + ZeroR8)
-print "(A,L1)", 'another_p = + p, is done right? ', are_tests_passed(13)
+print "(A,L1)", 'another_p = + p, is done right? ', are_tests_passed(14)
 
 p = p * 2._R8P
-are_tests_passed(14) = (p%density  >= 2._R8P - ZeroR8).and.(p%density  <= 2._R8P + ZeroR8).and. &
+are_tests_passed(15) = (p%density  >= 2._R8P - ZeroR8).and.(p%density  <= 2._R8P + ZeroR8).and. &
                        (p%pressure >= 2._R8P - ZeroR8).and.(p%pressure <= 2._R8P + ZeroR8)
-print "(A,L1)", 'p * 2, is done right? ', are_tests_passed(14)
+print "(A,L1)", 'p * 2, is done right? ', are_tests_passed(15)
 
 p = p / 2._R8P
-are_tests_passed(15) = (p%density  >= 1._R8P - ZeroR8).and.(p%density  <= 1._R8P + ZeroR8).and. &
+are_tests_passed(16) = (p%density  >= 1._R8P - ZeroR8).and.(p%density  <= 1._R8P + ZeroR8).and. &
                        (p%pressure >= 1._R8P - ZeroR8).and.(p%pressure <= 1._R8P + ZeroR8)
-print "(A,L1)", 'p / 2, is done right? ', are_tests_passed(15)
+print "(A,L1)", 'p / 2, is done right? ', are_tests_passed(16)
 #endif
 
 p = primitive_compressible(density=1._R8P, velocity=ex, pressure=1._R8P)
