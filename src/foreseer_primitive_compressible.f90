@@ -76,7 +76,7 @@ contains
    real(R8P)                                 :: gp            !< `g*p`.
    real(R8P)                                 :: gp_a          !< `g*p/a`.
 
-   gp = eos%gam() * self%pressure
+   gp = eos%g() * self%pressure
    gp_a = gp / eos%speed_of_sound(density=self%density, pressure=self%pressure)
    eig(1, 1) = 0._R8P            ; eig(1, 2) = -gp_a  ; eig(1, 3) =  1._R8P
    eig(2, 1) = gp / self%density ; eig(2, 2) = 0._R8P ; eig(2, 3) = -1._R8P
@@ -92,7 +92,7 @@ contains
    real(R8P)                                 :: gp_inv        !< `1/(g*p)`.
    real(R8P)                                 :: a             !< Speed of sound, `sqrt(g*p/r)`.
 
-   gp = eos%gam() * self%pressure
+   gp = eos%g() * self%pressure
    gp_inv = 1._R8P / gp
    a = eos%speed_of_sound(density=self%density, pressure=self%pressure)
    eig(1, 1) =  0.5_R8P * self%density * gp_inv ; eig(1, 2) = self%density * gp_inv  ; eig(1, 3) =  eig(1, 1)
@@ -143,7 +143,7 @@ contains
    class(eos_object),             intent(in) :: eos     !< Equation of state.
    real(R8P)                                 :: energy_ !< Energy value.
 
-   energy_ = self%pressure / (eos%gam() - 1._R8P) + 0.5_R8P * self%density * self%velocity%sq_norm()
+   energy_ = self%pressure / (eos%g() - 1._R8P) + 0.5_R8P * self%density * self%velocity%sq_norm()
    endfunction energy
 
    subroutine initialize(self, initial_state)

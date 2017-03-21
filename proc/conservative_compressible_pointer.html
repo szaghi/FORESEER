@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.9% of total for procedures.">13 statements</a>
+	  title=" 0.8% of total for procedures.">13 statements</a>
      </li> 
      
      
@@ -211,6 +211,8 @@
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -218,6 +220,12 @@
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -228,6 +236,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -253,6 +263,8 @@
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -260,6 +272,8 @@
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -273,9 +287,13 @@
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -287,7 +305,11 @@
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -304,6 +326,8 @@
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -355,6 +379,8 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -372,6 +398,8 @@
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -491,39 +519,39 @@ public function conservative_compressible_pointer(to, error_message) result(poin
 <polygon fill="none" stroke="black" points="429,-70 249,-70 249,-44 429,-44 429,-70"/>
 <text text-anchor="middle" x="339" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50">conservative_compressible_pointer</text>
 </g>
-<!-- proc~solve -->
-<g id="node2" class="node"><title>proc~solve</title>
-<a xlink:href="../proc/solve.html" xlink:title="solve">
-<polygon fill="#d9534f" stroke="#d9534f" points="133,-114 79,-114 79,-88 133,-88 133,-114"/>
-<text text-anchor="middle" x="106" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">solve</text>
-</a>
-</g>
-<!-- proc~solve&#45;&gt;proc~conservative_compressible_pointer -->
-<g id="edge2" class="edge"><title>proc~solve&#45;&gt;proc~conservative_compressible_pointer</title>
-<path fill="none" stroke="#000000" d="M133.184,-95.8665C164.033,-90.0409 215.765,-80.2719 259.644,-71.9856"/>
-<polygon fill="#000000" stroke="#000000" points="260.565,-75.3737 269.742,-70.0788 259.266,-68.4953 260.565,-75.3737"/>
-</g>
 <!-- program~foreseer_test_conservative_compressible -->
-<g id="node3" class="node"><title>program~foreseer_test_conservative_compressible</title>
+<g id="node2" class="node"><title>program~foreseer_test_conservative_compressible</title>
 <a xlink:href="../program/foreseer_test_conservative_compressible.html" xlink:title="foreseer_test_conservative_compressible">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="211,-70 1,-70 1,-44 211,-44 211,-70"/>
-<text text-anchor="middle" x="106" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_conservative_compressible</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="211,-114 1,-114 1,-88 211,-88 211,-114"/>
+<text text-anchor="middle" x="106" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_conservative_compressible</text>
 </a>
 </g>
 <!-- program~foreseer_test_conservative_compressible&#45;&gt;proc~conservative_compressible_pointer -->
-<g id="edge4" class="edge"><title>program~foreseer_test_conservative_compressible&#45;&gt;proc~conservative_compressible_pointer</title>
-<path fill="none" stroke="#000000" d="M211.592,-57C220.42,-57 229.331,-57 238.122,-57"/>
-<polygon fill="#000000" stroke="#000000" points="238.374,-60.5001 248.374,-57 238.374,-53.5001 238.374,-60.5001"/>
+<g id="edge2" class="edge"><title>program~foreseer_test_conservative_compressible&#45;&gt;proc~conservative_compressible_pointer</title>
+<path fill="none" stroke="#000000" d="M174.962,-87.9771C201.614,-82.9442 232.272,-77.1547 259.818,-71.9529"/>
+<polygon fill="#000000" stroke="#000000" points="260.636,-75.3604 269.812,-70.0655 259.337,-68.482 260.636,-75.3604"/>
 </g>
 <!-- proc~solve~2 -->
-<g id="node4" class="node"><title>proc~solve~2</title>
+<g id="node3" class="node"><title>proc~solve~2</title>
 <a xlink:href="../proc/solve%7E2.html" xlink:title="solve">
+<polygon fill="#d9534f" stroke="#d9534f" points="133,-70 79,-70 79,-44 133,-44 133,-70"/>
+<text text-anchor="middle" x="106" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">solve</text>
+</a>
+</g>
+<!-- proc~solve~2&#45;&gt;proc~conservative_compressible_pointer -->
+<g id="edge4" class="edge"><title>proc~solve~2&#45;&gt;proc~conservative_compressible_pointer</title>
+<path fill="none" stroke="#000000" d="M133.184,-57C159.136,-57 199.864,-57 238.265,-57"/>
+<polygon fill="#000000" stroke="#000000" points="238.492,-60.5001 248.492,-57 238.492,-53.5001 238.492,-60.5001"/>
+</g>
+<!-- proc~solve~3 -->
+<g id="node4" class="node"><title>proc~solve~3</title>
+<a xlink:href="../proc/solve%7E3.html" xlink:title="solve">
 <polygon fill="#d9534f" stroke="#d9534f" points="133,-26 79,-26 79,-1.24345e-14 133,-3.55271e-15 133,-26"/>
 <text text-anchor="middle" x="106" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">solve</text>
 </a>
 </g>
-<!-- proc~solve~2&#45;&gt;proc~conservative_compressible_pointer -->
-<g id="edge6" class="edge"><title>proc~solve~2&#45;&gt;proc~conservative_compressible_pointer</title>
+<!-- proc~solve~3&#45;&gt;proc~conservative_compressible_pointer -->
+<g id="edge6" class="edge"><title>proc~solve~3&#45;&gt;proc~conservative_compressible_pointer</title>
 <path fill="none" stroke="#000000" d="M133.184,-18.1335C164.033,-23.9591 215.765,-33.7281 259.644,-42.0144"/>
 <polygon fill="#000000" stroke="#000000" points="259.266,-45.5047 269.742,-43.9212 260.565,-38.6263 259.266,-45.5047"/>
 </g>
@@ -699,6 +727,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -706,6 +736,12 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -716,6 +752,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -741,6 +779,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -748,6 +788,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -761,9 +803,13 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -775,7 +821,11 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -792,6 +842,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -843,6 +895,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -860,6 +914,8 @@ public function conservative_compressible_pointer(to, error_message) result(poin
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -894,7 +950,7 @@ public function conservative_compressible_pointer(to, error_message) result(poin
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-21 08:55  
+             on 2017-03-21 15:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

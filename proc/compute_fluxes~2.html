@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.4% of total for procedures.">36 statements</a>
+	  title=" 2.1% of total for procedures.">36 statements</a>
      </li> 
      
      
@@ -211,6 +211,8 @@
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -218,6 +220,12 @@
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -228,6 +236,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -253,6 +263,8 @@
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -260,6 +272,8 @@
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -273,9 +287,13 @@
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -287,7 +305,11 @@
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -304,6 +326,8 @@
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -355,6 +379,8 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -372,6 +398,8 @@
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -411,7 +439,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
 
     
     <p>Compute fluxes at interface <code>x=xo</code>.</p>
-<p>Sampling the pattern the interface states are computed.</p>
+<p>Sampling the pattern, the interface states are computed.</p>
     
 
     <h3>Arguments</h3>
@@ -432,7 +460,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E69"></span>class(<a href='../type/riemann_solver_compressible_object.html'>riemann_solver_compressible_object</a>),</td>
+  <td><span class="anchor" id="variable-self%7E76"></span>class(<a href='../type/riemann_solver_compressible_object.html'>riemann_solver_compressible_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -447,7 +475,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E10"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E12"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -462,7 +490,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E10"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E12"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -477,7 +505,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E13"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E15"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -492,7 +520,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-fluxes%7E8"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-fluxes%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -566,7 +594,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
     <div class="highlight"><pre><span></span>   <span class="k">elemental subroutine </span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
    <span class="c">!&lt; Compute fluxes at interface `x=xo`.</span>
    <span class="c">!&lt;</span>
-   <span class="c">!&lt; Sampling the pattern the interface states are computed.</span>
+   <span class="c">!&lt; Sampling the pattern, the interface states are computed.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; Solver.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>  <span class="c">!&lt; Equation of state for left state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span> <span class="c">!&lt; Equation of state for right state.</span>
@@ -577,13 +605,15 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
    <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">r</span>         <span class="c">!&lt; Desnity at interface `x=xo`.</span>
 
    <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">destroy</span>
-   <span class="k">associate</span><span class="p">(</span><span class="n">s1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_2</span><span class="p">,</span> <span class="n">u23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u23</span><span class="p">,</span> <span class="n">s3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_3</span><span class="p">,</span> <span class="n">s4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span>                            <span class="p">&amp;</span>
-             <span class="n">p1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">r1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">a1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">,</span> <span class="n">g1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">g_1</span><span class="p">,</span> <span class="n">d1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">d_1</span><span class="p">,</span> <span class="n">e1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">e_1</span><span class="p">,</span> <span class="p">&amp;</span>
-             <span class="n">p4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">r4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">a4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">,</span> <span class="n">g4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">g_4</span><span class="p">,</span> <span class="n">d4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">d_4</span><span class="p">,</span> <span class="n">e4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">e_4</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="k">associate</span><span class="p">(</span><span class="n">s1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_2</span><span class="p">,</span> <span class="n">u23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u23</span><span class="p">,</span> <span class="n">s3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_3</span><span class="p">,</span> <span class="n">s4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span> <span class="p">&amp;</span>
+             <span class="n">g1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="n">d1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">delta</span><span class="p">(),</span> <span class="n">e1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">eta</span><span class="p">(),</span>      <span class="p">&amp;</span>
+             <span class="n">g4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="n">d4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">delta</span><span class="p">(),</span> <span class="n">e4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">eta</span><span class="p">(),</span>      <span class="p">&amp;</span>
+             <span class="n">p1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">r1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">a1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">,</span>                <span class="p">&amp;</span>
+             <span class="n">p4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">r4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">a4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">,</span>                <span class="p">&amp;</span>
              <span class="n">p23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p23</span><span class="p">,</span> <span class="n">r2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_2</span><span class="p">,</span> <span class="n">r3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_3</span><span class="p">)</span>
       <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
       <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
-         <span class="k">select case</span><span class="p">(</span><span class="nb">minloc</span><span class="p">([</span><span class="o">-</span><span class="n">s1</span><span class="p">,</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">u23</span><span class="p">,</span> <span class="n">u23</span> <span class="o">*</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span> <span class="o">*</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s4</span><span class="p">],</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+         <span class="k">select case</span><span class="p">(</span><span class="nb">minloc</span><span class="p">([</span><span class="o">-</span><span class="n">s1</span><span class="p">,</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">u23</span><span class="p">,</span> <span class="n">u23</span> <span class="o">*</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span> <span class="o">*</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s4</span><span class="p">],</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c">! left supersonic</span>
             <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u1</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">! left transonic</span>
@@ -634,6 +664,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -641,6 +673,12 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -651,6 +689,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -676,6 +716,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -683,6 +725,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -696,9 +740,13 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -710,7 +758,11 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -727,6 +779,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -778,6 +832,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -795,6 +851,8 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -829,7 +887,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-21 08:55  
+             on 2017-03-21 15:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

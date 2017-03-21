@@ -121,8 +121,8 @@ contains
    !< Return a pretty-formatted object description.
    class(conservative_compressible), intent(in)           :: self             !< Conservative.
    character(*),                     intent(in), optional :: prefix           !< Prefixing string.
-   character(len=:), allocatable                          :: prefix_          !< Prefixing string, local variable.
    character(len=:), allocatable                          :: desc             !< Description.
+   character(len=:), allocatable                          :: prefix_          !< Prefixing string, local variable.
    character(len=1), parameter                            :: NL=new_line('a') !< New line character.
 
    prefix_ = '' ; if (present(prefix)) prefix_ = prefix
@@ -163,7 +163,7 @@ contains
    type(vector)                                 :: velocity_ !< Velocity vector.
 
    velocity_ = self%velocity()
-   pressure_ = (eos%gam() - 1._R8P) * (self%energy - 0.5_R8P * self%density * velocity_%sq_norm())
+   pressure_ = (eos%g() - 1._R8P) * (self%energy - 0.5_R8P * self%density * velocity_%sq_norm())
    endfunction pressure
 
    elemental function velocity(self) result(velocity_)

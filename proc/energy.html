@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.9% of total for procedures.">13 statements</a>
+	  title=" 0.8% of total for procedures.">13 statements</a>
      </li> 
      
      
@@ -211,6 +211,8 @@
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -218,6 +220,12 @@
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -228,6 +236,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -253,6 +263,8 @@
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -260,6 +272,8 @@
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -273,9 +287,13 @@
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -287,7 +305,11 @@
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -304,6 +326,8 @@
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -355,6 +379,8 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -372,6 +398,8 @@
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -567,13 +595,27 @@ private elemental function energy(self, density, pressure, temperature) result(e
 
    <span class="n">density_</span> <span class="o">=</span> <span class="mf">0._R8P</span>
    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">energy</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">pressure</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">gam</span><span class="p">()</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="n">energy</span><span class="p">)</span>
+<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">g_</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="n">energy</span><span class="p">)</span>
    <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">pressure</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">speed_of_sound</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">gam</span><span class="p">()</span> <span class="o">*</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">(</span><span class="n">speed_of_sound</span> <span class="o">*</span> <span class="n">speed_of_sound</span><span class="p">)</span>
+<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">g_</span> <span class="o">*</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">(</span><span class="n">speed_of_sound</span> <span class="o">*</span> <span class="n">speed_of_sound</span><span class="p">)</span>
    <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">pressure</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">temperature</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">R</span><span class="p">()</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">)</span>
+<span class="k">      </span><span class="n">density_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">R_</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">)</span>
    <span class="n">endif</span>
    <span class="n">endfunction</span> <span class="n">density</span>
+
+   <span class="k">pure function </span><span class="n">description</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
+   <span class="c">!&lt; Return a pretty-formatted object description.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">eos_compressible</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">self</span>             <span class="c">!&lt; Equation of state.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>            <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">prefix</span>           <span class="c">!&lt; Prefixing string.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                 <span class="kd">::</span> <span class="n">desc</span>             <span class="c">!&lt; Description.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                 <span class="kd">::</span> <span class="n">prefix_</span>          <span class="c">!&lt; Prefixing string, local variable.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="k">parameter</span>                   <span class="kd">::</span> <span class="n">NL</span><span class="o">=</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c">!&lt; New line character.</span>
+
+   <span class="n">prefix_</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">prefix</span><span class="p">))</span> <span class="n">prefix_</span> <span class="o">=</span> <span class="n">prefix</span>
+   <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;cp  = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">cp_</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;cv  = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">cv_</span><span class="p">))</span>
+   <span class="n">endfunction</span> <span class="n">description</span>
 
    <span class="k">elemental function </span><span class="n">energy</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">energy_</span><span class="p">)</span>
    <span class="c">!&lt; Return specific internal energy.</span>
@@ -585,7 +627,7 @@ private elemental function energy(self, density, pressure, temperature) result(e
 
    <span class="n">energy_</span> <span class="o">=</span> <span class="mf">0._R8P</span>
    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">density</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">pressure</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">energy_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">gam</span><span class="p">()</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="n">density</span><span class="p">)</span>
+<span class="k">      </span><span class="n">energy_</span> <span class="o">=</span> <span class="n">pressure</span> <span class="o">/</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">g_</span> <span class="o">-</span> <span class="mf">1._R8P</span><span class="p">)</span> <span class="o">*</span> <span class="n">density</span><span class="p">)</span>
    <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">temperature</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">energy_</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">cv</span><span class="p">()</span> <span class="o">*</span> <span class="n">temperature</span>
    <span class="n">endif</span>
@@ -618,6 +660,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       
       <a class="list-group-item" href="../proc/array%7E2.html">array</a>
       
+      <a class="list-group-item" href="../proc/compute_derivate.html">compute_derivate</a>
+      
       <a class="list-group-item" href="../proc/compute_dt.html">compute_dt</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes.html">compute_fluxes</a>
@@ -625,6 +669,12 @@ private elemental function energy(self, density, pressure, temperature) result(e
       <a class="list-group-item" href="../proc/compute_fluxes%7E2.html">compute_fluxes</a>
       
       <a class="list-group-item" href="../proc/compute_fluxes_from_primitive.html">compute_fluxes_from_primitive</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
+      
+      <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
       
@@ -635,6 +685,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -660,6 +712,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       
       <a class="list-group-item" href="../proc/cv.html">cv</a>
       
+      <a class="list-group-item" href="../proc/delta.html">delta</a>
+      
       <a class="list-group-item" href="../proc/density.html">density</a>
       
       <a class="list-group-item" href="../proc/description.html">description</a>
@@ -667,6 +721,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       <a class="list-group-item" href="../proc/description%7E2.html">description</a>
       
       <a class="list-group-item" href="../proc/description%7E3.html">description</a>
+      
+      <a class="list-group-item" href="../proc/description%7E4.html">description</a>
       
       <a class="list-group-item" href="../proc/destroy.html">destroy</a>
       
@@ -680,9 +736,13 @@ private elemental function energy(self, density, pressure, temperature) result(e
       
       <a class="list-group-item" href="../proc/energy%7E2.html">energy</a>
       
+      <a class="list-group-item" href="../proc/eos_assign_eos.html">eos_assign_eos</a>
+      
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
+      
+      <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
       
@@ -694,7 +754,11 @@ private elemental function energy(self, density, pressure, temperature) result(e
       
       <a class="list-group-item" href="../proc/euler_multiply_real.html">euler_multiply_real</a>
       
-      <a class="list-group-item" href="../proc/gam.html">gam</a>
+      <a class="list-group-item" href="../proc/g.html">g</a>
+      
+      <a class="list-group-item" href="../proc/gm1.html">gm1</a>
+      
+      <a class="list-group-item" href="../proc/gp1.html">gp1</a>
       
       <a class="list-group-item" href="../proc/impose_boundary_conditions.html">impose_boundary_conditions</a>
       
@@ -711,6 +775,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       <a class="list-group-item" href="../proc/initialize%7E6.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -762,6 +828,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
+      
       <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
       
       <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
@@ -779,6 +847,8 @@ private elemental function energy(self, density, pressure, temperature) result(e
       <a class="list-group-item" href="../proc/solve%7E2.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -813,7 +883,7 @@ private elemental function energy(self, density, pressure, temperature) result(e
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-21 08:55  
+             on 2017-03-21 15:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>foreseer_riemann_solver_compressible_exact.F90 &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>foreseer_riemann_solver_compressible_exact.F90
+    <small>Source File</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 2.7% of total for source files.">77 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_exact.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li class="active">foreseer_riemann_solver_compressible_exact.F90</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-0">Modules</a></h3></div>
+  <div id="mods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_exact.html">foreseer_riemann_solver_compressible_exact</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_exact.f90.html#src">foreseer_riemann_solver_compressible_exact.F90</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
+  <div id="allfiles-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_exact.f90.html">foreseer_riemann_solver_compressible_exact.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_hllc.f90.html">foreseer_riemann_solver_compressible_hllc.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_compressible_transformations.f90.html">foreseer_test_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_primitive_compressible.f90.html">foreseer_test_primitive_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_hllc.f90.html">foreseer_test_riemann_solver_compressible_hllc.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    <div class="col-md-9" id='text'>
+    <p>Define the exact (Newton-iterative) Riemann solver of FORESEER library.</p>
+    
+    <h3>This File Depends On</h3>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefileforeseer_riemann_solver_compressible_exactf90EfferentGraph" width="641pt" height="92pt"
+ viewBox="0.00 0.00 641.00 91.90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~EfferentGraph" class="graph" transform="scale(0.445139 0.445139) rotate(0) translate(4 202.446)">
+<title>sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-202.446 1437,-202.446 1437,5 -4,5"/>
+<!-- sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="node1" class="node"><title>sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<polygon fill="none" stroke="black" points="1432,-87.4677 1178,-87.4677 1178,-61.4677 1432,-61.4677 1432,-87.4677"/>
+<text text-anchor="middle" x="1305" y="-72.0177" font-family="Helvetica,sans-Serif" font-size="10.50">foreseer_riemann_solver_compressible_exact.F90</text>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="node2" class="node"><title>sourcefile~foreseer_riemann_solver_object.f90</title>
+<a xlink:href="../sourcefile/foreseer_riemann_solver_object.f90.html" xlink:title="foreseer_riemann_solver_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="567,-169.468 383,-169.468 383,-143.468 567,-143.468 567,-169.468"/>
+<text text-anchor="middle" x="475" y="-154.018" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_object.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge34" class="edge"><title>sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741,-159.468C866.034,-150.807 899.692,-181.908 1023,-159.468"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1023,-159.468C1109.37,-143.749 1206.73,-110.881 1261.49,-90.9379"/>
+<polygon fill="#000000" stroke="#000000" points="1262.7,-94.2225 1270.88,-87.4918 1260.29,-87.651 1262.7,-94.2225"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="node4" class="node"><title>sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<a xlink:href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html" xlink:title="foreseer_riemann_solver_compressible_pvl.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1142,-87.4677 904,-87.4677 904,-61.4677 1142,-61.4677 1142,-87.4677"/>
+<text text-anchor="middle" x="1023" y="-72.0177" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_pvl.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="edge14" class="edge"><title>sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M567.126,-161.144C618.38,-162.832 683.293,-163.465 741,-159.468"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741,-159.468C831.763,-153.181 932.583,-114.573 985.637,-91.6091"/>
+<polygon fill="#000000" stroke="#000000" points="987.222,-94.736 994.974,-87.5145 984.411,-88.3253 987.222,-94.736"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="node6" class="node"><title>sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<a xlink:href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html" xlink:title="foreseer_riemann_solver_compressible_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="867,-87.4677 615,-87.4677 615,-61.4677 867,-61.4677 867,-87.4677"/>
+<text text-anchor="middle" x="741" y="-72.0177" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_object.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="edge26" class="edge"><title>sourcefile~foreseer_riemann_solver_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M517.443,-143.384C564.059,-129.013 638.94,-105.93 689.036,-90.4867"/>
+<polygon fill="#000000" stroke="#000000" points="690.183,-93.7955 698.709,-87.5049 688.121,-87.1062 690.183,-93.7955"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90 -->
+<g id="node3" class="node"><title>sourcefile~foreseer_conservative_object.f90</title>
+<a xlink:href="../sourcefile/foreseer_conservative_object.f90.html" xlink:title="foreseer_conservative_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="335,-169.468 165,-169.468 165,-143.468 335,-143.468 335,-169.468"/>
+<text text-anchor="middle" x="250" y="-154.018" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_conservative_object.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge36" class="edge"><title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M310.214,-169.524C329.816,-173.184 351.742,-176.656 372,-178.468 660.306,-204.254 738.221,-211.293 1023,-159.468"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="edge2" class="edge"><title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335.705,-156.468C347.736,-156.468 360.2,-156.468 372.505,-156.468"/>
+<polygon fill="#000000" stroke="#000000" points="372.789,-159.968 382.789,-156.468 372.789,-152.968 372.789,-159.968"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="edge10" class="edge"><title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M299.602,-143.45C344.901,-132.518 413.916,-118.245 475,-115.468"/>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="edge22" class="edge"><title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M272.409,-143.364C311.874,-121.506 396.994,-79.7558 475,-77.4677"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="node7" class="node"><title>sourcefile~foreseer_conservative_compressible.f90</title>
+<a xlink:href="../sourcefile/foreseer_conservative_compressible.f90.html" xlink:title="foreseer_conservative_compressible.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="577,-49.4677 373,-49.4677 373,-23.4677 577,-23.4677 577,-49.4677"/>
+<text text-anchor="middle" x="475" y="-34.0177" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_conservative_compressible.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="edge30" class="edge"><title>sourcefile~foreseer_conservative_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M270.356,-143.374C288.137,-131.68 314.406,-113.772 336,-96.4677 352.938,-82.8948 352.943,-73.8576 372,-63.4677 379.665,-59.2886 388.007,-55.7325 396.516,-52.7118"/>
+<polygon fill="#000000" stroke="#000000" points="397.769,-55.9841 406.167,-49.5242 395.573,-49.3373 397.769,-55.9841"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge38" class="edge"><title>sourcefile~foreseer_riemann_solver_compressible_pvl.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1142.18,-74.4677C1150.52,-74.4677 1158.96,-74.4677 1167.38,-74.4677"/>
+<polygon fill="#000000" stroke="#000000" points="1167.64,-77.9678 1177.64,-74.4677 1167.64,-70.9678 1167.64,-77.9678"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90 -->
+<g id="node5" class="node"><title>sourcefile~foreseer_eos_object.f90</title>
+<a xlink:href="../sourcefile/foreseer_eos_object.f90.html" xlink:title="foreseer_eos_object.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="128,-128.468 6.39488e-14,-128.468 0,-102.468 128,-102.468 128,-128.468"/>
+<text text-anchor="middle" x="64" y="-113.018" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_eos_object.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge40" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M80.7062,-102.382C99.7998,-88.0586 132.493,-65.4117 164,-52.4677 200.207,-37.5924 211.644,-41.2807 250,-33.4677"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M250,-33.4677C519.209,21.3693 593.658,-4.73264 868,-19.4677 937.07,-23.1774 954.002,-28.601 1023,-33.4677"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1023,-33.4677C1092.64,-37.7185 1171.14,-49.7292 1227.6,-59.6596"/>
+<polygon fill="#000000" stroke="#000000" points="1227.06,-63.1195 1237.52,-61.4237 1228.29,-56.2276 1227.06,-63.1195"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90 -->
+<g id="edge4" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M78.6032,-128.472C96.9958,-143.894 130.289,-168.734 164,-178.468 250.508,-203.446 355.909,-186.673 419.121,-171.862"/>
+<polygon fill="#000000" stroke="#000000" points="419.992,-175.252 428.894,-169.508 418.353,-168.447 419.992,-175.252"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90 -->
+<g id="edge6" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.107,-128.497C141.496,-132.55 161.932,-137.055 180.938,-141.244"/>
+<polygon fill="#000000" stroke="#000000" points="180.209,-144.667 190.728,-143.402 181.715,-137.832 180.209,-144.667"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="edge16" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.112,-117.268C209.01,-119.125 352.397,-121.041 475,-115.468"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-115.468C649.663,-106.949 693.912,-112.995 868,-96.4677 888.579,-94.514 910.611,-91.7794 931.416,-88.9004"/>
+<polygon fill="#000000" stroke="#000000" points="932.105,-92.338 941.519,-87.4782 931.129,-85.4063 932.105,-92.338"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="edge20" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M250,-33.4677C304.235,-22.4201 317.671,-47.8913 372,-58.4677 417.692,-67.3627 428.47,-78.8325 475,-77.4677"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-77.4677C517.008,-76.2354 562.76,-75.5002 604.288,-75.0643"/>
+<polygon fill="#000000" stroke="#000000" points="604.505,-78.5624 614.47,-74.9624 604.435,-71.5627 604.505,-78.5624"/>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90 -->
+<g id="edge32" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M250,-33.4677C286.127,-26.1086 326.197,-24.5833 362.392,-25.5905"/>
+<polygon fill="#000000" stroke="#000000" points="362.377,-29.092 372.492,-25.939 362.619,-22.0961 362.377,-29.092"/>
+</g>
+<!-- sourcefile~foreseer_eos_compressible.f90 -->
+<g id="node16" class="node"><title>sourcefile~foreseer_eos_compressible.f90</title>
+<a xlink:href="../sourcefile/foreseer_eos_compressible.f90.html" xlink:title="foreseer_eos_compressible.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="331,-87.4677 169,-87.4677 169,-61.4677 331,-61.4677 331,-87.4677"/>
+<text text-anchor="middle" x="250" y="-72.0177" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_eos_compressible.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_eos_compressible.f90 -->
+<g id="edge18" class="edge"><title>sourcefile~foreseer_eos_object.f90&#45;&gt;sourcefile~foreseer_eos_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.107,-102.439C141.496,-98.3853 161.932,-93.8804 180.938,-89.6911"/>
+<polygon fill="#000000" stroke="#000000" points="181.715,-93.1038 190.728,-87.5331 180.209,-86.2679 181.715,-93.1038"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge42" class="edge"><title>sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M807.45,-61.4608C877.225,-48.4042 982.348,-30.6003 1023,-33.4677"/>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="edge8" class="edge"><title>sourcefile~foreseer_riemann_solver_compressible_object.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M867.565,-74.4677C876.194,-74.4677 884.897,-74.4677 893.541,-74.4677"/>
+<polygon fill="#000000" stroke="#000000" points="893.654,-77.9678 903.654,-74.4677 893.654,-70.9678 893.654,-77.9678"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="edge44" class="edge"><title>sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M577.651,-33.304C627.045,-32.2943 687.106,-31.8156 741,-33.4677"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741,-33.4677C866.274,-37.3079 897.977,-24.6495 1023,-33.4677"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90 -->
+<g id="edge12" class="edge"><title>sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741,-33.4677C813.306,-35.6842 895.013,-48.7445 951.793,-59.5381"/>
+<polygon fill="#000000" stroke="#000000" points="951.262,-63.0001 961.743,-61.455 952.586,-56.1264 951.262,-63.0001"/>
+</g>
+<!-- sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="edge24" class="edge"><title>sourcefile~foreseer_conservative_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M566.17,-49.4919C589.963,-52.8909 615.744,-56.5739 640.013,-60.041"/>
+<polygon fill="#000000" stroke="#000000" points="639.555,-63.5109 649.949,-61.4604 640.545,-56.5813 639.555,-63.5109"/>
+</g>
+<!-- sourcefile~foreseer_eos_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90 -->
+<g id="edge28" class="edge"><title>sourcefile~foreseer_eos_compressible.f90&#45;&gt;sourcefile~foreseer_riemann_solver_compressible_object.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M331.509,-77.228C374.245,-78.2518 427.458,-78.8622 475,-77.4677"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefileforeseer_riemann_solver_compressible_exactf90EfferentGraph = svgPanZoom('#sourcefileforeseer_riemann_solver_compressible_exactf90EfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="188pt" height="34pt"
+ viewBox="0.00 0.00 188.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 185,-30 185,5 -4,5"/>
+<!-- Source File -->
+<g id="node1" class="node"><title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="66,-26 2.84217e-14,-26 0,-1.24345e-14 66,-3.55271e-15 66,-26"/>
+<text text-anchor="middle" x="33" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="180,-26 84,-26 84,-1.24345e-14 180,-3.55271e-15 180,-26"/>
+<text text-anchor="middle" x="132" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+      
+      <h3>Files Dependent On This One</h3>
+      
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefileforeseer_riemann_solver_compressible_exactf90AfferentGraph" width="641pt" height="328pt"
+ viewBox="0.00 0.00 641.00 328.18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~AfferentGraph" class="graph" transform="scale(0.959581 0.959581) rotate(0) translate(4 338)">
+<title>sourcefile~~foreseer_riemann_solver_compressible_exact.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-338 665,-338 665,5 -4,5"/>
+<!-- sourcefile~foreseer_riemann_solver_compressible_exact.f90 -->
+<g id="node1" class="node"><title>sourcefile~foreseer_riemann_solver_compressible_exact.f90</title>
+<polygon fill="none" stroke="black" points="254,-180 8.52651e-14,-180 -1.42109e-14,-154 254,-154 254,-180"/>
+<text text-anchor="middle" x="127" y="-164.55" font-family="Helvetica,sans-Serif" font-size="10.50">foreseer_riemann_solver_compressible_exact.F90</text>
+</g>
+<!-- sourcefile~foreseer.f90 -->
+<g id="node2" class="node"><title>sourcefile~foreseer.f90</title>
+<a xlink:href="../sourcefile/foreseer.f90.html" xlink:title="foreseer.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="360,-180 290,-180 290,-154 360,-154 360,-180"/>
+<text text-anchor="middle" x="325" y="-164.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer_riemann_solver_compressible_exact.f90&#45;&gt;sourcefile~foreseer.f90 -->
+<g id="edge18" class="edge"><title>sourcefile~foreseer_riemann_solver_compressible_exact.f90&#45;&gt;sourcefile~foreseer.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M254.077,-167C263.083,-167 271.752,-167 279.749,-167"/>
+<polygon fill="#000000" stroke="#000000" points="279.848,-170.5 289.848,-167 279.847,-163.5 279.848,-170.5"/>
+</g>
+<!-- sourcefile~foreseer_test_eos_compressible.f90 -->
+<g id="node3" class="node"><title>sourcefile~foreseer_test_eos_compressible.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_eos_compressible.f90.html" xlink:title="foreseer_test_eos_compressible.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="621,-334 435,-334 435,-308 621,-308 621,-334"/>
+<text text-anchor="middle" x="528" y="-318.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_eos_compressible.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_eos_compressible.f90 -->
+<g id="edge2" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_eos_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M327.933,-180.048C334.741,-207.08 354.315,-269.164 396,-299 404.823,-305.315 414.82,-310.059 425.269,-313.593"/>
+<polygon fill="#000000" stroke="#000000" points="424.388,-316.983 434.972,-316.51 426.403,-310.279 424.388,-316.983"/>
+</g>
+<!-- sourcefile~foreseer_test_compressible_transformations.f90 -->
+<g id="node4" class="node"><title>sourcefile~foreseer_test_compressible_transformations.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_compressible_transformations.f90.html" xlink:title="foreseer_test_compressible_transformations.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="649,-290 407,-290 407,-264 649,-264 649,-290"/>
+<text text-anchor="middle" x="528" y="-274.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_compressible_transformations.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_compressible_transformations.f90 -->
+<g id="edge4" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_compressible_transformations.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M331.634,-180.292C342.278,-200.106 365.148,-236.984 396,-255 399.052,-256.782 402.207,-258.43 405.442,-259.953"/>
+<polygon fill="#000000" stroke="#000000" points="404.182,-263.221 414.754,-263.925 406.929,-256.782 404.182,-263.221"/>
+</g>
+<!-- sourcefile~foreseer_test_riemann_solver_compressible_hllc.f90 -->
+<g id="node5" class="node"><title>sourcefile~foreseer_test_riemann_solver_compressible_hllc.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_riemann_solver_compressible_hllc.f90.html" xlink:title="foreseer_test_riemann_solver_compressible_hllc.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="660,-246 396,-246 396,-220 660,-220 660,-246"/>
+<text text-anchor="middle" x="528" y="-230.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_riemann_solver_compressible_hllc.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_hllc.f90 -->
+<g id="edge6" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_hllc.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M341.803,-180.054C355.6,-190.098 376.049,-203.491 396,-211 402.282,-213.364 408.827,-215.475 415.496,-217.36"/>
+<polygon fill="#000000" stroke="#000000" points="414.777,-220.79 425.339,-219.962 416.566,-214.022 414.777,-220.79"/>
+</g>
+<!-- sourcefile~foreseer_test_conservative_compressible.f90 -->
+<g id="node6" class="node"><title>sourcefile~foreseer_test_conservative_compressible.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_conservative_compressible.f90.html" xlink:title="foreseer_test_conservative_compressible.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="644,-202 412,-202 412,-176 644,-176 644,-202"/>
+<text text-anchor="middle" x="528" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_conservative_compressible.F90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_conservative_compressible.f90 -->
+<g id="edge8" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_conservative_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M360.36,-170.832C372.474,-172.145 386.814,-173.699 401.927,-175.337"/>
+<polygon fill="#000000" stroke="#000000" points="401.636,-178.826 411.955,-176.424 402.391,-171.867 401.636,-178.826"/>
+</g>
+<!-- sourcefile~foreseer_test_riemann_solver_compressible_llf.f90 -->
+<g id="node7" class="node"><title>sourcefile~foreseer_test_riemann_solver_compressible_llf.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html" xlink:title="foreseer_test_riemann_solver_compressible_llf.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="656,-158 400,-158 400,-132 656,-132 656,-158"/>
+<text text-anchor="middle" x="528" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_riemann_solver_compressible_llf.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_llf.f90 -->
+<g id="edge10" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_llf.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M360.36,-163.168C371.329,-161.979 384.123,-160.593 397.664,-159.125"/>
+<polygon fill="#000000" stroke="#000000" points="398.076,-162.601 407.641,-158.044 397.322,-155.642 398.076,-162.601"/>
+</g>
+<!-- sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90 -->
+<g id="node8" class="node"><title>sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html" xlink:title="foreseer_test_riemann_solver_compressible_pvl.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="659,-114 397,-114 397,-88 659,-88 659,-114"/>
+<text text-anchor="middle" x="528" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_riemann_solver_compressible_pvl.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90 -->
+<g id="edge12" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_riemann_solver_compressible_pvl.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M341.803,-153.946C355.6,-143.902 376.049,-130.509 396,-123 402.282,-120.636 408.827,-118.525 415.496,-116.64"/>
+<polygon fill="#000000" stroke="#000000" points="416.566,-119.978 425.339,-114.038 414.777,-113.21 416.566,-119.978"/>
+</g>
+<!-- sourcefile~foreseer_test_primitive_compressible.f90 -->
+<g id="node9" class="node"><title>sourcefile~foreseer_test_primitive_compressible.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_primitive_compressible.f90.html" xlink:title="foreseer_test_primitive_compressible.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="634,-70 422,-70 422,-44 634,-44 634,-70"/>
+<text text-anchor="middle" x="528" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_primitive_compressible.F90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_primitive_compressible.f90 -->
+<g id="edge14" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_primitive_compressible.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M331.634,-153.708C342.278,-133.894 365.148,-97.016 396,-79 401.141,-75.9979 406.575,-73.3764 412.193,-71.0893"/>
+<polygon fill="#000000" stroke="#000000" points="413.628,-74.2907 421.8,-67.548 411.207,-67.7227 413.628,-74.2907"/>
+</g>
+<!-- sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="node10" class="node"><title>sourcefile~foreseer_test_shock_tube.f90</title>
+<a xlink:href="../sourcefile/foreseer_test_shock_tube.f90.html" xlink:title="foreseer_test_shock_tube.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="605,-26 451,-26 451,-1.24345e-14 605,-3.55271e-15 605,-26"/>
+<text text-anchor="middle" x="528" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_shock_tube.f90</text>
+</a>
+</g>
+<!-- sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90 -->
+<g id="edge16" class="edge"><title>sourcefile~foreseer.f90&#45;&gt;sourcefile~foreseer_test_shock_tube.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M327.933,-153.952C334.741,-126.92 354.315,-64.8363 396,-35 409.142,-25.5936 424.888,-19.6747 440.853,-16.0427"/>
+<polygon fill="#000000" stroke="#000000" points="441.674,-19.448 450.8,-14.066 440.31,-12.5822 441.674,-19.448"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var pansourcefileforeseer_riemann_solver_compressible_exactf90AfferentGraph = svgPanZoom('#sourcefileforeseer_riemann_solver_compressible_exactf90AfferentGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="188pt" height="34pt"
+ viewBox="0.00 0.00 188.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 185,-30 185,5 -4,5"/>
+<!-- Source File -->
+<g id="node1" class="node"><title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="66,-26 2.84217e-14,-26 0,-1.24345e-14 66,-3.55271e-15 66,-26"/>
+<text text-anchor="middle" x="33" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="180,-26 84,-26 84,-1.24345e-14 180,-3.55271e-15 180,-26"/>
+<text text-anchor="middle" x="132" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    is dependent upon another if the latter must be compiled before the former
+    can be.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+      
+      <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-1">Modules</a></h3></div>
+  <div id="mods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/foreseer_riemann_solver_compressible_exact.html">foreseer_riemann_solver_compressible_exact</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_exact.f90.html#src">foreseer_riemann_solver_compressible_exact.F90</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    <section>
+      <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; Define the exact (Newton-iterative) Riemann solver of FORESEER library.</span>
+<a name="ln-2"></a>
+<a name="ln-3"></a><span class="k">module </span><span class="n">foreseer_riemann_solver_compressible_exact</span>
+<a name="ln-4"></a><span class="c">!&lt; Define the exact (Newton-iterative) Riemann solver of FORESEER library.</span>
+<a name="ln-5"></a>
+<a name="ln-6"></a><span class="k">use </span><span class="n">foreseer_conservative_compressible</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">conservative_compressible</span><span class="p">,</span> <span class="n">conservative_compressible_pointer</span>
+<a name="ln-7"></a><span class="k">use </span><span class="n">foreseer_conservative_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">conservative_object</span>
+<a name="ln-8"></a><span class="k">use </span><span class="n">foreseer_eos_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">eos_object</span>
+<a name="ln-9"></a><span class="k">use </span><span class="n">foreseer_riemann_solver_compressible_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">riemann_solver_compressible_object</span>
+<a name="ln-10"></a><span class="k">use </span><span class="n">foreseer_riemann_solver_compressible_pvl</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">riemann_solver_compressible_pvl</span>
+<a name="ln-11"></a><span class="k">use </span><span class="n">foreseer_riemann_solver_object</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">riemann_solver_object</span>
+<a name="ln-12"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">R8P</span>
+<a name="ln-13"></a><span class="k">use </span><span class="n">vecfor</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">vector</span>
+<a name="ln-14"></a>
+<a name="ln-15"></a><span class="k">implicit none</span>
+<a name="ln-16"></a><span class="k">private</span>
+<a name="ln-17"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">riemann_solver_compressible_exact</span>
+<a name="ln-18"></a>
+<a name="ln-19"></a><span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">)</span> <span class="kd">::</span> <span class="n">riemann_solver_compressible_exact</span>
+<a name="ln-20"></a>   <span class="c">!&lt; Exact (Newton-iterative) Riemann Solver.</span>
+<a name="ln-21"></a>   <span class="c">!&lt;</span>
+<a name="ln-22"></a>   <span class="c">!&lt; @note This is the implemention for [[conservative_compressible]] Riemann states.</span>
+<a name="ln-23"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1.e-10_R8P</span> <span class="c">!&lt; Tolerance on Newton convergence.</span>
+<a name="ln-24"></a>   <span class="k">contains</span>
+<a name="ln-25"></a>      <span class="c">! public deferred methods</span>
+<a name="ln-26"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">compute_waves</span> <span class="c">!&lt; Compute waves pattern.</span>
+<a name="ln-27"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">initialize</span>    <span class="c">!&lt; Initialize solver.</span>
+<a name="ln-28"></a>      <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">solve</span>         <span class="c">!&lt; Solve Riemann Problem.</span>
+<a name="ln-29"></a><span class="n">endtype</span> <span class="n">riemann_solver_compressible_exact</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a><span class="k">contains</span>
+<a name="ln-32"></a>   <span class="c">! public deferred methods</span>
+<a name="ln-33"></a>   <span class="k">pure subroutine </span><span class="n">compute_waves</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">waves</span><span class="p">)</span>
+<a name="ln-34"></a>   <span class="c">!&lt; Compute waves pattern.</span>
+<a name="ln-35"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_exact</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Solver.</span>
+<a name="ln-36"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>    <span class="c">!&lt; Equation of state for left state.</span>
+<a name="ln-37"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>  <span class="c">!&lt; Left Riemann state.</span>
+<a name="ln-38"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span>   <span class="c">!&lt; Equation of state for right state.</span>
+<a name="ln-39"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_right</span> <span class="c">!&lt; Right Riemann state.</span>
+<a name="ln-40"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                             <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>      <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
+<a name="ln-41"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span>                                <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">waves</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span>   <span class="c">!&lt; Waves pattern.</span>
+<a name="ln-42"></a>   <span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>                         <span class="kd">::</span> <span class="n">fluxes</span>      <span class="c">!&lt; Fluxes of the Riemann Problem solution.</span>
+<a name="ln-43"></a>
+<a name="ln-44"></a>   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-45"></a>                   <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
+<a name="ln-46"></a>   <span class="n">waves</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">S_1</span>
+<a name="ln-47"></a>   <span class="n">waves</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">S_2</span>
+<a name="ln-48"></a>   <span class="n">waves</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">u23</span>
+<a name="ln-49"></a>   <span class="n">waves</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">S_3</span>
+<a name="ln-50"></a>   <span class="n">waves</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">S_4</span>
+<a name="ln-51"></a>   <span class="n">endsubroutine</span> <span class="n">compute_waves</span>
+<a name="ln-52"></a>
+<a name="ln-53"></a>   <span class="k">subroutine </span><span class="n">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a name="ln-54"></a>   <span class="c">!&lt; Initialize solver.</span>
+<a name="ln-55"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_exact</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">self</span>    <span class="c">!&lt; Solver.</span>
+<a name="ln-56"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">config</span>  <span class="c">!&lt; Configuration for solver algorithm.</span>
+<a name="ln-57"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                  <span class="kd">::</span> <span class="n">config_</span> <span class="c">!&lt; Configuration for solver algorithm, local variable.</span>
+<a name="ln-58"></a>
+<a name="ln-59"></a>   <span class="n">config_</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">config</span><span class="p">))</span> <span class="n">config_</span> <span class="o">=</span> <span class="n">config</span>
+<a name="ln-60"></a>   <span class="n">endsubroutine</span> <span class="n">initialize</span>
+<a name="ln-61"></a>
+<a name="ln-62"></a>   <span class="k">pure subroutine </span><span class="n">solve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
+<a name="ln-63"></a>   <span class="c">!&lt; Solve Riemann Problem.</span>
+<a name="ln-64"></a>   <span class="c">!&lt;</span>
+<a name="ln-65"></a>   <span class="c">!&lt; Approximate Riemann Solver based on (local) Lax-Friedrichs (known also as Rusanov) algorithm.</span>
+<a name="ln-66"></a>   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_exact</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>            <span class="c">!&lt; Solver.</span>
+<a name="ln-67"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>        <span class="c">!&lt; Equation of state for left state.</span>
+<a name="ln-68"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>      <span class="c">!&lt; Left Riemann state.</span>
+<a name="ln-69"></a>   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span>       <span class="c">!&lt; Equation of state for right state.</span>
+<a name="ln-70"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_right</span>     <span class="c">!&lt; Right Riemann state.</span>
+<a name="ln-71"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                             <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>          <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
+<a name="ln-72"></a>   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fluxes</span>          <span class="c">!&lt; Fluxes of the Riemann Problem solution.</span>
+<a name="ln-73"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                               <span class="kd">::</span> <span class="n">dum</span><span class="p">,</span> <span class="n">alfa</span><span class="p">,</span> <span class="n">beta</span> <span class="c">!&lt; Dummies coefficients.</span>
+<a name="ln-74"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                               <span class="kd">::</span> <span class="n">p_2</span><span class="p">,</span> <span class="n">p_3</span>        <span class="c">!&lt; Pessure of state 2 and 3.</span>
+<a name="ln-75"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                               <span class="kd">::</span> <span class="n">dp2</span><span class="p">,</span> <span class="n">dp3</span>        <span class="c">!&lt; Derivate of pessure (dp/du) of state 2 and 3.</span>
+<a name="ln-76"></a>
+<a name="ln-77"></a>   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">set_states14</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<a name="ln-78"></a>
+<a name="ln-79"></a>   <span class="c">! initiale u23 speed</span>
+<a name="ln-80"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-81"></a><span class="k">     </span><span class="n">dum</span>  <span class="o">=</span> <span class="mf">0.5_R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">gm1</span><span class="p">()</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">()</span> <span class="c">! (gamma - 1) / (gamma * 2)</span>
+<a name="ln-82"></a>   <span class="k">else</span>
+<a name="ln-83"></a><span class="k">     </span><span class="n">dum</span>  <span class="o">=</span> <span class="mf">0.5_R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">gm1</span><span class="p">()</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">()</span> <span class="c">! (gamma - 1) / (gamma * 2)</span>
+<a name="ln-84"></a>   <span class="n">endif</span>
+<a name="ln-85"></a>   <span class="n">alfa</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">)</span> <span class="o">**</span> <span class="n">dum</span>
+<a name="ln-86"></a>   <span class="n">beta</span> <span class="o">=</span> <span class="n">alfa</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">delta</span><span class="p">()</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_1</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">delta</span><span class="p">()</span><span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_4</span>
+<a name="ln-87"></a>   <span class="n">self</span><span class="p">%</span><span class="n">u23</span> <span class="o">=</span> <span class="p">(</span><span class="n">alfa</span> <span class="o">-</span> <span class="mf">1.0_R8P</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span> <span class="o">+</span>         <span class="p">&amp;</span>
+<a name="ln-88"></a>              <span class="mf">0.5_R8P</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">)</span> <span class="o">+</span> <span class="p">&amp;</span>
+<a name="ln-89"></a>              <span class="mf">0.5_R8P</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span> <span class="o">-</span> <span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">alfa</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">delta</span><span class="p">()</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_1</span> <span class="o">-</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">delta</span><span class="p">()</span><span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span>
+<a name="ln-90"></a>
+<a name="ln-91"></a>   <span class="n">Newton</span><span class="p">:</span> <span class="k">do</span>
+<a name="ln-92"></a><span class="k">      call </span><span class="n">self</span><span class="p">%</span><span class="n">compute_states23_from_u23</span><span class="p">(</span><span class="n">p_2</span><span class="o">=</span><span class="n">p_2</span><span class="p">,</span> <span class="n">p_3</span><span class="o">=</span><span class="n">p_3</span><span class="p">)</span>
+<a name="ln-93"></a>      <span class="c">! evaluate the Newton-Rapson convergence</span>
+<a name="ln-94"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="mf">1.0_R8P</span> <span class="o">-</span> <span class="p">(</span><span class="n">p_2</span> <span class="o">/</span> <span class="n">p_3</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">self</span><span class="p">%</span><span class="n">tolerance</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-95"></a><span class="k">         </span><span class="n">dp2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1._R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">()</span> <span class="o">*</span> <span class="n">p_2</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_2</span>
+<a name="ln-96"></a>         <span class="n">dp3</span> <span class="o">=</span>  <span class="mf">1._R8P</span> <span class="o">*</span> <span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">()</span> <span class="o">*</span> <span class="n">p_3</span> <span class="o">/</span> <span class="n">self</span><span class="p">%</span><span class="n">a_3</span>
+<a name="ln-97"></a>         <span class="n">self</span><span class="p">%</span><span class="n">u23</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">u23</span> <span class="o">-</span> <span class="p">((</span><span class="n">p_2</span> <span class="o">-</span> <span class="n">p_3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">dp2</span><span class="o">-</span><span class="n">dp3</span><span class="p">))</span>
+<a name="ln-98"></a>      <span class="k">else</span>
+<a name="ln-99"></a><span class="k">        </span><span class="n">self</span><span class="p">%</span><span class="n">p23</span> <span class="o">=</span> <span class="n">p_2</span> <span class="c">! p_2 ~= p_3</span>
+<a name="ln-100"></a>        <span class="k">exit </span><span class="n">Newton</span>
+<a name="ln-101"></a>      <span class="n">endif</span>
+<a name="ln-102"></a>   <span class="n">enddo</span> <span class="n">Newton</span>
+<a name="ln-103"></a>
+<a name="ln-104"></a>   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
+<a name="ln-105"></a>   <span class="n">endsubroutine</span> <span class="n">solve</span>
+<a name="ln-106"></a><span class="n">endmodule</span> <span class="n">foreseer_riemann_solver_compressible_exact</span>
+</pre></div>
+
+    </section>
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
+  <div id="allfiles-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/foreseer.f90.html">foreseer.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_compressible_transformations.f90.html">foreseer_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_compressible.f90.html">foreseer_conservative_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_conservative_object.f90.html">foreseer_conservative_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_compressible.f90.html">foreseer_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_eos_object.f90.html">foreseer_eos_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_compressible.f90.html">foreseer_primitive_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_primitive_object.f90.html">foreseer_primitive_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_exact.f90.html">foreseer_riemann_solver_compressible_exact.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_hllc.f90.html">foreseer_riemann_solver_compressible_hllc.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_llf.f90.html">foreseer_riemann_solver_compressible_llf.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_object.f90.html">foreseer_riemann_solver_compressible_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html">foreseer_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_riemann_solver_object.f90.html">foreseer_riemann_solver_object.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_compressible_transformations.f90.html">foreseer_test_compressible_transformations.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_conservative_compressible.f90.html">foreseer_test_conservative_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_eos_compressible.f90.html">foreseer_test_eos_compressible.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_primitive_compressible.f90.html">foreseer_test_primitive_compressible.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_hllc.f90.html">foreseer_test_riemann_solver_compressible_hllc.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_llf.f90.html">foreseer_test_riemann_solver_compressible_llf.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_riemann_solver_compressible_pvl.f90.html">foreseer_test_riemann_solver_compressible_pvl.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/foreseer_test_shock_tube.f90.html">foreseer_test_shock_tube.f90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-21 15:21  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
