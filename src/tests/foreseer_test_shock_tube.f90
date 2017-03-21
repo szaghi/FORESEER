@@ -763,58 +763,63 @@ use penf, only : cton, FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
-integer(I4P)                     :: weno_order            !< WENO reconstruction order.
-character(len=:), allocatable    :: weno_variables        !< Variables set on which WENO reconstruction is done.
-type(tvd_runge_kutta_integrator) :: rk_integrator         !< Runge-Kutta integrator.
-integer(I4P)                     :: rk_stages_number      !< Runge-Kutta stages number.
-type(euler_1d), allocatable      :: rk_stage(:)           !< Runge-Kutta stages.
-real(R8P)                        :: dt                    !< Time step.
-real(R8P)                        :: t                     !< Time.
-integer(I4P)                     :: step                  !< Time steps counter.
-type(euler_1d)                   :: domain                !< Domain of Euler equations.
-real(R8P)                        :: CFL                   !< CFL value.
-character(3)                     :: BC_L                  !< Left boundary condition type.
-character(3)                     :: BC_R                  !< Right boundary condition type.
-integer(I4P)                     :: Ni                    !< Number of grid cells.
-real(R8P)                        :: Dx                    !< Space step discretization.
-real(R8P), allocatable           :: x(:)                  !< Cell center x-abscissa values.
-integer(I4P)                     :: steps_max             !< Maximum number of time steps.
-real(R8P)                        :: t_max                 !< Maximum integration time.
-character(99)                    :: riemann_solver_scheme !< Riemann Problem solver scheme.
-character(99)                    :: s_scheme              !< Space integration scheme.
-character(99)                    :: t_scheme              !< Time integration scheme.
-logical                          :: results               !< Flag for activating results saving.
-logical                          :: time_serie            !< Flag for activating time serie-results saving.
-logical                          :: verbose               !< Flag for activating more verbose output.
+integer(I4P)                     :: weno_order                !< WENO reconstruction order.
+character(len=:), allocatable    :: weno_variables            !< Variables set on which WENO reconstruction is done.
+type(tvd_runge_kutta_integrator) :: rk_integrator             !< Runge-Kutta integrator.
+integer(I4P)                     :: rk_stages_number          !< Runge-Kutta stages number.
+type(euler_1d), allocatable      :: rk_stage(:)               !< Runge-Kutta stages.
+real(R8P)                        :: dt                        !< Time step.
+real(R8P)                        :: t                         !< Time.
+integer(I4P)                     :: step                      !< Time steps counter.
+type(euler_1d)                   :: domain                    !< Domain of Euler equations.
+real(R8P)                        :: CFL                       !< CFL value.
+character(3)                     :: BC_L                      !< Left boundary condition type.
+character(3)                     :: BC_R                      !< Right boundary condition type.
+integer(I4P)                     :: Ni                        !< Number of grid cells.
+real(R8P)                        :: Dx                        !< Space step discretization.
+real(R8P), allocatable           :: x(:)                      !< Cell center x-abscissa values.
+integer(I4P)                     :: steps_max                 !< Maximum number of time steps.
+real(R8P)                        :: t_max                     !< Maximum integration time.
+character(99), allocatable       :: riemann_solver_schemes(:) !< Riemann Problem solver scheme(s).
+character(99)                    :: s_scheme                  !< Space integration scheme.
+character(99)                    :: t_scheme                  !< Time integration scheme.
+logical                          :: results                   !< Flag for activating results saving.
+logical                          :: time_serie                !< Flag for activating time serie-results saving.
+logical                          :: verbose                   !< Flag for activating more verbose output.
+integer(I4P)                     :: s                         !< Schemes counter.
 
-call initialize
-call save_time_serie(filename='euler_1D-'//&
-                              trim(adjustl(s_scheme))//'-'//&
-                              trim(adjustl(t_scheme))//'-'//&
-                              trim(adjustl(riemann_solver_scheme))//'.dat', t=t)
-step = 0
-time_loop: do
-   step = step + 1
-   dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
-   call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
-   t = t + dt
-   call save_time_serie(t=t)
-   if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
-   if ((t == t_max).or.(step == steps_max)) exit time_loop
-enddo time_loop
+call parse_command_line_interface
+do s=1, size(riemann_solver_schemes, dim=1)
+   if (verbose) print "(A)", 'Use Riemann Problem solver "'//trim(adjustl(riemann_solver_schemes(s)))//'"'
+   call initialize(riemann_solver_scheme=riemann_solver_schemes(s))
+   call save_time_serie(filename='euler_1D-'//&
+                                 trim(adjustl(s_scheme))//'-'//&
+                                 trim(adjustl(t_scheme))//'-'//&
+                                 trim(adjustl(riemann_solver_schemes(s)))//'.dat', t=t)
+   step = 0
+   time_loop: do
+      step = step + 1
+      dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
+      call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
+      t = t + dt
+      call save_time_serie(t=t)
+      if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
+      if ((t == t_max).or.(step == steps_max)) exit time_loop
+   enddo time_loop
+enddo
 
 contains
-   subroutine initialize()
+   subroutine initialize(riemann_solver_scheme)
    !< Initialize the test.
-   type(primitive_compressible), allocatable :: initial_state(:) !< Initial state of primitive variables.
-   integer(I4P)                              :: i                !< Space counter.
+   character(*), intent(in)                  :: riemann_solver_scheme !< Riemann Problem solver scheme.
+   type(primitive_compressible), allocatable :: initial_state(:)      !< Initial state of primitive variables.
+   integer(I4P)                              :: i                     !< Space counter.
 
-   call parse_command_line_interface
-   allocate(rk_stage(1:rk_stages_number))
+   if (allocated(rk_stage)) deallocate(rk_stage) ; allocate(rk_stage(1:rk_stages_number))
    call rk_integrator%init(stages=rk_stages_number)
    t = 0._R8P
-   allocate(x(1:Ni))
-   allocate(initial_state(1:Ni))
+   if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
+   if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni))
    Dx = 1._R8P / Ni
    ! Sod's problem
    BC_L = 'TRA'
@@ -842,9 +847,10 @@ contains
 
    subroutine parse_command_line_interface()
    !< Parse Command Line Interface (CLI).
-   type(command_line_interface)  :: cli    !< Command line interface handler.
-   integer(I4P)                  :: error  !< Error handler.
-   character(len=:), allocatable :: buffer !< String buffer.
+   type(command_line_interface)  :: cli                   !< Command line interface handler.
+   character(99)                 :: riemann_solver_scheme !< Riemann Problem solver scheme.
+   integer(I4P)                  :: error                 !< Error handler.
+   character(len=:), allocatable :: buffer                !< String buffer.
 
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
@@ -852,8 +858,8 @@ contains
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
-   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='llf', &
-                choices='exact,hllc,llf,pvl')
+   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
+                choices='all,exact,hllc,llf,pvl')
    call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
      choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
              'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
@@ -897,6 +903,12 @@ contains
    case('tvd-rk-5')
       rk_stages_number = 5
    endselect
+
+   if (trim(adjustl(riemann_solver_scheme))=='all') then
+      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ']
+   else
+      riemann_solver_schemes = [trim(adjustl(riemann_solver_scheme))]
+   endif
    endsubroutine parse_command_line_interface
 
    subroutine save_time_serie(filename, finish, t)
