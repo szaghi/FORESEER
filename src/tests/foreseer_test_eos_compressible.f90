@@ -13,8 +13,8 @@ logical                :: are_tests_passed(14) !< List of passed tests.
 are_tests_passed = .false.
 
 eos = eos_compressible(cp=1040.004_R8P, cv=742.86_R8P)
-are_tests_passed(1) = (eos%gam() >= 1.4_R8P - ZeroR8).and.(eos%gam() <= 1.4_R8P + ZeroR8)
-print "(A,L1)", 'eos%gam() = 1.4, is right? ', are_tests_passed(1)
+are_tests_passed(1) = (eos%g() >= 1.4_R8P - ZeroR8).and.(eos%g() <= 1.4_R8P + ZeroR8)
+print "(A,L1)", 'eos%g() = 1.4, is right? ', are_tests_passed(1)
 
 eos = eos_compressible(cp=1040.004_R8P, gam=1.4_R8P)
 are_tests_passed(2) = (eos%cv() >= 742.86_R8P - ZeroR8).and.(eos%cv() <= 742.86_R8P + ZeroR8)

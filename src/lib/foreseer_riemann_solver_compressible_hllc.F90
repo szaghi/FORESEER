@@ -17,7 +17,7 @@ private
 public :: riemann_solver_compressible_hllc
 
 type, extends(riemann_solver_compressible_object) :: riemann_solver_compressible_hllc
-   !< Local Lax-Friedrichs (known also as Rusanov) Riemann Solver.
+   !< HLLC (Harten, Lax, Van Leer, Toro) Riemann Solver.
    !<
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    type(riemann_solver_compressible_pvl) :: solver_pvl !< PVL Riemann solver.
@@ -78,9 +78,9 @@ contains
    state_right_ => conservative_compressible_pointer(to=state_right)
    call self%solver_pvl%compute_waves(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, &
                                       normal=normal, waves=waves)
-   associate(r_1=>self%solver_pvl%r_1, u_1=>self%solver_pvl%u_1, p_1=>self%solver_pvl%p_1, g_1=>self%solver_pvl%g_1, &
-             r_4=>self%solver_pvl%r_4, u_4=>self%solver_pvl%u_4, p_4=>self%solver_pvl%p_4, g_4=>self%solver_pvl%g_4, &
-             s_1=>self%solver_pvl%s_1, s_4=>self%solver_pvl%s_4,                                                     &
+   associate(r_1=>self%solver_pvl%r_1, u_1=>self%solver_pvl%u_1, p_1=>self%solver_pvl%p_1, g_1=>self%solver_pvl%eos_1%g(), &
+             r_4=>self%solver_pvl%r_4, u_4=>self%solver_pvl%u_4, p_4=>self%solver_pvl%p_4, g_4=>self%solver_pvl%eos_4%g(), &
+             s_1=>self%solver_pvl%s_1, s_4=>self%solver_pvl%s_4,                                                           &
              E_1=>state_left_%energy/state_left_%density, E_4=>state_right_%energy/state_right_%density)
       u23 = (r_4 * u_4 * (s_4 - u_4) - r_1 * u_1 * (s_1 - u_1) + p_1 - p_4) / &
             (r_4 * (s_4 - u_4) - r_1 * (s_1 - u_1))

@@ -153,14 +153,14 @@ contains
 
    ! compute left state
    if (self%u23 < self%u_1) then ! shock
-     x  = 0.25_R8P * (self%g_1 + 1._R8P) * (self%u23 - self%u_1) / self%a_1
+     x  = 0.25_R8P * (self%eos_1%g() + 1._R8P) * (self%u23 - self%u_1) / self%a_1
      self%s_1 = self%u_1 + self%a_1 * (x - sqrt(1.0_R8P + x * x))
    else ! rarefaction
      self%s_1 = self%u_1 - self%a_1
    endif
    ! compute right state
    if (self%u23 > self%u_4) then ! shock
-     x  = 0.25_R8P * (self%g_4 + 1._R8P) * (self%u23 - self%u_4) / self%a_4
+     x  = 0.25_R8P * (self%eos_4%g() + 1._R8P) * (self%u23 - self%u_4) / self%a_4
      self%s_4 = self%u_4 + self%a_4 * (x + sqrt(1.0_R8P + x * x))
    else ! rarefaction
      self%s_4 = self%u_4  + self%a_4
@@ -191,13 +191,15 @@ contains
 
    ! compute left state
    if (self%u23 < self%u_1) then ! shock
-      self%s_1 = self%u_1 - self%a_1 * sqrt(1._R8P + 0.5_R8P * (self%g_1 + 1._R8P) / self%g_1 * (self%p23 / self%p_1 - 1._R8P))
+      self%s_1 = self%u_1 - self%a_1 * sqrt(1._R8P + 0.5_R8P * (self%eos_1%g() + 1._R8P) / &
+                                            self%eos_1%g() * (self%p23 / self%p_1 - 1._R8P))
    else ! rarefaction
       self%s_1 = self%u_1 - self%a_1
    endif
    ! compute right state
    if (self%u23 > self%u_4) then ! shock
-      self%s_4 = self%u_4 + self%a_4 * sqrt(1._R8P + 0.5_R8P * (self%g_4 + 1._R8P) / self%g_4 * (self%p23 / self%p_4 - 1._R8P))
+      self%s_4 = self%u_4 + self%a_4 * sqrt(1._R8P + 0.5_R8P * (self%eos_4%g() + 1._R8P) / &
+                                            self%eos_4%g() * (self%p23 / self%p_4 - 1._R8P))
    else ! rarefaction
       self%s_4 = self%u_4  + self%a_4
    endif
