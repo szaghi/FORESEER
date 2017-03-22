@@ -138,14 +138,14 @@
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_pvl.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_pattern_compressible_pvl.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_pvl.f90.html'>foreseer_riemann_solver_compressible_pvl.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_pattern_compressible_pvl.f90.html'>foreseer_riemann_pattern_compressible_pvl.f90</a></li>
   
-     <li><a href='../module/foreseer_riemann_solver_compressible_pvl.html'>foreseer_riemann_solver_compressible_pvl</a></li>
+     <li><a href='../module/foreseer_riemann_pattern_compressible_pvl.html'>foreseer_riemann_pattern_compressible_pvl</a></li>
   
      <li class="active">compute_up23</li>
   </ol>
@@ -225,8 +225,6 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -234,14 +232,6 @@
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -296,8 +286,6 @@
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -387,21 +375,11 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -410,12 +388,6 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -471,12 +443,12 @@ private elemental subroutine compute_up23(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E80"></span>class(<a href='../type/riemann_solver_compressible_pvl.html'>riemann_solver_compressible_pvl</a>),</td>
+  <td><span class="anchor" id="variable-self%7E72"></span>class(<a href='../type/riemann_pattern_compressible_pvl.html'>riemann_pattern_compressible_pvl</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Solver.</p></td>
+  <td><strong>self</strong></td><td><p>Riemann (states) pattern solution.</p></td>
   
 </tr>
 
@@ -544,8 +516,8 @@ private elemental subroutine compute_up23(self)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>   <span class="k">elemental subroutine </span><span class="n">compute_up23</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
    <span class="c">!&lt; Compute interstates velocity and pressure.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_pvl</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Solver.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                             <span class="kd">::</span> <span class="n">ram</span>  <span class="c">!&lt; Mean value of `r * a`.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_pattern_compressible_pvl</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span> <span class="c">!&lt; Riemann (states) pattern solution.</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                              <span class="kd">::</span> <span class="n">ram</span>  <span class="c">!&lt; Mean value of `r * a`.</span>
 
    <span class="n">ram</span> <span class="o">=</span> <span class="mf">0.25_R8P</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">)</span>
    <span class="n">self</span><span class="p">%</span><span class="n">u23</span> <span class="o">=</span> <span class="mf">0.5_R8P</span> <span class="o">*</span> <span class="p">((</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span> <span class="o">-</span> <span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">)</span> <span class="o">/</span> <span class="n">ram</span><span class="p">)</span>
@@ -593,8 +565,6 @@ private elemental subroutine compute_up23(self)
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -602,14 +572,6 @@ private elemental subroutine compute_up23(self)
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -664,8 +626,6 @@ private elemental subroutine compute_up23(self)
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -755,21 +715,11 @@ private elemental subroutine compute_up23(self)
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -778,12 +728,6 @@ private elemental subroutine compute_up23(self)
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -814,7 +758,7 @@ private elemental subroutine compute_up23(self)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:49  
+             on 2017-03-22 17:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

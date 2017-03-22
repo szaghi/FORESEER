@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.9% of total for procedures.">36 statements</a>
+	  title=" 2.1% of total for procedures.">33 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_object.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_pattern_compressible_object.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_object.f90.html'>foreseer_riemann_solver_compressible_object.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_pattern_compressible_object.f90.html'>foreseer_riemann_pattern_compressible_object.f90</a></li>
   
-     <li><a href='../module/foreseer_riemann_solver_compressible_object.html'>foreseer_riemann_solver_compressible_object</a></li>
+     <li><a href='../module/foreseer_riemann_pattern_compressible_object.html'>foreseer_riemann_pattern_compressible_object</a></li>
   
      <li class="active">compute_fluxes</li>
   </ol>
@@ -225,8 +225,6 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -234,14 +232,6 @@
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -296,8 +286,6 @@
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -387,21 +375,11 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -410,12 +388,6 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -440,7 +412,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, fluxes)
+private elemental subroutine compute_fluxes(self, normal, fluxes)
     
     
 	 
@@ -450,8 +422,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
 
 
     
-    <p>Compute fluxes at interface <code>x=xo</code>.</p>
-<p>Sampling the pattern, the interface states are computed.</p>
+    <p>Compute fluxes at initial discontinuity interface.</p>
     
 
     <h3>Arguments</h3>
@@ -472,12 +443,12 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E76"></span>class(<a href='../type/riemann_solver_compressible_object.html'>riemann_solver_compressible_object</a>),</td>
+  <td><span class="anchor" id="variable-self%7E68"></span>class(<a href='../type/riemann_pattern_compressible_object.html'>riemann_pattern_compressible_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Solver.</p></td>
+  <td><strong>self</strong></td><td><p>Riemann (states) pattern solution.</p></td>
   
 </tr>
 
@@ -487,37 +458,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E12"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>eos_left</strong></td><td><p>Equation of state for left state.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-eos_right%7E12"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>eos_right</strong></td><td><p>Equation of state for right state.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-normal%7E15"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E7"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -532,12 +473,12 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
   
 <tr>
   
-  <td><span class="anchor" id="variable-fluxes%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-fluxes%7E5"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>fluxes</strong></td><td><p>Fluxes at interface <code>x=xo</code>.</p></td>
+  <td><strong>fluxes</strong></td><td><p>Fluxes at initial discontinuity interface.</p></td>
   
 </tr>
 
@@ -603,23 +544,18 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>   <span class="k">elemental subroutine </span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">eos_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
-   <span class="c">!&lt; Compute fluxes at interface `x=xo`.</span>
-   <span class="c">!&lt;</span>
-   <span class="c">!&lt; Sampling the pattern, the interface states are computed.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; Solver.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>  <span class="c">!&lt; Equation of state for left state.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                         <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span> <span class="c">!&lt; Equation of state for right state.</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span>    <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fluxes</span>    <span class="c">!&lt; Fluxes at interface `x=xo`.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">a</span>         <span class="c">!&lt; Speed of sound at interface `x=xo`.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">p</span>         <span class="c">!&lt; Pressure at interface `x=xo`.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                <span class="kd">::</span> <span class="n">r</span>         <span class="c">!&lt; Desnity at interface `x=xo`.</span>
+    <div class="highlight"><pre><span></span>   <span class="k">elemental subroutine </span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">)</span>
+   <span class="c">!&lt; Compute fluxes at initial discontinuity interface.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_pattern_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>   <span class="c">!&lt; Riemann (states) pattern solution.</span>
+   <span class="k">type</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">normal</span> <span class="c">!&lt; Normal (versor) of face where fluxes are given.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>                 <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fluxes</span> <span class="c">!&lt; Fluxes at initial discontinuity interface.</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                 <span class="kd">::</span> <span class="n">a</span>      <span class="c">!&lt; Speed of sound at interface.</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                 <span class="kd">::</span> <span class="n">p</span>      <span class="c">!&lt; Pressure at interface.</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                                 <span class="kd">::</span> <span class="n">r</span>      <span class="c">!&lt; Desnity at interface.</span>
 
-   <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">destroy</span>
+   <span class="c">! call fluxes%destroy</span>
    <span class="k">associate</span><span class="p">(</span><span class="n">s1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_2</span><span class="p">,</span> <span class="n">u23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u23</span><span class="p">,</span> <span class="n">s3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_3</span><span class="p">,</span> <span class="n">s4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span> <span class="p">&amp;</span>
-             <span class="n">g1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="n">d1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">delta</span><span class="p">(),</span> <span class="n">e1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">eta</span><span class="p">(),</span>      <span class="p">&amp;</span>
-             <span class="n">g4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="n">d4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">delta</span><span class="p">(),</span> <span class="n">e4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">eta</span><span class="p">(),</span>      <span class="p">&amp;</span>
+             <span class="n">eos1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">,</span> <span class="n">eos4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">,</span>                                    <span class="p">&amp;</span>
              <span class="n">p1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">r1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">a1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">,</span>                <span class="p">&amp;</span>
              <span class="n">p4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">r4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">a4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">a_4</span><span class="p">,</span>                <span class="p">&amp;</span>
              <span class="n">p23</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">p23</span><span class="p">,</span> <span class="n">r2</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_2</span><span class="p">,</span> <span class="n">r3</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">r_3</span><span class="p">)</span>
@@ -627,23 +563,23 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <span class="k">class is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
          <span class="k">select case</span><span class="p">(</span><span class="nb">minloc</span><span class="p">([</span><span class="o">-</span><span class="n">s1</span><span class="p">,</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">u23</span><span class="p">,</span> <span class="n">u23</span> <span class="o">*</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span> <span class="o">*</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s4</span><span class="p">],</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c">! left supersonic</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u1</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u1</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">! left transonic</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">u1</span> <span class="o">*</span> <span class="n">d1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">d1</span><span class="p">)</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">p1</span><span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a1</span><span class="p">)</span><span class="o">**</span><span class="n">e1</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">eos_left</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">u1</span> <span class="o">*</span> <span class="n">eos1</span><span class="p">%</span><span class="n">delta</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">eos1</span><span class="p">%</span><span class="n">delta</span><span class="p">())</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p1</span><span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a1</span><span class="p">)</span> <span class="o">**</span> <span class="n">eos1</span><span class="p">%</span><span class="n">eta</span><span class="p">()</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">eos1</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c">! left subsonic</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c">! right subsonic</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r3</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r3</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c">! right transonic</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a4</span> <span class="o">-</span> <span class="n">u4</span> <span class="o">*</span> <span class="n">d4</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">d4</span><span class="p">)</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">p4</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a4</span><span class="p">)</span> <span class="o">**</span> <span class="n">e4</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">eos_right</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=-</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a4</span> <span class="o">-</span> <span class="n">u4</span> <span class="o">*</span> <span class="n">eos4</span><span class="p">%</span><span class="n">delta</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1._R8P</span> <span class="o">+</span> <span class="n">eos4</span><span class="p">%</span><span class="n">delta</span><span class="p">())</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p4</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">a4</span><span class="p">)</span> <span class="o">**</span> <span class="n">eos4</span><span class="p">%</span><span class="n">eta</span><span class="p">()</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">eos4</span><span class="p">%</span><span class="n">density</span><span class="p">(</span><span class="n">pressure</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">speed_of_sound</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="o">=-</span><span class="n">a</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="k">case</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c">! right supersonic</span>
-            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p4</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u4</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p4</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u4</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
          <span class="n">endselect</span>
       <span class="n">endselect</span>
    <span class="n">endassociate</span>
@@ -690,8 +626,6 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -699,14 +633,6 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -761,8 +687,6 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -852,21 +776,11 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -875,12 +789,6 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -911,7 +819,7 @@ private elemental subroutine compute_fluxes(self, eos_left, eos_right, normal, f
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:49  
+             on 2017-03-22 17:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

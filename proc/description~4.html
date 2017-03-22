@@ -134,18 +134,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.5% of total for procedures.">28 statements</a>
+	  title=" 1.9% of total for procedures.">30 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_solver_compressible_object.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_riemann_pattern_compressible_object.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/foreseer_riemann_solver_compressible_object.f90.html'>foreseer_riemann_solver_compressible_object.f90</a></li>
+     <li><a href='../sourcefile/foreseer_riemann_pattern_compressible_object.f90.html'>foreseer_riemann_pattern_compressible_object.f90</a></li>
   
-     <li><a href='../module/foreseer_riemann_solver_compressible_object.html'>foreseer_riemann_solver_compressible_object</a></li>
+     <li><a href='../module/foreseer_riemann_pattern_compressible_object.html'>foreseer_riemann_pattern_compressible_object</a></li>
   
      <li class="active">description</li>
   </ol>
@@ -225,8 +225,6 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -234,14 +232,6 @@
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -296,8 +286,6 @@
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -387,21 +375,11 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -410,12 +388,6 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -471,12 +443,12 @@ private pure function description(self, prefix) result(desc)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E75"></span>class(<a href='../type/riemann_solver_compressible_object.html'>riemann_solver_compressible_object</a>),</td>
+  <td><span class="anchor" id="variable-self%7E67"></span>class(<a href='../type/riemann_pattern_compressible_object.html'>riemann_pattern_compressible_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Solver.</p></td>
+  <td><strong>self</strong></td><td><p>Riemann pattern.</p></td>
   
 </tr>
 
@@ -486,7 +458,7 @@ private pure function description(self, prefix) result(desc)
   
 <tr>
   
-  <td><span class="anchor" id="variable-prefix%7E8"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-prefix%7E9"></span>character(len=*),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -505,7 +477,7 @@ private pure function description(self, prefix) result(desc)
     
     
     
-	 <h3>Return Value <small><span class="anchor" id="variable-desc%7E8"></span>character(len=:),
+	 <h3>Return Value <small><span class="anchor" id="variable-desc%7E9"></span>character(len=:),
   allocatable</small></h3>
     <p>Description.</p>
     
@@ -667,18 +639,20 @@ private pure function description(self, prefix) result(desc)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>   <span class="k">pure function </span><span class="n">description</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
    <span class="c">!&lt; Return a pretty-formatted object description.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">self</span>             <span class="c">!&lt; Solver.</span>
-   <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">prefix</span>           <span class="c">!&lt; Prefixing string.</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                   <span class="kd">::</span> <span class="n">prefix_</span>          <span class="c">!&lt; Prefixing string, local variable.</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                   <span class="kd">::</span> <span class="n">desc</span>             <span class="c">!&lt; Description.</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="k">parameter</span>                                     <span class="kd">::</span> <span class="n">NL</span><span class="o">=</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c">!&lt; New line character.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_pattern_compressible_object</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">self</span>             <span class="c">!&lt; Riemann pattern.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">prefix</span>           <span class="c">!&lt; Prefixing string.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                    <span class="kd">::</span> <span class="n">desc</span>             <span class="c">!&lt; Description.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>                                    <span class="kd">::</span> <span class="n">prefix_</span>          <span class="c">!&lt; Prefixing string, local variable.</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="k">parameter</span>                                      <span class="kd">::</span> <span class="n">NL</span><span class="o">=</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c">!&lt; New line character.</span>
 
    <span class="n">prefix_</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">prefix</span><span class="p">))</span> <span class="n">prefix_</span> <span class="o">=</span> <span class="n">prefix</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;EOS_1 :&#39;</span><span class="o">//</span><span class="n">NL</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="n">self</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;  &#39;</span><span class="p">)</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;u_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">u_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;p_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;a_1 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">a_1</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
+   <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;EOS_4 :&#39;</span><span class="o">//</span><span class="n">NL</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="n">self</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;  &#39;</span><span class="p">)</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;r_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">r_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;u_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">u_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">//</span><span class="n">prefix_</span><span class="o">//</span><span class="s1">&#39;p_4 = &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">p_4</span><span class="p">))</span><span class="o">//</span><span class="n">NL</span>
@@ -736,8 +710,6 @@ private pure function description(self, prefix) result(desc)
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -745,14 +717,6 @@ private pure function description(self, prefix) result(desc)
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -807,8 +771,6 @@ private pure function description(self, prefix) result(desc)
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -898,21 +860,11 @@ private pure function description(self, prefix) result(desc)
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -921,12 +873,6 @@ private pure function description(self, prefix) result(desc)
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -957,7 +903,7 @@ private pure function description(self, prefix) result(desc)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:49  
+             on 2017-03-22 17:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

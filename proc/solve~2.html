@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.3% of total for procedures.">44 statements</a>
+	  title=" 2.8% of total for procedures.">45 statements</a>
      </li> 
      
      
@@ -225,8 +225,6 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -234,14 +232,6 @@
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -296,8 +286,6 @@
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -387,21 +375,11 @@
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -410,12 +388,6 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -472,8 +444,8 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E71"></span>class(<a href='../type/riemann_solver_compressible_hllc.html'>riemann_solver_compressible_hllc</a>),</td>
-  <td>intent(inout)</td>
+  <td><span class="anchor" id="variable-self%7E79"></span>class(<a href='../type/riemann_solver_compressible_hllc.html'>riemann_solver_compressible_hllc</a>),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -487,7 +459,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E9"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E5"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -502,7 +474,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_left%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_left%7E5"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -517,7 +489,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E9"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E5"></span>class(<a href='../type/eos_object.html'>eos_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -532,7 +504,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_right%7E9"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
+  <td><span class="anchor" id="variable-state_right%7E5"></span>class(<a href='../type/conservative_object.html'>conservative_object</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -547,7 +519,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E12"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E10"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -738,7 +710,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
    <span class="c">!&lt; Solve Riemann Problem.</span>
    <span class="c">!&lt;</span>
    <span class="c">!&lt; Approximate Riemann Solver based on (local) Lax-Friedrichs (known also as Rusanov) algorithm.</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_hllc</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>         <span class="c">!&lt; Solver.</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">riemann_solver_compressible_hllc</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">self</span>         <span class="c">!&lt; Solver.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_left</span>     <span class="c">!&lt; Equation of state for left state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">conservative_object</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">state_left</span>   <span class="c">!&lt; Left Riemann state.</span>
    <span class="k">class</span><span class="p">(</span><span class="n">eos_object</span><span class="p">),</span>                       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">eos_right</span>    <span class="c">!&lt; Equation of state for right state.</span>
@@ -748,16 +720,16 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
    <span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>                        <span class="kd">::</span> <span class="n">state23</span>      <span class="c">!&lt; Intermediate states.</span>
    <span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">pointer</span>               <span class="kd">::</span> <span class="n">state_left_</span>  <span class="c">!&lt; Left Riemann state, local variable.</span>
    <span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">),</span> <span class="k">pointer</span>               <span class="kd">::</span> <span class="n">state_right_</span> <span class="c">!&lt; Right Riemann state, local variable.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                              <span class="kd">::</span> <span class="n">waves</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>   <span class="c">!&lt; Waves speed pattern.</span>
+   <span class="k">type</span><span class="p">(</span><span class="n">riemann_pattern_compressible_pvl</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">pattern</span>      <span class="c">!&lt; Riemann (states) PVL pattern solution.</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                                              <span class="kd">::</span> <span class="n">u23</span>          <span class="c">!&lt; Maximum wave speed estimation.</span>
 
    <span class="n">state_left_</span> <span class="o">=&gt;</span> <span class="n">conservative_compressible_pointer</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">state_left</span><span class="p">)</span>
    <span class="n">state_right_</span> <span class="o">=&gt;</span> <span class="n">conservative_compressible_pointer</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">state_right</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">compute_waves</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="p">&amp;</span>
-                                      <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">waves</span><span class="o">=</span><span class="n">waves</span><span class="p">)</span>
-   <span class="k">associate</span><span class="p">(</span><span class="n">r_1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u_1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">p_1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">g_1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="p">&amp;</span>
-             <span class="n">r_4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u_4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">p_4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">g_4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="p">&amp;</span>
-             <span class="n">s_1</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s_4</span><span class="o">=&gt;</span><span class="n">self</span><span class="p">%</span><span class="n">solver_pvl</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span>                                                           <span class="p">&amp;</span>
+   <span class="k">call </span><span class="n">pattern</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos_left</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">pattern</span><span class="p">%</span><span class="n">compute_waves</span>
+   <span class="k">associate</span><span class="p">(</span><span class="n">r_1</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">r_1</span><span class="p">,</span> <span class="n">u_1</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">u_1</span><span class="p">,</span> <span class="n">p_1</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">p_1</span><span class="p">,</span> <span class="n">g_1</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">eos_1</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="p">&amp;</span>
+             <span class="n">r_4</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">r_4</span><span class="p">,</span> <span class="n">u_4</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">u_4</span><span class="p">,</span> <span class="n">p_4</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">p_4</span><span class="p">,</span> <span class="n">g_4</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">eos_4</span><span class="p">%</span><span class="n">g</span><span class="p">(),</span> <span class="p">&amp;</span>
+             <span class="n">s_1</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">s_1</span><span class="p">,</span> <span class="n">s_4</span><span class="o">=&gt;</span><span class="n">pattern</span><span class="p">%</span><span class="n">s_4</span><span class="p">,</span>                                           <span class="p">&amp;</span>
              <span class="n">E_1</span><span class="o">=&gt;</span><span class="n">state_left_</span><span class="p">%</span><span class="n">energy</span><span class="o">/</span><span class="n">state_left_</span><span class="p">%</span><span class="n">density</span><span class="p">,</span> <span class="n">E_4</span><span class="o">=&gt;</span><span class="n">state_right_</span><span class="p">%</span><span class="n">energy</span><span class="o">/</span><span class="n">state_right_</span><span class="p">%</span><span class="n">density</span><span class="p">)</span>
       <span class="n">u23</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_4</span> <span class="o">*</span> <span class="n">u_4</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_4</span> <span class="o">-</span> <span class="n">u_4</span><span class="p">)</span> <span class="o">-</span> <span class="n">r_1</span> <span class="o">*</span> <span class="n">u_1</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_1</span> <span class="o">-</span> <span class="n">u_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p_1</span> <span class="o">-</span> <span class="n">p_4</span><span class="p">)</span> <span class="o">/</span> <span class="p">&amp;</span>
             <span class="p">(</span><span class="n">r_4</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_4</span> <span class="o">-</span> <span class="n">u_4</span><span class="p">)</span> <span class="o">-</span> <span class="n">r_1</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_1</span> <span class="o">-</span> <span class="n">u_1</span><span class="p">))</span>
@@ -771,7 +743,11 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
          <span class="n">state23</span><span class="p">%</span><span class="n">energy</span>   <span class="o">=</span> <span class="n">state23</span><span class="p">%</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">E_1</span> <span class="o">+</span> <span class="p">(</span><span class="n">u23</span> <span class="o">-</span> <span class="n">u_1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">u23</span> <span class="o">+</span> <span class="n">p_1</span> <span class="o">/</span> <span class="p">(</span><span class="n">r_1</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_1</span> <span class="o">-</span> <span class="n">u_1</span><span class="p">))))</span>
          <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
          <span class="k">type is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
+<span class="cp">#ifdef __GFORTRAN__</span>
             <span class="n">fluxes</span> <span class="o">=</span> <span class="n">fluxes</span> <span class="o">+</span> <span class="n">s_1</span> <span class="o">*</span> <span class="p">(</span><span class="n">state23</span> <span class="o">-</span> <span class="n">state_left_</span><span class="p">)</span>
+<span class="cp">#else</span>
+            <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error: Intel fortran still does not support abstract math!&#39;</span>
+<span class="cp">#endif</span>
          <span class="n">endselect</span>
       <span class="k">case</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
          <span class="k">call </span><span class="n">state_right</span><span class="p">%</span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
@@ -780,13 +756,16 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
          <span class="n">state23</span><span class="p">%</span><span class="n">energy</span>   <span class="o">=</span> <span class="n">state23</span><span class="p">%</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">E_4</span> <span class="o">+</span> <span class="p">(</span><span class="n">u23</span> <span class="o">-</span> <span class="n">u_4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">u23</span> <span class="o">+</span> <span class="n">p_4</span> <span class="o">/</span> <span class="p">(</span><span class="n">r_4</span> <span class="o">*</span> <span class="p">(</span><span class="n">s_4</span> <span class="o">-</span> <span class="n">u_4</span><span class="p">))))</span>
          <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
          <span class="k">type is</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>
+<span class="cp">#ifdef __GFORTRAN__</span>
             <span class="n">fluxes</span> <span class="o">=</span> <span class="n">fluxes</span> <span class="o">+</span> <span class="n">s_4</span> <span class="o">*</span> <span class="p">(</span><span class="n">state23</span> <span class="o">-</span> <span class="n">state_right_</span><span class="p">)</span>
+<span class="cp">#else</span>
+            <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error: Intel fortran still does not support abstract math!&#39;</span>
+<span class="cp">#endif</span>
          <span class="n">endselect</span>
       <span class="k">case</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
          <span class="k">call </span><span class="n">state_right</span><span class="p">%</span><span class="n">compute_fluxes</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
       <span class="n">endselect</span>
    <span class="n">endassociate</span>
-
    <span class="n">endsubroutine</span> <span class="n">solve</span>
 </pre></div>
 
@@ -830,8 +809,6 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
-      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
-      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -839,14 +816,6 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
       <a class="list-group-item" href="../proc/compute_up23.html">compute_up23</a>
       
       <a class="list-group-item" href="../proc/compute_waves.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E2.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
-      
-      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -901,8 +870,6 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
       <a class="list-group-item" href="../interface/eos_compressible.html">eos_compressible</a>
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
-      
-      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
       
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
@@ -992,21 +959,11 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
       
       <a class="list-group-item" href="../proc/reconstruct_interfaces_primitive.html">reconstruct_interfaces_primitive</a>
       
-      <a class="list-group-item" href="../proc/riemann_solver_exact.html">riemann_solver_exact</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_hllc.html">riemann_solver_hllc</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_llf.html">riemann_solver_llf</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
-      
-      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
-      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
-      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
+      <a class="list-group-item" href="../proc/rpat_assign_rpat.html">rpat_assign_rpat</a>
       
-      <a class="list-group-item" href="../proc/set_states14.html">set_states14</a>
+      <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
       
       <a class="list-group-item" href="../proc/solve.html">solve</a>
       
@@ -1015,12 +972,6 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
-      
-      <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
-      
-      <a class="list-group-item" href="../proc/solve_up23.html">solve_up23</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -1051,7 +1002,7 @@ private subroutine solve(self, eos_left, state_left, eos_right, state_right, nor
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:49  
+             on 2017-03-22 17:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

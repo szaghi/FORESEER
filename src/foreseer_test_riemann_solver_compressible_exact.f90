@@ -29,8 +29,6 @@ state_right = conservative_compressible(density=0.125_R8P, energy=0.125_R8P*eos%
 print '(A)', 'Test solution with "u23" algorithm:'
 call riemann_solver%initialize
 call riemann_solver%solve(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, fluxes=fluxes)
-print '(A)', 'States pattern:'
-print '(A)', riemann_solver%description(prefix='  ')
 print '(A)', 'Fluxes at interface:'
 print '(A)', fluxes%description(prefix='  ')
 call fluxes%compute_fluxes_from_primitive(eos=eos, p=p23, r=r_2, u=u23, normal=ex)
@@ -44,8 +42,6 @@ print '(A)', '  u23 = '//str(n=u23)
 print '(A)', 'Test solution with "10^-15" tolerance:'
 call riemann_solver%initialize(config='1.e-15')
 call riemann_solver%solve(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, fluxes=fluxes)
-print '(A)', 'States pattern:'
-print '(A)', riemann_solver%description(prefix='  ')
 print '(A)', 'Fluxes at interface:'
 print '(A)', fluxes%description(prefix='  ')
 call fluxes%compute_fluxes_from_primitive(eos=eos, p=p23, r=r_2, u=u23, normal=ex)
@@ -56,15 +52,6 @@ print '(A)', '  r_2 = '//str(n=r_2)
 print '(A)', '  r_3 = '//str(n=r_3)
 print '(A)', '  p23 = '//str(n=p23)
 print '(A)', '  u23 = '//str(n=u23)
-
-call riemann_solver%compute_waves(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, &
-                                  waves=waves)
-print '(A)', 'Waves pattern:'
-print '(A)', '  S1 = '//str(n=waves(1))
-print '(A)', '  S2 = '//str(n=waves(2))
-print '(A)', '  S  = '//str(n=waves(3))
-print '(A)', '  S3 = '//str(n=waves(4))
-print '(A)', '  S4 = '//str(n=waves(5))
 
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
 endprogram foreseer_test_riemann_solver_compressible_hllc

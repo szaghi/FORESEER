@@ -3,17 +3,16 @@
 module foreseer_eos_compressible
 !< Define the equation of state (EOS) of ideal compressible fluid for FORESEER library.
 
-use, intrinsic :: iso_fortran_env, only : stderr=>error_unit
 use foreseer_eos_object, only : eos_object
 use penf, only : R8P, str
 
 implicit none
 private
 public :: eos_compressible
-public :: eos_compressible_pointer
 
 type, extends(eos_object) :: eos_compressible
    !< Equation of state (EOS) of ideal compressible object class.
+   private
    real(R8P) :: cp_=0._R8P    !< Specific heat at constant pressure `cp`.
    real(R8P) :: cv_=0._R8P    !< Specific heat at constant volume `cv`.
    real(R8P) :: g_=0._R8P     !< Specific heats ratio `gamma = cp / cv`.
@@ -49,26 +48,6 @@ interface eos_compressible
 endinterface
 
 contains
-   ! public non TBP
-   function eos_compressible_pointer(to, error_message) result(pointer_)
-   !< Return [[conservative_compressible]] pointer associated to [[conservative_object]] or its extensions until
-   !< [[conservative_compressible]] included.
-   !<
-   !< @note A type-guard check is performed and error stop is raised if necessary.
-   class(eos_object), intent(in), target   :: to            !< Target of associate.
-   character(*),      intent(in), optional :: error_message !< Auxiliary error message.
-   class(eos_compressible), pointer        :: pointer_      !< Associated pointer.
-
-   select type(to)
-   type is(eos_compressible)
-      pointer_ => to
-   class default
-      write(stderr, '(A)') 'error: cast eos_object to eos_compressible failed!'
-      if (present(error_message)) write(stderr, '(A)') error_message
-      stop
-   endselect
-   endfunction eos_compressible_pointer
-
    ! public methods
    elemental subroutine compute_derivate(self)
    !< Compute derivate quantities (from `cp` and `cv`).
