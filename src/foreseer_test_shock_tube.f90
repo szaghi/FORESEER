@@ -8,7 +8,8 @@ use foreseer, only : conservative_object, conservative_compressible, primitive_c
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_object, eos_compressible,                                                   &
                      riemann_solver_object, riemann_solver_compressible_exact,                       &
-                     riemann_solver_compressible_hllc, riemann_solver_compressible_llf, riemann_solver_compressible_pvl
+                     riemann_solver_compressible_hllc, riemann_solver_compressible_llf,              &
+                     riemann_solver_compressible_pvl, riemann_solver_compressible_roe
 use penf, only : I4P, R8P
 use foodie, only : integrand
 use vecfor, only : ex, vector
@@ -114,6 +115,7 @@ type, extends(integrand) :: euler_1d
       procedure, pass(self), private :: riemann_solver_hllc                   !< HLLC Riemann Problem solver.
       procedure, pass(self), private :: riemann_solver_llf                    !< LLF Riemann Problem solver.
       procedure, pass(self), private :: riemann_solver_pvl                    !< PVL Riemann Problem solver.
+      procedure, pass(self), private :: riemann_solver_roe                    !< Roe Riemann Problem solver.
 endtype euler_1d
 
 abstract interface
@@ -196,6 +198,8 @@ contains
       self%riemann_solver => riemann_solver_llf
    case('pvl')
       self%riemann_solver => riemann_solver_pvl
+   case('roe')
+      self%riemann_solver => riemann_solver_roe
    case default
       write(stderr, '(A)') 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
       stop
@@ -748,6 +752,21 @@ contains
    call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
                              eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
    endsubroutine riemann_solver_pvl
+
+   subroutine riemann_solver_roe(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
+   !< Riemann Problem solver by means of Roe algorithm.
+   class(euler_1d),                  intent(in)    :: self           !< Euler field.
+   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
+   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
+   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
+   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
+   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
+   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
+   type(riemann_solver_compressible_roe)           :: riemann_solver !< Riemann solver.
+
+   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
+                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
+   endsubroutine riemann_solver_roe
 endmodule foreseer_euler_1d
 
 program foreseer_test_shock_tube
@@ -859,7 +878,7 @@ contains
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
-                choices='all,exact,hllc,llf,pvl')
+                choices='all,exact,hllc,llf,pvl,roe')
    call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
      choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
              'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
@@ -905,7 +924,7 @@ contains
    endselect
 
    if (trim(adjustl(riemann_solver_scheme))=='all') then
-      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ']
+      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ', 'roe  ']
    else
       riemann_solver_schemes = [trim(adjustl(riemann_solver_scheme))]
    endif

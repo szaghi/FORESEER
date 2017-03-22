@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.5% of total for procedures.">8 statements</a>
+	  title=" 0.4% of total for procedures.">8 statements</a>
      </li> 
      
      
@@ -225,6 +225,8 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -238,6 +240,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -293,6 +297,8 @@
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -328,6 +334,8 @@
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -387,6 +395,8 @@
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -400,6 +410,8 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -517,51 +529,51 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
 <polygon fill="none" stroke="black" points="464,-92 262,-92 262,-66 464,-66 464,-92"/>
 <text text-anchor="middle" x="363" y="-76.55" font-family="Helvetica,sans-Serif" font-size="10.50">primitive_to_conservative_compressible</text>
 </g>
-<!-- proc~reconstruct_interfaces_characteristic -->
-<g id="node2" class="node"><title>proc~reconstruct_interfaces_characteristic</title>
-<a xlink:href="../proc/reconstruct_interfaces_characteristic.html" xlink:title="reconstruct_interfaces_characteristic">
-<polygon fill="#d9534f" stroke="#d9534f" points="206,-158 20,-158 20,-132 206,-132 206,-158"/>
-<text text-anchor="middle" x="113" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reconstruct_interfaces_characteristic</text>
+<!-- proc~initialize~8 -->
+<g id="node2" class="node"><title>proc~initialize~8</title>
+<a xlink:href="../proc/initialize%7E8.html" xlink:title="initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="140,-158 86,-158 86,-132 140,-132 140,-158"/>
+<text text-anchor="middle" x="113" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize</text>
 </a>
 </g>
-<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible -->
-<g id="edge2" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible</title>
-<path fill="none" stroke="#000000" d="M186.53,-131.996C199.732,-129.289 213.321,-126.258 226,-123 256.572,-115.144 290.341,-104.324 316.703,-95.3792"/>
+<!-- proc~initialize~8&#45;&gt;proc~primitive_to_conservative_compressible -->
+<g id="edge2" class="edge"><title>proc~initialize~8&#45;&gt;proc~primitive_to_conservative_compressible</title>
+<path fill="none" stroke="#000000" d="M140.142,-140.646C163.159,-136.732 196.964,-130.461 226,-123 256.572,-115.144 290.341,-104.324 316.703,-95.3792"/>
 <polygon fill="#000000" stroke="#000000" points="318.094,-98.6026 326.422,-92.0531 315.827,-91.9798 318.094,-98.6026"/>
 </g>
-<!-- program~foreseer_test_compressible_transformations -->
-<g id="node3" class="node"><title>program~foreseer_test_compressible_transformations</title>
-<a xlink:href="../program/foreseer_test_compressible_transformations.html" xlink:title="foreseer_test_compressible_transformations">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="225,-114 1,-114 1,-88 225,-88 225,-114"/>
-<text text-anchor="middle" x="113" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_compressible_transformations</text>
-</a>
-</g>
-<!-- program~foreseer_test_compressible_transformations&#45;&gt;proc~primitive_to_conservative_compressible -->
-<g id="edge4" class="edge"><title>program~foreseer_test_compressible_transformations&#45;&gt;proc~primitive_to_conservative_compressible</title>
-<path fill="none" stroke="#000000" d="M225.567,-91.0941C234.23,-90.3317 242.974,-89.5623 251.629,-88.8006"/>
-<polygon fill="#000000" stroke="#000000" points="252.085,-92.2742 261.739,-87.911 251.471,-85.3011 252.085,-92.2742"/>
-</g>
-<!-- proc~initialize~7 -->
-<g id="node4" class="node"><title>proc~initialize~7</title>
-<a xlink:href="../proc/initialize%7E7.html" xlink:title="initialize">
-<polygon fill="#d9534f" stroke="#d9534f" points="140,-70 86,-70 86,-44 140,-44 140,-70"/>
-<text text-anchor="middle" x="113" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initialize</text>
-</a>
-</g>
-<!-- proc~initialize~7&#45;&gt;proc~primitive_to_conservative_compressible -->
-<g id="edge6" class="edge"><title>proc~initialize~7&#45;&gt;proc~primitive_to_conservative_compressible</title>
-<path fill="none" stroke="#000000" d="M140.23,-59.3963C167.237,-61.7729 210.432,-65.574 251.628,-69.1993"/>
-<polygon fill="#000000" stroke="#000000" points="251.499,-72.7013 261.767,-70.0915 252.113,-65.7283 251.499,-72.7013"/>
-</g>
 <!-- proc~reconstruct_interfaces_primitive -->
-<g id="node5" class="node"><title>proc~reconstruct_interfaces_primitive</title>
+<g id="node3" class="node"><title>proc~reconstruct_interfaces_primitive</title>
 <a xlink:href="../proc/reconstruct_interfaces_primitive.html" xlink:title="reconstruct_interfaces_primitive">
-<polygon fill="#d9534f" stroke="#d9534f" points="195,-26 31,-26 31,-1.24345e-14 195,-3.55271e-15 195,-26"/>
-<text text-anchor="middle" x="113" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reconstruct_interfaces_primitive</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="195,-114 31,-114 31,-88 195,-88 195,-114"/>
+<text text-anchor="middle" x="113" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reconstruct_interfaces_primitive</text>
 </a>
 </g>
 <!-- proc~reconstruct_interfaces_primitive&#45;&gt;proc~primitive_to_conservative_compressible -->
-<g id="edge8" class="edge"><title>proc~reconstruct_interfaces_primitive&#45;&gt;proc~primitive_to_conservative_compressible</title>
+<g id="edge4" class="edge"><title>proc~reconstruct_interfaces_primitive&#45;&gt;proc~primitive_to_conservative_compressible</title>
+<path fill="none" stroke="#000000" d="M195.206,-93.7659C213.301,-92.1735 232.757,-90.4614 251.781,-88.7872"/>
+<polygon fill="#000000" stroke="#000000" points="252.332,-92.2524 261.987,-87.8892 251.718,-85.2793 252.332,-92.2524"/>
+</g>
+<!-- program~foreseer_test_compressible_transformations -->
+<g id="node4" class="node"><title>program~foreseer_test_compressible_transformations</title>
+<a xlink:href="../program/foreseer_test_compressible_transformations.html" xlink:title="foreseer_test_compressible_transformations">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="225,-70 1,-70 1,-44 225,-44 225,-70"/>
+<text text-anchor="middle" x="113" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_test_compressible_transformations</text>
+</a>
+</g>
+<!-- program~foreseer_test_compressible_transformations&#45;&gt;proc~primitive_to_conservative_compressible -->
+<g id="edge6" class="edge"><title>program~foreseer_test_compressible_transformations&#45;&gt;proc~primitive_to_conservative_compressible</title>
+<path fill="none" stroke="#000000" d="M225.567,-66.9059C234.23,-67.6683 242.974,-68.4377 251.629,-69.1994"/>
+<polygon fill="#000000" stroke="#000000" points="251.471,-72.6989 261.739,-70.089 252.085,-65.7258 251.471,-72.6989"/>
+</g>
+<!-- proc~reconstruct_interfaces_characteristic -->
+<g id="node5" class="node"><title>proc~reconstruct_interfaces_characteristic</title>
+<a xlink:href="../proc/reconstruct_interfaces_characteristic.html" xlink:title="reconstruct_interfaces_characteristic">
+<polygon fill="#d9534f" stroke="#d9534f" points="206,-26 20,-26 20,-1.24345e-14 206,-3.55271e-15 206,-26"/>
+<text text-anchor="middle" x="113" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">reconstruct_interfaces_characteristic</text>
+</a>
+</g>
+<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible -->
+<g id="edge8" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible</title>
 <path fill="none" stroke="#000000" d="M186.53,-26.0039C199.732,-28.7108 213.321,-31.7419 226,-35 256.572,-42.8561 290.341,-53.6764 316.703,-62.6208"/>
 <polygon fill="#000000" stroke="#000000" points="315.827,-66.0202 326.422,-65.9469 318.094,-59.3974 315.827,-66.0202"/>
 </g>
@@ -743,6 +755,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -756,6 +770,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -811,6 +827,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -846,6 +864,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -905,6 +925,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -918,6 +940,8 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -952,7 +976,7 @@ public elemental function primitive_to_conservative_compressible(primitive, eos)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:44  
+             on 2017-03-22 08:49  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

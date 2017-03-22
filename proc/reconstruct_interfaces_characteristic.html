@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 3.6% of total for procedures.">61 statements</a>
+	  title=" 3.2% of total for procedures.">61 statements</a>
      </li> 
      
      
@@ -225,6 +225,8 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -238,6 +240,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -293,6 +297,8 @@
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -328,6 +334,8 @@
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -387,6 +395,8 @@
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -400,6 +410,8 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -460,7 +472,7 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E94"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
+  <td><span class="anchor" id="variable-self%7E97"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -523,15 +535,15 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
 <polygon fill="none" stroke="black" points="187,-70 1,-70 1,-44 187,-44 187,-70"/>
 <text text-anchor="middle" x="94" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50">reconstruct_interfaces_characteristic</text>
 </g>
-<!-- proc~primitive_to_conservative_compressible -->
-<g id="node2" class="node"><title>proc~primitive_to_conservative_compressible</title>
-<a xlink:href="../proc/primitive_to_conservative_compressible.html" xlink:title="primitive_to_conservative_compressible">
+<!-- proc~conservative_to_primitive_compressible -->
+<g id="node2" class="node"><title>proc~conservative_to_primitive_compressible</title>
+<a xlink:href="../proc/conservative_to_primitive_compressible.html" xlink:title="conservative_to_primitive_compressible">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="426,-114 224,-114 224,-88 426,-88 426,-114"/>
-<text text-anchor="middle" x="325" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">primitive_to_conservative_compressible</text>
+<text text-anchor="middle" x="325" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_to_primitive_compressible</text>
 </a>
 </g>
-<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible -->
-<g id="edge2" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible</title>
+<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~conservative_to_primitive_compressible -->
+<g id="edge2" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~conservative_to_primitive_compressible</title>
 <path fill="none" stroke="#000000" d="M162.37,-70.0229C188.793,-75.0558 219.188,-80.8453 246.498,-86.0471"/>
 <polygon fill="#000000" stroke="#000000" points="245.928,-89.5015 256.406,-87.9345 247.238,-82.6251 245.928,-89.5015"/>
 </g>
@@ -545,15 +557,15 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
 <path fill="none" stroke="#000000" d="M187.624,-57C216.862,-57 248.042,-57 273.294,-57"/>
 <polygon fill="#000000" stroke="#000000" points="273.374,-60.5001 283.373,-57 273.373,-53.5001 273.374,-60.5001"/>
 </g>
-<!-- proc~conservative_to_primitive_compressible -->
-<g id="node4" class="node"><title>proc~conservative_to_primitive_compressible</title>
-<a xlink:href="../proc/conservative_to_primitive_compressible.html" xlink:title="conservative_to_primitive_compressible">
+<!-- proc~primitive_to_conservative_compressible -->
+<g id="node4" class="node"><title>proc~primitive_to_conservative_compressible</title>
+<a xlink:href="../proc/primitive_to_conservative_compressible.html" xlink:title="primitive_to_conservative_compressible">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="426,-26 224,-26 224,-1.24345e-14 426,-3.55271e-15 426,-26"/>
-<text text-anchor="middle" x="325" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_to_primitive_compressible</text>
+<text text-anchor="middle" x="325" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">primitive_to_conservative_compressible</text>
 </a>
 </g>
-<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~conservative_to_primitive_compressible -->
-<g id="edge6" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~conservative_to_primitive_compressible</title>
+<!-- proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible -->
+<g id="edge6" class="edge"><title>proc~reconstruct_interfaces_characteristic&#45;&gt;proc~primitive_to_conservative_compressible</title>
 <path fill="none" stroke="#000000" d="M162.37,-43.9771C188.793,-38.9442 219.188,-33.1547 246.498,-27.9529"/>
 <polygon fill="#000000" stroke="#000000" points="247.238,-31.3749 256.406,-26.0655 245.928,-24.4985 247.238,-31.3749"/>
 </g>
@@ -794,6 +806,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -807,6 +821,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -862,6 +878,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -897,6 +915,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -956,6 +976,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -969,6 +991,8 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -1003,7 +1027,7 @@ private subroutine reconstruct_interfaces_characteristic(self, conservative, r_c
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:44  
+             on 2017-03-22 08:49  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

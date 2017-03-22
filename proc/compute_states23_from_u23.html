@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.5% of total for procedures.">25 statements</a>
+	  title=" 1.3% of total for procedures.">25 statements</a>
      </li> 
      
      
@@ -225,6 +225,8 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -238,6 +240,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -293,6 +297,8 @@
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -328,6 +334,8 @@
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -387,6 +395,8 @@
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -400,6 +410,8 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -524,29 +536,29 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
 <polygon fill="none" stroke="black" points="152,-48 7.10543e-14,-48 0,-22 152,-22 152,-48"/>
 <text text-anchor="middle" x="76" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50">compute_states23_from_u23</text>
 </g>
-<!-- proc~compute_post_shock -->
-<g id="node2" class="node"><title>proc~compute_post_shock</title>
-<a xlink:href="../proc/compute_post_shock.html" xlink:title="compute_post_shock">
-<polygon fill="#d9534f" stroke="#d9534f" points="314,-70 200,-70 200,-44 314,-44 314,-70"/>
-<text text-anchor="middle" x="257" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_post_shock</text>
-</a>
-</g>
-<!-- proc~compute_states23_from_u23&#45;&gt;proc~compute_post_shock -->
-<g id="edge2" class="edge"><title>proc~compute_states23_from_u23&#45;&gt;proc~compute_post_shock</title>
-<path fill="none" stroke="#000000" d="M152.236,-44.2662C164.69,-45.78 177.514,-47.3387 189.731,-48.8237"/>
-<polygon fill="#000000" stroke="#000000" points="189.481,-52.319 199.83,-50.0512 190.326,-45.3701 189.481,-52.319"/>
-</g>
 <!-- proc~compute_post_rarefaction -->
-<g id="node3" class="node"><title>proc~compute_post_rarefaction</title>
+<g id="node2" class="node"><title>proc~compute_post_rarefaction</title>
 <a xlink:href="../proc/compute_post_rarefaction.html" xlink:title="compute_post_rarefaction">
-<polygon fill="#d9534f" stroke="#d9534f" points="325,-26 189,-26 189,-1.24345e-14 325,-3.55271e-15 325,-26"/>
-<text text-anchor="middle" x="257" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_post_rarefaction</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="325,-70 189,-70 189,-44 325,-44 325,-70"/>
+<text text-anchor="middle" x="257" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_post_rarefaction</text>
 </a>
 </g>
 <!-- proc~compute_states23_from_u23&#45;&gt;proc~compute_post_rarefaction -->
-<g id="edge4" class="edge"><title>proc~compute_states23_from_u23&#45;&gt;proc~compute_post_rarefaction</title>
-<path fill="none" stroke="#000000" d="M152.236,-25.7338C160.846,-24.6872 169.634,-23.6191 178.275,-22.5687"/>
-<polygon fill="#000000" stroke="#000000" points="178.829,-26.0273 188.334,-21.3462 177.984,-19.0784 178.829,-26.0273"/>
+<g id="edge2" class="edge"><title>proc~compute_states23_from_u23&#45;&gt;proc~compute_post_rarefaction</title>
+<path fill="none" stroke="#000000" d="M152.236,-44.2662C160.846,-45.3128 169.634,-46.3809 178.275,-47.4313"/>
+<polygon fill="#000000" stroke="#000000" points="177.984,-50.9216 188.334,-48.6538 178.829,-43.9727 177.984,-50.9216"/>
+</g>
+<!-- proc~compute_post_shock -->
+<g id="node3" class="node"><title>proc~compute_post_shock</title>
+<a xlink:href="../proc/compute_post_shock.html" xlink:title="compute_post_shock">
+<polygon fill="#d9534f" stroke="#d9534f" points="314,-26 200,-26 200,-1.24345e-14 314,-3.55271e-15 314,-26"/>
+<text text-anchor="middle" x="257" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_post_shock</text>
+</a>
+</g>
+<!-- proc~compute_states23_from_u23&#45;&gt;proc~compute_post_shock -->
+<g id="edge4" class="edge"><title>proc~compute_states23_from_u23&#45;&gt;proc~compute_post_shock</title>
+<path fill="none" stroke="#000000" d="M152.236,-25.7338C164.69,-24.22 177.514,-22.6613 189.731,-21.1763"/>
+<polygon fill="#000000" stroke="#000000" points="190.326,-24.6299 199.83,-19.9488 189.481,-17.681 190.326,-24.6299"/>
 </g>
 </g>
 </svg>
@@ -761,6 +773,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -774,6 +788,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -829,6 +845,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -864,6 +882,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -923,6 +943,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -936,6 +958,8 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -970,7 +994,7 @@ private elemental subroutine compute_states23_from_u23(self, p_2, p_3)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:44  
+             on 2017-03-22 08:49  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

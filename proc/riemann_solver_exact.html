@@ -225,6 +225,8 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -238,6 +240,8 @@
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -293,6 +297,8 @@
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -328,6 +334,8 @@
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -387,6 +395,8 @@
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -400,6 +410,8 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -459,7 +471,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E97"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
+  <td><span class="anchor" id="variable-self%7E100"></span>class(<a href='../type/euler_1d.html'>euler_1d</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -474,7 +486,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_left%7E20"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td><span class="anchor" id="variable-eos_left%7E23"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -489,7 +501,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_left%7E19"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-state_left%7E22"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -504,7 +516,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-eos_right%7E20"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
+  <td><span class="anchor" id="variable-eos_right%7E23"></span>class(<a href='../type/eos_compressible.html'>eos_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -519,7 +531,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-state_right%7E19"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-state_right%7E22"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -534,7 +546,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-normal%7E23"></span>type(vector),</td>
+  <td><span class="anchor" id="variable-normal%7E25"></span>type(vector),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -549,7 +561,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
   
 <tr>
   
-  <td><span class="anchor" id="variable-fluxes%7E13"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
+  <td><span class="anchor" id="variable-fluxes%7E14"></span>class(<a href='../type/conservative_compressible.html'>conservative_compressible</a>),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -676,6 +688,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -689,6 +703,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       <a class="list-group-item" href="../proc/compute_waves%7E3.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves%7E4.html">compute_waves</a>
+      
+      <a class="list-group-item" href="../proc/compute_waves%7E5.html">compute_waves</a>
       
       <a class="list-group-item" href="../proc/compute_waves_u23.html">compute_waves_u23</a>
       
@@ -744,6 +760,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -779,6 +797,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       <a class="list-group-item" href="../proc/initialize%7E7.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -838,6 +858,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       
       <a class="list-group-item" href="../proc/riemann_solver_pvl.html">riemann_solver_pvl</a>
       
+      <a class="list-group-item" href="../proc/riemann_solver_roe.html">riemann_solver_roe</a>
+      
       <a class="list-group-item" href="../proc/right_eigenvectors.html">right_eigenvectors</a>
       
       <a class="list-group-item" href="../proc/save_time_serie.html">save_time_serie</a>
@@ -851,6 +873,8 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve_u23.html">solve_u23</a>
       
@@ -885,7 +909,7 @@ private subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, s
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 08:44  
+             on 2017-03-22 08:49  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

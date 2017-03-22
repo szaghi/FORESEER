@@ -14,6 +14,7 @@ use foreseer_riemann_solver_compressible_hllc, only : riemann_solver_compressibl
 use foreseer_riemann_solver_compressible_llf, only : riemann_solver_compressible_llf
 use foreseer_riemann_solver_compressible_object, only : riemann_solver_compressible_object
 use foreseer_riemann_solver_compressible_pvl, only : riemann_solver_compressible_pvl
+use foreseer_riemann_solver_compressible_roe, only : riemann_solver_compressible_roe
 use foreseer_riemann_solver_object, only : riemann_solver_object
 
 implicit none
@@ -30,5 +31,6 @@ public :: riemann_solver_compressible_hllc
 public :: riemann_solver_compressible_llf
 public :: riemann_solver_compressible_object
 public :: riemann_solver_compressible_pvl
+public :: riemann_solver_compressible_roe
 public :: riemann_solver_object
 endmodule foreseer
