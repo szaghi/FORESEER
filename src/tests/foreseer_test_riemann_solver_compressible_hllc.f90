@@ -53,14 +53,5 @@ print '(A)', '  r_3 = '//str(n=r_3)
 print '(A)', '  p23 = '//str(n=p23)
 print '(A)', '  u23 = '//str(n=u23)
 
-call riemann_solver%compute_waves(eos_left=eos, state_left=state_left, eos_right=eos, state_right=state_right, normal=ex, &
-                                  waves=waves)
-print '(A)', 'Waves pattern:'
-print '(A)', '  S1 = '//str(n=waves(1))
-print '(A)', '  S2 = '//str(n=waves(2))
-print '(A)', '  S  = '//str(n=waves(3))
-print '(A)', '  S3 = '//str(n=waves(4))
-print '(A)', '  S4 = '//str(n=waves(5))
-
 print "(A,L1)", new_line('a')//'Are all tests passed? ', all(are_tests_passed)
 endprogram foreseer_test_riemann_solver_compressible_hllc

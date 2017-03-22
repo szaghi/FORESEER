@@ -88,7 +88,7 @@ type, extends(integrand) :: euler_1d
    class(interpolator_object),      allocatable :: interpolator                          !< WENO interpolator.
    procedure(reconstruct_interfaces_), pointer  :: reconstruct_interfaces=>&
                                                    reconstruct_interfaces_characteristic !< Reconstruct interface states.
-   procedure(riemann_solver_),         pointer  :: riemann_solver=>riemann_solver_llf    !< Actual Riemann Problem solver.
+   class(riemann_solver_object), allocatable    :: riemann_solver                        !< Riemann solver.
    contains
       ! auxiliary methods
       procedure, pass(self) :: initialize       !< Initialize field.
@@ -110,26 +110,10 @@ type, extends(integrand) :: euler_1d
       procedure, pass(self), private :: reconstruct_interfaces_characteristic !< Reconstruct (charc.) interface states.
       procedure, pass(self), private :: reconstruct_interfaces_conservative   !< Reconstruct (cons.) interface states.
       procedure, pass(self), private :: reconstruct_interfaces_primitive      !< Reconstruct (prim.) interface states.
-      procedure, pass(self), private :: riemann_solver_exact                  !< Exact Riemann Problem solver.
-      procedure, pass(self), private :: riemann_solver_hllc                   !< HLLC Riemann Problem solver.
-      procedure, pass(self), private :: riemann_solver_llf                    !< LLF Riemann Problem solver.
-      procedure, pass(self), private :: riemann_solver_pvl                    !< PVL Riemann Problem solver.
 endtype euler_1d
 
 abstract interface
    !< Abstract interfaces of [[euler_1d]] pointer methods.
-   subroutine riemann_solver_(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver.
-   import :: conservative_compressible, eos_compressible, euler_1d, vector
-   class(euler_1d),                  intent(in)    :: self           !< Euler field.
-   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
-   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
-   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
-   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
-   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
-   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
-   endsubroutine riemann_solver_
-
    subroutine reconstruct_interfaces_(self, conservative, r_conservative)
    !< Reconstruct interface states.
    import :: conservative_compressible, euler_1d, primitive_compressible
@@ -189,13 +173,13 @@ contains
    if (present(riemann_solver_scheme)) riemann_solver_scheme_ = trim(adjustl(riemann_solver_scheme))
    select case(riemann_solver_scheme_)
    case('exact')
-      self%riemann_solver => riemann_solver_exact
+      allocate(riemann_solver_compressible_exact :: self%riemann_solver)
    case('hllc')
-      self%riemann_solver => riemann_solver_hllc
+      allocate(riemann_solver_compressible_hllc :: self%riemann_solver)
    case('llf')
-      self%riemann_solver => riemann_solver_llf
+      allocate(riemann_solver_compressible_llf :: self%riemann_solver)
    case('pvl')
-      self%riemann_solver => riemann_solver_pvl
+      allocate(riemann_solver_compressible_pvl :: self%riemann_solver)
    case default
       write(stderr, '(A)') 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
       stop
@@ -214,6 +198,7 @@ contains
    if (allocated(self%BC_L)) deallocate(self%BC_L)
    if (allocated(self%BC_R)) deallocate(self%BC_R)
    if (allocated(self%interpolator)) deallocate(self%interpolator)
+   if (allocated(self%riemann_solver)) deallocate(self%riemann_solver)
    endsubroutine destroy
 
    pure function output(self, is_primitive) result(state)
@@ -286,8 +271,8 @@ contains
    call self%impose_boundary_conditions(U=U)
    call self%reconstruct_interfaces(conservative=U, r_conservative=UR)
    do i=0, self%Ni
-      call self%riemann_solver(eos_left=self%eos,  state_left=UR( 2, i  ), &
-                               eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
+      call self%riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
+                                     eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
    enddo
    allocate(euler_1d :: dState_dt)
    select type(dState_dt)
@@ -452,7 +437,10 @@ contains
         allocate(lhs%interpolator, source=rhs%interpolator)
      endif
      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-     if (associated(rhs%riemann_solver)) lhs%riemann_solver => rhs%riemann_solver
+     ! if (associated(rhs%riemann_solver)) lhs%riemann_solver => rhs%riemann_solver
+     if (allocated(rhs%riemann_solver)) then
+        if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver) ; allocate(lhs%riemann_solver, source=rhs%riemann_solver)
+     endif
   endselect
   endsubroutine euler_assign_euler
 
@@ -472,7 +460,6 @@ contains
   endsubroutine euler_assign_real
 
    ! private methods
-   ! pure subroutine impose_boundary_conditions(self, P)
    pure subroutine impose_boundary_conditions(self, U)
    !< Impose boundary conditions.
    !<
@@ -688,66 +675,6 @@ contains
       enddo
    endselect
    endsubroutine reconstruct_interfaces_primitive
-
-   subroutine riemann_solver_exact(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver by means of exact (Newton iterative) algorithm.
-   class(euler_1d),                  intent(in)    :: self           !< Euler field.
-   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
-   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
-   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
-   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
-   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
-   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
-   type(riemann_solver_compressible_exact)         :: riemann_solver !< Riemann solver.
-
-   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
-                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
-   endsubroutine riemann_solver_exact
-
-   subroutine riemann_solver_hllc(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver by means of HLLC algorithm.
-   class(euler_1d),                  intent(in)    :: self           !< Euler field.
-   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
-   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
-   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
-   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
-   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
-   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
-   type(riemann_solver_compressible_hllc)          :: riemann_solver !< Riemann solver.
-
-   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
-                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
-   endsubroutine riemann_solver_hllc
-
-   subroutine riemann_solver_llf(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver by means of LLF algorithm.
-   class(euler_1d),                  intent(in)    :: self           !< Euler field.
-   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
-   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
-   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
-   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
-   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
-   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
-   type(riemann_solver_compressible_llf)           :: riemann_solver !< Riemann solver.
-
-   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
-                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
-   endsubroutine riemann_solver_llf
-
-   subroutine riemann_solver_pvl(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
-   !< Riemann Problem solver by means of PVL algorithm.
-   class(euler_1d),                  intent(in)    :: self           !< Euler field.
-   class(eos_compressible),          intent(in)    :: eos_left       !< Equation of state for left state.
-   class(conservative_compressible), intent(in)    :: state_left     !< Left Riemann state.
-   class(eos_compressible),          intent(in)    :: eos_right      !< Equation of state for right state.
-   class(conservative_compressible), intent(in)    :: state_right    !< Right Riemann state.
-   type(vector),                     intent(in)    :: normal         !< Normal (versor) of face where fluxes are given.
-   class(conservative_compressible), intent(inout) :: fluxes         !< Fluxes of the Riemann Problem solution.
-   type(riemann_solver_compressible_pvl)           :: riemann_solver !< Riemann solver.
-
-   call riemann_solver%solve(eos_left=eos_left,   state_left=state_left, &
-                             eos_right=eos_right, state_right=state_right, normal=ex, fluxes=fluxes)
-   endsubroutine riemann_solver_pvl
 endmodule foreseer_euler_1d
 
 program foreseer_test_shock_tube
