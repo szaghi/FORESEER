@@ -8,7 +8,8 @@ use foreseer, only : conservative_object, conservative_compressible, primitive_c
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_object, eos_compressible,                                                   &
                      riemann_solver_object, riemann_solver_compressible_exact,                       &
-                     riemann_solver_compressible_hllc, riemann_solver_compressible_llf, riemann_solver_compressible_pvl
+                     riemann_solver_compressible_hllc, riemann_solver_compressible_llf,              &
+                     riemann_solver_compressible_pvl, riemann_solver_compressible_roe
 use penf, only : I4P, R8P
 use foodie, only : integrand
 use vecfor, only : ex, vector
@@ -180,6 +181,8 @@ contains
       allocate(riemann_solver_compressible_llf :: self%riemann_solver)
    case('pvl')
       allocate(riemann_solver_compressible_pvl :: self%riemann_solver)
+   case('roe')
+      allocate(riemann_solver_compressible_roe :: self%riemann_solver)
    case default
       write(stderr, '(A)') 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
       stop
@@ -786,7 +789,7 @@ contains
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
-                choices='all,exact,hllc,llf,pvl')
+                choices='all,exact,hllc,llf,pvl,roe')
    call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
      choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
              'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
@@ -832,7 +835,7 @@ contains
    endselect
 
    if (trim(adjustl(riemann_solver_scheme))=='all') then
-      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ']
+      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ', 'roe  ']
    else
       riemann_solver_schemes = [trim(adjustl(riemann_solver_scheme))]
    endif
