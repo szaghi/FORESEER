@@ -3,8 +3,8 @@
 module foreseer_riemann_solver_object
 !< Define the abstract Riemann solver of FORESEER library.
 
-use foreseer_conservative_object, only : conservative_object
-use foreseer_eos_object, only : eos_object
+use flow_conservative_object, only : conservative_object
+use flow_eos_object, only : eos_object
 use penf, only : R8P
 use vecfor, only : vector
 

@@ -3,9 +3,9 @@
 module foreseer_riemann_solver_compressible_llf
 !< Define the Local Lax-Friedrichs (known also as Rusanov) Riemann solver of FORESEER library.
 
-use foreseer_conservative_compressible, only : conservative_compressible, conservative_compressible_pointer
-use foreseer_conservative_object, only : conservative_object
-use foreseer_eos_object, only : eos_object
+use flow_conservative_compressible, only : conservative_compressible, conservative_compressible_pointer
+use flow_conservative_object, only : conservative_object
+use flow_eos_object, only : eos_object
 use foreseer_riemann_pattern_compressible_pvl, only : riemann_pattern_compressible_pvl
 use foreseer_riemann_solver_object, only : riemann_solver_object
 use penf, only : R8P

@@ -16,6 +16,7 @@ $OPTIMIZE    = -O2
 $EXDIRS      = PENF/src/tests/
                FACE/src/tests/ FACE/src/third_party/
                FLAP/src/tests/ FLAP/src/third_party/
+               FLOw/src/tests/ FLOw/src/third_party/
                FOODIE/src/tests/ FOODIE/src/third_party/
                VecFor/src/tests/ VecFor/src/third_party/
                WenOOF/src/tests/ WenOOF/src/third_party/
