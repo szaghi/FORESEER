@@ -22,3 +22,7 @@
    path = src/third_party/WenOOF
    url = https://github.com/Fortran-FOSS-Programmers/WenOOF
    branch = master
+[submodule "src/third_party/FLOw"]
+   path = src/third_party/FLOw
+   url = https://github.com/szaghi/FLOw
+   branch = master

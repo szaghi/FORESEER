@@ -3,10 +3,10 @@
 module foreseer_riemann_pattern_compressible_object
 !< Define the compressible Riemann (states) pattern for FORESEER library.
 
-use foreseer_conservative_compressible, only : conservative_compressible
-use foreseer_conservative_object, only : conservative_object
-use foreseer_eos_compressible, only : eos_compressible
-use foreseer_eos_object, only : eos_object
+use flow_conservative_compressible, only : conservative_compressible
+use flow_conservative_object, only : conservative_object
+use flow_eos_compressible, only : eos_compressible
+use flow_eos_object, only : eos_object
 use foreseer_riemann_pattern_object, only : riemann_pattern_object
 use penf, only : R8P, str, ZeroR8
 use vecfor, only : vector

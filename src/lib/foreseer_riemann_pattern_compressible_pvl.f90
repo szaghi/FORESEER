@@ -3,8 +3,8 @@
 module foreseer_riemann_pattern_compressible_pvl
 !< Define the compressible Riemann (states) PVL pattern for FORESEER library.
 
-use foreseer_conservative_object, only : conservative_object
-use foreseer_eos_object, only : eos_object
+use flow_conservative_object, only : conservative_object
+use flow_eos_object, only : eos_object
 use foreseer_riemann_pattern_compressible_object, only : riemann_pattern_compressible_object
 use penf, only : R8P
 use vecfor, only : vector

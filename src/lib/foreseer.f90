@@ -2,13 +2,13 @@
 module foreseer
 !< FORESEER, FOrtran RiEmann SolvErs EnviRonment.
 
-use foreseer_compressible_transformations, only : conservative_to_primitive_compressible, primitive_to_conservative_compressible
-use foreseer_conservative_compressible, only : conservative_compressible, conservative_compressible_pointer
-use foreseer_conservative_object, only : conservative_object
-use foreseer_eos_compressible, only : eos_compressible
-use foreseer_eos_object, only : eos_object
-use foreseer_primitive_compressible, only : primitive_compressible, primitive_compressible_pointer
-use foreseer_primitive_object, only : primitive_object
+use flow_compressible_transformations, only : conservative_to_primitive_compressible, primitive_to_conservative_compressible
+use flow_conservative_compressible, only : conservative_compressible, conservative_compressible_pointer
+use flow_conservative_object, only : conservative_object
+use flow_eos_compressible, only : eos_compressible
+use flow_eos_object, only : eos_object
+use flow_primitive_compressible, only : primitive_compressible, primitive_compressible_pointer
+use flow_primitive_object, only : primitive_object
 use foreseer_riemann_pattern_compressible_object, only : riemann_pattern_compressible_object
 use foreseer_riemann_pattern_compressible_pvl, only : riemann_pattern_compressible_pvl
 use foreseer_riemann_pattern_object, only : riemann_pattern_object
