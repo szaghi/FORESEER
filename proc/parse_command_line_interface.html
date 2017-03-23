@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 3.8% of total for procedures.">61 statements</a>
+	  title=" 3.5% of total for procedures.">61 statements</a>
      </li> 
      
      
@@ -225,6 +225,8 @@
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
       
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
+      
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
       <a class="list-group-item" href="../proc/compute_u23.html">compute_u23</a>
@@ -287,6 +289,8 @@
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -324,6 +328,8 @@
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E10.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -388,6 +394,8 @@
       <a class="list-group-item" href="../proc/solve%7E3.html">solve</a>
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
+      
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
       
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
@@ -701,7 +709,7 @@ subroutine parse_command_line_interface()
    <span class="k">call </span><span class="n">cli</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="s1">&#39;--steps&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number time steps performed&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,</span> <span class="n">act</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">def</span><span class="o">=</span><span class="s1">&#39;60&#39;</span><span class="p">)</span>
    <span class="k">call </span><span class="n">cli</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="s1">&#39;--t-max&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Maximum integration time&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,</span> <span class="n">act</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">def</span><span class="o">=</span><span class="s1">&#39;0.&#39;</span><span class="p">)</span>
    <span class="k">call </span><span class="n">cli</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="s1">&#39;--riemann&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Riemann Problem solver&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,</span> <span class="n">act</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">def</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-                <span class="n">choices</span><span class="o">=</span><span class="s1">&#39;all,exact,hllc,llf,pvl&#39;</span><span class="p">)</span>
+                <span class="n">choices</span><span class="o">=</span><span class="s1">&#39;all,exact,hllc,llf,pvl,roe&#39;</span><span class="p">)</span>
    <span class="k">call </span><span class="n">cli</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">switch</span><span class="o">=</span><span class="s1">&#39;--s-scheme&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Space intergation scheme&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.,</span> <span class="n">act</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">def</span><span class="o">=</span><span class="s1">&#39;weno-char-1&#39;</span><span class="p">,</span>           <span class="p">&amp;</span>
      <span class="n">choices</span><span class="o">=</span><span class="s1">&#39;weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,&#39;</span><span class="o">//</span> <span class="p">&amp;</span>
              <span class="s1">&#39;weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,&#39;</span><span class="o">//</span> <span class="p">&amp;</span>
@@ -747,7 +755,7 @@ subroutine parse_command_line_interface()
    <span class="n">endselect</span>
 
    <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">riemann_solver_scheme</span><span class="p">))</span><span class="o">==</span><span class="s1">&#39;all&#39;</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">riemann_solver_schemes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="s1">&#39;hllc &#39;</span><span class="p">,</span> <span class="s1">&#39;llf  &#39;</span><span class="p">,</span> <span class="s1">&#39;pvl  &#39;</span><span class="p">]</span>
+<span class="k">      </span><span class="n">riemann_solver_schemes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="s1">&#39;hllc &#39;</span><span class="p">,</span> <span class="s1">&#39;llf  &#39;</span><span class="p">,</span> <span class="s1">&#39;pvl  &#39;</span><span class="p">,</span> <span class="s1">&#39;roe  &#39;</span><span class="p">]</span>
    <span class="k">else</span>
 <span class="k">      </span><span class="n">riemann_solver_schemes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">riemann_solver_scheme</span><span class="p">))]</span>
    <span class="n">endif</span>
@@ -793,6 +801,8 @@ subroutine parse_command_line_interface()
       <a class="list-group-item" href="../proc/compute_post_rarefaction.html">compute_post_rarefaction</a>
       
       <a class="list-group-item" href="../proc/compute_post_shock.html">compute_post_shock</a>
+      
+      <a class="list-group-item" href="../proc/compute_roe_state.html">compute_roe_state</a>
       
       <a class="list-group-item" href="../proc/compute_states23_from_u23.html">compute_states23_from_u23</a>
       
@@ -856,6 +866,8 @@ subroutine parse_command_line_interface()
       
       <a class="list-group-item" href="../proc/eos_compressible_instance.html">eos_compressible_instance</a>
       
+      <a class="list-group-item" href="../proc/eos_compressible_pointer.html">eos_compressible_pointer</a>
+      
       <a class="list-group-item" href="../proc/eta.html">eta</a>
       
       <a class="list-group-item" href="../proc/euler_assign_euler.html">euler_assign_euler</a>
@@ -893,6 +905,8 @@ subroutine parse_command_line_interface()
       <a class="list-group-item" href="../proc/initialize%7E8.html">initialize</a>
       
       <a class="list-group-item" href="../proc/initialize%7E9.html">initialize</a>
+      
+      <a class="list-group-item" href="../proc/initialize%7E10.html">initialize</a>
       
       <a class="list-group-item" href="../proc/left_eigenvectors.html">left_eigenvectors</a>
       
@@ -958,6 +972,8 @@ subroutine parse_command_line_interface()
       
       <a class="list-group-item" href="../proc/solve%7E4.html">solve</a>
       
+      <a class="list-group-item" href="../proc/solve%7E5.html">solve</a>
+      
       <a class="list-group-item" href="../proc/speed_of_sound.html">speed_of_sound</a>
       
       <a class="list-group-item" href="../proc/sub.html">sub</a>
@@ -987,7 +1003,7 @@ subroutine parse_command_line_interface()
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 17:06  
+             on 2017-03-23 08:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

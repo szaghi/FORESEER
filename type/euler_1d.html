@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>12.3% of total for derived types.</p>Including implementation: 501 statements, 24.5% of total for derived types.">31 statements</a>
+	  title="<p>12.1% of total for derived types.</p>Including implementation: 503 statements, 22.9% of total for derived types.">31 statements</a>
      </li> 
      
      
@@ -231,7 +231,7 @@
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-impose_boundary_conditions">impose_boundary_conditions</a>
       
-      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E12">initialize</a>
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E13">initialize</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-integrand_multiply_integrand">integrand_multiply_integrand</a>
       
@@ -303,6 +303,8 @@
       
       <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
       
+      <a class="list-group-item" href="../type/riemann_solver_compressible_roe.html">riemann_solver_compressible_roe</a>
+      
       <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
       
     </div>
@@ -334,90 +336,90 @@
 <polygon fill="none" stroke="black" points="493,-114 439,-114 439,-88 493,-88 493,-114"/>
 <text text-anchor="middle" x="466" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50">euler_1d</text>
 </g>
-<!-- type~riemann_solver_object -->
-<g id="node2" class="node"><title>type~riemann_solver_object</title>
-<a xlink:href="../type/riemann_solver_object.html" xlink:title="riemann_solver_object">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="325,-202 205,-202 205,-176 325,-176 325,-202"/>
-<text text-anchor="middle" x="265" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">riemann_solver_object</text>
-</a>
-</g>
-<!-- type~riemann_solver_object&#45;&gt;type~euler_1d -->
-<g id="edge8" class="edge"><title>type~riemann_solver_object&#45;&gt;type~euler_1d</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M325.692,-180.739C355.573,-174.786 391.256,-164.74 420,-148 431.446,-141.334 441.965,-131.057 450.047,-121.811"/>
-<polygon fill="#000000" stroke="#000000" points="452.782,-123.995 456.483,-114.068 447.399,-119.521 452.782,-123.995"/>
-<text text-anchor="middle" x="387" y="-177.45" font-family="Helvetica,sans-Serif" font-size="9.50">riemann_solver</text>
-</g>
-<!-- type~conservative_compressible -->
-<g id="node3" class="node"><title>type~conservative_compressible</title>
-<a xlink:href="../type/conservative_compressible.html" xlink:title="conservative_compressible">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="336,-158 194,-158 194,-132 336,-132 336,-158"/>
-<text text-anchor="middle" x="265" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_compressible</text>
-</a>
-</g>
-<!-- type~conservative_compressible&#45;&gt;type~euler_1d -->
-<g id="edge10" class="edge"><title>type~conservative_compressible&#45;&gt;type~euler_1d</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M336.195,-135.377C362.733,-131.065 392.967,-125.285 420,-118 422.775,-117.252 425.617,-116.406 428.461,-115.501"/>
-<polygon fill="#000000" stroke="#000000" points="429.697,-118.778 438.042,-112.25 427.448,-112.149 429.697,-118.778"/>
-<text text-anchor="middle" x="387" y="-135.45" font-family="Helvetica,sans-Serif" font-size="9.50">U</text>
-</g>
-<!-- interpolator_object -->
-<g id="node4" class="node"><title>interpolator_object</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="315,-114 215,-114 215,-88 315,-88 315,-114"/>
-<text text-anchor="middle" x="265" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolator_object</text>
-</g>
-<!-- interpolator_object&#45;&gt;type~euler_1d -->
-<g id="edge12" class="edge"><title>interpolator_object&#45;&gt;type~euler_1d</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.721,-101C350.619,-101 396.232,-101 428.012,-101"/>
-<polygon fill="#000000" stroke="#000000" points="428.223,-104.5 438.223,-101 428.223,-97.5001 428.223,-104.5"/>
-<text text-anchor="middle" x="387" y="-105.45" font-family="Helvetica,sans-Serif" font-size="9.50">interpolator</text>
-</g>
 <!-- type~eos_compressible -->
-<g id="node5" class="node"><title>type~eos_compressible</title>
+<g id="node2" class="node"><title>type~eos_compressible</title>
 <a xlink:href="../type/eos_compressible.html" xlink:title="eos_compressible">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="314,-70 216,-70 216,-44 314,-44 314,-70"/>
-<text text-anchor="middle" x="265" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eos_compressible</text>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="314,-202 216,-202 216,-176 314,-176 314,-202"/>
+<text text-anchor="middle" x="265" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eos_compressible</text>
 </a>
 </g>
 <!-- type~eos_compressible&#45;&gt;type~euler_1d -->
-<g id="edge14" class="edge"><title>type~eos_compressible&#45;&gt;type~euler_1d</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M314.714,-63.3149C345.368,-67.7852 385.318,-74.6538 420,-84 422.775,-84.7477 425.617,-85.5937 428.461,-86.4991"/>
-<polygon fill="#000000" stroke="#000000" points="427.448,-89.8513 438.042,-89.7498 429.697,-83.2224 427.448,-89.8513"/>
-<text text-anchor="middle" x="387" y="-88.45" font-family="Helvetica,sans-Serif" font-size="9.50">eos</text>
+<g id="edge8" class="edge"><title>type~eos_compressible&#45;&gt;type~euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M314.74,-182.792C346.506,-177.202 387.648,-166.841 420,-148 431.446,-141.334 441.965,-131.057 450.047,-121.811"/>
+<polygon fill="#000000" stroke="#000000" points="452.782,-123.995 456.483,-114.068 447.399,-119.521 452.782,-123.995"/>
+<text text-anchor="middle" x="387" y="-177.45" font-family="Helvetica,sans-Serif" font-size="9.50">eos</text>
 </g>
-<!-- vector -->
-<g id="node6" class="node"><title>vector</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="81,-180 27,-180 27,-154 81,-154 81,-180"/>
-<text text-anchor="middle" x="54" y="-164.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vector</text>
-</g>
-<!-- vector&#45;&gt;type~conservative_compressible -->
-<g id="edge2" class="edge"><title>vector&#45;&gt;type~conservative_compressible</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M81.1526,-164.169C107.096,-161.464 147.52,-157.249 183.864,-153.46"/>
-<polygon fill="#000000" stroke="#000000" points="184.408,-156.922 193.991,-152.404 183.682,-149.96 184.408,-156.922"/>
-<text text-anchor="middle" x="151" y="-163.45" font-family="Helvetica,sans-Serif" font-size="9.50">momentum</text>
-</g>
-<!-- type~conservative_object -->
-<g id="node8" class="node"><title>type~conservative_object</title>
-<a xlink:href="../type/conservative_object.html" xlink:title="conservative_object">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="107,-136 1,-136 1,-110 107,-110 107,-136"/>
-<text text-anchor="middle" x="54" y="-120.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_object</text>
+<!-- type~riemann_solver_object -->
+<g id="node3" class="node"><title>type~riemann_solver_object</title>
+<a xlink:href="../type/riemann_solver_object.html" xlink:title="riemann_solver_object">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="325,-158 205,-158 205,-132 325,-132 325,-158"/>
+<text text-anchor="middle" x="265" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">riemann_solver_object</text>
 </a>
 </g>
-<!-- type~conservative_object&#45;&gt;type~conservative_compressible -->
-<g id="edge4" class="edge"><title>type~conservative_object&#45;&gt;type~conservative_compressible</title>
-<path fill="none" stroke="#000000" d="M107.517,-128.58C130.583,-130.985 158.068,-133.851 183.571,-136.51"/>
-<polygon fill="#000000" stroke="#000000" points="183.298,-140 193.608,-137.556 184.024,-133.038 183.298,-140"/>
+<!-- type~riemann_solver_object&#45;&gt;type~euler_1d -->
+<g id="edge10" class="edge"><title>type~riemann_solver_object&#45;&gt;type~euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M325.545,-137.062C354.414,-132.616 389.274,-126.28 420,-118 422.775,-117.252 425.617,-116.406 428.461,-115.501"/>
+<polygon fill="#000000" stroke="#000000" points="429.697,-118.778 438.042,-112.25 427.448,-112.149 429.697,-118.778"/>
+<text text-anchor="middle" x="387" y="-135.45" font-family="Helvetica,sans-Serif" font-size="9.50">riemann_solver</text>
+</g>
+<!-- type~conservative_compressible -->
+<g id="node4" class="node"><title>type~conservative_compressible</title>
+<a xlink:href="../type/conservative_compressible.html" xlink:title="conservative_compressible">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="336,-114 194,-114 194,-88 336,-88 336,-114"/>
+<text text-anchor="middle" x="265" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_compressible</text>
+</a>
+</g>
+<!-- type~conservative_compressible&#45;&gt;type~euler_1d -->
+<g id="edge12" class="edge"><title>type~conservative_compressible&#45;&gt;type~euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M336.148,-101C367.116,-101 402.16,-101 428.031,-101"/>
+<polygon fill="#000000" stroke="#000000" points="428.167,-104.5 438.167,-101 428.167,-97.5001 428.167,-104.5"/>
+<text text-anchor="middle" x="387" y="-105.45" font-family="Helvetica,sans-Serif" font-size="9.50">U</text>
+</g>
+<!-- interpolator_object -->
+<g id="node5" class="node"><title>interpolator_object</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="315,-70 215,-70 215,-44 315,-44 315,-70"/>
+<text text-anchor="middle" x="265" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolator_object</text>
+</g>
+<!-- interpolator_object&#45;&gt;type~euler_1d -->
+<g id="edge14" class="edge"><title>interpolator_object&#45;&gt;type~euler_1d</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.766,-63.4688C346.279,-67.9422 385.714,-74.7604 420,-84 422.775,-84.7477 425.617,-85.5937 428.461,-86.4991"/>
+<polygon fill="#000000" stroke="#000000" points="427.448,-89.8513 438.042,-89.7498 429.697,-83.2224 427.448,-89.8513"/>
+<text text-anchor="middle" x="387" y="-88.45" font-family="Helvetica,sans-Serif" font-size="9.50">interpolator</text>
 </g>
 <!-- type~eos_object -->
-<g id="node10" class="node"><title>type~eos_object</title>
+<g id="node6" class="node"><title>type~eos_object</title>
 <a xlink:href="../type/eos_object.html" xlink:title="eos_object">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="86,-70 22,-70 22,-44 86,-44 86,-70"/>
-<text text-anchor="middle" x="54" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eos_object</text>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="86,-202 22,-202 22,-176 86,-176 86,-202"/>
+<text text-anchor="middle" x="54" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">eos_object</text>
 </a>
 </g>
 <!-- type~eos_object&#45;&gt;type~eos_compressible -->
-<g id="edge6" class="edge"><title>type~eos_object&#45;&gt;type~eos_compressible</title>
-<path fill="none" stroke="#000000" d="M86.0464,-57C117.583,-57 166.505,-57 205.232,-57"/>
-<polygon fill="#000000" stroke="#000000" points="205.351,-60.5001 215.351,-57 205.351,-53.5001 205.351,-60.5001"/>
+<g id="edge2" class="edge"><title>type~eos_object&#45;&gt;type~eos_compressible</title>
+<path fill="none" stroke="#000000" d="M86.0464,-189C117.583,-189 166.505,-189 205.232,-189"/>
+<polygon fill="#000000" stroke="#000000" points="205.351,-192.5 215.351,-189 205.351,-185.5 205.351,-192.5"/>
+</g>
+<!-- vector -->
+<g id="node8" class="node"><title>vector</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="81,-136 27,-136 27,-110 81,-110 81,-136"/>
+<text text-anchor="middle" x="54" y="-120.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vector</text>
+</g>
+<!-- vector&#45;&gt;type~conservative_compressible -->
+<g id="edge4" class="edge"><title>vector&#45;&gt;type~conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M81.1526,-120.169C107.096,-117.464 147.52,-113.249 183.864,-109.46"/>
+<polygon fill="#000000" stroke="#000000" points="184.408,-112.922 193.991,-108.404 183.682,-105.96 184.408,-112.922"/>
+<text text-anchor="middle" x="151" y="-119.45" font-family="Helvetica,sans-Serif" font-size="9.50">momentum</text>
+</g>
+<!-- type~conservative_object -->
+<g id="node10" class="node"><title>type~conservative_object</title>
+<a xlink:href="../type/conservative_object.html" xlink:title="conservative_object">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="107,-92 1,-92 1,-66 107,-66 107,-92"/>
+<text text-anchor="middle" x="54" y="-76.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">conservative_object</text>
+</a>
+</g>
+<!-- type~conservative_object&#45;&gt;type~conservative_compressible -->
+<g id="edge6" class="edge"><title>type~conservative_object&#45;&gt;type~conservative_compressible</title>
+<path fill="none" stroke="#000000" d="M107.517,-84.58C130.583,-86.9849 158.068,-89.8507 183.571,-92.5098"/>
+<polygon fill="#000000" stroke="#000000" points="183.298,-96.0002 193.608,-93.5562 184.024,-89.038 183.298,-96.0002"/>
 </g>
 <!-- integrand -->
 <g id="node16" class="node"><title>integrand</title>
@@ -608,7 +610,7 @@ $$</p>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-impose_boundary_conditions">impose_boundary_conditions</a>
       
-      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E12">initialize</a>
+      <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-initialize%7E13">initialize</a>
       
       <a class="list-group-item" href="../type/euler_1d.html#boundprocedure-integrand_multiply_integrand">integrand_multiply_integrand</a>
       
@@ -1431,7 +1433,7 @@ private pure subroutine <a href='../proc/impose_boundary_conditions.html'>impose
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize%7E12"></span><h3>procedure, public, pass(self) :: <strong>initialize</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize%7E13"></span><h3>procedure, public, pass(self) :: <strong>initialize</strong>  
     
   </h3></div>
   
@@ -1449,7 +1451,7 @@ private pure subroutine <a href='../proc/impose_boundary_conditions.html'>impose
          
     
     <h3>
-private subroutine <a href='../proc/initialize%7E8.html'>initialize</a>(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
+private subroutine <a href='../proc/initialize%7E9.html'>initialize</a>(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
     
     
 	 
@@ -2813,6 +2815,8 @@ private function <a href='../proc/deuler_dt.html'>dEuler_dt</a>(self, t) result(
       
       <a class="list-group-item" href="../type/riemann_solver_compressible_pvl.html">riemann_solver_compressible_pvl</a>
       
+      <a class="list-group-item" href="../type/riemann_solver_compressible_roe.html">riemann_solver_compressible_roe</a>
+      
       <a class="list-group-item" href="../type/riemann_solver_object.html">riemann_solver_object</a>
       
     </div>
@@ -2832,7 +2836,7 @@ private function <a href='../proc/deuler_dt.html'>dEuler_dt</a>(self, t) result(
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-03-22 17:06  
+             on 2017-03-23 08:43  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>

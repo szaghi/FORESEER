@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="FORESEER, FOrtran RiEmann SolvErs EnviRonment">
+    
+    <meta name="author" content="Stefano Zaghi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>foreseer_test_riemann_solver_compressible_roe &ndash; FORESEER</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FORESEER </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>foreseer_test_riemann_solver_compressible_roe
+    <small>Program</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 7.7% of total for programs.">48 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/foreseer_test_riemann_solver_compressible_roe.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/foreseer_test_riemann_solver_compressible_roe.f90.html'>foreseer_test_riemann_solver_compressible_roe.f90</a></li>
+  
+     <li class="active">foreseer_test_riemann_solver_compressible_roe</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-are_tests_passed%7E9">are_tests_passed</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-eos%7E24">eos</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-fluxes%7E15">fluxes</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-p23%7E6">p23</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-r_2%7E6">r_2</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-r_3%7E6">r_3</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-riemann_solver%7E6">riemann_solver</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-state_left%7E14">state_left</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-state_right%7E14">state_right</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-u23%7E6">u23</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-waves%7E4">waves</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#src">foreseer_test_riemann_solver_compressible_roe</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-0">All Programs</a></h3></div>
+  <div id="allprogs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/foreseer_test_compressible_transformations.html">foreseer_test_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_conservative_compressible.html">foreseer_test_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_eos_compressible.html">foreseer_test_eos_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_primitive_compressible.html">foreseer_test_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_hllc.html">foreseer_test_riemann_solver_compressible_hllc</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_hllc%7E2.html">foreseer_test_riemann_solver_compressible_hllc</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_llf.html">foreseer_test_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_pvl.html">foreseer_test_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html">foreseer_test_riemann_solver_compressible_roe</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_shock_tube.html">foreseer_test_shock_tube</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    
+  
+    <ul class="list-inline">
+      <li><h4>Uses:</h4></li>
+      
+      <li><a href='../module/foreseer.html'>foreseer</a></li>
+      
+      <li>penf</li>
+      
+      <li>vecfor</li>
+      
+    </ul>
+    
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: program~~foreseer_test_riemann_solver_compressible_roe~~UsesGraph Pages: 1 -->
+<svg id="programforeseer_test_riemann_solver_compressible_roeUsesGraph" width="641pt" height="488pt"
+ viewBox="0.00 0.00 641.00 488.27" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~foreseer_test_riemann_solver_compressible_roe~~UsesGraph" class="graph" transform="scale(0.355716 0.355716) rotate(0) translate(4 1368.64)">
+<title>program~~foreseer_test_riemann_solver_compressible_roe~~UsesGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-1368.64 1799,-1368.64 1799,5 -4,5"/>
+<!-- program~foreseer_test_riemann_solver_compressible_roe -->
+<g id="node1" class="node"><title>program~foreseer_test_riemann_solver_compressible_roe</title>
+<polygon fill="none" stroke="black" points="1794,-1052 1548,-1052 1548,-1026 1794,-1026 1794,-1052"/>
+<text text-anchor="middle" x="1671" y="-1036.55" font-family="Helvetica,sans-Serif" font-size="10.50">foreseer_test_riemann_solver_compressible_roe</text>
+</g>
+<!-- module~foreseer -->
+<g id="node2" class="node"><title>module~foreseer</title>
+<a xlink:href="../module/foreseer.html" xlink:title="foreseer">
+<polygon fill="#337ab7" stroke="#337ab7" points="1512,-704.001 1458,-704.001 1458,-678.001 1512,-678.001 1512,-704.001"/>
+<text text-anchor="middle" x="1485" y="-688.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer</text>
+</a>
+</g>
+<!-- module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe -->
+<g id="edge194" class="edge"><title>module~foreseer&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1492.06,-704.218C1520.09,-756.65 1623.62,-950.361 1659.03,-1016.61"/>
+<polygon fill="#000000" stroke="#000000" points="1656.13,-1018.6 1663.93,-1025.77 1662.3,-1015.3 1656.13,-1018.6"/>
+</g>
+<!-- vecfor -->
+<g id="node3" class="node"><title>vecfor</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="172,-1003 118,-1003 118,-977.001 172,-977.001 172,-1003"/>
+<text text-anchor="middle" x="145" y="-987.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">vecfor</text>
+</g>
+<!-- vecfor&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe -->
+<g id="edge196" class="edge"><title>vecfor&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.452,-1003.01C157.225,-1053.56 194.864,-1236.09 236,-1276 283.102,-1321.7 454.441,-1354 520,-1357"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-1357C751.104,-1371.46 809.444,-1357 1041,-1357 1041,-1357 1041,-1357 1306,-1357 1486.2,-1357 1620.59,-1133.92 1659.5,-1061.45"/>
+<polygon fill="#000000" stroke="#000000" points="1662.78,-1062.74 1664.35,-1052.26 1656.59,-1059.47 1662.78,-1062.74"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_hllc -->
+<g id="node6" class="node"><title>module~foreseer_riemann_solver_compressible_hllc</title>
+<a xlink:href="../module/foreseer_riemann_solver_compressible_hllc.html" xlink:title="foreseer_riemann_solver_compressible_hllc">
+<polygon fill="#337ab7" stroke="#337ab7" points="1417,-838.001 1195,-838.001 1195,-812.001 1417,-812.001 1417,-838.001"/>
+<text text-anchor="middle" x="1306" y="-822.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_hllc</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge16" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-1123C890.681,-1114.26 929.456,-1167.25 1041,-1123"/>
+</g>
+<!-- module~foreseer_primitive_object -->
+<g id="node7" class="node"><title>module~foreseer_primitive_object</title>
+<a xlink:href="../module/foreseer_primitive_object.html" xlink:title="foreseer_primitive_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="379,-1234 247,-1234 247,-1208 379,-1208 379,-1234"/>
+<text text-anchor="middle" x="313" y="-1218.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_primitive_object</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_primitive_object -->
+<g id="edge20" class="edge"><title>vecfor&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.14,-1003.06C153.674,-1038.84 176.663,-1139.36 236,-1194 239.81,-1197.51 244.102,-1200.57 248.662,-1203.23"/>
+<polygon fill="#000000" stroke="#000000" points="247.208,-1206.42 257.702,-1207.88 250.411,-1200.19 247.208,-1206.42"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_llf -->
+<g id="node8" class="node"><title>module~foreseer_riemann_solver_compressible_llf</title>
+<a xlink:href="../module/foreseer_riemann_solver_compressible_llf.html" xlink:title="foreseer_riemann_solver_compressible_llf">
+<polygon fill="#337ab7" stroke="#337ab7" points="1413,-674.001 1199,-674.001 1199,-648.001 1413,-648.001 1413,-674.001"/>
+<text text-anchor="middle" x="1306" y="-658.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_llf</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge36" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-471.001C458.996,-343.044 1094.1,-578.081 1264.05,-644.334"/>
+<polygon fill="#000000" stroke="#000000" points="1262.82,-647.614 1273.41,-647.998 1265.37,-641.095 1262.82,-647.614"/>
+</g>
+<!-- module~foreseer_compressible_transformations -->
+<g id="node9" class="node"><title>module~foreseer_compressible_transformations</title>
+<a xlink:href="../module/foreseer_compressible_transformations.html" xlink:title="foreseer_compressible_transformations">
+<polygon fill="#337ab7" stroke="#337ab7" points="872,-1177 670,-1177 670,-1151 872,-1151 872,-1177"/>
+<text text-anchor="middle" x="771" y="-1161.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_compressible_transformations</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="edge40" class="edge"><title>vecfor&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-1142C565.858,-1142.14 616.249,-1145.85 659.771,-1150.19"/>
+<polygon fill="#000000" stroke="#000000" points="659.507,-1153.68 669.811,-1151.21 660.218,-1146.72 659.507,-1153.68"/>
+</g>
+<!-- module~foreseer_riemann_solver_object -->
+<g id="node10" class="node"><title>module~foreseer_riemann_solver_object</title>
+<a xlink:href="../module/foreseer_riemann_solver_object.html" xlink:title="foreseer_riemann_solver_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="1124,-797.001 958,-797.001 958,-771.001 1124,-771.001 1124,-797.001"/>
+<text text-anchor="middle" x="1041" y="-781.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_object</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_object -->
+<g id="edge52" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-933.001C824.387,-904.695 847.867,-912.276 892,-871.001 914.713,-849.759 902.917,-829.384 928,-811.001 934.291,-806.39 941.261,-802.556 948.56,-799.369"/>
+<polygon fill="#000000" stroke="#000000" points="949.933,-802.59 957.955,-795.67 947.368,-796.077 949.933,-802.59"/>
+</g>
+<!-- module~foreseer_riemann_pattern_object -->
+<g id="node11" class="node"><title>module~foreseer_riemann_pattern_object</title>
+<a xlink:href="../module/foreseer_riemann_pattern_object.html" xlink:title="foreseer_riemann_pattern_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="606,-924.001 434,-924.001 434,-898.001 606,-898.001 606,-924.001"/>
+<text text-anchor="middle" x="520" y="-908.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_pattern_object</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_pattern_object -->
+<g id="edge58" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_pattern_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M172.271,-984.256C229.605,-972.178 364.25,-943.812 448.167,-926.134"/>
+<polygon fill="#000000" stroke="#000000" points="449.077,-929.519 458.14,-924.033 447.634,-922.669 449.077,-929.519"/>
+</g>
+<!-- module~foreseer_conservative_object -->
+<g id="node13" class="node"><title>module~foreseer_conservative_object</title>
+<a xlink:href="../module/foreseer_conservative_object.html" xlink:title="foreseer_conservative_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="389,-772.001 237,-772.001 237,-746.001 389,-746.001 389,-772.001"/>
+<text text-anchor="middle" x="313" y="-756.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_conservative_object</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_conservative_object -->
+<g id="edge70" class="edge"><title>vecfor&#45;&gt;module~foreseer_conservative_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.469,-976.842C169.192,-952.572 204.193,-899.282 236,-856.001 255.631,-829.288 279.547,-799.566 295.465,-780.15"/>
+<polygon fill="#000000" stroke="#000000" points="298.314,-782.196 301.966,-772.251 292.909,-777.748 298.314,-782.196"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_exact -->
+<g id="node14" class="node"><title>module~foreseer_riemann_solver_compressible_exact</title>
+<a xlink:href="../module/foreseer_riemann_solver_compressible_exact.html" xlink:title="foreseer_riemann_solver_compressible_exact">
+<polygon fill="#337ab7" stroke="#337ab7" points="1422,-484.001 1190,-484.001 1190,-458.001 1422,-458.001 1422,-484.001"/>
+<text text-anchor="middle" x="1306" y="-468.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_exact</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge86" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.676,-976.904C159.909,-947.879 184.602,-875.818 200,-814.001 238.794,-658.256 196.146,-581.031 313,-471.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-471.001C465.056,-327.825 596.389,-299.469 1041,-357.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-357.001C1091.78,-364.608 1113.02,-350.069 1154,-381.001 1181.29,-401.603 1162.48,-428.698 1190,-449.001 1191.91,-450.41 1193.88,-451.737 1195.91,-452.985"/>
+<polygon fill="#000000" stroke="#000000" points="1194.67,-456.292 1205.13,-457.976 1198,-450.137 1194.67,-456.292"/>
+</g>
+<!-- module~foreseer_conservative_compressible -->
+<g id="node15" class="node"><title>module~foreseer_conservative_compressible</title>
+<a xlink:href="../module/foreseer_conservative_compressible.html" xlink:title="foreseer_conservative_compressible">
+<polygon fill="#337ab7" stroke="#337ab7" points="613,-673.001 427,-673.001 427,-647.001 613,-647.001 613,-673.001"/>
+<text text-anchor="middle" x="520" y="-657.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_conservative_compressible</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_conservative_compressible -->
+<g id="edge90" class="edge"><title>vecfor&#45;&gt;module~foreseer_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.505,-976.86C159.396,-947.746 183.452,-875.52 200,-814.001 218.821,-744.033 185.262,-706.726 236,-655.001 260.683,-629.838 280.827,-650.401 313,-636.001"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="node16" class="node"><title>module~foreseer_riemann_pattern_compressible_pvl</title>
+<a xlink:href="../module/foreseer_riemann_pattern_compressible_pvl.html" xlink:title="foreseer_riemann_pattern_compressible_pvl">
+<polygon fill="#337ab7" stroke="#337ab7" points="1154,-715.001 928,-715.001 928,-689.001 1154,-689.001 1154,-715.001"/>
+<text text-anchor="middle" x="1041" y="-699.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_pattern_compressible_pvl</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="edge100" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M172.231,-1002.3C189.983,-1009.63 213.879,-1018.22 236,-1022 303.469,-1033.52 321.823,-1028.04 390,-1022 563.214,-1006.66 617.367,-1014.46 771,-933.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-933.001C825.412,-906.72 852.697,-916.899 892,-871.001 925.183,-832.249 895.1,-800.994 928,-762.001 944.345,-742.628 968.571,-728.605 990.405,-719.011"/>
+<polygon fill="#000000" stroke="#000000" points="992.03,-722.125 999.907,-715.04 989.331,-715.666 992.03,-722.125"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_roe -->
+<g id="node17" class="node"><title>module~foreseer_riemann_solver_compressible_roe</title>
+<a xlink:href="../module/foreseer_riemann_solver_compressible_roe.html" xlink:title="foreseer_riemann_solver_compressible_roe">
+<polygon fill="#337ab7" stroke="#337ab7" points="1417,-440.001 1195,-440.001 1195,-414.001 1417,-414.001 1417,-440.001"/>
+<text text-anchor="middle" x="1306" y="-424.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_roe</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge112" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M150.351,-976.578C161.686,-947.492 188.055,-876.251 200,-814.001 219.782,-710.91 172.117,-426.296 236,-343.001 317.438,-236.817 386.202,-245.361 520,-243.001"/>
+</g>
+<!-- module~foreseer_primitive_compressible -->
+<g id="node18" class="node"><title>module~foreseer_primitive_compressible</title>
+<a xlink:href="../module/foreseer_primitive_compressible.html" xlink:title="foreseer_primitive_compressible">
+<polygon fill="#337ab7" stroke="#337ab7" points="603,-1196 437,-1196 437,-1170 603,-1170 603,-1196"/>
+<text text-anchor="middle" x="520" y="-1180.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_primitive_compressible</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="edge126" class="edge"><title>vecfor&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M148.58,-1003.43C157.665,-1034.91 184.619,-1113.96 236,-1156 263.743,-1178.7 282.278,-1161.53 313,-1180"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_pvl -->
+<g id="node19" class="node"><title>module~foreseer_riemann_solver_compressible_pvl</title>
+<a xlink:href="../module/foreseer_riemann_solver_compressible_pvl.html" xlink:title="foreseer_riemann_solver_compressible_pvl">
+<polygon fill="#337ab7" stroke="#337ab7" points="1416,-775.001 1196,-775.001 1196,-749.001 1416,-749.001 1416,-775.001"/>
+<text text-anchor="middle" x="1306" y="-759.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_solver_compressible_pvl</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge146" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M163.056,-1003.18C215.393,-1040.05 372.829,-1141.56 520,-1142"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-1142C630.787,-1157.57 659.422,-1131.15 771,-1123"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-1123C801.215,-1120.79 1015.73,-1101.71 1041,-1085"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-1085C1159.24,-1006.82 1082.71,-895.639 1190,-803.001 1202.38,-792.308 1217.74,-784.343 1233.19,-778.432"/>
+<polygon fill="#000000" stroke="#000000" points="1234.55,-781.664 1242.79,-775.01 1232.2,-775.07 1234.55,-781.664"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_object -->
+<g id="node20" class="node"><title>module~foreseer_riemann_pattern_compressible_object</title>
+<a xlink:href="../module/foreseer_riemann_pattern_compressible_object.html" xlink:title="foreseer_riemann_pattern_compressible_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="891,-829.001 651,-829.001 651,-803.001 891,-803.001 891,-829.001"/>
+<text text-anchor="middle" x="771" y="-813.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_riemann_pattern_compressible_object</text>
+</a>
+</g>
+<!-- vecfor&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge152" class="edge"><title>vecfor&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M172.193,-995.559C250.447,-1009.89 479.199,-1039.9 614,-933.001 647.756,-906.232 617.186,-870.916 650,-843.001 654.201,-839.427 658.773,-836.298 663.6,-833.561"/>
+<polygon fill="#000000" stroke="#000000" points="665.192,-836.678 672.539,-829.046 662.036,-830.43 665.192,-836.678"/>
+</g>
+<!-- penf -->
+<g id="node4" class="node"><title>penf</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-792.001 2.13163e-14,-792.001 0,-766.001 54,-766.001 54,-792.001"/>
+<text text-anchor="middle" x="27" y="-776.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf</text>
+</g>
+<!-- penf&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe -->
+<g id="edge198" class="edge"><title>penf&#45;&gt;program~foreseer_test_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-1357C402.949,-1376.32 428.228,-1350.53 520,-1357"/>
+</g>
+<!-- module~foreseer_eos_object -->
+<g id="node5" class="node"><title>module~foreseer_eos_object</title>
+<a xlink:href="../module/foreseer_eos_object.html" xlink:title="foreseer_eos_object">
+<polygon fill="#337ab7" stroke="#337ab7" points="200,-772.001 90,-772.001 90,-746.001 200,-746.001 200,-772.001"/>
+<text text-anchor="middle" x="145" y="-756.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_eos_object</text>
+</a>
+</g>
+<!-- penf&#45;&gt;module~foreseer_eos_object -->
+<g id="edge2" class="edge"><title>penf&#45;&gt;module~foreseer_eos_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.0716,-774.413C61.8667,-773.091 70.7258,-771.59 79.7826,-770.055"/>
+<polygon fill="#000000" stroke="#000000" points="80.3722,-773.505 89.6467,-768.383 79.2024,-766.603 80.3722,-773.505"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge14" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-1262C187.046,-1291.39 190.555,-1309.21 236,-1333 267.756,-1349.63 277.65,-1351.06 313,-1357"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-1357C378.12,-1367.95 828.399,-1240.76 892,-1223 1010.04,-1190.04 1061.64,-1217.57 1154,-1137 1246.78,-1056.07 1288.29,-905.565 1301.26,-848.109"/>
+<polygon fill="#000000" stroke="#000000" points="1304.71,-848.719 1303.42,-838.203 1297.87,-847.228 1304.71,-848.719"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_primitive_object -->
+<g id="edge22" class="edge"><title>penf&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-1262C154.915,-1268.62 217.206,-1251.24 263.059,-1237.1"/>
+<polygon fill="#000000" stroke="#000000" points="264.352,-1240.36 272.86,-1234.04 262.271,-1233.68 264.352,-1240.36"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge34" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-167.001C445.158,-188.546 485.875,-141.093 614,-180.001 692.149,-203.733 852.089,-340.868 928,-371.001 975.72,-389.944 997.373,-367.931 1041,-395.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-395.001C1090.48,-423.874 1110.79,-419.395 1154,-457.001 1187.19,-485.882 1260.77,-593.354 1291.78,-639.608"/>
+<polygon fill="#000000" stroke="#000000" points="1288.92,-641.632 1297.39,-648.001 1294.74,-637.742 1288.92,-641.632"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="edge42" class="edge"><title>penf&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-1262C405.652,-1249.16 427.792,-1239.72 520,-1224"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-1224C562.017,-1216.84 573.099,-1216.99 614,-1205 630.474,-1200.17 633.575,-1196 650,-1191 664.054,-1186.73 679.215,-1182.81 693.893,-1179.37"/>
+<polygon fill="#000000" stroke="#000000" points="694.993,-1182.71 703.959,-1177.06 693.43,-1175.89 694.993,-1182.71"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_object -->
+<g id="edge50" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M27.9181,-792.154C33.2406,-863.932 62.8076,-1207.11 145,-1262"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-1262C193.889,-1294.65 186.415,-1197.59 236,-1166 495.247,-1000.87 681.656,-1171.13 892,-947.001 934.788,-901.408 883.255,-854.675 928,-811.001 933.886,-805.255 940.765,-800.655 948.17,-796.981"/>
+<polygon fill="#000000" stroke="#000000" points="950.015,-799.996 957.797,-792.807 947.23,-793.574 950.015,-799.996"/>
+</g>
+<!-- module~foreseer_eos_compressible -->
+<g id="node12" class="node"><title>module~foreseer_eos_compressible</title>
+<a xlink:href="../module/foreseer_eos_compressible.html" xlink:title="foreseer_eos_compressible">
+<polygon fill="#337ab7" stroke="#337ab7" points="592,-215.001 448,-215.001 448,-189.001 592,-189.001 592,-215.001"/>
+<text text-anchor="middle" x="520" y="-199.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">foreseer_eos_compressible</text>
+</a>
+</g>
+<!-- penf&#45;&gt;module~foreseer_eos_compressible -->
+<g id="edge66" class="edge"><title>penf&#45;&gt;module~foreseer_eos_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-167.001C204.237,-121.546 239.083,-156.448 313,-167.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-167.001C354.402,-172.912 400.277,-180.556 438.297,-187.191"/>
+<polygon fill="#000000" stroke="#000000" points="437.839,-190.664 448.293,-188.944 439.048,-183.769 437.839,-190.664"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_conservative_object -->
+<g id="edge72" class="edge"><title>penf&#45;&gt;module~foreseer_conservative_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.4175,-786.268C78.1813,-791.99 113.592,-799.142 145,-800.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-800.001C167.319,-800.612 220.414,-786.673 260.989,-774.885"/>
+<polygon fill="#000000" stroke="#000000" points="262.135,-778.196 270.746,-772.022 260.165,-771.479 262.135,-778.196"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge84" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-129.001C952.674,-132.064 1040.8,-129.869 1154,-272.001 1204.01,-334.797 1132.86,-392.613 1190,-449.001 1190.96,-449.953 1191.96,-450.87 1192.97,-451.754"/>
+<polygon fill="#000000" stroke="#000000" points="1191.12,-454.739 1201.24,-457.896 1195.3,-449.121 1191.12,-454.739"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_conservative_compressible -->
+<g id="edge92" class="edge"><title>penf&#45;&gt;module~foreseer_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-167.001C158.255,-156.746 379.612,-329.849 390,-343.001 464.832,-437.744 502.722,-581.522 515.209,-637.024"/>
+<polygon fill="#000000" stroke="#000000" points="511.815,-637.886 517.371,-646.907 518.653,-636.39 511.815,-637.886"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="edge102" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-167.001C348.486,-172.067 362.281,-168.272 390,-191.001 415.838,-212.187 404.192,-231.686 426,-257.001 608.632,-469.009 694.703,-482.488 928,-637.001 953.871,-654.136 984.444,-671.561 1007.26,-684.051"/>
+<polygon fill="#000000" stroke="#000000" points="1005.76,-687.219 1016.22,-688.919 1009.1,-681.069 1005.76,-687.219"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge118" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M27.2912,-765.888C29.4164,-683.957 45.419,-243.414 145,-167.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-167.001C225.509,-105.223 -80.5994,-54.9236 771,-129.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-129.001C941.097,-135.767 1009.06,-43.7273 1154,-133.001 1254.2,-194.714 1291.36,-345.847 1302.22,-403.831"/>
+<polygon fill="#000000" stroke="#000000" points="1298.8,-404.601 1304,-413.833 1305.69,-403.374 1298.8,-404.601"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="edge128" class="edge"><title>penf&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-1262C207.093,-1303.47 239.04,-1272.25 313,-1262"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-1262C347.915,-1257.16 358.931,-1259.65 390,-1243 409.131,-1232.75 407.066,-1220.61 426,-1210 433.346,-1205.88 441.373,-1202.35 449.542,-1199.32"/>
+<polygon fill="#000000" stroke="#000000" points="450.853,-1202.58 459.165,-1196.01 448.57,-1195.96 450.853,-1202.58"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge144" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-1224C683.831,-1196.08 756.51,-1282.24 892,-1186 922.799,-1164.12 898.421,-1132.5 928,-1109 968.2,-1077.06 998.172,-1113.32 1041,-1085"/>
+</g>
+<!-- penf&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge158" class="edge"><title>penf&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145,-800.001C316.148,-804.683 513.628,-809.66 640.273,-812.796"/>
+<polygon fill="#000000" stroke="#000000" points="640.321,-816.299 650.404,-813.047 640.494,-809.301 640.321,-816.299"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer -->
+<g id="edge162" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.002,-745.965C152.602,-661.644 190.986,-195.497 236,-153.001 409.19,10.5026 1122.21,60.485 1306,-91.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1306,-91.001C1399.51,-168.224 1466,-566.664 1481.53,-667.692"/>
+<polygon fill="#000000" stroke="#000000" points="1478.1,-668.407 1483.06,-677.768 1485.02,-667.356 1478.1,-668.407"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge4" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M181.736,-772.131C188.464,-775.814 194.945,-780.39 200,-786.001 231.056,-820.477 202.366,-852.034 236,-884.001 303.63,-948.279 952.373,-1152.17 1041,-1123"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-1123C1088.72,-1104.07 1112.72,-1129.53 1154,-1099 1242.18,-1033.79 1285.74,-901.35 1300.27,-848.019"/>
+<polygon fill="#000000" stroke="#000000" points="1303.7,-848.732 1302.87,-838.17 1296.94,-846.949 1303.7,-848.732"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_object -->
+<g id="edge18" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M184.632,-772.141C190.618,-775.752 196.089,-780.299 200,-786.001 251.485,-861.059 180.139,-1122.14 236,-1194 238.472,-1197.18 241.346,-1199.99 244.5,-1202.47"/>
+<polygon fill="#000000" stroke="#000000" points="242.577,-1205.39 252.853,-1207.97 246.428,-1199.55 242.577,-1205.39"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge24" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-357.001C344.536,-331.59 1007.42,-372.354 1041,-395.001"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="edge38" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M183.282,-772.024C189.64,-775.677 195.589,-780.269 200,-786.001 249.757,-850.655 184.179,-902.988 236,-966.001 362.451,-1119.76 460.147,-1077.1 650,-1137 663.759,-1141.34 678.608,-1145.26 693.034,-1148.68"/>
+<polygon fill="#000000" stroke="#000000" points="692.403,-1152.13 702.935,-1150.97 693.979,-1145.31 692.403,-1152.13"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_object -->
+<g id="edge54" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-699.001C825.087,-701.328 839.971,-698.043 892,-713.001 934.99,-725.36 980.955,-749.047 1010.28,-765.651"/>
+<polygon fill="#000000" stroke="#000000" points="1008.78,-768.824 1019.19,-770.77 1012.26,-762.754 1008.78,-768.824"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_object -->
+<g id="edge60" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-870.001C348.343,-882.554 388.522,-891.624 424.017,-897.989"/>
+<polygon fill="#000000" stroke="#000000" points="423.444,-901.442 433.897,-899.713 424.647,-894.546 423.444,-901.442"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_eos_compressible -->
+<g id="edge62" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_eos_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M145.454,-745.73C148.251,-671.638 165.412,-309.589 236,-229.001 259.619,-202.036 283.334,-225.123 313,-205.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-205.001C356.692,-175.365 418.395,-178.751 463.056,-187.021"/>
+<polygon fill="#000000" stroke="#000000" points="462.392,-190.457 472.882,-188.969 463.753,-183.591 462.392,-190.457"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_conservative_object -->
+<g id="edge68" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_conservative_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M200.009,-759.001C208.422,-759.001 217.278,-759.001 226.175,-759.001"/>
+<polygon fill="#000000" stroke="#000000" points="226.217,-762.501 236.217,-759.001 226.217,-755.501 226.217,-762.501"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge74" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.138,-745.997C151.818,-689.523 182.273,-463.6 313,-357.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-357.001C457.859,-238.878 1002.06,-234.139 1154,-343.001 1194.44,-371.979 1152.44,-416.366 1190,-449.001 1191.36,-450.18 1192.76,-451.303 1194.19,-452.374"/>
+<polygon fill="#000000" stroke="#000000" points="1192.52,-455.461 1202.82,-457.951 1196.32,-449.582 1192.52,-455.461"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_conservative_compressible -->
+<g id="edge96" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M152.697,-745.851C166.457,-723.551 197.476,-678.459 236,-655.001 266.107,-636.669 280.827,-650.401 313,-636.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-636.001C367.071,-611.799 436.66,-628.377 479.794,-643.468"/>
+<polygon fill="#000000" stroke="#000000" points="478.778,-646.823 489.372,-646.948 481.168,-640.243 478.778,-646.823"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="edge106" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M192.396,-745.926C206.346,-742.518 221.701,-739.191 236,-737.001 361.046,-717.846 393.881,-708.138 520,-718.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-718.001C631.682,-724.568 659.229,-694.192 771,-699.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-699.001C818.996,-701.066 871.833,-701.958 917.944,-702.286"/>
+<polygon fill="#000000" stroke="#000000" points="917.959,-705.786 927.981,-702.349 918.003,-698.786 917.959,-705.786"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge108" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-205.001C317.838,-201.719 514.156,-243.173 520,-243.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-243.001C636.035,-239.593 933.36,-161.534 1041,-205.001"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="edge132" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M184.11,-772.148C190.229,-775.768 195.88,-780.316 200,-786.001 267.42,-879.039 199.386,-933.094 236,-1042 258.382,-1108.57 252.804,-1143.82 313,-1180"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-1180C332.009,-1191.43 380.799,-1192.53 426.238,-1190.62"/>
+<polygon fill="#000000" stroke="#000000" points="426.653,-1194.1 436.476,-1190.13 426.322,-1187.11 426.653,-1194.1"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge134" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M174.077,-772.047C182.603,-776.198 191.827,-781.015 200,-786.001 253.422,-818.592 254.031,-849.056 313,-870.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313,-870.001C373.623,-891.534 830.071,-888.426 892,-871.001 910.05,-865.922 910.579,-855.937 928,-849.001 975.701,-830.009 990.786,-835.706 1041,-825.001"/>
+</g>
+<!-- module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge148" class="edge"><title>module~foreseer_eos_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-718.001C604.864,-724.638 695.899,-771.352 741.456,-797.817"/>
+<polygon fill="#000000" stroke="#000000" points="739.816,-800.913 750.208,-802.979 743.373,-794.884 739.816,-800.913"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_hllc&#45;&gt;module~foreseer -->
+<g id="edge164" class="edge"><title>module~foreseer_riemann_solver_compressible_hllc&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1365.38,-811.95C1384.76,-805.71 1405.52,-796.73 1422,-784.001 1446.38,-765.171 1464.67,-734.164 1475.09,-713.181"/>
+<polygon fill="#000000" stroke="#000000" points="1478.3,-714.586 1479.44,-704.054 1471.98,-711.572 1478.3,-714.586"/>
+</g>
+<!-- module~foreseer_primitive_object&#45;&gt;module~foreseer -->
+<g id="edge166" class="edge"><title>module~foreseer_primitive_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M358.395,-1234.02C472.625,-1265.27 781.402,-1340.4 1041,-1319"/>
+</g>
+<!-- module~foreseer_primitive_object&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="edge124" class="edge"><title>module~foreseer_primitive_object&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M379.636,-1208.77C398.543,-1205.3 419.337,-1201.48 438.995,-1197.87"/>
+<polygon fill="#000000" stroke="#000000" points="439.642,-1201.31 448.846,-1196.06 438.378,-1194.43 439.642,-1201.31"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_llf&#45;&gt;module~foreseer -->
+<g id="edge168" class="edge"><title>module~foreseer_riemann_solver_compressible_llf&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1383.73,-674.029C1405.92,-677.747 1429.09,-681.63 1447.66,-684.742"/>
+<polygon fill="#000000" stroke="#000000" points="1447.3,-688.231 1457.74,-686.432 1448.45,-681.327 1447.3,-688.231"/>
+</g>
+<!-- module~foreseer_compressible_transformations&#45;&gt;module~foreseer -->
+<g id="edge170" class="edge"><title>module~foreseer_compressible_transformations&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M840.335,-1150.98C896.052,-1143.39 975.537,-1139.11 1041,-1161"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer -->
+<g id="edge172" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1105.61,-770.992C1121.61,-767.108 1138.59,-762.417 1154,-757.001 1170.69,-751.136 1173.11,-745.26 1190,-740.001 1239.88,-724.474 1254.16,-727.485 1306,-721.001"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge12" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1124.12,-796.861C1151.96,-801.168 1183.18,-805.999 1211.8,-810.427"/>
+<polygon fill="#000000" stroke="#000000" points="1211.39,-813.905 1221.81,-811.975 1212.46,-806.987 1211.39,-813.905"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge32" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1064.38,-770.995C1093.43,-755.058 1144.68,-727.633 1190,-707.001 1213,-696.53 1239.12,-686.052 1260.74,-677.746"/>
+<polygon fill="#000000" stroke="#000000" points="1262.24,-680.923 1270.34,-674.091 1259.74,-674.382 1262.24,-680.923"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge82" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1080.1,-770.953C1104.1,-761.243 1133.97,-745.866 1154,-724.001 1181.71,-693.75 1170.24,-674.956 1190,-639.001 1220.58,-583.35 1265.17,-523.311 1289.19,-492.282"/>
+<polygon fill="#000000" stroke="#000000" points="1292,-494.367 1295.38,-484.327 1286.48,-490.064 1292,-494.367"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge120" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1086.77,-770.979C1110.64,-761.774 1138.11,-746.907 1154,-724.001 1224.25,-622.715 1105.37,-538.622 1190,-449.001 1190.79,-448.163 1191.6,-447.351 1192.44,-446.564"/>
+<polygon fill="#000000" stroke="#000000" points="1194.82,-449.138 1200.43,-440.152 1190.44,-443.677 1194.82,-449.138"/>
+</g>
+<!-- module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge142" class="edge"><title>module~foreseer_riemann_solver_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1124.12,-777.1C1143.69,-775.476 1164.93,-773.712 1185.77,-771.983"/>
+<polygon fill="#000000" stroke="#000000" points="1186.28,-775.453 1195.95,-771.137 1185.7,-768.477 1186.28,-775.453"/>
+</g>
+<!-- module~foreseer_riemann_pattern_object&#45;&gt;module~foreseer -->
+<g id="edge174" class="edge"><title>module~foreseer_riemann_pattern_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M548.464,-924.077C612.02,-953.713 769.52,-1029.61 892,-1109 909.009,-1120.03 909.619,-1128.46 928,-1137 974.557,-1158.64 992.309,-1144.72 1041,-1161"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-1161C1159,-1195.34 1206.54,-1312.19 1306,-1240"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1306,-1240C1395.95,-1174.72 1464.36,-810.699 1481.07,-714.384"/>
+<polygon fill="#000000" stroke="#000000" points="1484.57,-714.685 1482.81,-704.237 1477.67,-713.502 1484.57,-714.685"/>
+</g>
+<!-- module~foreseer_riemann_pattern_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge150" class="edge"><title>module~foreseer_riemann_pattern_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M540.831,-897.903C565.869,-882.688 609.575,-857.791 650,-843.001 662.161,-838.552 675.289,-834.702 688.258,-831.417"/>
+<polygon fill="#000000" stroke="#000000" points="689.238,-834.781 698.126,-829.014 687.582,-827.979 689.238,-834.781"/>
+</g>
+<!-- module~foreseer_eos_compressible&#45;&gt;module~foreseer -->
+<g id="edge176" class="edge"><title>module~foreseer_eos_compressible&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M592.605,-190.539C642.641,-182.97 710.723,-173.317 771,-167.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-167.001C830.714,-160.744 1260.53,-51.7891 1306,-91.001"/>
+</g>
+<!-- module~foreseer_eos_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge122" class="edge"><title>module~foreseer_eos_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-167.001C891.523,-154.372 928.633,-159.625 1041,-205.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-205.001C1094.12,-226.451 1108.62,-232.04 1154,-267.001 1209.45,-309.716 1263.16,-372.941 1289.38,-405.655"/>
+<polygon fill="#000000" stroke="#000000" points="1286.77,-408.001 1295.73,-413.657 1292.26,-403.649 1286.77,-408.001"/>
+</g>
+<!-- module~foreseer_eos_compressible&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge160" class="edge"><title>module~foreseer_eos_compressible&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M522.263,-215.351C534.544,-286.82 594.68,-624.243 650,-713.001 672.516,-749.126 711.848,-779.122 739.544,-797.254"/>
+<polygon fill="#000000" stroke="#000000" points="737.781,-800.281 748.092,-802.717 741.551,-794.383 737.781,-800.281"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer -->
+<g id="edge178" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M368.418,-772.074C433.301,-789.652 541.14,-826.186 614,-889.001 636.979,-908.812 628.919,-925.182 650,-947.001 739.933,-1040.08 787.073,-1033.22 892,-1109 908.432,-1120.87 909.619,-1128.46 928,-1137 974.557,-1158.64 991.703,-1146.65 1041,-1161"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge8" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-857.001C890.009,-872.617 921.042,-858.85 1041,-863.001"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge28" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M389.68,-756.699C428.699,-755.829 476.878,-755.219 520,-756.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-756.001C563.111,-756.783 578.018,-755.759 614,-732.001 635.958,-717.503 626.623,-697.078 650,-685.001 740.745,-638.119 1026.02,-645.123 1188.93,-653.537"/>
+<polygon fill="#000000" stroke="#000000" points="1188.83,-657.036 1199,-654.067 1189.19,-650.046 1188.83,-657.036"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_object -->
+<g id="edge48" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-756.001C588.27,-758.39 586.049,-813.985 650,-838.001 700.962,-857.139 717.026,-849.919 771,-857.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-857.001C824.974,-864.083 841.853,-859.181 892,-838.001 910.424,-830.22 909.897,-819.502 928,-811.001 937.27,-806.648 947.308,-802.96 957.444,-799.843"/>
+<polygon fill="#000000" stroke="#000000" points="958.539,-803.17 967.171,-797.028 956.592,-796.446 958.539,-803.17"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_object -->
+<g id="edge56" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M329.644,-772.243C351.506,-789.537 391.204,-820.601 426,-846.001 447.859,-861.957 473.109,-879.363 491.932,-892.143"/>
+<polygon fill="#000000" stroke="#000000" points="490.11,-895.136 500.353,-897.843 494.034,-889.339 490.11,-895.136"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge78" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M334.046,-745.809C350.606,-734.72 373.554,-717.714 390,-699.001 410.781,-675.355 405.068,-661.514 426,-638.001 509.101,-544.651 537.147,-521.705 650,-468.001 749.964,-420.43 792.319,-457.163 892,-409.001 910.251,-400.183 909.619,-389.546 928,-381.001 974.557,-359.357 990.112,-350.182 1041,-357.001"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_conservative_compressible -->
+<g id="edge88" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M339.43,-745.996C362.296,-734.779 396.268,-718.194 426,-704.001 444.522,-695.159 465.172,-685.474 482.388,-677.448"/>
+<polygon fill="#000000" stroke="#000000" points="483.976,-680.569 491.564,-673.175 481.022,-674.223 483.976,-680.569"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="edge98" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-756.001C678.093,-761.534 861.902,-734.613 963.479,-716.79"/>
+<polygon fill="#000000" stroke="#000000" points="964.112,-720.232 973.348,-715.041 962.891,-713.339 964.112,-720.232"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge114" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M338.255,-745.986C355.659,-735.65 377.776,-719.533 390,-699.001 439.787,-615.376 362.676,-556.907 426,-483.001 640.378,-232.798 834.958,-260.71 1154,-343.001 1202.42,-355.49 1251.89,-387.05 1280.74,-407.731"/>
+<polygon fill="#000000" stroke="#000000" points="1278.86,-410.696 1289,-413.767 1282.99,-405.043 1278.86,-410.696"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge138" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M771,-857.001C830.906,-864.862 981.908,-837.599 1041,-825.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-825.001C1090.81,-814.382 1104.35,-817.322 1154,-806.001 1188.41,-798.155 1226.57,-787.102 1256.04,-778.037"/>
+<polygon fill="#000000" stroke="#000000" points="1257.17,-781.351 1265.69,-775.047 1255.1,-774.665 1257.17,-781.351"/>
+</g>
+<!-- module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge154" class="edge"><title>module~foreseer_conservative_object&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520,-756.001C579.574,-758.086 592.015,-775.175 650,-789.001 666.385,-792.908 684.059,-796.949 700.704,-800.678"/>
+<polygon fill="#000000" stroke="#000000" points="700.392,-804.194 710.914,-802.955 701.915,-797.362 700.392,-804.194"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_exact&#45;&gt;module~foreseer -->
+<g id="edge180" class="edge"><title>module~foreseer_riemann_solver_compressible_exact&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1345.47,-484.06C1370.31,-494.038 1401.45,-510.023 1422,-533.001 1457.37,-572.554 1474.13,-634.424 1480.97,-667.795"/>
+<polygon fill="#000000" stroke="#000000" points="1477.6,-668.789 1482.93,-677.947 1484.47,-667.466 1477.6,-668.789"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer -->
+<g id="edge182" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M544.544,-646.89C570.06,-634.061 611.57,-615.402 650,-608.001 660.379,-606.002 1146.72,-608.581 1154,-609.001 1273.66,-615.906 1311.64,-592.244 1422,-639.001 1438.76,-646.104 1454.56,-659.159 1466.14,-670.411"/>
+<polygon fill="#000000" stroke="#000000" points="1463.93,-673.155 1473.44,-677.817 1468.91,-668.24 1463.93,-673.155"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge10" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M550.514,-673.088C576.722,-684.173 615.606,-700.249 650,-713.001 756.346,-752.431 799.004,-729.071 892,-794.001 913,-808.664 906.201,-825.555 928,-839.001 971.699,-865.954 989.718,-860.504 1041,-863.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-863.001C1110.82,-865.417 1190.01,-851.895 1243.49,-840.319"/>
+<polygon fill="#000000" stroke="#000000" points="1244.5,-843.682 1253.51,-838.109 1242.99,-836.846 1244.5,-843.682"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge30" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M579,-646.987C675.998,-627.562 874.97,-596.01 1041,-623.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-623.001C1092.59,-631.487 1150.02,-639.852 1198.18,-646.565"/>
+<polygon fill="#000000" stroke="#000000" points="1197.93,-650.063 1208.31,-647.972 1198.89,-643.13 1197.93,-650.063"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="edge44" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M571.694,-673.03C587.774,-679.662 603.913,-689.507 614,-704.001 669.153,-783.253 586.544,-1064.23 650,-1137 653.318,-1140.81 657.043,-1144.14 661.073,-1147.06"/>
+<polygon fill="#000000" stroke="#000000" points="659.408,-1150.14 669.742,-1152.48 663.12,-1144.21 659.408,-1150.14"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge80" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-471.001C1086.2,-469.128 1135.78,-468.694 1179.71,-468.87"/>
+<polygon fill="#000000" stroke="#000000" points="1179.84,-472.37 1189.86,-468.921 1179.88,-465.37 1179.84,-472.37"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge116" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M528.969,-646.917C547.892,-620.458 594.738,-560.759 650,-533.001 807.228,-454.024 865.202,-478.286 1041,-471.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-471.001C1075.58,-467.581 1159.71,-453.232 1223.97,-441.837"/>
+<polygon fill="#000000" stroke="#000000" points="1224.87,-445.232 1234.1,-440.036 1223.65,-438.34 1224.87,-445.232"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge140" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-623.001C1096.5,-632.13 1112.05,-642.523 1154,-680.001 1175.79,-699.466 1166.05,-718.266 1190,-735.001 1195.58,-738.9 1201.64,-742.244 1207.97,-745.109"/>
+<polygon fill="#000000" stroke="#000000" points="1206.83,-748.424 1217.41,-748.974 1209.48,-741.946 1206.83,-748.424"/>
+</g>
+<!-- module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_pattern_compressible_object -->
+<g id="edge156" class="edge"><title>module~foreseer_conservative_compressible&#45;&gt;module~foreseer_riemann_pattern_compressible_object</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M558.516,-673.142C576.528,-680.46 597.574,-690.786 614,-704.001 634.502,-720.494 629.961,-733.948 650,-751.001 673.487,-770.988 704.126,-787.37 728.695,-798.688"/>
+<polygon fill="#000000" stroke="#000000" points="727.572,-802.02 738.128,-802.924 730.439,-795.635 727.572,-802.02"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer -->
+<g id="edge184" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1114.88,-715.026C1168.15,-722.536 1241.7,-729.045 1306,-721.001"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1306,-721.001C1355.23,-714.843 1411.62,-704.911 1447.73,-698.177"/>
+<polygon fill="#000000" stroke="#000000" points="1448.63,-701.57 1457.81,-696.283 1447.34,-694.691 1448.63,-701.57"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_hllc -->
+<g id="edge6" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_hllc</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1066.82,-715.147C1089.88,-727.021 1124.48,-745.164 1154,-762.001 1170.29,-771.291 1173.07,-775.944 1190,-784.001 1209.97,-793.505 1232.77,-802.029 1252.83,-808.811"/>
+<polygon fill="#000000" stroke="#000000" points="1251.85,-812.171 1262.44,-811.996 1254.05,-805.527 1251.85,-812.171"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_llf -->
+<g id="edge26" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_llf</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1125.21,-688.972C1152.61,-684.733 1183.2,-680 1211.32,-675.65"/>
+<polygon fill="#000000" stroke="#000000" points="1212.21,-679.054 1221.55,-674.066 1211.14,-672.137 1212.21,-679.054"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_exact -->
+<g id="edge76" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_exact</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1068.98,-688.954C1092.81,-677.149 1127.33,-658.375 1154,-637.001 1209.98,-592.131 1263.84,-526.242 1289.83,-492.559"/>
+<polygon fill="#000000" stroke="#000000" points="1292.82,-494.41 1296.12,-484.339 1287.26,-490.159 1292.82,-494.41"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_roe -->
+<g id="edge110" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_roe</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1080.71,-688.956C1105.59,-678.724 1136.21,-661.978 1154,-637.001 1203.36,-567.712 1129.79,-509.104 1190,-449.001 1190.96,-448.044 1191.95,-447.122 1192.96,-446.233"/>
+<polygon fill="#000000" stroke="#000000" points="1195.29,-448.859 1201.19,-440.058 1191.09,-443.259 1195.29,-448.859"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_pvl -->
+<g id="edge136" class="edge"><title>module~foreseer_riemann_pattern_compressible_pvl&#45;&gt;module~foreseer_riemann_solver_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1098.5,-715.02C1139.6,-724.325 1195.05,-736.879 1238.28,-746.669"/>
+<polygon fill="#000000" stroke="#000000" points="1237.63,-750.109 1248.15,-748.904 1239.17,-743.282 1237.63,-750.109"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_roe&#45;&gt;module~foreseer -->
+<g id="edge186" class="edge"><title>module~foreseer_riemann_solver_compressible_roe&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1410.02,-440.021C1414.3,-442.597 1418.33,-445.571 1422,-449.001 1454.12,-479.028 1474.85,-613.03 1482.11,-667.681"/>
+<polygon fill="#000000" stroke="#000000" points="1478.66,-668.319 1483.42,-677.787 1485.6,-667.421 1478.66,-668.319"/>
+</g>
+<!-- module~foreseer_primitive_compressible&#45;&gt;module~foreseer -->
+<g id="edge188" class="edge"><title>module~foreseer_primitive_compressible&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M566.857,-1196.12C690.337,-1230.56 1016.85,-1320.81 1041,-1319"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041,-1319C1163.48,-1308.91 1206.54,-1312.19 1306,-1240"/>
+</g>
+<!-- module~foreseer_primitive_compressible&#45;&gt;module~foreseer_compressible_transformations -->
+<g id="edge46" class="edge"><title>module~foreseer_primitive_compressible&#45;&gt;module~foreseer_compressible_transformations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M603.579,-1176.67C621.591,-1175.31 640.904,-1173.85 659.781,-1172.42"/>
+<polygon fill="#000000" stroke="#000000" points="660.199,-1175.9 669.906,-1171.65 659.67,-1168.92 660.199,-1175.9"/>
+</g>
+<!-- module~foreseer_riemann_solver_compressible_pvl&#45;&gt;module~foreseer -->
+<g id="edge190" class="edge"><title>module~foreseer_riemann_solver_compressible_pvl&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1381.02,-748.963C1394.95,-745.311 1409.16,-740.724 1422,-735.001 1435.98,-728.77 1450.09,-719.285 1461.4,-710.714"/>
+<polygon fill="#000000" stroke="#000000" points="1463.74,-713.329 1469.45,-704.408 1459.42,-707.817 1463.74,-713.329"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_object&#45;&gt;module~foreseer -->
+<g id="edge192" class="edge"><title>module~foreseer_riemann_pattern_compressible_object&#45;&gt;module~foreseer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M802.275,-802.919C833.54,-790.4 883.271,-771.987 928,-762.001 1092.92,-725.18 1138.32,-741.976 1306,-721.001"/>
+</g>
+<!-- module~foreseer_riemann_pattern_compressible_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl -->
+<g id="edge104" class="edge"><title>module~foreseer_riemann_pattern_compressible_object&#45;&gt;module~foreseer_riemann_pattern_compressible_pvl</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M865.474,-802.997C874.92,-799.376 883.971,-794.794 892,-789.001 917.22,-770.806 902.917,-747.384 928,-729.001 933.178,-725.206 938.815,-721.937 944.717,-719.123"/>
+<polygon fill="#000000" stroke="#000000" points="946.372,-722.222 954.182,-715.063 943.612,-715.788 946.372,-722.222"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="node51" class="node"><title>iso_fortran_env</title>
+<a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="356,-690.001 270,-690.001 270,-664.001 356,-664.001 356,-690.001"/>
+<text text-anchor="middle" x="313" y="-674.551" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~foreseer_eos_compressible -->
+<g id="edge64" class="edge"><title>iso_fortran_env&#45;&gt;module~foreseer_eos_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M319.56,-663.881C334.541,-633.334 371.403,-554.752 390,-485.001 404.8,-429.491 388.318,-272.365 426,-229.001 429.529,-224.94 433.625,-221.47 438.093,-218.508"/>
+<polygon fill="#000000" stroke="#000000" points="440.113,-221.387 447.092,-213.415 436.665,-215.294 440.113,-221.387"/>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~foreseer_conservative_compressible -->
+<g id="edge94" class="edge"><title>iso_fortran_env&#45;&gt;module~foreseer_conservative_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M356.646,-673.417C374.157,-671.978 395.149,-670.254 416.161,-668.529"/>
+<polygon fill="#000000" stroke="#000000" points="416.451,-672.017 426.131,-667.71 415.878,-665.04 416.451,-672.017"/>
+</g>
+<!-- iso_fortran_env&#45;&gt;module~foreseer_primitive_compressible -->
+<g id="edge130" class="edge"><title>iso_fortran_env&#45;&gt;module~foreseer_primitive_compressible</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M339.508,-690.17C357.027,-700.388 378.763,-716.297 390,-737.001 434.581,-819.136 366.628,-1083.83 426,-1156 428.596,-1159.16 431.534,-1161.96 434.727,-1164.44"/>
+<polygon fill="#000000" stroke="#000000" points="432.866,-1167.41 443.141,-1169.99 436.719,-1161.56 432.866,-1167.41"/>
+</g>
+</g>
+</svg>
+</div>
+                <script>var panprogramforeseer_test_riemann_solver_compressible_roeUsesGraph = svgPanZoom('#programforeseer_test_riemann_solver_compressible_roeUsesGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="486pt" height="34pt"
+ viewBox="0.00 0.00 486.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 483,-30 483,5 -4,5"/>
+<!-- Module -->
+<g id="node1" class="node"><title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node"><title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
+<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-26 156,-26 156,-1.24345e-14 220,-3.55271e-15 220,-26"/>
+<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="292,-26 238,-26 238,-1.24345e-14 292,-3.55271e-15 292,-26"/>
+<text text-anchor="middle" x="265" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
+<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="478,-26 382,-26 382,-1.24345e-14 478,-3.55271e-15 478,-26"/>
+<text text-anchor="middle" x="430" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+    
+
+    <br><br>
+    <p>FORESEER test: Riemann solver compressible Roe class test.</p>
+    
+     <h3>Calls</h3>
+     
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: program~~foreseer_test_riemann_solver_compressible_roe~~CallsGraph Pages: 1 -->
+<svg id="programforeseer_test_riemann_solver_compressible_roeCallsGraph" width="344pt" height="34pt"
+ viewBox="0.00 0.00 344.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~foreseer_test_riemann_solver_compressible_roe~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>program~~foreseer_test_riemann_solver_compressible_roe~~CallsGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 341,-30 341,5 -4,5"/>
+<!-- program~foreseer_test_riemann_solver_compressible_roe -->
+<g id="node1" class="node"><title>program~foreseer_test_riemann_solver_compressible_roe</title>
+<polygon fill="none" stroke="black" points="246,-26 9.9476e-14,-26 0,-1.24345e-14 246,-3.55271e-15 246,-26"/>
+<text text-anchor="middle" x="123" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">foreseer_test_riemann_solver_compressible_roe</text>
+</g>
+<!-- str -->
+<g id="node2" class="node"><title>str</title>
+<polygon fill="#777777" stroke="#777777" points="336,-26 282,-26 282,-1.24345e-14 336,-3.55271e-15 336,-26"/>
+<text text-anchor="middle" x="309" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str</text>
+</g>
+<!-- program~foreseer_test_riemann_solver_compressible_roe&#45;&gt;str -->
+<g id="edge2" class="edge"><title>program~foreseer_test_riemann_solver_compressible_roe&#45;&gt;str</title>
+<path fill="none" stroke="#000000" d="M246.029,-13C255.132,-13 263.806,-13 271.645,-13"/>
+<polygon fill="#000000" stroke="#000000" points="271.78,-16.5001 281.78,-13 271.78,-9.5001 271.78,-16.5001"/>
+</g>
+</g>
+</svg>
+</div>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="556pt" height="34pt"
+ viewBox="0.00 0.00 556.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 553,-30 553,5 -4,5"/>
+<!-- Subroutine -->
+<g id="node1" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="64,-26 3.19744e-14,-26 0,-1.24345e-14 64,-3.55271e-15 64,-26"/>
+<text text-anchor="middle" x="32" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-26 82,-26 82,-1.24345e-14 136,-3.55271e-15 136,-26"/>
+<text text-anchor="middle" x="109" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node"><title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="208,-26 154,-26 154,-1.24345e-14 208,-3.55271e-15 208,-26"/>
+<text text-anchor="middle" x="181" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node"><title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="362,-26 226,-26 226,-1.24345e-14 362,-3.55271e-15 362,-26"/>
+<text text-anchor="middle" x="294" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-26 380,-26 380,-1.24345e-14 434,-3.55271e-15 434,-26"/>
+<text text-anchor="middle" x="407" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="548,-26 452,-26 452,-1.24345e-14 548,-3.55271e-15 548,-26"/>
+<text text-anchor="middle" x="500" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
+    </p>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+     
+    <br>
+
+     <section class="visible-xs visible-sm hidden-md">
+       
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-are_tests_passed%7E9">are_tests_passed</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-eos%7E24">eos</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-fluxes%7E15">fluxes</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-p23%7E6">p23</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-r_2%7E6">r_2</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-r_3%7E6">r_3</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-riemann_solver%7E6">riemann_solver</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-state_left%7E14">state_left</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-state_right%7E14">state_right</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-u23%7E6">u23</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#variable-waves%7E4">waves</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html#src">foreseer_test_riemann_solver_compressible_roe</a>
+  </div>
+</div>
+
+
+     </section>
+     <br class="visible-xs visible-sm hidden-md">
+
+     
+
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-are_tests_passed%7E9"></span>logical</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>are_tests_passed</strong>(1)</td><td></td><td></td><td><p>List of passed tests.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eos%7E24"></span>type(<a href='../type/eos_compressible.html'>eos_compressible</a>)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>eos</strong></td><td></td><td></td><td><p>The equation of state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fluxes%7E15"></span>type(<a href='../type/conservative_compressible.html'>conservative_compressible</a>)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>fluxes</strong></td><td></td><td></td><td><p>Conservative fluxes.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-p23%7E6"></span>real(kind=R8P),</td>
+  
+  
+  <td>parameter</td><td>::</td>
+  <td><strong>p23</strong></td><td> =</td><td>0.303130000829696655_R8P</td><td><p>Exact value of pressure in states 2 and 3.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-r_2%7E6"></span>real(kind=R8P),</td>
+  
+  
+  <td>parameter</td><td>::</td>
+  <td><strong>r_2</strong></td><td> =</td><td>0.426319003105163574_R8P</td><td><p>Exact value of density in state 2.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-r_3%7E6"></span>real(kind=R8P),</td>
+  
+  
+  <td>parameter</td><td>::</td>
+  <td><strong>r_3</strong></td><td> =</td><td>0.265574008226394653_R8P</td><td><p>Exact value of density in state 3.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-riemann_solver%7E6"></span>type(<a href='../type/riemann_solver_compressible_roe.html'>riemann_solver_compressible_roe</a>)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>riemann_solver</strong></td><td></td><td></td><td><p>Riemann solver.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-state_left%7E14"></span>type(<a href='../type/conservative_compressible.html'>conservative_compressible</a>)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>state_left</strong></td><td></td><td></td><td><p>Left state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-state_right%7E14"></span>type(<a href='../type/conservative_compressible.html'>conservative_compressible</a>)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>state_right</strong></td><td></td><td></td><td><p>Right state.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-u23%7E6"></span>real(kind=R8P),</td>
+  
+  
+  <td>parameter</td><td>::</td>
+  <td><strong>u23</strong></td><td> =</td><td>0.927452981472015381_R8P</td><td><p>Exact value of velocity in states 2 and 3.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-waves%7E4"></span>real(kind=R8P)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>waves</strong>(1:5)</td><td></td><td></td><td><p>Waves pattern.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2 id="src">Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foreseer_test_riemann_solver_compressible_roe</span>
+<span class="c">!&lt; FORESEER test: Riemann solver compressible Roe class test.</span>
+
+<span class="k">use </span><span class="n">foreseer</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">eos_compressible</span><span class="p">,</span> <span class="n">conservative_compressible</span><span class="p">,</span> <span class="n">riemann_solver_compressible_roe</span>
+<span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">R8P</span><span class="p">,</span> <span class="n">str</span>
+<span class="k">use </span><span class="n">vecfor</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">ex</span>
+
+<span class="k">implicit none</span>
+<span class="k">type</span><span class="p">(</span><span class="n">eos_compressible</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">eos</span>                          <span class="c">!&lt; The equation of state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">state_left</span>                   <span class="c">!&lt; Left state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">state_right</span>                  <span class="c">!&lt; Right state.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">conservative_compressible</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">fluxes</span>                       <span class="c">!&lt; Conservative fluxes.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">riemann_solver_compressible_roe</span><span class="p">)</span> <span class="kd">::</span> <span class="n">riemann_solver</span>               <span class="c">!&lt; Riemann solver.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">waves</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>                   <span class="c">!&lt; Waves pattern.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">parameter</span>                  <span class="kd">::</span> <span class="n">r_2</span><span class="o">=</span><span class="mf">0.426319003105163574_R8P</span> <span class="c">!&lt; Exact value of density in state 2.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">parameter</span>                  <span class="kd">::</span> <span class="n">r_3</span><span class="o">=</span><span class="mf">0.265574008226394653_R8P</span> <span class="c">!&lt; Exact value of density in state 3.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">parameter</span>                  <span class="kd">::</span> <span class="n">p23</span><span class="o">=</span><span class="mf">0.303130000829696655_R8P</span> <span class="c">!&lt; Exact value of pressure in states 2 and 3.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">),</span> <span class="k">parameter</span>                  <span class="kd">::</span> <span class="n">u23</span><span class="o">=</span><span class="mf">0.927452981472015381_R8P</span> <span class="c">!&lt; Exact value of velocity in states 2 and 3.</span>
+<span class="kt">logical</span>                               <span class="kd">::</span> <span class="n">are_tests_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>          <span class="c">!&lt; List of passed tests.</span>
+
+<span class="n">are_tests_passed</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+
+<span class="n">eos</span> <span class="o">=</span> <span class="n">eos_compressible</span><span class="p">(</span><span class="n">cp</span><span class="o">=</span><span class="mi">104</span><span class="mf">0.004_R8P</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">74</span><span class="mf">2.86_R8P</span><span class="p">)</span>
+<span class="n">state_left</span>  <span class="o">=</span> <span class="n">conservative_compressible</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">,</span>    <span class="n">energy</span><span class="o">=</span><span class="mf">1._R8P</span>   <span class="o">*</span><span class="n">eos</span><span class="p">%</span><span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">,</span>    <span class="n">pressure</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">state_right</span> <span class="o">=</span> <span class="n">conservative_compressible</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="o">*</span><span class="n">eos</span><span class="p">%</span><span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="mf">0.125_R8P</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="mf">0.1_R8P</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Test solution with &quot;u23&quot; algorithm:&#39;</span>
+<span class="k">call </span><span class="n">riemann_solver</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="s1">&#39;u23&#39;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">riemann_solver</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">ex</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Fluxes at interface:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r_2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">ex</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact fluxes at interface:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact intemediate states:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  r_2 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">r_2</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  r_3 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">r_3</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  p23 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">p23</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  u23 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">u23</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Test solution with &quot;up23&quot; algorithm:&#39;</span>
+<span class="k">call </span><span class="n">riemann_solver</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="s1">&#39;up23&#39;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">riemann_solver</span><span class="p">%</span><span class="n">solve</span><span class="p">(</span><span class="n">eos_left</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_left</span><span class="o">=</span><span class="n">state_left</span><span class="p">,</span> <span class="n">eos_right</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">state_right</span><span class="o">=</span><span class="n">state_right</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">ex</span><span class="p">,</span> <span class="n">fluxes</span><span class="o">=</span><span class="n">fluxes</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Fluxes at interface:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">fluxes</span><span class="p">%</span><span class="n">compute_fluxes_from_primitive</span><span class="p">(</span><span class="n">eos</span><span class="o">=</span><span class="n">eos</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p23</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r_2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u23</span><span class="p">,</span> <span class="n">normal</span><span class="o">=</span><span class="n">ex</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact fluxes at interface:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">description</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact intemediate states:&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  r_2 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">r_2</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  r_3 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">r_3</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  p23 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">p23</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;(A)&#39;</span><span class="p">,</span> <span class="s1">&#39;  u23 = &#39;</span><span class="o">//</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">u23</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;Are all tests passed? &#39;</span><span class="p">,</span> <span class="k">all</span><span class="p">(</span><span class="n">are_tests_passed</span><span class="p">)</span>
+<span class="n">endprogram</span> <span class="n">foreseer_test_riemann_solver_compressible_roe</span>
+</pre></div>
+
+    </section>
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-1">All Programs</a></h3></div>
+  <div id="allprogs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/foreseer_test_compressible_transformations.html">foreseer_test_compressible_transformations</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_conservative_compressible.html">foreseer_test_conservative_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_eos_compressible.html">foreseer_test_eos_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_primitive_compressible.html">foreseer_test_primitive_compressible</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_hllc.html">foreseer_test_riemann_solver_compressible_hllc</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_hllc%7E2.html">foreseer_test_riemann_solver_compressible_hllc</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_llf.html">foreseer_test_riemann_solver_compressible_llf</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_pvl.html">foreseer_test_riemann_solver_compressible_pvl</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_riemann_solver_compressible_roe.html">foreseer_test_riemann_solver_compressible_roe</a>
+      
+      <a class="list-group-item" href="../program/foreseer_test_shock_tube.html">foreseer_test_shock_tube</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+             on 2017-03-23 08:43  
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FORESEER was developed by Stefano Zaghi</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
