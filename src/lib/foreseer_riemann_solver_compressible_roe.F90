@@ -148,9 +148,9 @@ contains
        aa1 = 0.5_R8P * (Dp - r_d * r_a * Du) / (r_a * r_a)
        aa2 = Dr - Dp / (r_a * r_a)
        aa3 = 0.5_R8P * (Dp + r_d * r_a * Du) / (r_a * r_a)
-       ll1 = (r_u .dot. normal) - r_d
+       ll1 = (r_u .dot. normal) - r_a
        ll2 = (r_u .dot. normal)
-       ll3 = (r_u .dot. normal) + r_d
+       ll3 = (r_u .dot. normal) + r_a
        call state_left%compute_fluxes (eos=eos_left,  normal=normal, fluxes=fluxes_left)
        call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
        vec_a%x = abs(ll1)                              ; vec_a%y = abs(ll2)                 ; vec_a%z = abs(ll3)
