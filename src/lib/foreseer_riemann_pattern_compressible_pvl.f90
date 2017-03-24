@@ -17,6 +17,7 @@ type, extends(riemann_pattern_compressible_object) :: riemann_pattern_compressib
    !< Compressible Riemann (states) PVL pattern object class.
    procedure(compute_waves_interface), pointer :: compute_waves_ => compute_waves_up23 !< Compute waves speed.
    contains
+      ! deferred methods
       procedure, pass(self) :: compute_waves !< Compute waves speed.
       ! private methods
       procedure, pass(self), private :: compute_u23        !< Compute interstates velocity.
@@ -34,7 +35,7 @@ abstract interface
 endinterface
 
 contains
-   ! public deferred methods
+   ! deferred methods
    pure subroutine compute_waves(self)
    !< Compute waves speed.
    class(riemann_pattern_compressible_pvl), intent(inout) :: self !< Riemann (states) pattern solution.
