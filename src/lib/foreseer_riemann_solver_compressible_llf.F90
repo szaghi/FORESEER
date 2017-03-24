@@ -56,7 +56,7 @@ contains
    real(R8P)                                             :: lmax         !< Maximum wave speed estimation.
 
    call pattern%initialize(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
-   call pattern%compute_waves
+   call pattern%compute_waves_extrema
    lmax = max(abs(pattern%s_1), abs(pattern%s_4))
    call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
    call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)

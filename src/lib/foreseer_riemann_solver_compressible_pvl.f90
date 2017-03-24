@@ -55,7 +55,7 @@ contains
    type(riemann_pattern_compressible_pvl)                :: pattern     !< Riemann (states) pattern solution.
 
    call pattern%initialize(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
-   call pattern%compute_waves
+   call pattern%compute
    call pattern%compute_fluxes(normal=normal, fluxes=fluxes)
    endsubroutine solve
 endmodule foreseer_riemann_solver_compressible_pvl

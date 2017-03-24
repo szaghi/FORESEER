@@ -243,7 +243,7 @@ contains
                                          rx=self%r_3, px=p_3, ax=self%a_3, ss=self%S_4)
          self%S_3 = self%S_4
       else
-         call compute_post_rarefaction_from_ux(eos=eos_4, sgn=1._R8P,                              &
+         call compute_post_rarefaction_from_ux(eos=self%eos_4, sgn=1._R8P,                         &
                                                u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, &
                                                rx=self%r_3, px=p_3, ax=self%a_3, s0=self%S_4, sx=self%S_3)
       endif
@@ -273,8 +273,8 @@ contains
                                           rx=self%r_2, ax=self%a_2, ss=self%s_1)
          self%s_2 = self%s_1
       else ! rarefaction
-          call compute_post_rarefaction_from_upx(eos=self%eos_1, sgn=-1._R8P,                                &
-                                                 u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=u23, px=self%p23, &
+          call compute_post_rarefaction_from_upx(eos=self%eos_1, sgn=-1._R8P,                                     &
+                                                 u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, px=self%p23, &
                                                  rx=self%r_2, ax=self%a_2, s0=self%s_1, sx=self%s_2)
         ! a_2 = a_1 - 0.5_R8P * (g_1 - 1._R8P) * (u23 - u_1)
         ! r_2 = eos_1%density(pressure=p23, speed_of_sound=a_2)
@@ -282,7 +282,7 @@ contains
         ! s_2 = u23 - a_2
       endif
       ! right wave
-      if (self%u23 > self%u4) then ! shock
+      if (self%u23 > self%u_4) then ! shock
          ! p_p = p23 / p_4
          ! a_3 = a_4 * sqrt((gp1_4 + gm1_4 * p_p) / (gp1_4 + gm1_4 / p_p))
          ! r_3 = eos_4%density(pressure=p23, speed_of_sound=a_3)
