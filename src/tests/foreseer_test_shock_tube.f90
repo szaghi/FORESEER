@@ -599,9 +599,7 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', &
-                         S=self%Ng,                            &
-                         interpolator=interpolator)
+      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=0, self%Ni+1
          do j=i+1-self%Ng, i-1+self%Ng
              U = conservative(j)%array()
@@ -648,9 +646,7 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', &
-                         S=self%Ng,                            &
-                         interpolator=interpolator)
+      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=1-self%Ng, self%Ni+self%Ng
          primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
       enddo
