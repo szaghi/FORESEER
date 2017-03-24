@@ -17,11 +17,12 @@ type, abstract :: riemann_pattern_object
    !< This pattern is generated after the breaking of the initial discontinuity of the Riemann Problem.
    contains
       ! deferred methods
-      procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes   !< Compute fluxes at interface.
-      procedure(compute_waves_interface),  pass(self), deferred :: compute_waves    !< Compute waves speed.
-      procedure(description_interface),    pass(self), deferred :: description      !< Return pretty-printed object description.
-      procedure(initialize_interface),     pass(self), deferred :: initialize       !< Initialize pattern with left/right states.
-      procedure(assignment_interface),     pass(lhs),  deferred :: rpat_assign_rpat !< Operator `=`.
+      procedure(compute_interface),        pass(self), deferred :: compute               !< Compute whole pattern.
+      procedure(compute_fluxes_interface), pass(self), deferred :: compute_fluxes        !< Compute fluxes at interface.
+      procedure(compute_interface),        pass(self), deferred :: compute_waves_extrema !< Compute waves speed extrema.
+      procedure(description_interface),    pass(self), deferred :: description           !< Return pretty-printed description.
+      procedure(initialize_interface),     pass(self), deferred :: initialize            !< Initialize pattern.
+      procedure(assignment_interface),     pass(lhs),  deferred :: rpat_assign_rpat      !< Operator `=`.
       ! operators
       generic :: assignment(=) => rpat_assign_rpat !< Overload `=`.
 endtype riemann_pattern_object
@@ -35,6 +36,12 @@ abstract interface
    class(riemann_pattern_object), intent(in)    :: rhs !< Right hand side.
    endsubroutine assignment_interface
 
+   elemental subroutine compute_interface(self)
+   !< Compute (something) by self.
+   import :: riemann_pattern_object
+   class(riemann_pattern_object), intent(inout) :: self !< Riemann (states) pattern solution.
+   endsubroutine compute_interface
+
    elemental subroutine compute_fluxes_interface(self, normal, fluxes)
    !< Compute fluxes at initial discontinuity interface.
    import :: conservative_object, riemann_pattern_object, vector
@@ -42,12 +49,6 @@ abstract interface
    type(vector),                  intent(in)    :: normal !< Normal (versor) of face where fluxes are given.
    class(conservative_object),    intent(inout) :: fluxes !< Fluxes at initial discontinuity interface.
    endsubroutine compute_fluxes_interface
-
-   pure subroutine compute_waves_interface(self)
-   !< Compute fluxes at initial discontinuity interface.
-   import :: riemann_pattern_object
-   class(riemann_pattern_object), intent(inout) :: self !< Riemann (states) pattern solution.
-   endsubroutine compute_waves_interface
 
    pure function description_interface(self, prefix) result(desc)
    !< Return a pretty-formatted object description.

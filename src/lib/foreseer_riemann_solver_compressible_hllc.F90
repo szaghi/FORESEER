@@ -54,10 +54,10 @@ contains
    type(riemann_pattern_compressible_pvl)                 :: pattern      !< Riemann (states) PVL pattern solution.
    real(R8P)                                              :: u23          !< Maximum wave speed estimation.
 
+   call pattern%initialize(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
+   call pattern%compute_waves_extrema
    state_left_ => conservative_compressible_pointer(to=state_left)
    state_right_ => conservative_compressible_pointer(to=state_right)
-   call pattern%initialize(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
-   call pattern%compute_waves
    associate(r_1=>pattern%r_1, u_1=>pattern%u_1, p_1=>pattern%p_1, g_1=>pattern%eos_1%g(), &
              r_4=>pattern%r_4, u_4=>pattern%u_4, p_4=>pattern%p_4, g_4=>pattern%eos_4%g(), &
              s_1=>pattern%s_1, s_4=>pattern%s_4,                                           &
