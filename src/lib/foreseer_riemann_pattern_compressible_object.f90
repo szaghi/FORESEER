@@ -253,55 +253,29 @@ contains
    elemental subroutine compute_states23_from_up23(self)
    !< Compute interstates 2 and 3 given (an approximation of) veloctiy `S=u23` and pressure `p23`.
    class(riemann_pattern_compressible_object), intent(inout) :: self !< Riemann (states) pattern solution.
-   ! real(R8P)                                                 :: p_p  !< Pressure ratio.
 
-   ! associate(s_1=>self%s_1, s_2=>self%s_2, u23=>self%u23, s_3=>self%s_3, s_4=>self%s_4,                &
-   !           eos_1=>self%eos_1, g_1=>self%eos_1%g(), gm1_1=>self%eos_1%gm1(), gp1_1=>self%eos_1%gp1(), &
-   !           eos_4=>self%eos_4, g_4=>self%eos_4%g(), gm1_4=>self%eos_4%gm1(), gp1_4=>self%eos_4%gp1(), &
-   !           p_1=>self%p_1, r_1=>self%r_1, u_1=>self%u_1, a_1=>self%a_1,                               &
-   !           p_4=>self%p_4, r_4=>self%r_4, u_4=>self%u_4, a_4=>self%a_4,                               &
-   !           p23=>self%p23, r_2=>self%r_2, a_2=>self%a_2, r_3=>self%r_3, a_3=>self%a_3)
-      ! left wave
-      if (self%u23 < self%u_1) then ! shock
-         ! p_p = p23 / p_1
-         ! a_2  = a_1 * sqrt((gp1_1 + gm1_1 * p_p) / (gp1_1 + gm1_1 / p_p))
-         ! r_2  = eos_1%density(pressure=p23, speed_of_sound=a_2)
-         ! s_1  = u_1 - a_1 * sqrt(1._R8P + 0.5_R8P * gp1_1 / g_1 * (p_p - 1._R8P))
-         ! s_2  = s_1
-         call compute_post_shock_from_upx(eos=self%eos_1, sgn=-1._R8P,                                     &
-                                          u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, px=self%p23, &
-                                          rx=self%r_2, ax=self%a_2, ss=self%s_1)
-         self%s_2 = self%s_1
-      else ! rarefaction
-          call compute_post_rarefaction_from_upx(eos=self%eos_1, sgn=-1._R8P,                                     &
-                                                 u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, px=self%p23, &
-                                                 rx=self%r_2, ax=self%a_2, s0=self%s_1, sx=self%s_2)
-        ! a_2 = a_1 - 0.5_R8P * (g_1 - 1._R8P) * (u23 - u_1)
-        ! r_2 = eos_1%density(pressure=p23, speed_of_sound=a_2)
-        ! s_1 = u_1 - a_1
-        ! s_2 = u23 - a_2
-      endif
-      ! right wave
-      if (self%u23 > self%u_4) then ! shock
-         ! p_p = p23 / p_4
-         ! a_3 = a_4 * sqrt((gp1_4 + gm1_4 * p_p) / (gp1_4 + gm1_4 / p_p))
-         ! r_3 = eos_4%density(pressure=p23, speed_of_sound=a_3)
-         ! s_4 = u_4 + a_4 * sqrt(1._R8P + 0.5_R8P * gp1_4 / g_4 * (p_p - 1._R_P))
-         ! s_3 = s_4
-         call compute_post_shock_from_upx(eos=self%eos_4, sgn=1._R8P,                                      &
-                                          u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, px=self%p23, &
-                                          rx=self%r_3, ax=self%a_3, ss=self%S_4)
-         self%s_3 = self%s_4
-      else ! rarefaction
-         ! a_3 = a_4 + 0.5_R8P * (g_4 - 1._R8P) * (u23 - u_4)
-         ! r_3 = eos_4%density(pressure=p23, speed_of_sound=a_3)
-         ! s_4 = u_4 + a_4
-         ! s_3 = u23 + a_3
-         call compute_post_rarefaction_from_upx(eos=self%eos_4, sgn=1._R8P,                                      &
-                                                u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, px=self%p23, &
-                                                rx=self%r_3, ax=self%a_3, s0=self%s_4, sx=self%s_3)
-      endif
-   ! endassociate
+   ! left wave
+   if (self%u23 < self%u_1) then ! shock
+      call compute_post_shock_from_upx(eos=self%eos_1, sgn=-1._R8P,                                     &
+                                       u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, px=self%p23, &
+                                       rx=self%r_2, ax=self%a_2, ss=self%s_1)
+      self%s_2 = self%s_1
+   else ! rarefaction
+       call compute_post_rarefaction_from_upx(eos=self%eos_1, sgn=-1._R8P,                                     &
+                                              u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, px=self%p23, &
+                                              rx=self%r_2, ax=self%a_2, s0=self%s_1, sx=self%s_2)
+   endif
+   ! right wave
+   if (self%u23 > self%u_4) then ! shock
+      call compute_post_shock_from_upx(eos=self%eos_4, sgn=1._R8P,                                      &
+                                       u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, px=self%p23, &
+                                       rx=self%r_3, ax=self%a_3, ss=self%S_4)
+      self%s_3 = self%s_4
+   else ! rarefaction
+      call compute_post_rarefaction_from_upx(eos=self%eos_4, sgn=1._R8P,                                      &
+                                             u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, px=self%p23, &
+                                             rx=self%r_3, ax=self%a_3, s0=self%s_4, sx=self%s_3)
+   endif
    endsubroutine compute_states23_from_up23
 
    ! non TBP
