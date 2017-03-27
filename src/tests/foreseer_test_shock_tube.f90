@@ -689,38 +689,41 @@ use penf, only : cton, FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
-integer(I4P)                     :: weno_order                !< WENO reconstruction order.
-character(len=:), allocatable    :: weno_variables            !< Variables set on which WENO reconstruction is done.
-type(tvd_runge_kutta_integrator) :: rk_integrator             !< Runge-Kutta integrator.
-integer(I4P)                     :: rk_stages_number          !< Runge-Kutta stages number.
-type(euler_1d), allocatable      :: rk_stage(:)               !< Runge-Kutta stages.
-real(R8P)                        :: dt                        !< Time step.
-real(R8P)                        :: t                         !< Time.
-integer(I4P)                     :: step                      !< Time steps counter.
-type(euler_1d)                   :: domain                    !< Domain of Euler equations.
-real(R8P)                        :: CFL                       !< CFL value.
-character(3)                     :: BC_L                      !< Left boundary condition type.
-character(3)                     :: BC_R                      !< Right boundary condition type.
-integer(I4P)                     :: Ni                        !< Number of grid cells.
-real(R8P)                        :: Dx                        !< Space step discretization.
-real(R8P), allocatable           :: x(:)                      !< Cell center x-abscissa values.
-integer(I4P)                     :: steps_max                 !< Maximum number of time steps.
-real(R8P)                        :: t_max                     !< Maximum integration time.
-character(99), allocatable       :: riemann_solver_schemes(:) !< Riemann Problem solver scheme(s).
-character(99)                    :: s_scheme                  !< Space integration scheme.
-character(99)                    :: t_scheme                  !< Time integration scheme.
-logical                          :: results                   !< Flag for activating results saving.
-logical                          :: time_serie                !< Flag for activating time serie-results saving.
-logical                          :: verbose                   !< Flag for activating more verbose output.
-integer(I4P)                     :: s                         !< Schemes counter.
+integer(I4P)                     :: weno_order                  !< WENO reconstruction order.
+character(len=:), allocatable    :: weno_variables              !< Variables set on which WENO reconstruction is done.
+type(tvd_runge_kutta_integrator) :: rk_integrator               !< Runge-Kutta integrator.
+integer(I4P)                     :: rk_stages_number            !< Runge-Kutta stages number.
+type(euler_1d), allocatable      :: rk_stage(:)                 !< Runge-Kutta stages.
+real(R8P)                        :: dt                          !< Time step.
+real(R8P)                        :: t                           !< Time.
+integer(I4P)                     :: step                        !< Time steps counter.
+type(euler_1d)                   :: domain                      !< Domain of Euler equations.
+real(R8P)                        :: CFL                         !< CFL value.
+character(3)                     :: BC_L                        !< Left boundary condition type.
+character(3)                     :: BC_R                        !< Right boundary condition type.
+integer(I4P)                     :: Ni                          !< Number of grid cells.
+real(R8P)                        :: Dx                          !< Space step discretization.
+real(R8P), allocatable           :: x(:)                        !< Cell center x-abscissa values.
+integer(I4P)                     :: steps_max                   !< Maximum number of time steps.
+real(R8P)                        :: t_max                       !< Maximum integration time.
+character(99), allocatable       :: riemann_solver_schemes(:)   !< Riemann Problem solver scheme(s).
+character(99)                    :: shock_tube_test             !< Shock tube test.
+character(99)                    :: s_scheme                    !< Space integration scheme.
+character(99)                    :: t_scheme                    !< Time integration scheme.
+logical                          :: results                     !< Flag for activating results saving.
+logical                          :: time_serie                  !< Flag for activating time serie-results saving.
+logical                          :: verbose                     !< Flag for activating more verbose output.
+integer(I4P)                     :: s                           !< Schemes counter.
+real(R8P), parameter             :: pi = 4._R8P * atan(1._R8P)  !< Pi greek.
 
 call parse_command_line_interface
 do s=1, size(riemann_solver_schemes, dim=1)
    if (verbose) print "(A)", 'Use Riemann Problem solver "'//trim(adjustl(riemann_solver_schemes(s)))//'"'
-   call initialize(riemann_solver_scheme=riemann_solver_schemes(s))
+   call initialize(riemann_solver_scheme=riemann_solver_schemes(s),shock_tube_test=shock_tube_test)
    call save_time_serie(filename='euler_1D-'//&
                                  trim(adjustl(s_scheme))//'-'//&
                                  trim(adjustl(t_scheme))//'-'//&
+                                 trim(adjustl(shock_tube_test))//'-'//&
                                  trim(adjustl(riemann_solver_schemes(s)))//'.dat', t=t)
    step = 0
    time_loop: do
@@ -735,9 +738,11 @@ do s=1, size(riemann_solver_schemes, dim=1)
 enddo
 
 contains
-   subroutine initialize(riemann_solver_scheme)
+   subroutine initialize(riemann_solver_scheme,shock_tube_test)
    !< Initialize the test.
    character(*), intent(in)                  :: riemann_solver_scheme !< Riemann Problem solver scheme.
+   character(*), intent(in)                  :: shock_tube_test       !< Shock tube test specification.
+   character(:), allocatable                 :: shock_tube_test_      !< Shock tube test specification, local variable.
    type(primitive_compressible), allocatable :: initial_state(:)      !< Initial state of primitive variables.
    integer(I4P)                              :: i                     !< Space counter.
 
@@ -747,21 +752,169 @@ contains
    if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
    if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni))
    Dx = 1._R8P / Ni
-   ! Sod's problem
-   BC_L = 'TRA'
-   BC_R = 'TRA'
-   do i=1, Ni / 2
-      x(i) = Dx * i - 0.5_R8P * Dx
-      initial_state(i)%density  = 1._R8P
-      initial_state(i)%velocity = 0._R8P
-      initial_state(i)%pressure = 1._R8P
-   enddo
-   do i=Ni / 2 + 1, Ni
-      x(i) = Dx * i - 0.5_R8P * Dx
-      initial_state(i)%density  = 0.125_R8P
-      initial_state(i)%velocity = 0._R8P
-      initial_state(i)%pressure = 0.1_R8P
-   enddo
+   shock_tube_test_ = trim(adjustl(shock_tube_test))
+   select case(shock_tube_test_)
+   case('Sod')
+     ! Sod's problem
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 1._R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 0.125_R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   case('Lax')
+     ! Lax's problem
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 0.445_R8P
+        initial_state(i)%velocity = 0.698_R8P
+        initial_state(i)%pressure = 3.528_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 0.5_R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.571_R8P
+     enddo
+   case('Shu-Osher')
+     ! Shu-Osher's problem
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        if (x(i)<1_R8P/8_R8P) then
+          initial_state(i)%density  = 3.857143_R8P
+          initial_state(i)%velocity = 2.629369_R8P
+          initial_state(i)%pressure = 10.3333_R8P
+        else
+        initial_state(i)%density  = 1._R8P + 0.2_R8P * sin(pi * x(i) / 2._R8P)
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 1._R8P
+        endif
+     enddo
+   case('123')
+     ! 123 problem
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = -2._R8P
+        initial_state(i)%pressure = 0.4_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 2._R8P
+        initial_state(i)%pressure = 0.4_R8P
+     enddo
+   case('Woodward-Colella')
+     ! Woodward-Colella's problem
+     BC_L = 'REF'
+     BC_R = 'REF'
+     do i=1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        if (x(i)<=0.1_R8P) then
+          initial_state(i)%pressure = 1000._R8P
+        elseif (x(i)>0.9_R8P) then
+          initial_state(i)%pressure = 100._R8P
+        else
+          initial_state(i)%pressure = 0.01_R8P
+        endif
+     enddo
+   case('SS1')
+     ! Severe shock problem 1
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 1_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   case('SS2')
+     ! Severe shock problem 2
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 10_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   case('SS3')
+     ! Severe shock problem 3
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 100_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   case('SS4')
+     ! Severe shock problem 4
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 1000_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   case('SS5')
+     ! Severe shock problem 5
+     BC_L = 'TRA'
+     BC_R = 'TRA'
+     do i=1, Ni / 2
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 10000_R8P
+     enddo
+     do i=Ni / 2 + 1, Ni
+        x(i) = Dx * i - 0.5_R8P * Dx
+        initial_state(i)%density  = 1._R8P
+        initial_state(i)%velocity = 0._R8P
+        initial_state(i)%pressure = 0.1_R8P
+     enddo
+   endselect
    call domain%initialize(Ni=Ni, Dx=Dx,                                         &
                           BC_L=BC_L, BC_R=BC_R,                                 &
                           initial_state=initial_state,                          &
@@ -781,6 +934,8 @@ contains
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
                                 "foreseer_test_shock_tube --tserie"])
+   call cli%add(switch='--p', help='Shock Tube problem', required=.false., act='store', def='Sod', &
+     choices='Sod,Lax,Shu-Osher,123,Woodward-Colella,SS1,SS2,SS3,SS4,SS5')
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
@@ -796,6 +951,7 @@ contains
    call cli%add(switch='--tserie', switch_ab='-t', help='Save time-serie-result', required=.false., act='store_true', def='.false.')
    call cli%add(switch='--verbose', help='Verbose output', required=.false., act='store_true', def='.false.')
    call cli%parse(error=error)
+   call cli%get(switch='--p',        val=shock_tube_test,       error=error) ; if (error/=0) stop
    call cli%get(switch='--Ni',       val=Ni,                    error=error) ; if (error/=0) stop
    call cli%get(switch='--steps',    val=steps_max,             error=error) ; if (error/=0) stop
    call cli%get(switch='--t-max',    val=t_max,                 error=error) ; if (error/=0) stop
