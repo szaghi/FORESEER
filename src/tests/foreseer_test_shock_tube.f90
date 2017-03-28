@@ -689,55 +689,63 @@ use penf, only : cton, FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
-integer(I4P)                     :: weno_order                !< WENO reconstruction order.
-character(len=:), allocatable    :: weno_variables            !< Variables set on which WENO reconstruction is done.
-type(tvd_runge_kutta_integrator) :: rk_integrator             !< Runge-Kutta integrator.
-integer(I4P)                     :: rk_stages_number          !< Runge-Kutta stages number.
-type(euler_1d), allocatable      :: rk_stage(:)               !< Runge-Kutta stages.
-real(R8P)                        :: dt                        !< Time step.
-real(R8P)                        :: t                         !< Time.
-integer(I4P)                     :: step                      !< Time steps counter.
-type(euler_1d)                   :: domain                    !< Domain of Euler equations.
-real(R8P)                        :: CFL                       !< CFL value.
-character(3)                     :: BC_L                      !< Left boundary condition type.
-character(3)                     :: BC_R                      !< Right boundary condition type.
-integer(I4P)                     :: Ni                        !< Number of grid cells.
-real(R8P)                        :: Dx                        !< Space step discretization.
-real(R8P), allocatable           :: x(:)                      !< Cell center x-abscissa values.
-integer(I4P)                     :: steps_max                 !< Maximum number of time steps.
-real(R8P)                        :: t_max                     !< Maximum integration time.
-character(99), allocatable       :: riemann_solver_schemes(:) !< Riemann Problem solver scheme(s).
-character(99)                    :: s_scheme                  !< Space integration scheme.
-character(99)                    :: t_scheme                  !< Time integration scheme.
-logical                          :: results                   !< Flag for activating results saving.
-logical                          :: time_serie                !< Flag for activating time serie-results saving.
-logical                          :: verbose                   !< Flag for activating more verbose output.
-integer(I4P)                     :: s                         !< Schemes counter.
+integer(I4P)                     :: weno_order                 !< WENO reconstruction order.
+character(len=:), allocatable    :: weno_variables             !< Variables set on which WENO reconstruction is done.
+type(tvd_runge_kutta_integrator) :: rk_integrator              !< Runge-Kutta integrator.
+integer(I4P)                     :: rk_stages_number           !< Runge-Kutta stages number.
+type(euler_1d), allocatable      :: rk_stage(:)                !< Runge-Kutta stages.
+real(R8P)                        :: dt                         !< Time step.
+real(R8P)                        :: t                          !< Time.
+integer(I4P)                     :: step                       !< Time steps counter.
+type(euler_1d)                   :: domain                     !< Domain of Euler equations.
+real(R8P)                        :: CFL                        !< CFL value.
+character(3)                     :: BC_L                       !< Left boundary condition type.
+character(3)                     :: BC_R                       !< Right boundary condition type.
+integer(I4P)                     :: Ni                         !< Number of grid cells.
+real(R8P)                        :: Dx                         !< Space step discretization.
+real(R8P), allocatable           :: x(:)                       !< Cell center x-abscissa values.
+integer(I4P)                     :: steps_max                  !< Maximum number of time steps.
+real(R8P)                        :: t_max                      !< Maximum integration time.
+character(99), allocatable       :: riemann_solver_schemes(:)  !< Riemann Problem solver scheme(s).
+character(99), allocatable       :: riemann_problems(:)        !< Riemann problems.
+character(99)                    :: s_scheme                   !< Space integration scheme.
+character(99)                    :: t_scheme                   !< Time integration scheme.
+logical                          :: results                    !< Flag for activating results saving.
+logical                          :: time_serie                 !< Flag for activating time serie-results saving.
+logical                          :: verbose                    !< Flag for activating more verbose output.
+integer(I4P)                     :: s                          !< Schemes counter.
+integer(I4P)                     :: p                          !< Problems counter.
+real(R8P), parameter             :: pi = 4._R8P * atan(1._R8P) !< Pi greek.
 
 call parse_command_line_interface
 do s=1, size(riemann_solver_schemes, dim=1)
-   if (verbose) print "(A)", 'Use Riemann Problem solver "'//trim(adjustl(riemann_solver_schemes(s)))//'"'
-   call initialize(riemann_solver_scheme=riemann_solver_schemes(s))
-   call save_time_serie(filename='euler_1D-'//&
-                                 trim(adjustl(s_scheme))//'-'//&
-                                 trim(adjustl(t_scheme))//'-'//&
-                                 trim(adjustl(riemann_solver_schemes(s)))//'.dat', t=t)
-   step = 0
-   time_loop: do
-      step = step + 1
-      dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
-      call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
-      t = t + dt
-      call save_time_serie(t=t)
-      if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
-      if ((t == t_max).or.(step == steps_max)) exit time_loop
-   enddo time_loop
+   do p=1, size(riemann_problems, dim=1)
+      if (verbose) print "(A)", 'Use Riemann Problem solver "'//trim(adjustl(riemann_solver_schemes(s)))//'"'
+      call initialize(riemann_solver_scheme=riemann_solver_schemes(s), riemann_problem=riemann_problems(p))
+      call save_time_serie(filename='shock_tube_test-'//                     &
+                                    trim(adjustl(riemann_problems(p)))//'-'//&
+                                    trim(adjustl(s_scheme))//'-'//           &
+                                    trim(adjustl(t_scheme))//'-'//           &
+                                    trim(adjustl(riemann_solver_schemes(s)))//'.dat', t=t)
+      step = 0
+      time_loop: do
+         step = step + 1
+         dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
+         call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
+         t = t + dt
+         call save_time_serie(t=t)
+         if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
+         if ((t == t_max).or.(step == steps_max)) exit time_loop
+      enddo time_loop
+      call save_time_serie(t=t, finish=.true.)
+   enddo
 enddo
 
 contains
-   subroutine initialize(riemann_solver_scheme)
+   subroutine initialize(riemann_solver_scheme, riemann_problem)
    !< Initialize the test.
    character(*), intent(in)                  :: riemann_solver_scheme !< Riemann Problem solver scheme.
+   character(*), intent(in)                  :: riemann_problem       !< Riemann problem.
    type(primitive_compressible), allocatable :: initial_state(:)      !< Initial state of primitive variables.
    integer(I4P)                              :: i                     !< Space counter.
 
@@ -747,21 +755,28 @@ contains
    if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
    if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni))
    Dx = 1._R8P / Ni
-   ! Sod's problem
-   BC_L = 'TRA'
-   BC_R = 'TRA'
-   do i=1, Ni / 2
-      x(i) = Dx * i - 0.5_R8P * Dx
-      initial_state(i)%density  = 1._R8P
-      initial_state(i)%velocity = 0._R8P
-      initial_state(i)%pressure = 1._R8P
-   enddo
-   do i=Ni / 2 + 1, Ni
-      x(i) = Dx * i - 0.5_R8P * Dx
-      initial_state(i)%density  = 0.125_R8P
-      initial_state(i)%velocity = 0._R8P
-      initial_state(i)%pressure = 0.1_R8P
-   enddo
+   select case(trim(adjustl(riemann_problem)))
+   case('sod')
+      call riemann_problem_sod_initial_state(initial_state=initial_state)
+   case('lax')
+      call riemann_problem_lax_initial_state(initial_state=initial_state)
+   case('shu-osher')
+      call riemann_problem_shu_osher_initial_state(initial_state=initial_state)
+   case('123')
+      call riemann_problem_123_initial_state(initial_state=initial_state)
+   case('woodward-colella')
+      call riemann_problem_woodward_colella_initial_state(initial_state=initial_state)
+   case('SS1')
+      call riemann_problem_ss1_initial_state(initial_state=initial_state)
+   case('SS2')
+      call riemann_problem_ss2_initial_state(initial_state=initial_state)
+   case('SS3')
+      call riemann_problem_ss3_initial_state(initial_state=initial_state)
+   case('SS4')
+      call riemann_problem_ss4_initial_state(initial_state=initial_state)
+   case('SS5')
+      call riemann_problem_ss5_initial_state(initial_state=initial_state)
+   endselect
    call domain%initialize(Ni=Ni, Dx=Dx,                                         &
                           BC_L=BC_L, BC_R=BC_R,                                 &
                           initial_state=initial_state,                          &
@@ -775,12 +790,15 @@ contains
    !< Parse Command Line Interface (CLI).
    type(command_line_interface)  :: cli                   !< Command line interface handler.
    character(99)                 :: riemann_solver_scheme !< Riemann Problem solver scheme.
+   character(99)                 :: riemann_problem       !< Riemann problem.
    integer(I4P)                  :: error                 !< Error handler.
    character(len=:), allocatable :: buffer                !< String buffer.
 
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
                                 "foreseer_test_shock_tube --tserie"])
+   call cli%add(switch='--p', help='Riemann problem', required=.false., act='store', def='all', &
+                choices='all,sod,lax,shu-osher,123,woodward-colella,SS1,SS2,SS3,SS4,SS5')
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
@@ -796,6 +814,7 @@ contains
    call cli%add(switch='--tserie', switch_ab='-t', help='Save time-serie-result', required=.false., act='store_true', def='.false.')
    call cli%add(switch='--verbose', help='Verbose output', required=.false., act='store_true', def='.false.')
    call cli%parse(error=error)
+   call cli%get(switch='--p',        val=riemann_problem,       error=error) ; if (error/=0) stop
    call cli%get(switch='--Ni',       val=Ni,                    error=error) ; if (error/=0) stop
    call cli%get(switch='--steps',    val=steps_max,             error=error) ; if (error/=0) stop
    call cli%get(switch='--t-max',    val=t_max,                 error=error) ; if (error/=0) stop
@@ -830,18 +849,237 @@ contains
       rk_stages_number = 5
    endselect
 
+   if (trim(adjustl(riemann_problem))=='all') then
+      riemann_problems = ['sod             ', &
+                          'lax             ', &
+                          'shu-osher       ', &
+                          '123             ', &
+                          'woodward-colella', &
+                          'SS1             ', &
+                          'SS2             ', &
+                          'SS3             ', &
+                          'SS4             ', &
+                          'SS5             ']
+   else
+      riemann_problems = [trim(adjustl(riemann_problem))]
+   endif
+
    if (trim(adjustl(riemann_solver_scheme))=='all') then
-      riemann_solver_schemes = ['exact', 'hllc ', 'llf  ', 'pvl  ', 'roe  ']
+      riemann_solver_schemes = ['exact', &
+                                'hllc ', &
+                                'llf  ', &
+                                'pvl  ', &
+                                'roe  ']
    else
       riemann_solver_schemes = [trim(adjustl(riemann_solver_scheme))]
    endif
    endsubroutine parse_command_line_interface
 
-   subroutine save_time_serie(filename, finish, t)
+   subroutine riemann_problem_sod_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 1._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 0.125_R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_sod_initial_state
+
+   subroutine riemann_problem_lax_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 0.445_R8P
+      initial_state(i)%velocity = 0.698_R8P
+      initial_state(i)%pressure = 3.528_R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 0.5_R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.571_R8P
+   enddo
+   endsubroutine riemann_problem_lax_initial_state
+
+   subroutine riemann_problem_shu_osher_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      if (x(i)<1._R8P/8._R8P) then
+        initial_state(i)%density  = 3.857143_R8P
+        initial_state(i)%velocity = 2.629369_R8P
+        initial_state(i)%pressure = 10.3333_R8P
+      else
+      initial_state(i)%density  = 1._R8P + 0.2_R8P * sin(pi * x(i) / 2._R8P)
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 1._R8P
+      endif
+   enddo
+   endsubroutine riemann_problem_shu_osher_initial_state
+
+   subroutine riemann_problem_123_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = -2._R8P
+      initial_state(i)%pressure = 0.4_R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 2._R8P
+      initial_state(i)%pressure = 0.4_R8P
+   enddo
+   endsubroutine riemann_problem_123_initial_state
+
+   subroutine riemann_problem_woodward_colella_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'REF'
+   BC_R = 'REF'
+   do i=1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      if (x(i)<=0.1_R8P) then
+        initial_state(i)%pressure = 1000._R8P
+      elseif (x(i)>0.9_R8P) then
+        initial_state(i)%pressure = 100._R8P
+      else
+        initial_state(i)%pressure = 0.01_R8P
+      endif
+   enddo
+   endsubroutine riemann_problem_woodward_colella_initial_state
+
+   subroutine riemann_problem_ss1_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 1._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_ss1_initial_state
+
+   subroutine riemann_problem_ss2_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 10._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_ss2_initial_state
+
+   subroutine riemann_problem_ss3_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 100._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_ss3_initial_state
+
+   subroutine riemann_problem_ss4_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 1000._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_ss4_initial_state
+
+   subroutine riemann_problem_ss5_initial_state(initial_state)
+   type(primitive_compressible), intent(inout) :: initial_state(1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                 !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do i=1, Ni / 2
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 10000._R8P
+   enddo
+   do i=Ni / 2 + 1, Ni
+      x(i) = Dx * i - 0.5_R8P * Dx
+      initial_state(i)%density  = 1._R8P
+      initial_state(i)%velocity = 0._R8P
+      initial_state(i)%pressure = 0.1_R8P
+   enddo
+   endsubroutine riemann_problem_ss5_initial_state
+
+   subroutine save_time_serie(t, filename, finish)
    !< Save time-serie results.
+   real(R8P),    intent(in)           :: t         !< Current integration time.
    character(*), intent(in), optional :: filename  !< Output filename.
    logical,      intent(in), optional :: finish    !< Flag for triggering the file closing.
-   real(R8P),    intent(in)           :: t         !< Current integration time.
    integer(I4P), save                 :: tsfile    !< File unit for saving time serie results.
    type(primitive_compressible)       :: primitive !< Primitive variables.
    integer(I4P)                       :: i         !< Counter.
