@@ -680,7 +680,7 @@ program foreseer_test_shock_tube
 !< FORESEER test: shock tube tester, 1D Euler equation.
 
 use flap, only : command_line_interface
-use foodie, only : tvd_runge_kutta_integrator
+use foodie, only : integrator_runge_kutta_ssp
 use foreseer, only : conservative_compressible, primitive_compressible,         &
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_compressible
@@ -691,8 +691,8 @@ use vecfor, only : ex, vector
 implicit none
 integer(I4P)                     :: weno_order                 !< WENO reconstruction order.
 character(len=:), allocatable    :: weno_variables             !< Variables set on which WENO reconstruction is done.
-type(tvd_runge_kutta_integrator) :: rk_integrator              !< Runge-Kutta integrator.
-integer(I4P)                     :: rk_stages_number           !< Runge-Kutta stages number.
+type(integrator_runge_kutta_ssp) :: rk_integrator              !< Runge-Kutta integrator.
+character(len=:), allocatable    :: rk_scheme                  !< Runge-Kutta scheme.
 type(euler_1d), allocatable      :: rk_stage(:)                !< Runge-Kutta stages.
 real(R8P)                        :: dt                         !< Time step.
 real(R8P)                        :: t                          !< Time.
@@ -749,8 +749,8 @@ contains
    type(primitive_compressible), allocatable :: initial_state(:)      !< Initial state of primitive variables.
    integer(I4P)                              :: i                     !< Space counter.
 
-   if (allocated(rk_stage)) deallocate(rk_stage) ; allocate(rk_stage(1:rk_stages_number))
-   call rk_integrator%init(stages=rk_stages_number)
+   call rk_integrator%initialize(scheme=rk_scheme)
+   if (allocated(rk_stage)) deallocate(rk_stage) ; allocate(rk_stage(1:rk_integrator%stages))
    t = 0._R8P
    if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
    if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni))
@@ -797,7 +797,7 @@ contains
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
                                 "foreseer_test_shock_tube --tserie"])
-   call cli%add(switch='--p', help='Riemann problem', required=.false., act='store', def='all', &
+   call cli%add(switch='--p', help='Riemann problem', required=.false., act='store', def='sod', &
                 choices='all,sod,lax,shu-osher,123,woodward-colella,SS1,SS2,SS3,SS4,SS5')
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
@@ -840,13 +840,13 @@ contains
 
    select case(trim(adjustl(t_scheme)))
    case('tvd-rk-1')
-      rk_stages_number = 1
+      rk_scheme = 'runge_kutta_ssp_stages_1_order_1'
    case('tvd-rk-2')
-      rk_stages_number = 2
+      rk_scheme = 'runge_kutta_ssp_stages_2_order_2'
    case('tvd-rk-3')
-      rk_stages_number = 3
+      rk_scheme = 'runge_kutta_ssp_stages_3_order_3'
    case('tvd-rk-5')
-      rk_stages_number = 5
+      rk_scheme = 'runge_kutta_ssp_stages_5_order_4'
    endselect
 
    if (trim(adjustl(riemann_problem))=='all') then
