@@ -78,18 +78,21 @@ type, extends(integrand) :: euler_1d
    !<```
    !< Where *Ni* are the finite volumes (cells) used for discretizing the domain and *Ng* are the ghost cells used for imposing the
    !< left and right boundary conditions (for a total of *2Ng* cells).
-   integer(I4P)                                 :: weno_order=0                          !< WENO reconstruction order.
    integer(I4P)                                 :: Ni=0                                  !< Space dimension.
    integer(I4P)                                 :: Ng=0                                  !< Ghost cells number.
    real(R8P)                                    :: Dx=0._R8P                             !< Space step.
    type(eos_compressible)                       :: eos                                   !< Equation of state.
+   integer(I4P)                                 :: weno_order=0                          !< WENO reconstruction order.
+   character(:),                    allocatable :: weno_scheme                           !< WENO scheme.
+   character(:),                    allocatable :: weno_variables                        !< WENO reconstruction variables.
+   character(:),                    allocatable :: riemann_solver_scheme                 !< Riemann solver scheme.
    type(conservative_compressible), allocatable :: U(:)                                  !< Integrand (state) variables.
    character(:),                    allocatable :: BC_L                                  !< Left boundary condition type.
    character(:),                    allocatable :: BC_R                                  !< Right boundary condition type.
    class(interpolator_object),      allocatable :: interpolator                          !< WENO interpolator.
+   class(riemann_solver_object),    allocatable :: riemann_solver                        !< Riemann solver.
    procedure(reconstruct_interfaces_), pointer  :: reconstruct_interfaces=>&
                                                    reconstruct_interfaces_characteristic !< Reconstruct interface states.
-   class(riemann_solver_object), allocatable    :: riemann_solver                        !< Riemann solver.
    contains
       ! auxiliary methods
       procedure, pass(self) :: initialize       !< Initialize field.
@@ -126,7 +129,8 @@ endinterface
 
 contains
    ! auxiliary methods
-   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_order, weno_variables, riemann_solver_scheme)
+   subroutine initialize(self, Ni, Dx, BC_L, BC_R, initial_state, eos, weno_scheme, weno_order, weno_variables, &
+                         riemann_solver_scheme)
    !< Initialize field.
    class(euler_1d),              intent(inout)        :: self                   !< Euler field.
    integer(I4P),                 intent(in)           :: Ni                     !< Space dimension.
@@ -135,30 +139,36 @@ contains
    character(*),                 intent(in)           :: BC_R                   !< Right boundary condition type.
    type(primitive_compressible), intent(in)           :: initial_state(1:)      !< Initial state of primitive variables.
    type(eos_compressible),       intent(in)           :: eos                    !< Equation of state.
+   character(*),                 intent(in), optional :: weno_scheme            !< WENO scheme.
    integer(I4P),                 intent(in), optional :: weno_order             !< WENO reconstruction order.
    character(*),                 intent(in), optional :: weno_variables         !< Variables on which WENO reconstruction is done.
    character(*),                 intent(in), optional :: riemann_solver_scheme  !< Riemann solver scheme.
-   character(:), allocatable                          :: weno_variables_        !< WENO Variables, local variable.
-   character(:), allocatable                          :: riemann_solver_scheme_ !< Riemann solver scheme, local variable.
    integer(I4P)                                       :: i                      !< Space couner.
 
    call self%destroy
+
+   self%weno_scheme = 'reconstructor-JS' ; if (present(weno_scheme)) self%weno_scheme = weno_scheme
    self%weno_order = 1 ; if (present(weno_order)) self%weno_order = weno_order
+   self%weno_variables = 'characteristic' ; if (present(weno_variables)) self%weno_variables = trim(adjustl(weno_variables))
+   self%riemann_solver_scheme = 'llf'
+   if (present(riemann_solver_scheme)) self%riemann_solver_scheme = trim(adjustl(riemann_solver_scheme))
+
+   if (self%weno_order>1) call wenoof_create(interpolator_type=self%weno_scheme, S=self%Ng, interpolator=self%interpolator)
+
    self%Ni = Ni
    self%Ng = (self%weno_order + 1) / 2
    self%Dx = Dx
+
    self%eos = eos
    if (allocated(self%U)) deallocate(self%U) ; allocate(self%U(1-self%Ng:self%Ni+self%Ng))
    do i=1, Ni
       self%U(i) = primitive_to_conservative_compressible(primitive=initial_state(i), eos=eos)
    enddo
+
    self%BC_L = BC_L
    self%BC_R = BC_R
 
-   if (self%weno_order>1) call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=self%interpolator)
-   weno_variables_ = 'characteristic'
-   if (present(weno_variables)) weno_variables_ = trim(adjustl(weno_variables))
-   select case(weno_variables_)
+   select case(self%weno_variables)
    case('characteristic')
       self%reconstruct_interfaces => reconstruct_interfaces_characteristic
    case('conservative')
@@ -166,13 +176,11 @@ contains
    case('primitive')
       self%reconstruct_interfaces => reconstruct_interfaces_primitive
    case default
-      write(stderr, '(A)') 'error: WENO reconstruction variables set "'//weno_variables_//'" unknown!'
+      write(stderr, '(A)') 'error: WENO reconstruction variables set "'//self%weno_variables//'" unknown!'
       stop
    endselect
 
-   riemann_solver_scheme_ = 'llf'
-   if (present(riemann_solver_scheme)) riemann_solver_scheme_ = trim(adjustl(riemann_solver_scheme))
-   select case(riemann_solver_scheme_)
+   select case(self%riemann_solver_scheme)
    case('exact')
       allocate(riemann_solver_compressible_exact :: self%riemann_solver)
    case('hllc')
@@ -184,7 +192,7 @@ contains
    case('roe')
       allocate(riemann_solver_compressible_roe :: self%riemann_solver)
    case default
-      write(stderr, '(A)') 'error: Riemann Solver scheme "'//riemann_solver_scheme_//'" unknown!'
+      write(stderr, '(A)') 'error: Riemann Solver scheme "'//self%riemann_solver_scheme//'" unknown!'
       stop
    endselect
    endsubroutine initialize
@@ -193,15 +201,19 @@ contains
    !< Destroy field.
    class(euler_1d), intent(inout) :: self !< Euler field.
 
-   self%weno_order = 0
    self%Ni = 0
    self%Ng = 0
    self%Dx = 0._R8P
+   self%weno_order = 0
+   if (allocated(self%weno_scheme)) deallocate(self%weno_scheme)
+   if (allocated(self%weno_variables)) deallocate(self%weno_variables)
+   if (allocated(self%riemann_solver_scheme)) deallocate(self%riemann_solver_scheme)
    if (allocated(self%U)) deallocate(self%U)
    if (allocated(self%BC_L)) deallocate(self%BC_L)
    if (allocated(self%BC_R)) deallocate(self%BC_R)
    if (allocated(self%interpolator)) deallocate(self%interpolator)
    if (allocated(self%riemann_solver)) deallocate(self%riemann_solver)
+   self%reconstruct_interfaces => reconstruct_interfaces_characteristic
    endsubroutine destroy
 
    pure function output(self, is_primitive) result(state)
@@ -417,21 +429,22 @@ contains
 
   select type(rhs)
   class is(euler_1d)
-     lhs%weno_order = rhs%weno_order
      lhs%Ni         = rhs%Ni
      lhs%Ng         = rhs%Ng
      lhs%Dx         = rhs%Dx
      lhs%eos        = rhs%eos
+     lhs%weno_order = rhs%weno_order
+     if (allocated(rhs%weno_scheme          )) lhs%weno_scheme           = rhs%weno_scheme
+     if (allocated(rhs%weno_variables       )) lhs%weno_variables        = rhs%weno_variables
+     if (allocated(rhs%riemann_solver_scheme)) lhs%riemann_solver_scheme = rhs%riemann_solver_scheme
      if (allocated(rhs%U)) then
-        if (allocated(lhs%U)) deallocate(lhs%U) ; allocate(lhs%U(1:lhs%Ni))
-        select type(rhs)
-        class is(euler_1d)
-           if (allocated(rhs%U)) then
-              do i=1, lhs%Ni
-                 lhs%U(i) = rhs%U(i)
-              enddo
-           endif
-        endselect
+        if (allocated(lhs%U)) then
+           if (size(lhs%U) /= size(rhs%U)) deallocate(lhs%U)
+        endif
+        if (.not.allocated(lhs%U)) allocate(lhs%U(1:lhs%Ni))
+        do i=1, lhs%Ni
+           lhs%U(i) = rhs%U(i)
+        enddo
      endif
      if (allocated(rhs%BC_L)) lhs%BC_L = rhs%BC_L
      if (allocated(rhs%BC_R)) lhs%BC_R = rhs%BC_R
@@ -440,10 +453,10 @@ contains
         allocate(lhs%interpolator, source=rhs%interpolator)
      endif
      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-     ! if (associated(rhs%riemann_solver)) lhs%riemann_solver => rhs%riemann_solver
      if (allocated(rhs%riemann_solver)) then
         if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver) ; allocate(lhs%riemann_solver, source=rhs%riemann_solver)
      endif
+     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
   endselect
   endsubroutine euler_assign_euler
 
@@ -467,22 +480,17 @@ contains
    !< Impose boundary conditions.
    !<
    !< The boundary conditions are imposed on the primitive variables by means of the ghost cells approach.
-   class(euler_1d),              intent(in)    :: self          !< Euler field.
+   class(euler_1d),                 intent(in)    :: self          !< Euler field.
    type(conservative_compressible), intent(inout) :: U(1-self%Ng:) !< Conservative variables.
-   ! type(primitive_compressible), intent(inout) :: P(1-self%Ng:) !< Primitive variables.
-   integer(I4P)                                :: i             !< Space counter.
+   integer(I4P)                                   :: i             !< Space counter.
 
    select case(trim(adjustl(self%BC_L)))
       case('TRA') ! trasmissive (non reflective) BC
          do i=1-self%Ng, 0
-            ! P(i) = P(-i+1)
             U(i) = U(-i+1)
          enddo
       case('REF') ! reflective BC
          do i=1-self%Ng, 0
-            ! P(i)%density  =   P(-i+1)%density
-            ! P(i)%velocity = - P(-i+1)%velocity
-            ! P(i)%pressure =   P(-i+1)%pressure
             U(i)%density  =   U(-i+1)%density
             U(i)%momentum = - U(-i+1)%momentum
             U(i)%energy   =   U(-i+1)%energy
@@ -492,14 +500,10 @@ contains
    select case(trim(adjustl(self%BC_R)))
       case('TRA') ! trasmissive (non reflective) BC
          do i=self%Ni+1, self%Ni+self%Ng
-            ! P(i) = P(self%Ni-(i-self%Ni-1))
             U(i) = U(self%Ni-(i-self%Ni-1))
          enddo
       case('REF') ! reflective BC
          do i=self%Ni+1, self%Ni+self%Ng
-            ! P(i)%density  =   P(self%Ni-(i-self%Ni-1))%density
-            ! P(i)%velocity = - P(self%Ni-(i-self%Ni-1))%velocity
-            ! P(i)%pressure =   P(self%Ni-(i-self%Ni-1))%pressure
             U(i)%density  =   U(self%Ni-(i-self%Ni-1))%density
             U(i)%momentum = - U(self%Ni-(i-self%Ni-1))%momentum
             U(i)%energy   =   U(self%Ni-(i-self%Ni-1))%energy
@@ -526,7 +530,6 @@ contains
    integer(I4P)                                   :: j                                    !< Counter.
    integer(I4P)                                   :: f                                    !< Counter.
    integer(I4P)                                   :: v                                    !< Counter.
-   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
 
    select case(self%weno_order)
    case(1) ! 1st order piecewise constant reconstruction
@@ -535,7 +538,6 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=1-self%Ng, self%Ni+self%Ng
          primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
       enddo
@@ -557,7 +559,7 @@ contains
          enddo
          ! compute WENO reconstruction of pseudo charteristic variables
          do v=1, 3
-            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+            call self%interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
          enddo
          ! trasform back reconstructed pseudo charteristic variables to primitive ones
          do f=1, 2
@@ -590,7 +592,6 @@ contains
    integer(I4P)                                   :: j                                    !< Counter.
    integer(I4P)                                   :: f                                    !< Counter.
    integer(I4P)                                   :: v                                    !< Counter.
-   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
 
    select case(self%weno_order)
    case(1) ! 1st order piecewise constant reconstruction
@@ -599,7 +600,6 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=0, self%Ni+1
          do j=i+1-self%Ng, i-1+self%Ng
              U = conservative(j)%array()
@@ -610,7 +610,7 @@ contains
             enddo
          enddo
          do v=1, 3
-            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+            call self%interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
          enddo
          do f=1, 2
             r_conservative(f, i)%density  = CR(f, 1)
@@ -637,7 +637,6 @@ contains
    integer(I4P)                                   :: j                                    !< Counter.
    integer(I4P)                                   :: f                                    !< Counter.
    integer(I4P)                                   :: v                                    !< Counter.
-   class(interpolator_object), allocatable        :: interpolator                         !< WENO interpolator.
 
    select case(self%weno_order)
    case(1) ! 1st order piecewise constant reconstruction
@@ -646,7 +645,6 @@ contains
          r_conservative(2, i) = r_conservative(1, i)
       enddo
    case(3, 5, 7, 9, 11, 13, 15, 17) ! 3rd-17th order WENO reconstruction
-      call wenoof_create(interpolator_type='reconstructor-JS', S=self%Ng, interpolator=interpolator)
       do i=1-self%Ng, self%Ni+self%Ng
          primitive(i) = conservative_to_primitive_compressible(conservative=conservative(i), eos=self%eos)
       enddo
@@ -660,7 +658,7 @@ contains
             enddo
          enddo
          do v=1, 3
-            call interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
+            call self%interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
          enddo
          do f=1, 2
             r_primitive(f, i)%density  = CR(f, 1)
@@ -689,10 +687,14 @@ use penf, only : cton, FR8P, I4P, R8P, str
 use vecfor, only : ex, vector
 
 implicit none
-integer(I4P)                     :: weno_order                 !< WENO reconstruction order.
-character(len=:), allocatable    :: weno_variables             !< Variables set on which WENO reconstruction is done.
+character(99), allocatable       :: riemann_solver_schemes(:)  !< Riemann Problem solver scheme(s).
+character(99), allocatable       :: riemann_problems(:)        !< Riemann problems.
+character(99)                    :: weno_scheme                !< WENO scheme.
+integer(I4P)                     :: weno_order                 !< WENO accuracy order.
+real(R8P)                        :: weno_eps                   !< WENO epsilon paramter.
+character(99)                    :: weno_variables             !< WENO variables.
+character(99)                    :: rk_scheme                  !< Runge-Kutta scheme.
 type(integrator_runge_kutta_ssp) :: rk_integrator              !< Runge-Kutta integrator.
-character(len=:), allocatable    :: rk_scheme                  !< Runge-Kutta scheme.
 type(euler_1d), allocatable      :: rk_stage(:)                !< Runge-Kutta stages.
 real(R8P)                        :: dt                         !< Time step.
 real(R8P)                        :: t                          !< Time.
@@ -706,10 +708,6 @@ real(R8P)                        :: Dx                         !< Space step dis
 real(R8P), allocatable           :: x(:)                       !< Cell center x-abscissa values.
 integer(I4P)                     :: steps_max                  !< Maximum number of time steps.
 real(R8P)                        :: t_max                      !< Maximum integration time.
-character(99), allocatable       :: riemann_solver_schemes(:)  !< Riemann Problem solver scheme(s).
-character(99), allocatable       :: riemann_problems(:)        !< Riemann problems.
-character(99)                    :: s_scheme                   !< Space integration scheme.
-character(99)                    :: t_scheme                   !< Time integration scheme.
 logical                          :: results                    !< Flag for activating results saving.
 logical                          :: time_serie                 !< Flag for activating time serie-results saving.
 logical                          :: verbose                    !< Flag for activating more verbose output.
@@ -722,11 +720,13 @@ do s=1, size(riemann_solver_schemes, dim=1)
    do p=1, size(riemann_problems, dim=1)
       if (verbose) print "(A)", 'Use Riemann Problem solver "'//trim(adjustl(riemann_solver_schemes(s)))//'"'
       call initialize(riemann_solver_scheme=riemann_solver_schemes(s), riemann_problem=riemann_problems(p))
-      call save_time_serie(filename='shock_tube_test-'//                     &
-                                    trim(adjustl(riemann_problems(p)))//'-'//&
-                                    trim(adjustl(s_scheme))//'-'//           &
-                                    trim(adjustl(t_scheme))//'-'//           &
-                                    trim(adjustl(riemann_solver_schemes(s)))//'.dat', t=t)
+      call save_time_serie(filename='foreseer_test_shock_tube-'//                                                 &
+                                    trim(adjustl(riemann_problems(p)))//'-'//                                     &
+                                    trim(adjustl(weno_scheme))//'-'//trim(str(weno_order, no_sign=.true.))//'-'// &
+                                    trim(adjustl(weno_variables))//'-'//                                          &
+                                    trim(adjustl(rk_scheme))//'-'//                                               &
+                                    trim(adjustl(riemann_solver_schemes(s)))//'-'//                               &
+                                    'Ni_'//trim(str(Ni, no_sign=.true.))//'.dat', t=t)
       step = 0
       time_loop: do
          step = step + 1
@@ -781,6 +781,7 @@ contains
                           BC_L=BC_L, BC_R=BC_R,                                 &
                           initial_state=initial_state,                          &
                           eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), &
+                          weno_scheme=weno_scheme,                              &
                           weno_order=weno_order,                                &
                           weno_variables=weno_variables,                        &
                           riemann_solver_scheme=riemann_solver_scheme)
@@ -797,57 +798,45 @@ contains
    call cli%init(description = 'FORESEER test: shock tube tester, 1D Euler equations', &
                  examples    = ["foreseer_test_shock_tube         ",                   &
                                 "foreseer_test_shock_tube --tserie"])
+
    call cli%add(switch='--p', help='Riemann problem', required=.false., act='store', def='sod', &
                 choices='all,sod,lax,shu-osher,123,woodward-colella,SS1,SS2,SS3,SS4,SS5')
+   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
+                choices='all,exact,hllc,llf,pvl,roe')
    call cli%add(switch='--Ni', help='Number finite volumes used', required=.false., act='store', def='100')
    call cli%add(switch='--steps', help='Number time steps performed', required=.false., act='store', def='60')
    call cli%add(switch='--t-max', help='Maximum integration time', required=.false., act='store', def='0.')
-   call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
-                choices='all,exact,hllc,llf,pvl,roe')
-   call cli%add(switch='--s-scheme', help='Space intergation scheme', required=.false., act='store', def='weno-char-1',           &
-     choices='weno-char-1,weno-char-3,weno-char-5,weno-char-7,weno-char-9,weno-char-11,weno-char-13,weno-char-15,weno-char-17,'// &
-             'weno-cons-1,weno-cons-3,weno-cons-5,weno-cons-7,weno-cons-9,weno-cons-11,weno-cons-13,weno-cons-15,weno-cons-17,'// &
-             'weno-prim-1,weno-prim-3,weno-prim-5,weno-prim-7,weno-prim-9,weno-prim-11,weno-prim-13,weno-prim-15,weno-prim-17')
-   call cli%add(switch='--t-scheme', help='Time intergation scheme', required=.false., act='store', def='tvd-rk-1', &
-                choices='tvd-rk-1,tvd-rk-2,tvd-rk-3,tvd-rk-5')
+   call cli%add(switch='--weno-scheme', help='WENO scheme', required=.false., act='store', def='reconstructor-JS', &
+                choices='reconstructor-JS,reconstructor-M-JS,reconstructor-M-Z,reconstructor-Z')
+   call cli%add(switch='--weno-order', help='WENO order', required=.false., act='store', def='1')
+   call cli%add(switch='--weno-eps', help='WENO epsilon parameter', required=.false., act='store', def='0.000001')
+   call cli%add(switch='--weno-variables', help='WENO variables', required=.false., act='store', def='characteristic', &
+                choices='characteristic,conservative,primitive')
+   call cli%add(switch='--rk-scheme', help='Runge-Kutta intergation scheme', required=.false., act='store',                     &
+                def='runge_kutta_ssp_stages_1_order_1',                                                                         &
+                choices='runge_kutta_ssp_stages_1_order_1,runge_kutta_ssp_stages_2_order_2,runge_kutta_ssp_stages_3_order_3,'// &
+                        'runge_kutta_ssp_stages_5_order_4')
    call cli%add(switch='--cfl', help='CFL value', required=.false., act='store', def='0.7')
    call cli%add(switch='--tserie', switch_ab='-t', help='Save time-serie-result', required=.false., act='store_true', def='.false.')
    call cli%add(switch='--verbose', help='Verbose output', required=.false., act='store_true', def='.false.')
+
    call cli%parse(error=error)
-   call cli%get(switch='--p',        val=riemann_problem,       error=error) ; if (error/=0) stop
-   call cli%get(switch='--Ni',       val=Ni,                    error=error) ; if (error/=0) stop
-   call cli%get(switch='--steps',    val=steps_max,             error=error) ; if (error/=0) stop
-   call cli%get(switch='--t-max',    val=t_max,                 error=error) ; if (error/=0) stop
-   call cli%get(switch='--riemann',  val=riemann_solver_scheme, error=error) ; if (error/=0) stop
-   call cli%get(switch='--s-scheme', val=s_scheme,              error=error) ; if (error/=0) stop
-   call cli%get(switch='--t-scheme', val=t_scheme,              error=error) ; if (error/=0) stop
-   call cli%get(switch='--cfl',      val=CFL,                   error=error) ; if (error/=0) stop
-   call cli%get(switch='--tserie',   val=time_serie,            error=error) ; if (error/=0) stop
-   call cli%get(switch='--verbose',  val=verbose,               error=error) ; if (error/=0) stop
+
+   call cli%get(switch='--p',              val=riemann_problem,       error=error) ; if (error/=0) stop
+   call cli%get(switch='--riemann',        val=riemann_solver_scheme, error=error) ; if (error/=0) stop
+   call cli%get(switch='--Ni',             val=Ni,                    error=error) ; if (error/=0) stop
+   call cli%get(switch='--steps',          val=steps_max,             error=error) ; if (error/=0) stop
+   call cli%get(switch='--t-max',          val=t_max,                 error=error) ; if (error/=0) stop
+   call cli%get(switch='--weno-scheme',    val=weno_scheme,           error=error) ; if (error/=0) stop
+   call cli%get(switch='--weno-order',     val=weno_order,            error=error) ; if (error/=0) stop
+   call cli%get(switch='--weno-eps',       val=weno_eps,              error=error) ; if (error/=0) stop
+   call cli%get(switch='--weno-variables', val=weno_variables,        error=error) ; if (error/=0) stop
+   call cli%get(switch='--rk-scheme',      val=rk_scheme,             error=error) ; if (error/=0) stop
+   call cli%get(switch='--cfl',            val=CFL,                   error=error) ; if (error/=0) stop
+   call cli%get(switch='--tserie',         val=time_serie,            error=error) ; if (error/=0) stop
+   call cli%get(switch='--verbose',        val=verbose,               error=error) ; if (error/=0) stop
 
    if (t_max > 0._R8P) steps_max = 0
-
-   buffer = trim(adjustl(s_scheme))
-   select case(buffer(6:9))
-   case('char')
-      weno_variables = 'characteristic'
-   case('cons')
-      weno_variables = 'conservative'
-   case('prim')
-      weno_variables = 'primitive'
-   endselect
-   weno_order = cton(buffer(11:), knd=1_I4P)
-
-   select case(trim(adjustl(t_scheme)))
-   case('tvd-rk-1')
-      rk_scheme = 'runge_kutta_ssp_stages_1_order_1'
-   case('tvd-rk-2')
-      rk_scheme = 'runge_kutta_ssp_stages_2_order_2'
-   case('tvd-rk-3')
-      rk_scheme = 'runge_kutta_ssp_stages_3_order_3'
-   case('tvd-rk-5')
-      rk_scheme = 'runge_kutta_ssp_stages_5_order_4'
-   endselect
 
    if (trim(adjustl(riemann_problem))=='all') then
       riemann_problems = ['sod             ', &
