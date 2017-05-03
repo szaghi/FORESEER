@@ -11,7 +11,7 @@ use foreseer, only : conservative_object, conservative_compressible, primitive_c
                      riemann_solver_compressible_hllc, riemann_solver_compressible_llf,              &
                      riemann_solver_compressible_pvl, riemann_solver_compressible_roe
 use penf, only : I4P, R8P
-use foodie, only : integrand
+use foodie, only : integrand_object
 use vecfor, only : ex, vector
 use wenoof, only : interpolator_object, wenoof_create
 
@@ -19,7 +19,7 @@ implicit none
 private
 public :: euler_1d
 
-type, extends(integrand) :: euler_1d
+type, extends(integrand_object) :: euler_1d
    !< Euler 1D PDEs system field.
    !<
    !< It is a FOODIE integrand class concrete extension.
@@ -79,6 +79,8 @@ type, extends(integrand) :: euler_1d
    !< Where *Ni* are the finite volumes (cells) used for discretizing the domain and *Ng* are the ghost cells used for imposing the
    !< left and right boundary conditions (for a total of *2Ng* cells).
    integer(I4P)                                 :: Ni=0                                  !< Space dimension.
+   integer(I4P)                                 :: Nc=0                                  !< Number of conservative variables.
+   integer(I4P)                                 :: No=0                                  !< Dimension of ODE system.
    integer(I4P)                                 :: Ng=0                                  !< Ghost cells number.
    real(R8P)                                    :: Dx=0._R8P                             !< Space step.
    type(eos_compressible)                       :: eos                                   !< Equation of state.
@@ -97,18 +99,28 @@ type, extends(integrand) :: euler_1d
       ! auxiliary methods
       procedure, pass(self) :: initialize       !< Initialize field.
       procedure, pass(self) :: destroy          !< Destroy field.
-      procedure, pass(self) :: output           !< Extract Euler field.
       procedure, pass(self) :: dt => compute_dt !< Compute the current time step, by means of CFL condition.
       ! ADT integrand deferred methods
-      procedure, pass(self) :: t => dEuler_dt                                       !< Time derivative, residuals function.
-      procedure, pass(lhs)  :: local_error => euler_local_error                     !< Operator `||euler-euler||`.
-      procedure, pass(lhs)  :: integrand_multiply_integrand => euler_multiply_euler !< Operator `*`.
-      procedure, pass(lhs)  :: integrand_multiply_real => euler_multiply_real       !< Operator `euler * real`.
-      procedure, pass(rhs)  :: real_multiply_integrand => real_multiply_euler       !< Operator `real * euler`.
-      procedure, pass(lhs)  :: add => add_euler                                     !< Operator `+`.
-      procedure, pass(lhs)  :: sub => sub_euler                                     !< Operator `-`.
-      procedure, pass(lhs)  :: assign_integrand => euler_assign_euler               !< Operator `=`.
-      procedure, pass(lhs)  :: assign_real => euler_assign_real                     !< Operator `euler = real`.
+      procedure, pass(self) :: t => dEuler_dt !< Time derivative, residuals function.
+      ! operators
+      procedure, pass(lhs) :: local_error => euler_local_error !< Operator `||euler-euler||`.
+      ! +
+      procedure, pass(lhs) :: integrand_add_integrand => euler_add_euler !< `+` operator.
+      procedure, pass(lhs) :: integrand_add_real => euler_add_real       !< `+ real` operator.
+      procedure, pass(rhs) :: real_add_integrand => real_add_euler       !< `real +` operator.
+      ! *
+      procedure, pass(lhs) :: integrand_multiply_integrand => euler_multiply_euler         !< `*` operator.
+      procedure, pass(lhs) :: integrand_multiply_real => euler_multiply_real               !< `* real` operator.
+      procedure, pass(rhs) :: real_multiply_integrand => real_multiply_euler               !< `real *` operator.
+      procedure, pass(lhs) :: integrand_multiply_real_scalar => euler_multiply_real_scalar !< `* real_scalar` operator.
+      procedure, pass(rhs) :: real_scalar_multiply_integrand => real_scalar_multiply_euler !< `real_scalar *` operator.
+      ! -
+      procedure, pass(lhs) :: integrand_sub_integrand => euler_sub_euler !< `-` operator.
+      procedure, pass(lhs) :: integrand_sub_real => euler_sub_real       !< `- real` operator.
+      procedure, pass(rhs) :: real_sub_integrand => real_sub_euler       !< `real -` operator.
+      ! =
+      procedure, pass(lhs) :: assign_integrand => euler_assign_euler !< `=` operator.
+      procedure, pass(lhs) :: assign_real => euler_assign_real       !< `= real` operator.
       ! private methods
       procedure, pass(self), private :: impose_boundary_conditions            !< Impose boundary conditions.
       procedure, pass(self), private :: reconstruct_interfaces_characteristic !< Reconstruct (charc.) interface states.
@@ -150,13 +162,14 @@ contains
    self%weno_scheme = 'reconstructor-JS' ; if (present(weno_scheme)) self%weno_scheme = weno_scheme
    self%weno_order = 1 ; if (present(weno_order)) self%weno_order = weno_order
    self%weno_variables = 'characteristic' ; if (present(weno_variables)) self%weno_variables = trim(adjustl(weno_variables))
+
+   self%Ng = (self%weno_order + 1) / 2
+   if (self%weno_order>1) call wenoof_create(interpolator_type=self%weno_scheme, S=self%Ng, interpolator=self%interpolator)
+
    self%riemann_solver_scheme = 'llf'
    if (present(riemann_solver_scheme)) self%riemann_solver_scheme = trim(adjustl(riemann_solver_scheme))
 
-   if (self%weno_order>1) call wenoof_create(interpolator_type=self%weno_scheme, S=self%Ng, interpolator=self%interpolator)
-
    self%Ni = Ni
-   self%Ng = (self%weno_order + 1) / 2
    self%Dx = Dx
 
    self%eos = eos
@@ -164,6 +177,9 @@ contains
    do i=1, Ni
       self%U(i) = primitive_to_conservative_compressible(primitive=initial_state(i), eos=eos)
    enddo
+
+   self%Nc = size(self%U(1)%array(), dim=1)
+   self%No = self%Ni * self%Nc
 
    self%BC_L = BC_L
    self%BC_R = BC_R
@@ -216,32 +232,6 @@ contains
    self%reconstruct_interfaces => reconstruct_interfaces_characteristic
    endsubroutine destroy
 
-   pure function output(self, is_primitive) result(state)
-   !< Output the Euler field state.
-   class(euler_1d), intent(in)           :: self          !< Euler field.
-   logical,         intent(in), optional :: is_primitive  !< Output in primitive variables.
-   real(R8P), allocatable                :: state(:,:)    !< Euler state vector.
-   real(R8P), allocatable                :: state_(:)     !< Euler state vector, local variable.
-   logical                               :: is_primitive_ !< Output in primitive variables, local variable.
-   type(primitive_compressible)          :: primitive     !< Primitive state.
-   integer(I4P)                          :: i             !< Counter.
-
-   is_primitive_ = .false. ; if (present(is_primitive)) is_primitive_ = is_primitive
-   if (is_primitive_) then
-      allocate(state(1:size(primitive%array(), dim=1), 1:self%Ni))
-      do i=1, self%Ni
-         primitive = conservative_to_primitive_compressible(conservative=self%U(i), eos=self%eos)
-         state_ = primitive%array()
-      enddo
-   else
-      allocate(state(1:size(self%U(1)%array(), dim=1), 1:self%Ni))
-      do i=1, self%Ni
-         state_ = self%U(i)%array()
-         state(:, i) = state_
-      enddo
-   endif
-   endfunction output
-
    pure function compute_dt(self, steps_max, t_max, t, CFL) result(Dt)
    !< Compute the current time step by means of CFL condition.
    class(euler_1d), intent(in) :: self      !< Euler field.
@@ -269,12 +259,12 @@ contains
    endassociate
    endfunction compute_dt
 
-   ! ADT integrand deferred methods
+   ! integrand_object deferred methods
    function dEuler_dt(self, t) result(dState_dt)
    !< Time derivative of Euler field, the residuals function.
    class(euler_1d), intent(in)           :: self                         !< Euler field.
    real(R8P),       intent(in), optional :: t                            !< Time.
-   class(integrand), allocatable         :: dState_dt                    !< Euler field time derivative.
+   real(R8P), allocatable                :: dState_dt(:)                 !< Euler field time derivative.
    type(conservative_compressible)       :: U(1-self%Ng:self%Ni+self%Ng) !< Conservative variables.
    type(conservative_compressible)       :: UR(1:2,0:self%Ni+1)          !< Reconstructed conservative variables.
    type(conservative_compressible)       :: F(0:self%Ni)                 !< Fluxes of conservative variables.
@@ -289,191 +279,251 @@ contains
       call self%riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
                                      eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
    enddo
-   allocate(euler_1d :: dState_dt)
-   select type(dState_dt)
-   class is(euler_1d)
-      dState_dt = self
-      do i=1, self%Ni
-          dState_dt%U(i) = (F(i - 1) - F(i)) / self%Dx
-      enddo
-   endselect
+   allocate(dState_dt(1:self%No))
+   do i=1, self%Ni
+      dState_dt(i + (i-1) * (self%Nc-1) : i + i * (self%Nc-1)) = (F(i - 1) - F(i)) / self%Dx
+   enddo
    endfunction dEuler_dt
 
-  function euler_local_error(lhs, rhs) result(error)
-  !< Estimate local truncation error between 2 euler approximations.
-  !<
-  !< The estimation is done by norm L2 of U:
-  !<
-  !< $$ error = \sqrt{ \sum_i{\sum_i{ \frac{(lhs\%U_i - rhs\%U_i)^2}{lhs\%U_i^2} }} } $$
-  class(euler_1d),  intent(in) :: lhs      !< Left hand side.
-  class(integrand), intent(in) :: rhs      !< Right hand side.
-  real(R8P)                    :: error    !< Error estimation.
-  real(R8P), allocatable       :: U_lhs(:) !< Serialized conservative variables.
-  real(R8P), allocatable       :: U_rhs(:) !< Serialized conservative variables.
-  integer(I4P)                 :: i        !< Space counter.
-  integer(I4P)                 :: v        !< Variables counter.
+   ! operators
+   function euler_local_error(lhs, rhs) result(error)
+   !< Estimate local truncation error between 2 euler approximations.
+   !<
+   !< The estimation is done by norm L2 of U:
+   !<
+   !< $$ error = \sqrt{ \sum_i{\sum_i{ \frac{(lhs\%U_i - rhs\%U_i)^2}{lhs\%U_i^2} }} } $$
+   class(euler_1d),         intent(in) :: lhs      !< Left hand side.
+   class(integrand_object), intent(in) :: rhs      !< Right hand side.
+   real(R8P)                           :: error    !< Error estimation.
+   real(R8P), allocatable              :: U_lhs(:) !< Serialized conservative variables.
+   real(R8P), allocatable              :: U_rhs(:) !< Serialized conservative variables.
+   integer(I4P)                        :: i        !< Space counter.
+   integer(I4P)                        :: v        !< Variables counter.
 
-  select type(rhs)
-  class is (euler_1d)
-     error = 0._R8P
-     do i=1, lhs%Ni
-       U_lhs = lhs%U(i)%array()
-       U_rhs = rhs%U(i)%array()
-       do v=1, size(U_lhs, dim=1)
-         error = error + (U_lhs(v) - U_rhs(v)) ** 2 / U_lhs(v) ** 2
-       enddo
-     enddo
-     error = sqrt(error)
-  endselect
-  endfunction euler_local_error
-
-  function euler_multiply_euler(lhs, rhs) result(opr)
-  !< Multiply an Euler field by another one.
-  class(euler_1d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-
-  allocate(euler_1d :: opr)
-  select type(opr)
-  class is(euler_1d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_1d)
-        do i=1, lhs%Ni
-           opr%U(i) = lhs%U(i) * rhs%U(i)
+   select type(rhs)
+   class is (euler_1d)
+      error = 0._R8P
+      do i=1, lhs%Ni
+        U_lhs = lhs%U(i)%array()
+        U_rhs = rhs%U(i)%array()
+        do v=1, size(U_lhs, dim=1)
+          error = error + (U_lhs(v) - U_rhs(v)) ** 2 / U_lhs(v) ** 2
         enddo
-     endselect
-  endselect
-  endfunction euler_multiply_euler
+      enddo
+      error = sqrt(error)
+   endselect
+   endfunction euler_local_error
 
-  function euler_multiply_real(lhs, rhs) result(opr)
-  !< Multiply an Euler field by a real scalar.
-  class(euler_1d), intent(in)   :: lhs !< Left hand side.
-  real(R8P),       intent(in)   :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
+   ! +
+   pure function euler_add_euler(lhs, rhs) result(opr)
+   !< `+` operator.
+   class(euler_1d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R8P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
 
-  allocate(euler_1d :: opr)
-  select type(opr)
-  class is(euler_1d)
-     opr = lhs
-     do i=1, lhs%Ni
-        opr%U(i) = rhs * lhs%U(i)
-     enddo
-  endselect
-  endfunction euler_multiply_real
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_1d)
+      do i=1, lhs%Ni
+         opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) + rhs%U(i)
+      enddo
+   endselect
+   endfunction euler_add_euler
 
-  function real_multiply_euler(lhs, rhs) result(opr)
-  !< Multiply a real scalar by an Euler field.
-  real(R8P),       intent(in)   :: lhs !< Left hand side.
-  class(euler_1d), intent(in)   :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
+   pure function euler_add_real(lhs, rhs) result(opr)
+   !< `+ real` operator.
+   class(euler_1d),  intent(in) :: lhs     !< Left hand side.
+   real(R8P),        intent(in) :: rhs(1:) !< Right hand side.
+   real(R8P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
 
-  allocate(euler_1d :: opr)
-  select type(opr)
-  class is(euler_1d)
-     opr = rhs
-     do i=1, rhs%Ni
-        opr%U(i) = lhs * rhs%U(i)
-     enddo
-  endselect
-  endfunction real_multiply_euler
+   allocate(opr(1:lhs%No))
+   do i=1, lhs%Ni
+      opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) + rhs(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1))
+   enddo
+   endfunction euler_add_real
 
-  function add_euler(lhs, rhs) result(opr)
-  !< Add two Euler fields.
-  class(euler_1d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
+   pure function real_add_euler(lhs, rhs) result(opr)
+   !< `real +` operator.
+   real(R8P),        intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_1d),  intent(in) :: rhs     !< Right hand side.
+   real(R8P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
 
-  allocate (euler_1d :: opr)
-  select type(opr)
-  class is(euler_1d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_1d)
-        do i=1, lhs%Ni
-           opr%U(i) = lhs%U(i) + rhs%U(i)
-        enddo
-     endselect
-  endselect
-  endfunction add_euler
+   allocate(opr(1:rhs%No))
+   do i=1, rhs%Ni
+      opr(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) = lhs(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) + rhs%U(i)
+   enddo
+   endfunction real_add_euler
 
-  function sub_euler(lhs, rhs) result(opr)
-  !< Subtract two Euler fields.
-  class(euler_1d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
+   ! *
+   pure function euler_multiply_euler(lhs, rhs) result(opr)
+   !< `*` operator.
+   class(euler_1d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R8P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
 
-  allocate (euler_1d :: opr)
-  select type(opr)
-  class is(euler_1d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_1d)
-        do i=1, lhs%Ni
-           opr%U(i) = lhs%U(i) - rhs%U(i)
-        enddo
-     endselect
-  endselect
-  endfunction sub_euler
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_1d)
+      do i=1, lhs%Ni
+         opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) * rhs%U(i)
+      enddo
+   endselect
+   endfunction euler_multiply_euler
 
-  subroutine euler_assign_euler(lhs, rhs)
-  !< Assign one Euler field to another.
-  class(euler_1d),  intent(inout) :: lhs !< Left hand side.
-  class(integrand), intent(in)    :: rhs !< Right hand side.
-  integer(I4P)                    :: i   !< Counter.
+   pure function euler_multiply_real(lhs, rhs) result(opr)
+   !< `* real` operator.
+   class(euler_1d), intent(in) :: lhs     !< Left hand side.
+   real(R8P),       intent(in) :: rhs(1:) !< Right hand side.
+   real(R8P), allocatable      :: opr(:)  !< Operator result.
+   integer(I4P)                :: i       !< Counter.
 
-  select type(rhs)
-  class is(euler_1d)
-     lhs%Ni         = rhs%Ni
-     lhs%Ng         = rhs%Ng
-     lhs%Dx         = rhs%Dx
-     lhs%eos        = rhs%eos
-     lhs%weno_order = rhs%weno_order
-     if (allocated(rhs%weno_scheme          )) lhs%weno_scheme           = rhs%weno_scheme
-     if (allocated(rhs%weno_variables       )) lhs%weno_variables        = rhs%weno_variables
-     if (allocated(rhs%riemann_solver_scheme)) lhs%riemann_solver_scheme = rhs%riemann_solver_scheme
-     if (allocated(rhs%U)) then
-        if (allocated(lhs%U)) then
-           if (size(lhs%U) /= size(rhs%U)) deallocate(lhs%U)
-        endif
-        if (.not.allocated(lhs%U)) allocate(lhs%U(1:lhs%Ni))
-        do i=1, lhs%Ni
-           lhs%U(i) = rhs%U(i)
-        enddo
-     endif
-     if (allocated(rhs%BC_L)) lhs%BC_L = rhs%BC_L
-     if (allocated(rhs%BC_R)) lhs%BC_R = rhs%BC_R
-     if (allocated(rhs%interpolator)) then
-        if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
-        allocate(lhs%interpolator, source=rhs%interpolator)
-     endif
-     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-     if (allocated(rhs%riemann_solver)) then
-        if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver) ; allocate(lhs%riemann_solver, source=rhs%riemann_solver)
-     endif
-     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-  endselect
-  endsubroutine euler_assign_euler
+   allocate(opr(1:lhs%No))
+   do i=1, lhs%Ni
+      opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) * rhs(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1))
+   enddo
+   endfunction euler_multiply_real
 
-  subroutine euler_assign_real(lhs, rhs)
-  !< Assign one real to an Euler field.
-  class(euler_1d), intent(inout) :: lhs !< Left hand side.
-  real(R8P),       intent(in)    :: rhs !< Right hand side.
-  integer(I4P)                   :: i   !< Counter.
+   pure function real_multiply_euler(lhs, rhs) result(opr)
+   !< `real *` operator.
+   real(R8P),       intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_1d), intent(in) :: rhs     !< Right hand side.
+   real(R8P), allocatable      :: opr(:)  !< Operator result.
+   integer(I4P)                :: i       !< Counter.
 
-  if (allocated(lhs%U)) then
-     do i=1, lhs%Ni
-        lhs%U(i)%density = rhs
-        lhs%U(i)%momentum = rhs
-        lhs%U(i)%energy = rhs
-     enddo
-  endif
-  endsubroutine euler_assign_real
+   allocate(opr(1:rhs%No))
+   do i=1, rhs%Ni
+      opr(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) = lhs(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) * rhs%U(i)
+   enddo
+   endfunction real_multiply_euler
+
+   pure function euler_multiply_real_scalar(lhs, rhs) result(opr)
+   !< `* real_scalar` operator.
+   class(euler_1d), intent(in) :: lhs    !< Left hand side.
+   real(R8P),       intent(in) :: rhs    !< Right hand side.
+   real(R8P), allocatable      :: opr(:) !< Operator result.
+   integer(I4P)                :: i      !< Counter.
+
+   allocate(opr(1:lhs%No))
+   do i=1, lhs%Ni
+      opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) * rhs
+   enddo
+   endfunction euler_multiply_real_scalar
+
+   pure function real_scalar_multiply_euler(lhs, rhs) result(opr)
+   !< `real_scalar *` operator.
+   real(R8P),       intent(in) :: lhs    !< Left hand side.
+   class(euler_1d), intent(in) :: rhs    !< Right hand side.
+   real(R8P), allocatable      :: opr(:) !< Operator result.
+   integer(I4P)                :: i      !< Counter.
+
+   allocate(opr(1:rhs%No))
+   do i=1, rhs%Ni
+      opr(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) = lhs * rhs%U(i)
+   enddo
+   endfunction real_scalar_multiply_euler
+
+   ! -
+   pure function euler_sub_euler(lhs, rhs) result(opr)
+   !< `-` operator.
+   class(euler_1d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R8P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
+
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_1d)
+      do i=1, lhs%Ni
+         opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) - rhs%U(i)
+      enddo
+   endselect
+   endfunction euler_sub_euler
+
+   pure function euler_sub_real(lhs, rhs) result(opr)
+   !< `- real` operator.
+   class(euler_1d),  intent(in) :: lhs     !< Left hand side.
+   real(R8P),        intent(in) :: rhs(1:) !< Right hand side.
+   real(R8P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+
+   allocate(opr(1:lhs%No))
+   do i=1, lhs%Ni
+      opr(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1)) = lhs%U(i) - rhs(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1))
+   enddo
+   endfunction euler_sub_real
+
+   pure function real_sub_euler(lhs, rhs) result(opr)
+   !< `real -` operator.
+   real(R8P),        intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_1d),  intent(in) :: rhs     !< Right hand side.
+   real(R8P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+
+   allocate(opr(1:rhs%No))
+   do i=1, rhs%Ni
+      opr(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) = lhs(i + (i-1) * (rhs%Nc-1) : i + i * (rhs%Nc-1)) - rhs%U(i)
+   enddo
+   endfunction real_sub_euler
+
+   ! =
+   pure subroutine euler_assign_euler(lhs, rhs)
+   !< Assign one Euler field to another.
+   class(euler_1d),         intent(inout) :: lhs !< Left hand side.
+   class(integrand_object), intent(in)    :: rhs !< Right hand side.
+   integer(I4P)                           :: i   !< Counter.
+
+   select type(rhs)
+   class is(euler_1d)
+      lhs%Ni         = rhs%Ni
+      lhs%Nc         = rhs%Nc
+      lhs%No         = rhs%No
+      lhs%Ng         = rhs%Ng
+      lhs%Dx         = rhs%Dx
+      lhs%eos        = rhs%eos
+      lhs%weno_order = rhs%weno_order
+      if (allocated(rhs%weno_scheme          )) lhs%weno_scheme           = rhs%weno_scheme
+      if (allocated(rhs%weno_variables       )) lhs%weno_variables        = rhs%weno_variables
+      if (allocated(rhs%riemann_solver_scheme)) lhs%riemann_solver_scheme = rhs%riemann_solver_scheme
+      if (allocated(rhs%U)) then
+         if (allocated(lhs%U)) then
+            if (size(lhs%U) /= size(rhs%U)) deallocate(lhs%U)
+         endif
+         if (.not.allocated(lhs%U)) allocate(lhs%U(1:lhs%Ni))
+         do i=1, lhs%Ni
+            lhs%U(i) = rhs%U(i)
+         enddo
+      endif
+      if (allocated(rhs%BC_L)) lhs%BC_L = rhs%BC_L
+      if (allocated(rhs%BC_R)) lhs%BC_R = rhs%BC_R
+      if (allocated(rhs%interpolator)) then
+         if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
+         allocate(lhs%interpolator, mold=rhs%interpolator)
+         lhs%interpolator = rhs%interpolator
+      endif
+      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
+      if (allocated(rhs%riemann_solver)) then
+         if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver)
+         allocate(lhs%riemann_solver, mold=rhs%riemann_solver)
+         lhs%riemann_solver = rhs%riemann_solver
+      endif
+      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
+   endselect
+   endsubroutine euler_assign_euler
+
+   pure subroutine euler_assign_real(lhs, rhs)
+   !< Assign one real to an Euler field.
+   class(euler_1d), intent(inout) :: lhs     !< Left hand side.
+   real(R8P),       intent(in)    :: rhs(1:) !< Right hand side.
+   integer(I4P)                   :: i       !< Counter.
+
+   do i=1, lhs%Ni
+      lhs%U(i) = rhs(i + (i-1) * (lhs%Nc-1) : i + i * (lhs%Nc-1))
+   enddo
+   endsubroutine euler_assign_real
 
    ! private methods
    pure subroutine impose_boundary_conditions(self, U)
@@ -733,9 +783,9 @@ do s=1, size(riemann_solver_schemes, dim=1)
          dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
          call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
          t = t + dt
-         call save_time_serie(t=t)
          if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
          if ((t == t_max).or.(step == steps_max)) exit time_loop
+         call save_time_serie(t=t)
       enddo time_loop
       call save_time_serie(t=t, finish=.true.)
    enddo
