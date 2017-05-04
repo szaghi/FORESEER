@@ -10,8 +10,8 @@ use foreseer, only : conservative_object, conservative_compressible, primitive_c
                      riemann_solver_object, riemann_solver_compressible_exact,                       &
                      riemann_solver_compressible_hllc, riemann_solver_compressible_llf,              &
                      riemann_solver_compressible_pvl, riemann_solver_compressible_roe
-use penf, only : I4P, R8P
-use foodie, only : integrand
+use penf, only : I4P, R_P
+use foodie, only : integrand_object
 use vecfor, only : ex, ey, vector
 use wenoof, only : interpolator_object, wenoof_create
 
@@ -19,7 +19,7 @@ implicit none
 private
 public :: euler_2d
 
-type, extends(integrand) :: euler_2d
+type, extends(integrand_object) :: euler_2d
    !< Euler 2D PDEs system field.
    !<
    !< It is a FOODIE integrand class concrete extension.
@@ -88,9 +88,11 @@ type, extends(integrand) :: euler_2d
    !< left and right boundary conditions (for a total of *2Ng* cells). An equivalent grid numeration is used for the `y` direction.
    integer(I4P)                                 :: Ni=0                                  !< Space dimension in `x` direction.
    integer(I4P)                                 :: Nj=0                                  !< Space dimension in `y` direction.
+   integer(I4P)                                 :: Nc=0                                  !< Number of conservative variables.
+   integer(I4P)                                 :: No=0                                  !< Dimension of ODE system.
    integer(I4P)                                 :: Ng=0                                  !< Ghost cells number.
-   real(R8P)                                    :: Dx=0._R8P                             !< Space step in `x` direction.
-   real(R8P)                                    :: Dy=0._R8P                             !< Space step in `y` direction.
+   real(R_P)                                    :: Dx=0._R_P                             !< Space step in `x` direction.
+   real(R_P)                                    :: Dy=0._R_P                             !< Space step in `y` direction.
    type(eos_compressible)                       :: eos                                   !< Equation of state.
    integer(I4P)                                 :: weno_order=0                          !< WENO reconstruction order.
    character(:),                    allocatable :: weno_scheme                           !< WENO scheme.
@@ -109,15 +111,26 @@ type, extends(integrand) :: euler_2d
       procedure, pass(self) :: destroy          !< Destroy field.
       procedure, pass(self) :: dt => compute_dt !< Compute the current time step, by means of CFL condition.
       ! ADT integrand deferred methods
-      procedure, pass(self) :: t => dEuler_dt                                       !< Time derivative, residuals function.
-      procedure, pass(lhs)  :: local_error => euler_local_error                     !< Operator `||euler-euler||`.
-      procedure, pass(lhs)  :: integrand_multiply_integrand => euler_multiply_euler !< Operator `*`.
-      procedure, pass(lhs)  :: integrand_multiply_real => euler_multiply_real       !< Operator `euler * real`.
-      procedure, pass(rhs)  :: real_multiply_integrand => real_multiply_euler       !< Operator `real * euler`.
-      procedure, pass(lhs)  :: add => add_euler                                     !< Operator `+`.
-      procedure, pass(lhs)  :: sub => sub_euler                                     !< Operator `-`.
-      procedure, pass(lhs)  :: assign_integrand => euler_assign_euler               !< Operator `=`.
-      procedure, pass(lhs)  :: assign_real => euler_assign_real                     !< Operator `euler = real`.
+      procedure, pass(self) :: t => dEuler_dt !< Time derivative, residuals function.
+      ! operators
+      procedure, pass(lhs) :: local_error => euler_local_error !< Operator `||euler-euler||`.
+      ! +
+      procedure, pass(lhs) :: integrand_add_integrand => euler_add_euler !< `+` operator.
+      procedure, pass(lhs) :: integrand_add_real => euler_add_real       !< `+ real` operator.
+      procedure, pass(rhs) :: real_add_integrand => real_add_euler       !< `real +` operator.
+      ! *
+      procedure, pass(lhs) :: integrand_multiply_integrand => euler_multiply_euler         !< `*` operator.
+      procedure, pass(lhs) :: integrand_multiply_real => euler_multiply_real               !< `* real` operator.
+      procedure, pass(rhs) :: real_multiply_integrand => real_multiply_euler               !< `real *` operator.
+      procedure, pass(lhs) :: integrand_multiply_real_scalar => euler_multiply_real_scalar !< `* real_scalar` operator.
+      procedure, pass(rhs) :: real_scalar_multiply_integrand => real_scalar_multiply_euler !< `real_scalar *` operator.
+      ! -
+      procedure, pass(lhs) :: integrand_sub_integrand => euler_sub_euler !< `-` operator.
+      procedure, pass(lhs) :: integrand_sub_real => euler_sub_real       !< `- real` operator.
+      procedure, pass(rhs) :: real_sub_integrand => real_sub_euler       !< `real -` operator.
+      ! =
+      procedure, pass(lhs) :: assign_integrand => euler_assign_euler !< `=` operator.
+      procedure, pass(lhs) :: assign_real => euler_assign_real       !< `= real` operator.
       ! private methods
       procedure, pass(self), private :: compute_fluxes_convective             !< Compute convective fluxes.
       procedure, pass(self), private :: impose_boundary_conditions            !< Impose boundary conditions.
@@ -147,8 +160,8 @@ contains
    class(euler_2d),              intent(inout)        :: self                   !< Euler field.
    integer(I4P),                 intent(in)           :: Ni                     !< Space dimension in `x` direction.
    integer(I4P),                 intent(in)           :: Nj                     !< Space dimension in `y` direction.
-   real(R8P),                    intent(in)           :: Dx                     !< Space step in `x` direction.
-   real(R8P),                    intent(in)           :: Dy                     !< Space step in `x` direction.
+   real(R_P),                    intent(in)           :: Dx                     !< Space step in `x` direction.
+   real(R_P),                    intent(in)           :: Dy                     !< Space step in `x` direction.
    character(*),                 intent(in)           :: BC_L                   !< Left boundary condition type.
    character(*),                 intent(in)           :: BC_R                   !< Right boundary condition type.
    type(primitive_compressible), intent(in)           :: initial_state(1:,1:)   !< Initial state of primitive variables.
@@ -168,11 +181,11 @@ contains
    self%riemann_solver_scheme = 'llf'
    if (present(riemann_solver_scheme)) self%riemann_solver_scheme = trim(adjustl(riemann_solver_scheme))
 
+   self%Ng = (self%weno_order + 1) / 2
    if (self%weno_order>1) call wenoof_create(interpolator_type=self%weno_scheme, S=self%Ng, interpolator=self%interpolator)
 
    self%Ni = Ni
    self%Nj = Nj
-   self%Ng = (self%weno_order + 1) / 2
    self%Dx = Dx
    self%Dy = Dy
 
@@ -183,6 +196,9 @@ contains
          self%U(i, j) = primitive_to_conservative_compressible(primitive=initial_state(i, j), eos=eos)
       enddo
    enddo
+
+   self%Nc = size(self%U(1,1)%array(), dim=1)
+   self%No = self%Ni * self%Nj * self%Nc
 
    self%BC_L = BC_L
    self%BC_R = BC_R
@@ -223,8 +239,8 @@ contains
    self%Ni = 0
    self%Nj = 0
    self%Ng = 0
-   self%Dx = 0._R8P
-   self%Dy = 0._R8P
+   self%Dx = 0._R_P
+   self%Dy = 0._R_P
    self%weno_order = 0
    if (allocated(self%weno_scheme)) deallocate(self%weno_scheme)
    if (allocated(self%weno_variables)) deallocate(self%weno_variables)
@@ -241,44 +257,44 @@ contains
    !< Compute the current time step by means of CFL condition.
    class(euler_2d), intent(in) :: self      !< Euler field.
    integer(I4P),    intent(in) :: steps_max !< Maximun number of time steps.
-   real(R8P),       intent(in) :: t_max     !< Maximum integration time.
-   real(R8P),       intent(in) :: t         !< Time.
-   real(R8P),       intent(in) :: CFL       !< CFL value.
-   real(R8P)                   :: Dt        !< Time step.
+   real(R_P),       intent(in) :: t_max     !< Maximum integration time.
+   real(R_P),       intent(in) :: t         !< Time.
+   real(R_P),       intent(in) :: CFL       !< CFL value.
+   real(R_P)                   :: Dt        !< Time step.
    type(vector)                :: u         !< Velocity vector.
-   real(R8P)                   :: a         !< Speed of sound.
-   real(R8P)                   :: vmax      !< Maximum propagation speed of signals.
+   real(R_P)                   :: a         !< Speed of sound.
+   real(R_P)                   :: vmax      !< Maximum propagation speed of signals.
    integer(I4P)                :: i         !< Counter.
    integer(I4P)                :: j         !< Counter.
 
    associate(Ni=>self%Ni, Nj=>self%Nj, Dx=>self%Dx, Dy=>self%Dy)
-      vmax = 0._R8P
+      vmax = 0._R_P
       do j=1, Nj
          do i=1, Ni
             u = self%U(i, j)%velocity()
             a = self%eos%speed_of_sound(density=self%U(i, j)%density, pressure=self%U(i, j)%pressure(eos=self%eos))
-            ! vmax = max(vmax, u%normL2() + a)
             vmax = max(vmax, abs(u.dot.ex) + a)
             vmax = max(vmax, abs(u.dot.ey) + a)
          enddo
       enddo
       Dt = Dx * Dy * CFL / vmax
-      if (steps_max <= 0 .and. t_max > 0._R8P) then
+      if (steps_max <= 0 .and. t_max > 0._R_P) then
          if ((t + Dt) > t_max) Dt = t_max - t
       endif
    endassociate
    endfunction compute_dt
 
-   ! ADT integrand deferred methods
+   ! integrand_object deferred methods
    function dEuler_dt(self, t) result(dState_dt)
    !< Time derivative of Euler field, the residuals function.
    class(euler_2d), intent(in)           :: self                   !< Euler field.
-   real(R8P),       intent(in), optional :: t                      !< Time.
-   class(integrand), allocatable         :: dState_dt              !< Euler field time derivative.
+   real(R_P),       intent(in), optional :: t                      !< Time.
+   real(R_P), allocatable                :: dState_dt(:)           !< Euler field time derivative.
    type(conservative_compressible)       :: F(0:self%Ni,1:self%Nj) !< Fluxes of conservative variables in `x` direction.
    type(conservative_compressible)       :: G(1:self%Ni,0:self%Nj) !< Fluxes of conservative variables in `y` direction.
    integer(I4P)                          :: i                      !< Counter.
    integer(I4P)                          :: j                      !< Counter.
+   integer(I4P)                          :: o1, o2                 !< Counter.
 
    do j=1, self%Nj
       call self%compute_fluxes_convective(conservative=self%U(1:, j), normal=ex, fluxes=F(0:, j))
@@ -286,201 +302,320 @@ contains
    do i=1, self%Ni
       call self%compute_fluxes_convective(conservative=self%U(i, 1:), normal=ey, fluxes=G(i, 0:))
    enddo
-   allocate(euler_2d :: dState_dt)
-   select type(dState_dt)
-   class is(euler_2d)
-      dState_dt = self
-      do j=1, self%Nj
-         do i=1, self%Ni
-             dState_dt%U(i, j) = ((F(i - 1, j) - F(i, j)) / self%Dx) + &
-                                 ((G(i, j - 1) - G(i, j)) / self%Dy)
+   allocate(dState_dt(1:self%No))
+   do j=1, self%Nj
+      do i=1, self%Ni
+         o1 = i + (j - 1) * self%Ni * self%Nc + (i - 1) * (self%Nc - 1)
+         o2 = o1 + self%Nc - 1
+         dState_dt(o1:o2) = ((F(i - 1, j) - F(i, j)) / self%Dx) + &
+                            ((G(i, j - 1) - G(i, j)) / self%Dy)
+      enddo
+   enddo
+   endfunction dEuler_dt
+
+   ! operators
+   function euler_local_error(lhs, rhs) result(error)
+   !< Estimate local truncation error between 2 euler approximations.
+   class(euler_2d),         intent(in) :: lhs   !< Left hand side.
+   class(integrand_object), intent(in) :: rhs   !< Right hand side.
+   real(R_P)                           :: error !< Error estimation.
+
+   error stop 'error: local error is not definite for Euler field!'
+   endfunction euler_local_error
+
+   ! +
+   pure function euler_add_euler(lhs, rhs) result(opr)
+   !< `+` operator.
+   class(euler_2d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R_P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
+   integer(I4P)                        :: j      !< Counter.
+   integer(I4P)                        :: o1, o2 !< Counter.
+
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_2d)
+      do i=1, lhs%Ni
+      enddo
+      do j=1, lhs%Nj
+         do i=1, lhs%Ni
+            o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+            o2 = o1 + lhs%Nc - 1
+            opr(o1:o2) = lhs%U(i, j) + rhs%U(i, j)
          enddo
       enddo
    endselect
-   endfunction dEuler_dt
+   endfunction euler_add_euler
 
-  function euler_local_error(lhs, rhs) result(error)
-  !< Estimate local truncation error between 2 euler approximations.
-  class(euler_2d),  intent(in) :: lhs      !< Left hand side.
-  class(integrand), intent(in) :: rhs      !< Right hand side.
-  real(R8P)                    :: error    !< Error estimation.
+   pure function euler_add_real(lhs, rhs) result(opr)
+   !< `+ real` operator.
+   class(euler_2d),  intent(in) :: lhs     !< Left hand side.
+   real(R_P),        intent(in) :: rhs(1:) !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
 
-  error stop 'error: local error is not definite for Euler field!'
-  endfunction euler_local_error
+   allocate(opr(1:lhs%No))
+   do j=1, lhs%Nj
+      do i=1, lhs%Ni
+         o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+         o2 = o1 + lhs%Nc - 1
+         opr(o1:o2) = lhs%U(i, j) + rhs(o1:o2)
+      enddo
+   enddo
+   endfunction euler_add_real
 
-  function euler_multiply_euler(lhs, rhs) result(opr)
-  !< Multiply an Euler field by another one.
-  class(euler_2d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-  integer(I4P)                  :: j   !< Counter.
+   pure function real_add_euler(lhs, rhs) result(opr)
+   !< `real +` operator.
+   real(R_P),        intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_2d),  intent(in) :: rhs     !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
 
-  allocate(euler_2d :: opr)
-  select type(opr)
-  class is(euler_2d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_2d)
-        do j=1, lhs%Nj
-           do i=1, lhs%Ni
-              opr%U(i, j) = lhs%U(i, j) * rhs%U(i, j)
-           enddo
-        enddo
-     endselect
-  endselect
-  endfunction euler_multiply_euler
+   allocate(opr(1:rhs%No))
+   do j=1, rhs%Nj
+      do i=1, rhs%Ni
+         o1 = i + (j - 1) * rhs%Ni * rhs%Nc + (i - 1) * (rhs%Nc - 1)
+         o2 = o1 + rhs%Nc - 1
+         opr(o1:o2) = lhs(o1:o2) + rhs%U(i, j)
+      enddo
+   enddo
+   endfunction real_add_euler
 
-  function euler_multiply_real(lhs, rhs) result(opr)
-  !< Multiply an Euler field by a real scalar.
-  class(euler_2d), intent(in)   :: lhs !< Left hand side.
-  real(R8P),       intent(in)   :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-  integer(I4P)                  :: j   !< Counter.
+   ! *
+   pure function euler_multiply_euler(lhs, rhs) result(opr)
+   !< `*` operator.
+   class(euler_2d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R_P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
+   integer(I4P)                        :: j      !< Counter.
+   integer(I4P)                        :: o1, o2 !< Counter.
 
-  allocate(euler_2d :: opr)
-  select type(opr)
-  class is(euler_2d)
-     opr = lhs
-     do j=1, lhs%Nj
-        do i=1, lhs%Ni
-           opr%U(i, j) = rhs * lhs%U(i, j)
-        enddo
-     enddo
-  endselect
-  endfunction euler_multiply_real
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_2d)
+      do i=1, lhs%Ni
+      enddo
+      do j=1, lhs%Nj
+         do i=1, lhs%Ni
+            o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+            o2 = o1 + lhs%Nc - 1
+            opr(o1:o2) = lhs%U(i, j) * rhs%U(i, j)
+         enddo
+      enddo
+   endselect
+   endfunction euler_multiply_euler
 
-  function real_multiply_euler(lhs, rhs) result(opr)
-  !< Multiply a real scalar by an Euler field.
-  real(R8P),       intent(in)   :: lhs !< Left hand side.
-  class(euler_2d), intent(in)   :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-  integer(I4P)                  :: j   !< Counter.
+   pure function euler_multiply_real(lhs, rhs) result(opr)
+   !< `* real` operator.
+   class(euler_2d),  intent(in) :: lhs     !< Left hand side.
+   real(R_P),        intent(in) :: rhs(1:) !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
 
-  allocate(euler_2d :: opr)
-  select type(opr)
-  class is(euler_2d)
-     opr = rhs
-     do j=1, rhs%Nj
-        do i=1, rhs%Ni
-           opr%U(i, j) = lhs * rhs%U(i, j)
-        enddo
-     enddo
-  endselect
-  endfunction real_multiply_euler
+   allocate(opr(1:lhs%No))
+   do j=1, lhs%Nj
+      do i=1, lhs%Ni
+         o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+         o2 = o1 + lhs%Nc - 1
+         opr(o1:o2) = lhs%U(i, j) * rhs(o1:o2)
+      enddo
+   enddo
+   endfunction euler_multiply_real
 
-  function add_euler(lhs, rhs) result(opr)
-  !< Add two Euler fields.
-  class(euler_2d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-  integer(I4P)                  :: j   !< Counter.
+   pure function real_multiply_euler(lhs, rhs) result(opr)
+   !< `real *` operator.
+   real(R_P),        intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_2d),  intent(in) :: rhs     !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
 
-  allocate (euler_2d :: opr)
-  select type(opr)
-  class is(euler_2d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_2d)
-        do j=1, lhs%Nj
-           do i=1, lhs%Ni
-              opr%U(i, j) = lhs%U(i, j) + rhs%U(i, j)
-           enddo
-        enddo
-     endselect
-  endselect
-  endfunction add_euler
+   allocate(opr(1:rhs%No))
+   do j=1, rhs%Nj
+      do i=1, rhs%Ni
+         o1 = i + (j - 1) * rhs%Ni * rhs%Nc + (i - 1) * (rhs%Nc - 1)
+         o2 = o1 + rhs%Nc - 1
+         opr(o1:o2) = lhs(o1:o2) * rhs%U(i, j)
+      enddo
+   enddo
+   endfunction real_multiply_euler
 
-  function sub_euler(lhs, rhs) result(opr)
-  !< Subtract two Euler fields.
-  class(euler_2d),  intent(in)  :: lhs !< Left hand side.
-  class(integrand), intent(in)  :: rhs !< Right hand side.
-  class(integrand), allocatable :: opr !< Operator result.
-  integer(I4P)                  :: i   !< Counter.
-  integer(I4P)                  :: j   !< Counter.
+   pure function euler_multiply_real_scalar(lhs, rhs) result(opr)
+   !< `* real_scalar` operator.
+   class(euler_2d),  intent(in) :: lhs    !< Left hand side.
+   real(R_P),        intent(in) :: rhs    !< Right hand side.
+   real(R_P), allocatable       :: opr(:) !< Operator result.
+   integer(I4P)                 :: i      !< Counter.
+   integer(I4P)                 :: j      !< Counter.
+   integer(I4P)                 :: o1, o2 !< Counter.
 
-  allocate (euler_2d :: opr)
-  select type(opr)
-  class is(euler_2d)
-     opr = lhs
-     select type(rhs)
-     class is (euler_2d)
-        do j=1, lhs%Nj
-           do i=1, lhs%Ni
-              opr%U(i, j) = lhs%U(i, j) - rhs%U(i, j)
-           enddo
-        enddo
-     endselect
-  endselect
-  endfunction sub_euler
+   allocate(opr(1:lhs%No))
+   do j=1, lhs%Nj
+      do i=1, lhs%Ni
+         o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+         o2 = o1 + lhs%Nc - 1
+         opr(o1:o2) = lhs%U(i, j) * rhs
+      enddo
+   enddo
+   endfunction euler_multiply_real_scalar
 
-  subroutine euler_assign_euler(lhs, rhs)
-  !< Assign one Euler field to another.
-  class(euler_2d),  intent(inout) :: lhs !< Left hand side.
-  class(integrand), intent(in)    :: rhs !< Right hand side.
-  integer(I4P)                    :: i   !< Counter.
-  integer(I4P)                    :: j   !< Counter.
+   pure function real_scalar_multiply_euler(lhs, rhs) result(opr)
+   !< `real_scalar *` operator.
+   real(R_P),        intent(in) :: lhs    !< Left hand side.
+   class(euler_2d),  intent(in) :: rhs    !< Right hand side.
+   real(R_P), allocatable       :: opr(:) !< Operator result.
+   integer(I4P)                 :: i      !< Counter.
+   integer(I4P)                 :: j      !< Counter.
+   integer(I4P)                 :: o1, o2 !< Counter.
 
-  select type(rhs)
-  class is(euler_2d)
-     lhs%Ni         = rhs%Ni
-     lhs%Nj         = rhs%Nj
-     lhs%Ng         = rhs%Ng
-     lhs%Dx         = rhs%Dx
-     lhs%Dy         = rhs%Dy
-     lhs%eos        = rhs%eos
-     lhs%weno_order = rhs%weno_order
-     if (allocated(rhs%weno_scheme          )) lhs%weno_scheme           = rhs%weno_scheme
-     if (allocated(rhs%weno_variables       )) lhs%weno_variables        = rhs%weno_variables
-     if (allocated(rhs%riemann_solver_scheme)) lhs%riemann_solver_scheme = rhs%riemann_solver_scheme
-     if (allocated(rhs%U)) then
-        if (allocated(lhs%U)) then
-           if ((size(lhs%U, dim=1) /= size(rhs%U, dim=1)) .or. (size(lhs%U, dim=2) /= size(rhs%U, dim=2))) deallocate(lhs%U)
-        endif
-        if (.not.allocated(lhs%U)) allocate(lhs%U(1:lhs%Ni, 1:lhs%Nj))
-        do j=1, lhs%Nj
-           do i=1, lhs%Ni
-              lhs%U(i, j) = rhs%U(i, j)
-           enddo
-        enddo
-     endif
-     if (allocated(rhs%BC_L)) lhs%BC_L = rhs%BC_L
-     if (allocated(rhs%BC_R)) lhs%BC_R = rhs%BC_R
-     if (allocated(rhs%interpolator)) then
-        if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
-        allocate(lhs%interpolator, mold=rhs%interpolator)
-        lhs%interpolator = rhs%interpolator
-     endif
-     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-     if (allocated(rhs%riemann_solver)) then
-        if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver)
-        allocate(lhs%riemann_solver, mold=rhs%riemann_solver)
-        lhs%riemann_solver = rhs%riemann_solver
-     endif
-     if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
-  endselect
-  endsubroutine euler_assign_euler
+   allocate(opr(1:rhs%No))
+   do j=1, rhs%Nj
+      do i=1, rhs%Ni
+         o1 = i + (j - 1) * rhs%Ni * rhs%Nc + (i - 1) * (rhs%Nc - 1)
+         o2 = o1 + rhs%Nc - 1
+         opr(o1:o2) = lhs * rhs%U(i, j)
+      enddo
+   enddo
+   endfunction real_scalar_multiply_euler
 
-  subroutine euler_assign_real(lhs, rhs)
-  !< Assign one real to an Euler field.
-  class(euler_2d), intent(inout) :: lhs !< Left hand side.
-  real(R8P),       intent(in)    :: rhs !< Right hand side.
-  integer(I4P)                   :: i   !< Counter.
-  integer(I4P)                   :: j   !< Counter.
+   ! -
+   pure function euler_sub_euler(lhs, rhs) result(opr)
+   !< `-` operator.
+   class(euler_2d),         intent(in) :: lhs    !< Left hand side.
+   class(integrand_object), intent(in) :: rhs    !< Right hand side.
+   real(R_P), allocatable              :: opr(:) !< Operator result.
+   integer(I4P)                        :: i      !< Counter.
+   integer(I4P)                        :: j      !< Counter.
+   integer(I4P)                        :: o1, o2 !< Counter.
 
-  if (allocated(lhs%U)) then
-     do j=1, lhs%Nj
-        do i=1, lhs%Ni
-           lhs%U(i, j)%density = rhs
-           lhs%U(i, j)%momentum = rhs
-           lhs%U(i, j)%energy = rhs
-        enddo
-     enddo
-  endif
-  endsubroutine euler_assign_real
+   allocate(opr(1:lhs%No))
+   select type(rhs)
+   class is (euler_2d)
+      do i=1, lhs%Ni
+      enddo
+      do j=1, lhs%Nj
+         do i=1, lhs%Ni
+            o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+            o2 = o1 + lhs%Nc - 1
+            opr(o1:o2) = lhs%U(i, j) - rhs%U(i, j)
+         enddo
+      enddo
+   endselect
+   endfunction euler_sub_euler
+
+   pure function euler_sub_real(lhs, rhs) result(opr)
+   !< `- real` operator.
+   class(euler_2d),  intent(in) :: lhs     !< Left hand side.
+   real(R_P),        intent(in) :: rhs(1:) !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
+
+   allocate(opr(1:lhs%No))
+   do j=1, lhs%Nj
+      do i=1, lhs%Ni
+         o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+         o2 = o1 + lhs%Nc - 1
+         opr(o1:o2) = lhs%U(i, j) - rhs(o1:o2)
+      enddo
+   enddo
+   endfunction euler_sub_real
+
+   pure function real_sub_euler(lhs, rhs) result(opr)
+   !< `real -` operator.
+   real(R_P),        intent(in) :: lhs(1:) !< Left hand side.
+   class(euler_2d),  intent(in) :: rhs     !< Right hand side.
+   real(R_P), allocatable       :: opr(:)  !< Operator result.
+   integer(I4P)                 :: i       !< Counter.
+   integer(I4P)                 :: j       !< Counter.
+   integer(I4P)                 :: o1, o2  !< Counter.
+
+   allocate(opr(1:rhs%No))
+   do j=1, rhs%Nj
+      do i=1, rhs%Ni
+         o1 = i + (j - 1) * rhs%Ni * rhs%Nc + (i - 1) * (rhs%Nc - 1)
+         o2 = o1 + rhs%Nc - 1
+         opr(o1:o2) = lhs(o1:o2) - rhs%U(i, j)
+      enddo
+   enddo
+   endfunction real_sub_euler
+
+   ! =
+   pure subroutine euler_assign_euler(lhs, rhs)
+   !< `=` operator.
+   class(euler_2d),         intent(inout) :: lhs !< Left hand side.
+   class(integrand_object), intent(in)    :: rhs !< Right hand side.
+   integer(I4P)                           :: i   !< Counter.
+   integer(I4P)                           :: j   !< Counter.
+
+   select type(rhs)
+   class is(euler_2d)
+      lhs%Ni         = rhs%Ni
+      lhs%Nj         = rhs%Nj
+      lhs%Nc         = rhs%Nc
+      lhs%No         = rhs%No
+      lhs%Ng         = rhs%Ng
+      lhs%Dx         = rhs%Dx
+      lhs%Dy         = rhs%Dy
+      lhs%eos        = rhs%eos
+      lhs%weno_order = rhs%weno_order
+      if (allocated(rhs%weno_scheme          )) lhs%weno_scheme           = rhs%weno_scheme
+      if (allocated(rhs%weno_variables       )) lhs%weno_variables        = rhs%weno_variables
+      if (allocated(rhs%riemann_solver_scheme)) lhs%riemann_solver_scheme = rhs%riemann_solver_scheme
+      if (allocated(rhs%U)) then
+         if (allocated(lhs%U)) then
+            if ((size(lhs%U, dim=1) /= size(rhs%U, dim=1)) .or. (size(lhs%U, dim=2) /= size(rhs%U, dim=2))) deallocate(lhs%U)
+         endif
+         if (.not.allocated(lhs%U)) allocate(lhs%U(1:lhs%Ni, 1:lhs%Nj))
+         do j=1, lhs%Nj
+            do i=1, lhs%Ni
+               lhs%U(i, j) = rhs%U(i, j)
+            enddo
+         enddo
+      endif
+      if (allocated(rhs%BC_L)) lhs%BC_L = rhs%BC_L
+      if (allocated(rhs%BC_R)) lhs%BC_R = rhs%BC_R
+      if (allocated(rhs%interpolator)) then
+         if (allocated(lhs%interpolator)) deallocate(lhs%interpolator)
+         allocate(lhs%interpolator, mold=rhs%interpolator)
+         lhs%interpolator = rhs%interpolator
+      endif
+      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
+      if (allocated(rhs%riemann_solver)) then
+         if (allocated(lhs%riemann_solver)) deallocate(lhs%riemann_solver)
+         allocate(lhs%riemann_solver, mold=rhs%riemann_solver)
+         lhs%riemann_solver = rhs%riemann_solver
+      endif
+      if (associated(rhs%reconstruct_interfaces)) lhs%reconstruct_interfaces => rhs%reconstruct_interfaces
+   endselect
+   endsubroutine euler_assign_euler
+
+   pure subroutine euler_assign_real(lhs, rhs)
+   !< `= real` operator.
+   class(euler_2d), intent(inout) :: lhs     !< Left hand side.
+   real(R_P),       intent(in)    :: rhs(1:) !< Right hand side.
+   integer(I4P)                   :: i       !< Counter.
+   integer(I4P)                   :: j       !< Counter.
+   integer(I4P)                   :: o1, o2  !< Counter.
+
+   do j=1, lhs%Nj
+      do i=1, lhs%Ni
+         o1 = i + (j - 1) * lhs%Ni * lhs%Nc + (i - 1) * (lhs%Nc - 1)
+         o2 = o1 + lhs%Nc - 1
+         lhs%U(i, j) = rhs(o1:o2)
+      enddo
+   enddo
+   endsubroutine euler_assign_real
 
    ! private methods
    subroutine compute_fluxes_convective(self, conservative, normal, fluxes)
@@ -507,13 +642,13 @@ contains
       call self%riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
                                      eos_right=self%eos, state_right=UR(1, i+1), normal=normal, fluxes=fluxes(i))
       ! update fluxes with tangential components
-      if (fluxes(i)%density >= 0._R8P) then
-        tangential = U(i)%velocity() - (U(i)%velocity() .paral. normal)
+      if (fluxes(i)%density >= 0._R_P) then
+         tangential = UR(2, i)%velocity() - (UR(2, i)%velocity() .paral. normal)
       else
-        tangential = U(i+1)%velocity() - (U(i+1)%velocity() .paral. normal)
+         tangential = UR(1, i+1)%velocity() - (UR(1, i+1)%velocity() .paral. normal)
       endif
       fluxes(i)%momentum = fluxes(i)%momentum + (fluxes(i)%density * tangential)
-      fluxes(i)%energy = fluxes(i)%energy + (fluxes(i)%density * (tangential%sq_norm()) * 0.5_R8P)
+      fluxes(i)%energy = fluxes(i)%energy + (fluxes(i)%density * (tangential%sq_norm()) * 0.5_R_P)
    enddo
    endsubroutine compute_fluxes_convective
 
@@ -565,11 +700,11 @@ contains
    type(primitive_compressible)                   :: primitive(1-self%Ng:N+self%Ng)    !< Primitive variables.
    type(primitive_compressible)                   :: r_primitive(1:2, 0:N+1)           !< Reconstructed primitive variables.
    type(primitive_compressible)                   :: Pm(1:2)                           !< Mean of primitive variables.
-   real(R8P)                                      :: LPm(1:3, 1:3, 1:2)                !< Mean left eigenvectors matrix.
-   real(R8P)                                      :: RPm(1:3, 1:3, 1:2)                !< Mean right eigenvectors matrix.
-   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
-   real(R8P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
-   real(R8P)                                      :: buffer(1:3)                       !< Dummy buffer.
+   real(R_P)                                      :: LPm(1:3, 1:3, 1:2)                !< Mean left eigenvectors matrix.
+   real(R_P)                                      :: RPm(1:3, 1:3, 1:2)                !< Mean right eigenvectors matrix.
+   real(R_P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
+   real(R_P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
+   real(R_P)                                      :: buffer(1:3)                       !< Dummy buffer.
    integer(I4P)                                   :: i                                 !< Counter.
    integer(I4P)                                   :: j                                 !< Counter.
    integer(I4P)                                   :: f                                 !< Counter.
@@ -588,7 +723,7 @@ contains
       do i=0, N+1
          ! compute pseudo characteristic variables
          do f=1, 2
-            Pm(f) = 0.5_R8P * (primitive(i+f-2) + primitive(i+f-1))
+            Pm(f) = 0.5_R_P * (primitive(i+f-2) + primitive(i+f-1))
          enddo
          do f=1, 2
             LPm(:, :, f) = Pm(f)%left_eigenvectors(eos=self%eos)
@@ -597,7 +732,7 @@ contains
          do j=i+1-self%Ng, i-1+self%Ng
             do f=1, 2
                do v=1, 3
-                  C(f, j-i, v) = dot_product(LPm(v, :, f), [primitive(j)%density, &
+                  C(f, j-i, v) = dot_product(LPm(v, :, f), [primitive(j)%density,               &
                                                             primitive(j)%velocity .dot. normal, &
                                                             primitive(j)%pressure])
                enddo
@@ -633,9 +768,9 @@ contains
    type(conservative_compressible), intent(in)    :: conservative(1-self%Ng:)          !< Conservative variables.
    type(vector),                    intent(in)    :: normal                            !< Face normal.
    type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)            !< Reconstructed conservative vars.
-   real(R8P), allocatable                         :: U(:)                              !< Serialized conservative variables.
-   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
-   real(R8P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
+   real(R_P), allocatable                         :: U(:)                              !< Serialized conservative variables.
+   real(R_P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
+   real(R_P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
    integer(I4P)                                   :: i                                 !< Counter.
    integer(I4P)                                   :: j                                 !< Counter.
    integer(I4P)                                   :: f                                 !< Counter.
@@ -680,9 +815,9 @@ contains
    type(conservative_compressible), intent(inout) :: r_conservative(1:, 0:)            !< Reconstructed conservative vars.
    type(primitive_compressible)                   :: primitive(1-self%Ng:N+self%Ng)    !< Primitive variables.
    type(primitive_compressible)                   :: r_primitive(1:2, 0:N+1)           !< Reconstructed primitive variables.
-   real(R8P), allocatable                         :: P(:)                              !< Serialized primitive variables.
-   real(R8P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
-   real(R8P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
+   real(R_P), allocatable                         :: P(:)                              !< Serialized primitive variables.
+   real(R_P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
+   real(R_P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
    integer(I4P)                                   :: i                                 !< Counter.
    integer(I4P)                                   :: j                                 !< Counter.
    integer(I4P)                                   :: f                                 !< Counter.
@@ -733,7 +868,7 @@ use foreseer, only : conservative_compressible, primitive_compressible,         
                      conservative_to_primitive_compressible, primitive_to_conservative_compressible, &
                      eos_compressible
 use foreseer_euler_2d, only : euler_2d
-use penf, only : cton, FR8P, I4P, R8P, str
+use penf, only : cton, FR_P, I4P, R_P, str
 use vecfor, only : ex, ey, vector
 
 implicit none
@@ -741,33 +876,33 @@ character(99), allocatable       :: riemann_solver_schemes(:)  !< Riemann Proble
 character(99), allocatable       :: riemann_problems(:)        !< Riemann problems.
 character(99)                    :: weno_scheme                !< WENO scheme.
 integer(I4P)                     :: weno_order                 !< WENO accuracy order.
-real(R8P)                        :: weno_eps                   !< WENO epsilon paramter.
+real(R_P)                        :: weno_eps                   !< WENO epsilon paramter.
 character(99)                    :: weno_variables             !< WENO variables.
 character(99)                    :: rk_scheme                  !< Runge-Kutta scheme.
 type(integrator_runge_kutta_ssp) :: rk_integrator              !< Runge-Kutta integrator.
 type(euler_2d), allocatable      :: rk_stage(:)                !< Runge-Kutta stages.
-real(R8P)                        :: dt                         !< Time step.
-real(R8P)                        :: t                          !< Time.
+real(R_P)                        :: dt                         !< Time step.
+real(R_P)                        :: t                          !< Time.
 integer(I4P)                     :: step                       !< Time steps counter.
 type(euler_2d)                   :: domain                     !< Domain of Euler equations.
-real(R8P)                        :: CFL                        !< CFL value.
+real(R_P)                        :: CFL                        !< CFL value.
 character(3)                     :: BC_L                       !< Left boundary condition type.
 character(3)                     :: BC_R                       !< Right boundary condition type.
 integer(I4P)                     :: Ni                         !< Number of grid cells in `x` direction.
 integer(I4P)                     :: Nj                         !< Number of grid cells in `y` direction.
-real(R8P)                        :: Dx                         !< Space step discretization in `x` direction.
-real(R8P)                        :: Dy                         !< Space step discretization in `x` direction.
-real(R8P), allocatable           :: x(:)                       !< Cell center x-abscissa values.
-real(R8P), allocatable           :: y(:)                       !< Cell center y-abscissa values.
+real(R_P)                        :: Dx                         !< Space step discretization in `x` direction.
+real(R_P)                        :: Dy                         !< Space step discretization in `x` direction.
+real(R_P), allocatable           :: x(:)                       !< Cell center x-abscissa values.
+real(R_P), allocatable           :: y(:)                       !< Cell center y-abscissa values.
 integer(I4P)                     :: steps_max                  !< Maximum number of time steps.
-real(R8P)                        :: t_max                      !< Maximum integration time.
+real(R_P)                        :: t_max                      !< Maximum integration time.
 logical                          :: results                    !< Flag for activating results saving.
 logical                          :: time_serie                 !< Flag for activating time serie-results saving.
 logical                          :: verbose                    !< Flag for activating more verbose output.
 integer(I4P)                     :: output_frequency           !< Output frequency.
 integer(I4P)                     :: s                          !< Schemes counter.
 integer(I4P)                     :: p                          !< Problems counter.
-real(R8P), parameter             :: pi = 4._R8P * atan(1._R8P) !< Pi greek.
+real(R_P), parameter             :: pi = 4._R_P * atan(1._R_P) !< Pi greek.
 
 call parse_command_line_interface
 do s=1, size(riemann_solver_schemes, dim=1)
@@ -807,12 +942,12 @@ contains
 
    call rk_integrator%initialize(scheme=rk_scheme)
    if (allocated(rk_stage)) deallocate(rk_stage) ; allocate(rk_stage(1:rk_integrator%stages))
-   t = 0._R8P
+   t = 0._R_P
    if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
    if (allocated(y)) deallocate(y) ; allocate(y(1:Nj))
    if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni, 1:Nj))
-   Dx = 1._R8P / Ni
-   Dy = 1._R8P / Nj
+   Dx = 1._R_P / Ni
+   Dy = 1._R_P / Nj
    select case(trim(adjustl(riemann_problem)))
    case('kt-1')
       call riemann_problem_kt_1_initial_state(initial_state=initial_state)
@@ -822,11 +957,13 @@ contains
       call riemann_problem_sod_initial_state(initial_state=initial_state)
    case('sod-y')
       call riemann_problem_sod_initial_state(initial_state=initial_state, along_y=.true.)
+   case('uniform-45deg')
+      call riemann_problem_uniform_45deg_initial_state(initial_state=initial_state)
    endselect
    call domain%initialize(Ni=Ni, Nj=Nj, Dx=Dx, Dy=Dy,                           &
                           BC_L=BC_L, BC_R=BC_R,                                 &
                           initial_state=initial_state,                          &
-                          eos=eos_compressible(cp=1040.004_R8P, cv=742.86_R8P), &
+                          eos=eos_compressible(cp=1040.004_R_P, cv=742.86_R_P), &
                           weno_scheme=weno_scheme,                              &
                           weno_order=weno_order,                                &
                           weno_variables=weno_variables,                        &
@@ -846,7 +983,7 @@ contains
                                 "foreseer_test_shock_tube --tserie"])
 
    call cli%add(switch='--p', help='Riemann problem', required=.false., act='store', def='all', &
-                choices='all,kt-1,kt-4,sod-x,sod-y')
+                choices='all,kt-1,kt-4,sod-x,sod-y,uniform-45deg')
    call cli%add(switch='--riemann', help='Riemann Problem solver', required=.false., act='store', def='all', &
                 choices='all,exact,hllc,llf,pvl,roe')
    call cli%add(switch='--Ni', help='Number cells in x direction', required=.false., act='store', def='100')
@@ -886,7 +1023,7 @@ contains
    call cli%get(switch='--fout',           val=output_frequency,      error=error) ; if (error/=0) stop
    call cli%get(switch='--verbose',        val=verbose,               error=error) ; if (error/=0) stop
 
-   if (t_max > 0._R8P) steps_max = 0
+   if (t_max > 0._R_P) steps_max = 0
 
    if (trim(adjustl(riemann_problem))=='all') then
       riemann_problems = ['kt-4']
@@ -914,25 +1051,25 @@ contains
    BC_L = 'TRA'
    BC_R = 'TRA'
    do j=1, Nj
-      y(j) = Dy * j - 0.5_R8P * Dy
+      y(j) = Dy * j - 0.5_R_P * Dy
       do i=1, Ni
-         x(i) = Dx * i - 0.5_R8P * Dx
-         if     (x(i) >= 0.5_R8P .and. y(j) >= 0.5_R8P) then ! state 1
-            initial_state(i, j)%density  = 1._R8P
-            initial_state(i, j)%velocity = 0._R8P * ex + 0._R8P * ey
-            initial_state(i, j)%pressure = 1._R8P
-         elseif (x(i) <  0.5_R8P .and. y(j) >= 0.5_R8P) then ! state 2
-            initial_state(i, j)%density  = 0.5197_R8P
-            initial_state(i, j)%velocity = -0.7259_R8P * ex + 0._R8P * ey
-            initial_state(i, j)%pressure = 0.4_R8P
-         elseif (x(i) <  0.5_R8P .and. y(j) <  0.5_R8P) then ! state 3
-            initial_state(i, j)%density  = 0.1072_R8P
-            initial_state(i, j)%velocity = -0.7259_R8P * ex - 1.4045_R8P * ey
-            initial_state(i, j)%pressure = 0.0439_R8P
-         elseif (x(i) >= 0.5_R8P .and. y(j) <  0.5_R8P) then ! state 4
-            initial_state(i, j)%density  = 0.2579_R8P
-            initial_state(i, j)%velocity = 0._R8P * ex - 1.4045_R8P * ey
-            initial_state(i, j)%pressure = 0.15_R8P
+         x(i) = Dx * i - 0.5_R_P * Dx
+         if     (x(i) >= 0.5_R_P .and. y(j) >= 0.5_R_P) then ! state 1
+            initial_state(i, j)%density  = 1._R_P
+            initial_state(i, j)%velocity = 0._R_P * ex + 0._R_P * ey
+            initial_state(i, j)%pressure = 1._R_P
+         elseif (x(i) <  0.5_R_P .and. y(j) >= 0.5_R_P) then ! state 2
+            initial_state(i, j)%density  = 0.5197_R_P
+            initial_state(i, j)%velocity = -0.7259_R_P * ex + 0._R_P * ey
+            initial_state(i, j)%pressure = 0.4_R_P
+         elseif (x(i) <  0.5_R_P .and. y(j) <  0.5_R_P) then ! state 3
+            initial_state(i, j)%density  = 0.1072_R_P
+            initial_state(i, j)%velocity = -0.7259_R_P * ex - 1.4045_R_P * ey
+            initial_state(i, j)%pressure = 0.0439_R_P
+         elseif (x(i) >= 0.5_R_P .and. y(j) <  0.5_R_P) then ! state 4
+            initial_state(i, j)%density  = 0.2579_R_P
+            initial_state(i, j)%velocity = 0._R_P * ex - 1.4045_R_P * ey
+            initial_state(i, j)%pressure = 0.15_R_P
          endif
       enddo
    enddo
@@ -947,25 +1084,25 @@ contains
    BC_L = 'TRA'
    BC_R = 'TRA'
    do j=1, Nj
-      y(j) = Dy * j - 0.5_R8P * Dy
+      y(j) = Dy * j - 0.5_R_P * Dy
       do i=1, Ni
-         x(i) = Dx * i - 0.5_R8P * Dx
-         if     (x(i) >= 0.5_R8P .and. y(j) >= 0.5_R8P) then ! state 1
-            initial_state(i, j)%density  = 1.1_R8P
-            initial_state(i, j)%velocity = 0._R8P * ex + 0._R8P * ey
-            initial_state(i, j)%pressure = 1.1_R8P
-         elseif (x(i) <  0.5_R8P .and. y(j) >= 0.5_R8P) then ! state 2
-            initial_state(i, j)%density  = 0.5065_R8P
-            initial_state(i, j)%velocity = 0.8939_R8P * ex + 0._R8P * ey
-            initial_state(i, j)%pressure = 0.35_R8P
-         elseif (x(i) <  0.5_R8P .and. y(j) <  0.5_R8P) then ! state 3
-            initial_state(i, j)%density  = 1.1_R8P
-            initial_state(i, j)%velocity = 0.8939_R8P * ex + 0.8939_R8P * ey
-            initial_state(i, j)%pressure = 1.1_R8P
-         elseif (x(i) >= 0.5_R8P .and. y(j) <  0.5_R8P) then ! state 4
-            initial_state(i, j)%density  = 0.5065_R8P
-            initial_state(i, j)%velocity = 0.8939_R8P * ex + 0.8939_R8P * ey
-            initial_state(i, j)%pressure = 0.35_R8P
+         x(i) = Dx * i - 0.5_R_P * Dx
+         if     (x(i) >= 0.5_R_P .and. y(j) >= 0.5_R_P) then ! state 1
+            initial_state(i, j)%density  = 1.1_R_P
+            initial_state(i, j)%velocity = 0._R_P * ex + 0._R_P * ey
+            initial_state(i, j)%pressure = 1.1_R_P
+         elseif (x(i) <  0.5_R_P .and. y(j) >= 0.5_R_P) then ! state 2
+            initial_state(i, j)%density  = 0.5065_R_P
+            initial_state(i, j)%velocity = 0.8939_R_P * ex + 0._R_P * ey
+            initial_state(i, j)%pressure = 0.35_R_P
+         elseif (x(i) <  0.5_R_P .and. y(j) <  0.5_R_P) then ! state 3
+            initial_state(i, j)%density  = 1.1_R_P
+            initial_state(i, j)%velocity = 0.8939_R_P * ex + 0.8939_R_P * ey
+            initial_state(i, j)%pressure = 1.1_R_P
+         elseif (x(i) >= 0.5_R_P .and. y(j) <  0.5_R_P) then ! state 4
+            initial_state(i, j)%density  = 0.5065_R_P
+            initial_state(i, j)%velocity = 0._R_P * ex + 0.8939_R_P * ey
+            initial_state(i, j)%pressure = 0.35_R_P
          endif
       enddo
    enddo
@@ -983,37 +1120,56 @@ contains
    BC_L = 'TRA'
    BC_R = 'TRA'
    do j=1, Nj
-      y(j) = Dy * j - 0.5_R8P * Dy
+      y(j) = Dy * j - 0.5_R_P * Dy
       do i=1, Ni
-         x(i) = Dx * i - 0.5_R8P * Dx
+         x(i) = Dx * i - 0.5_R_P * Dx
          if (along_y_) then
-            if     (y(j) >= 0.5_R8P) then
-               initial_state(i, j)%density  = 0.125_R8P
-               initial_state(i, j)%velocity = 0._R8P
-               initial_state(i, j)%pressure = 0.1_R8P
-            elseif (y(j) <  0.5_R8P) then
-               initial_state(i, j)%density  = 1._R8P
-               initial_state(i, j)%velocity = 0._R8P
-               initial_state(i, j)%pressure = 1._R8P
+            if     (y(j) >= 0.5_R_P) then
+               initial_state(i, j)%density  = 0.125_R_P
+               initial_state(i, j)%velocity = 0._R_P
+               initial_state(i, j)%pressure = 0.1_R_P
+            elseif (y(j) <  0.5_R_P) then
+               initial_state(i, j)%density  = 1._R_P
+               initial_state(i, j)%velocity = 0._R_P
+               initial_state(i, j)%pressure = 1._R_P
             endif
          else
-            if     (x(i) >= 0.5_R8P) then
-               initial_state(i, j)%density  = 0.125_R8P
-               initial_state(i, j)%velocity = 0._R8P
-               initial_state(i, j)%pressure = 0.1_R8P
-            elseif (x(i) <  0.5_R8P) then
-               initial_state(i, j)%density  = 1._R8P
-               initial_state(i, j)%velocity = 0._R8P
-               initial_state(i, j)%pressure = 1._R8P
+            if     (x(i) >= 0.5_R_P) then
+               initial_state(i, j)%density  = 0.125_R_P
+               initial_state(i, j)%velocity = 0._R_P
+               initial_state(i, j)%pressure = 0.1_R_P
+            elseif (x(i) <  0.5_R_P) then
+               initial_state(i, j)%density  = 1._R_P
+               initial_state(i, j)%velocity = 0._R_P
+               initial_state(i, j)%pressure = 1._R_P
             endif
          endif
       enddo
    enddo
    endsubroutine riemann_problem_sod_initial_state
 
+   subroutine riemann_problem_uniform_45deg_initial_state(initial_state)
+   !< Initial state of a uniform flow flowing at 45 deg.
+   type(primitive_compressible), intent(inout) :: initial_state(1:,1:) !< Initial state of primitive variables.
+   integer(I4P)                                :: i                    !< Space counter.
+   integer(I4P)                                :: j                    !< Space counter.
+
+   BC_L = 'TRA'
+   BC_R = 'TRA'
+   do j=1, Nj
+      y(j) = Dy * j - 0.5_R_P * Dy
+      do i=1, Ni
+         x(i) = Dx * i - 0.5_R_P * Dx
+         initial_state(i, j)%density  = 1._R_P
+         initial_state(i, j)%velocity = 1._R_P * ex + 1._R_P * ey
+         initial_state(i, j)%pressure = 1._R_P
+      enddo
+   enddo
+   endsubroutine riemann_problem_uniform_45deg_initial_state
+
    subroutine save_time_serie(t, filename, finish)
    !< Save time-serie results.
-   real(R8P),    intent(in)           :: t         !< Current integration time.
+   real(R_P),    intent(in)           :: t         !< Current integration time.
    character(*), intent(in), optional :: filename  !< Output filename.
    logical,      intent(in), optional :: finish    !< Flag for triggering the file closing.
    integer(I4P), save                 :: tsfile    !< File unit for saving time serie results.
@@ -1030,7 +1186,7 @@ contains
       do j=1, Nj
          do i=1, Ni
             primitive = conservative_to_primitive_compressible(conservative=domain%U(i, j), eos=domain%eos)
-            write(tsfile, '(6'//'('//FR8P//',1X))')x(i), y(j), primitive%density, primitive%velocity%x, primitive%velocity%y, &
+            write(tsfile, '(6'//'('//FR_P//',1X))')x(i), y(j), primitive%density, primitive%velocity%x, primitive%velocity%y, &
                                                    primitive%pressure
          enddo
       enddo
