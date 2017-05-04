@@ -22,8 +22,9 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_exact
    real(R8P) :: tolerance=1.e-10_R8P !< Tolerance on Newton convergence.
    contains
       ! public deferred methods
-      procedure, pass(self) :: initialize !< Initialize solver.
-      procedure, pass(self) :: solve      !< Solve Riemann Problem.
+      procedure, pass(self) :: initialize       !< Initialize solver.
+      procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
+      procedure, pass(self) :: solve            !< Solve Riemann Problem.
 endtype riemann_solver_compressible_exact
 
 contains
@@ -38,6 +39,17 @@ contains
    self%tolerance = cton(config_, knd=1._R8P)
    endsubroutine initialize
 
+   pure subroutine riem_assign_riem(lhs, rhs)
+   !< `=` operator.
+   class(riemann_solver_compressible_exact), intent(inout) :: lhs !< Left hand side.
+   class(riemann_solver_object),             intent(in)    :: rhs !< Right hand side.
+
+   select type(rhs)
+   type is(riemann_solver_compressible_exact)
+      lhs%tolerance = rhs%tolerance
+   endselect
+   endsubroutine riem_assign_riem
+
    pure subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Solve Riemann Problem.
    !<
@@ -49,12 +61,16 @@ contains
    class(conservative_object),               intent(in)    :: state_right     !< Right Riemann state.
    type(vector),                             intent(in)    :: normal          !< Normal (versor) of face where fluxes are given.
    class(conservative_object),               intent(inout) :: fluxes          !< Fluxes of the Riemann Problem solution.
+   type(conservative_compressible)                         :: state_left_  !< Left Riemann state, local variable.
+   type(conservative_compressible)                         :: state_right_ !< Right Riemann state, local variable.
    type(riemann_pattern_compressible_pvl)                  :: pattern         !< Riemann (states) pattern solution.
    real(R8P)                                               :: dum, alfa, beta !< Dummies coefficients.
    real(R8P)                                               :: p_2, p_3        !< Pessure of state 2 and 3.
    real(R8P)                                               :: dp2, dp3        !< Derivate of pessure (dp/du) of state 2 and 3.
 
-   call pattern%initialize(eos_left=eos_left, state_left=state_left, eos_right=eos_right, state_right=state_right, normal=normal)
+   state_left_ = state_left ; call state_left_%normalize(eos=eos_left, normal=normal)
+   state_right_ = state_right ; call state_right_%normalize(eos=eos_right, normal=normal)
+   call pattern%initialize(eos_left=eos_left, state_left=state_left_, eos_right=eos_right, state_right=state_right_, normal=normal)
 
    ! initiale u23 speed
    if (pattern%p_1 < pattern%p_4) then

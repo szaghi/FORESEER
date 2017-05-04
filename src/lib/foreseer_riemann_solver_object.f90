@@ -15,10 +15,13 @@ public :: riemann_solver_object
 type, abstract :: riemann_solver_object
    !< Abstract Riemann Solver.
    contains
+      ! public operators
+      generic :: assignment(=) => riem_assign_riem !< `=` overloading.
       ! public deferred methods
-      procedure(initialize_interface),     pass(self), deferred :: initialize     !< Initialize solver.
-      ! procedure(description_interface),    pass(self), deferred :: description    !< Return pretty-printed object description.
-      procedure(solve_interface),          pass(self), deferred :: solve          !< Solve Riemann Problem.
+      procedure(initialize_interface),       pass(self), deferred :: initialize       !< Initialize solver.
+      ! procedure(description_interface),      pass(self), deferred :: description      !< Return pretty-printed object description.
+      procedure(riem_assign_riem_interface), pass(lhs),  deferred :: riem_assign_riem !< `=` operator.
+      procedure(solve_interface),            pass(self), deferred :: solve            !< Solve Riemann Problem.
 endtype riemann_solver_object
 
 abstract interface
@@ -37,6 +40,13 @@ abstract interface
    character(*),                 intent(in), optional :: prefix !< Prefixing string.
    character(len=:), allocatable                      :: desc   !< Description.
    endfunction description_interface
+
+   pure subroutine riem_assign_riem_interface(lhs, rhs)
+   !< `=` operator.
+   import :: riemann_solver_object
+   class(riemann_solver_object), intent(inout) :: lhs !< Left hand side.
+   class(riemann_solver_object), intent(in)    :: rhs !< Right hand side.
+   endsubroutine riem_assign_riem_interface
 
    subroutine solve_interface(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Solve Riemann Problem.

@@ -23,8 +23,9 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_roe
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    contains
       ! public deferred methods
-      procedure, pass(self) :: initialize !< Initialize solver.
-      procedure, pass(self) :: solve      !< Solve Riemann Problem.
+      procedure, pass(self) :: initialize       !< Initialize solver.
+      procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
+      procedure, pass(self) :: solve            !< Solve Riemann Problem.
 endtype riemann_solver_compressible_roe
 
 contains
@@ -39,6 +40,14 @@ contains
    ! call self%solver_pvl%initialize(config=config_)
    endsubroutine initialize
 
+   pure subroutine riem_assign_riem(lhs, rhs)
+   !< `=` operator.
+   !<
+   !< @TODO Update this if solver is updated.
+   class(riemann_solver_compressible_roe), intent(inout) :: lhs !< Left hand side.
+   class(riemann_solver_object),           intent(in)    :: rhs !< Right hand side.
+   endsubroutine riem_assign_riem
+
    subroutine solve(self, eos_left, state_left, eos_right, state_right, normal, fluxes)
    !< Solve Riemann Problem.
    !<
@@ -50,6 +59,8 @@ contains
    class(conservative_object),             intent(in)    :: state_right   !< Right Riemann state.
    type(vector),                           intent(in)    :: normal        !< Normal (versor) of face where fluxes are given.
    class(conservative_object),             intent(inout) :: fluxes        !< Fluxes of the Riemann Problem solution.
+   type(conservative_compressible)                       :: state_left_   !< Left Riemann state, local variable.
+   type(conservative_compressible)                       :: state_right_  !< Right Riemann state, local variable.
    type(conservative_compressible)                       :: fluxes_left   !< Fluxes of left state.
    type(conservative_compressible)                       :: fluxes_right  !< Fluxes of right state.
    type(riemann_pattern_compressible_pvl)                :: pattern_pvl   !< Riemann (states) PVL pattern solution.
@@ -66,25 +77,27 @@ contains
    real(R8P)                                             :: ls1,      ls3 !< Wawes speeds Roe's estimation
                                                                           !< with entropy fix of Harten-Hyman.
 
-   call pattern_pvl%initialize(eos_left=eos_left, state_left=state_left, &
-                               eos_right=eos_right, state_right=state_right, normal=normal)
+   state_left_ = state_left ; call state_left_%normalize(eos=eos_left, normal=normal)
+   state_right_ = state_right ; call state_right_%normalize(eos=eos_right, normal=normal)
+   call pattern_pvl%initialize(eos_left=eos_left, state_left=state_left_, &
+                               eos_right=eos_right, state_right=state_right_, normal=normal)
    call pattern_pvl%compute
    associate(r_1=>pattern_pvl%r_1, u_1=>pattern_pvl%u_1, p_1=>pattern_pvl%p_1, s_1=>pattern_pvl%s_1, &
              r_4=>pattern_pvl%r_4, u_4=>pattern_pvl%u_4, p_4=>pattern_pvl%p_4, s_4=>pattern_pvl%s_4, &
              s_2=>pattern_pvl%s_2, s_3=>pattern_pvl%s_3, u23=>pattern_pvl%u23)
       select case(minloc([-s_1, s_1 * s_2, s_2 * u23, u23 * s_3, s_3 * s_4, s_4], dim=1))
       case(1)
-         call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes)
+         call state_left_%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes)
       case(2)
-         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left, &
-                                     eos_right=eos_right, state_right=state_right, normal=normal)
+         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left_, &
+                                     eos_right=eos_right, state_right=state_right_, normal=normal)
          call pattern_roe%compute_roe_state(r_roe=r_roe, u_roe=u_roe, a_roe=a_roe, H_roe=H_roe)
          Du  = u_4 - u_1
          Dp  = p_4 - p_1
          aa1 = 0.5_R8P * (Dp - r_roe * a_roe * Du) / (a_roe * a_roe)
          ll1 = u_roe - a_roe
          ls1 = s_1 * (s_2 - ll1) / (s_2 - s_1)
-         call state_left%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
+         call state_left_%compute_fluxes(eos=eos_left, normal=normal, fluxes=fluxes_left)
          select type(fluxes)
          type is(conservative_compressible)
             fluxes%density  = fluxes_left%density  + aa1 * ls1
@@ -92,8 +105,8 @@ contains
             fluxes%energy   = fluxes_left%energy   + aa1 * ls1 * (H_roe - u_roe * a_roe)
          endselect
       case(3, 4)
-         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left, &
-                                     eos_right=eos_right, state_right=state_right, normal=normal)
+         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left_, &
+                                     eos_right=eos_right, state_right=state_right_, normal=normal)
          call pattern_roe%compute_roe_state(r_roe=r_roe, u_roe=u_roe, a_roe=a_roe, H_roe=H_roe)
          Dr  = r_4 - r_1
          Du  = u_4 - u_1
@@ -104,8 +117,8 @@ contains
          ll1 = u_roe - a_roe
          ll2 = u_roe
          ll3 = u_roe + a_roe
-         call state_left%compute_fluxes (eos=eos_left,  normal=normal, fluxes=fluxes_left)
-         call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
+         call state_left_%compute_fluxes (eos=eos_left,  normal=normal, fluxes=fluxes_left)
+         call state_right_%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
          select type(fluxes)
          type is(conservative_compressible)
             fluxes%density  = 0.5_R8P * (fluxes_left%density  + fluxes_right%density  - &
@@ -122,15 +135,15 @@ contains
                                           aa3 * abs(ll3) * (H_roe + u_roe * a_roe)))
          endselect
       case(5)
-         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left, &
-                                     eos_right=eos_right, state_right=state_right, normal=normal)
+         call pattern_roe%initialize(eos_left=eos_left, state_left=state_left_, &
+                                     eos_right=eos_right, state_right=state_right_, normal=normal)
          call pattern_roe%compute_roe_state(r_roe=r_roe, u_roe=u_roe, a_roe=a_roe, H_roe=H_roe)
          Du  = u_4 - u_1
          Dp  = p_4 - p_1
          aa3 = 0.5_R8P * (Dp + r_roe * a_roe * Du) / (a_roe * a_roe)
          ll3 = u_roe + a_roe
          ls3 = s_4 * (ll3 - s_3) / (s_4 - s_3)
-         call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
+         call state_right_%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes_right)
          select type(fluxes)
          type is(conservative_compressible)
             fluxes%density  = fluxes_right%density  + aa3 * ls3
@@ -138,7 +151,7 @@ contains
             fluxes%energy   = fluxes_right%energy   + aa3 * ls3 * (H_roe + u_roe * a_roe)
          endselect
       case(6)
-         call state_right%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes)
+         call state_right_%compute_fluxes(eos=eos_right, normal=normal, fluxes=fluxes)
       endselect
    endassociate
    endsubroutine solve
