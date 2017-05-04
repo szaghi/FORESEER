@@ -22,8 +22,12 @@ logical                               :: are_tests_passed(1)          !< List of
 are_tests_passed = .true.
 
 eos = eos_compressible(cp=1040.004_R8P, cv=742.86_R8P)
-state_left  = conservative_compressible(density=1._R8P,   energy=1._R8P   *eos%internal_energy(density=1._R8P,   pressure=1._R8P) )
-state_right = conservative_compressible(density=0.125_R8P,energy=0.125_R8P*eos%internal_energy(density=0.125_R8P,pressure=0.1_R8P))
+state_left  = conservative_compressible(density=1._R8P,     &
+                                        momentum=ex*0._R8P, &
+                                        energy=1._R8P*eos%internal_energy(density=1._R8P, pressure=1._R8P))
+state_right = conservative_compressible(density=0.125_R8P,  &
+                                        momentum=ex*0._R8P, &
+                                        energy=0.125_R8P*eos%internal_energy(density=0.125_R8P, pressure=0.1_R8P))
 
 print '(A)', 'Test solution with "u23" algorithm:'
 call riemann_solver%initialize(config='u23')
