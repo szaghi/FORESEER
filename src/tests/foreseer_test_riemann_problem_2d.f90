@@ -296,11 +296,11 @@ contains
    integer(I4P)                          :: j                      !< Counter.
    integer(I4P)                          :: o1, o2                 !< Counter.
 
-   do j=1, self%Nj
-      call self%compute_fluxes_convective(conservative=self%U(1:, j), normal=ex, fluxes=F(0:, j))
-   enddo
    do i=1, self%Ni
       call self%compute_fluxes_convective(conservative=self%U(i, 1:), normal=ey, fluxes=G(i, 0:))
+   enddo
+   do j=1, self%Nj
+      call self%compute_fluxes_convective(conservative=self%U(1:, j), normal=ex, fluxes=F(0:, j))
    enddo
    allocate(dState_dt(1:self%No))
    do j=1, self%Nj
@@ -656,6 +656,10 @@ contains
    !< Impose boundary conditions.
    !<
    !< The boundary conditions are imposed on the primitive variables by means of the ghost cells approach.
+   !<
+   !< @note For left BC it is necessary to check if the internal cells, N, are enough with respect the number of
+   !< ghost cells, Ng, while the right BC it is not necessary because right BC are imposed after left BC thus right
+   !< ghost cells eventually take value from left ghost cells that are already updated.
    class(euler_2d),                 intent(in)    :: self          !< Euler field.
    integer(I4P),                    intent(in)    :: N             !< Number of cells.
    type(conservative_compressible), intent(inout) :: U(1-self%Ng:) !< Conservative variables.
@@ -663,15 +667,39 @@ contains
 
    select case(trim(adjustl(self%BC_L)))
       case('TRA') ! trasmissive (non reflective) BC
-         do i=1-self%Ng, 0
-            U(i) = U(-i+1)
-         enddo
+         if (N >= self%Ng) then
+            do i=1-self%Ng, 0
+               U(i) = U(-i+1)
+            enddo
+         else
+            do i=1-N, 0
+               U(i) = U(-i+1)
+            enddo
+            do i=1-self%Ng, 0-N
+               U(i) = U(N)
+            enddo
+         endif
       case('REF') ! reflective BC
          do i=1-self%Ng, 0
-            U(i)%density  =   U(-i+1)%density
-            U(i)%momentum = - U(-i+1)%momentum
-            U(i)%energy   =   U(-i+1)%energy
          enddo
+         if (N >= self%Ng) then
+            do i=1-self%Ng, 0
+               U(i)%density  =   U(-i+1)%density
+               U(i)%momentum = - U(-i+1)%momentum
+               U(i)%energy   =   U(-i+1)%energy
+            enddo
+         else
+            do i=1-N, 0
+               U(i)%density  =   U(-i+1)%density
+               U(i)%momentum = - U(-i+1)%momentum
+               U(i)%energy   =   U(-i+1)%energy
+            enddo
+            do i=1-self%Ng, 0-N
+               U(i)%density  =   U(N)%density
+               U(i)%momentum = - U(N)%momentum
+               U(i)%energy   =   U(N)%energy
+            enddo
+         endif
    endselect
 
    select case(trim(adjustl(self%BC_R)))
@@ -705,6 +733,7 @@ contains
    real(R_P)                                      :: C(1:2, 1-self%Ng:-1+self%Ng, 1:3) !< Pseudo characteristic variables.
    real(R_P)                                      :: CR(1:2, 1:3)                      !< Pseudo characteristic reconst.
    real(R_P)                                      :: buffer(1:3)                       !< Dummy buffer.
+   type(vector)                                   :: tangential                        !< Tangential component of velocity.
    integer(I4P)                                   :: i                                 !< Counter.
    integer(I4P)                                   :: j                                 !< Counter.
    integer(I4P)                                   :: f                                 !< Counter.
@@ -743,12 +772,13 @@ contains
             call self%interpolator%interpolate(stencil=C(:, :, v), interpolation=CR(:, v))
          enddo
          ! trasform back reconstructed pseudo charteristic variables to primitive ones
+         tangential = primitive(i)%velocity - (primitive(i)%velocity .paral. normal)
          do f=1, 2
             do v=1, 3
                buffer(v) = dot_product(RPm(v, :, f), CR(f, :))
             enddo
             r_primitive(f, i)%density  = buffer(1)
-            r_primitive(f, i)%velocity = buffer(2) * normal
+            r_primitive(f, i)%velocity = buffer(2) * normal + tangential
             r_primitive(f, i)%pressure = buffer(3)
          enddo
       enddo
