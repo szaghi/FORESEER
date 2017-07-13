@@ -8,7 +8,7 @@ use flow_conservative_object, only : conservative_object
 use flow_eos_compressible, only : eos_compressible
 use flow_eos_object, only : eos_object
 use foreseer_riemann_pattern_object, only : riemann_pattern_object
-use penf, only : R8P, str, ZeroR8
+use penf, only : R8P, str, ZeroR8P
 use vecfor, only : vector
 
 implicit none
@@ -215,7 +215,7 @@ contains
    real(R8P),                                  intent(out)   :: p_3  !< Pressure of state 3.
 
    ! left wave
-   if (abs(self%u23 - self%u_1) <= ZeroR8) then
+   if (abs(self%u23 - self%u_1) <= ZeroR8P) then
        call compute_post_rarefaction_from_ux(eos=self%eos_1, sgn=-1._R8P,                        &
                                              u0=self%u_1, p0=self%p_1, a0=self%a_1, ux=self%u23, &
                                              rx=self%r_2, px=p_2, ax=self%a_2, s0=self%s_1, sx=self%s_2)
@@ -232,7 +232,7 @@ contains
       endif
    endif
    ! right wave
-   if (abs(self%u23 - self%u_4) <= ZeroR8) then
+   if (abs(self%u23 - self%u_4) <= ZeroR8P) then
        call compute_post_rarefaction_from_ux(eos=self%eos_4, sgn=1._R8P,                         &
                                              u0=self%u_4, p0=self%p_4, a0=self%a_4, ux=self%u23, &
                                              rx=self%r_3, px=p_3, ax=self%a_3, s0=self%S_4, sx=self%S_3)

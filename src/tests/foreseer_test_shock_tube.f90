@@ -101,7 +101,8 @@ type, extends(integrand_object) :: euler_1d
       procedure, pass(self) :: destroy          !< Destroy field.
       procedure, pass(self) :: dt => compute_dt !< Compute the current time step, by means of CFL condition.
       ! ADT integrand deferred methods
-      procedure, pass(self) :: t => dEuler_dt !< Time derivative, residuals function.
+      procedure, pass(self) :: integrand_dimension !< Return integrand dimension.
+      procedure, pass(self) :: t => dEuler_dt      !< Time derivative, residuals function.
       ! operators
       procedure, pass(lhs) :: local_error => euler_local_error !< Operator `||euler-euler||`.
       ! +
@@ -290,6 +291,14 @@ contains
       dState_dt(i + (i-1) * (self%Nc-1) : i + i * (self%Nc-1)) = (F(i - 1) - F(i)) / self%Dx
    enddo
    endfunction dEuler_dt
+
+   pure function integrand_dimension(self)
+   !< return integrand dimension.
+   class(euler_1D), intent(in) :: self                !< Integrand.
+   integer(I4P)                :: integrand_dimension !< Integrand dimension.
+
+   integrand_dimension = self%No
+   endfunction integrand_dimension
 
    ! operators
    function euler_local_error(lhs, rhs) result(error)
@@ -732,7 +741,6 @@ real(R_P)                        :: weno_eps                   !< WENO epsilon p
 character(99)                    :: weno_variables             !< WENO variables.
 character(99)                    :: rk_scheme                  !< Runge-Kutta scheme.
 type(integrator_runge_kutta_ssp) :: rk_integrator              !< Runge-Kutta integrator.
-type(euler_1d), allocatable      :: rk_stage(:)                !< Runge-Kutta stages.
 real(R_P)                        :: dt                         !< Time step.
 real(R_P)                        :: t                          !< Time.
 integer(I4P)                     :: step                       !< Time steps counter.
@@ -768,7 +776,7 @@ do s=1, size(riemann_solver_schemes, dim=1)
       time_loop: do
          step = step + 1
          dt = domain%dt(steps_max=steps_max, t_max=t_max, t=t, CFL=CFL)
-         call rk_integrator%integrate(U=domain, stage=rk_stage, dt=dt, t=t)
+         call rk_integrator%integrate(U=domain, dt=dt, t=t)
          t = t + dt
          if (verbose) print "(A)", 'step = '//str(n=step)//', time step = '//str(n=dt)//', time = '//str(n=t)
          if ((t == t_max).or.(step == steps_max)) exit time_loop
@@ -787,7 +795,6 @@ contains
    integer(I4P)                              :: i                     !< Space counter.
 
    call rk_integrator%initialize(scheme=rk_scheme)
-   if (allocated(rk_stage)) deallocate(rk_stage) ; allocate(rk_stage(1:rk_integrator%stages))
    t = 0._R_P
    if (allocated(x)) deallocate(x) ; allocate(x(1:Ni))
    if (allocated(initial_state)) deallocate(initial_state) ; allocate(initial_state(1:Ni))
