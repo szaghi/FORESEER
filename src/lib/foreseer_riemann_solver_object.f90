@@ -18,6 +18,7 @@ type, abstract :: riemann_solver_object
       ! public operators
       generic :: assignment(=) => riem_assign_riem !< `=` overloading.
       ! public deferred methods
+      procedure(destroy_interface),          pass(self), deferred :: destroy          !< Destroy solver.
       procedure(initialize_interface),       pass(self), deferred :: initialize       !< Initialize solver.
       ! procedure(description_interface),      pass(self), deferred :: description      !< Return pretty-printed object description.
       procedure(riem_assign_riem_interface), pass(lhs),  deferred :: riem_assign_riem !< `=` operator.
@@ -26,6 +27,12 @@ endtype riemann_solver_object
 
 abstract interface
    !< Abstract interfaces of [[riemann_solver_object]] deferred methods.
+   elemental subroutine destroy_interface(self)
+   !< Destroy solver.
+   import :: riemann_solver_object
+   class(riemann_solver_object), intent(inout) :: self !< Solver.
+   endsubroutine destroy_interface
+
    subroutine initialize_interface(self, config)
    !< Initialize solver.
    import :: riemann_solver_object

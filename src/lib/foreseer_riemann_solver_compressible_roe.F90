@@ -23,6 +23,7 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_roe
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    contains
       ! public deferred methods
+      procedure, pass(self) :: destroy          !< Destroy solver.
       procedure, pass(self) :: initialize       !< Initialize solver.
       procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
       procedure, pass(self) :: solve            !< Solve Riemann Problem.
@@ -30,6 +31,14 @@ endtype riemann_solver_compressible_roe
 
 contains
    ! public deferred methods
+   elemental subroutine destroy(self)
+   !< Destroy solver.
+   class(riemann_solver_compressible_roe), intent(inout) :: self  !< Solver.
+   type(riemann_solver_compressible_roe)                 :: fresh !< Fresh solver instance.
+
+   self = fresh
+   endsubroutine destroy
+
    subroutine initialize(self, config)
    !< Initialize solver.
    class(riemann_solver_compressible_roe), intent(inout)        :: self    !< Solver.
