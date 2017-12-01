@@ -14,6 +14,9 @@ use vecfor, only : vector
 implicit none
 private
 public :: riemann_solver_compressible_llf
+public :: riemann_solver_compressible_llf_id
+
+character(3), parameter :: riemann_solver_compressible_llf_id = 'LLF'
 
 type, extends(riemann_solver_object) :: riemann_solver_compressible_llf
    !< Local Lax-Friedrichs (known also as Rusanov) Riemann Solver.

@@ -16,6 +16,9 @@ use vecfor, only : vector
 implicit none
 private
 public :: riemann_solver_compressible_roe
+public :: riemann_solver_compressible_roe_id
+
+character(3), parameter :: riemann_solver_compressible_roe_id = 'ROE'
 
 type, extends(riemann_solver_object) :: riemann_solver_compressible_roe
    !< Roe (with the Harten-Hyman entropy fix) Riemann Solver.

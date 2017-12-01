@@ -14,6 +14,9 @@ use vecfor, only : vector
 implicit none
 private
 public :: riemann_solver_compressible_hllc
+public :: riemann_solver_compressible_hllc_id
+
+character(4), parameter :: riemann_solver_compressible_hllc_id = 'HLLC'
 
 type, extends(riemann_solver_object) :: riemann_solver_compressible_hllc
    !< HLLC (Harten, Lax, Van Leer, Toro) Riemann Solver.

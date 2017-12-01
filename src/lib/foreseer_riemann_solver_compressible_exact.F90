@@ -14,6 +14,9 @@ use vecfor, only : vector
 implicit none
 private
 public :: riemann_solver_compressible_exact
+public :: riemann_solver_compressible_exact_id
+
+character(5), parameter :: riemann_solver_compressible_exact_id = 'EXACT'
 
 type, extends(riemann_solver_object) :: riemann_solver_compressible_exact
    !< Exact (Newton-iterative) Riemann Solver.

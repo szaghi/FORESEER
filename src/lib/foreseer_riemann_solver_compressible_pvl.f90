@@ -14,6 +14,9 @@ use vecfor, only : vector
 implicit none
 private
 public :: riemann_solver_compressible_pvl
+public :: riemann_solver_compressible_pvl_id
+
+character(3), parameter :: riemann_solver_compressible_pvl_id = 'PVL'
 
 type, extends(riemann_solver_object) :: riemann_solver_compressible_pvl
    !< Primitive Variables Linearization based Riemann solver.
