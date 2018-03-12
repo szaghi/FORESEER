@@ -282,10 +282,6 @@ contains
       call self%riemann_solver%solve(eos_left=self%eos,  state_left=UR( 2, i  ), &
                                      eos_right=self%eos, state_right=UR(1, i+1), normal=ex, fluxes=F(i))
    enddo
-   print*, 'cazzo '
-   print*, F(51)%description()
-   print*, F(51)%description()
-   stop
    allocate(dState_dt(1:self%No))
    do i=1, self%Ni
       dState_dt(i + (i-1) * (self%Nc-1) : i + i * (self%Nc-1)) = (F(i - 1) - F(i)) / self%Dx

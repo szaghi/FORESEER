@@ -24,6 +24,7 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_llf
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    contains
       ! public deferred methods
+      procedure, pass(self) :: description      !< Return pretty-printed object description.
       procedure, pass(self) :: destroy          !< Destroy solver.
       procedure, pass(self) :: initialize       !< Initialize solver.
       procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
@@ -32,6 +33,18 @@ endtype riemann_solver_compressible_llf
 
 contains
    ! public deferred methods
+   pure function description(self, prefix) result(desc)
+   !< Return a pretty-formatted description of solver.
+   class(riemann_solver_compressible_llf), intent(in)           :: self    !< Solver object.
+   character(*),                           intent(in), optional :: prefix  !< Prefixing string.
+   character(len=:), allocatable                                :: desc    !< Description.
+   character(len=:), allocatable                                :: prefix_ !< Prefixing string, local variable.
+
+   prefix_ = '' ; if (present(prefix)) prefix_ = prefix
+   desc = ''
+   desc=desc//prefix_//'LLF solver'
+   endfunction description
+
    elemental subroutine destroy(self)
    !< Destroy solver.
    class(riemann_solver_compressible_llf), intent(inout) :: self  !< Solver.
@@ -74,6 +87,8 @@ contains
    type(conservative_compressible)                       :: state_right_ !< Right Riemann state, local variable.
    type(conservative_compressible)                       :: fluxes_left  !< Fluxes of left state.
    type(conservative_compressible)                       :: fluxes_right !< Fluxes of right state.
+   type(conservative_compressible)                       :: states_diff  !< States differences.
+   type(conservative_compressible)                       :: fluxes_sum   !< Fluxes sum.
    real(R8P)                                             :: lmax         !< Maximum wave speed estimation.
 
    state_left_ = state_left ; call state_left_%normalize(eos=eos_left, normal=normal)
@@ -88,7 +103,11 @@ contains
 #ifdef __GFORTRAN__
       fluxes = 0.5_R8P * (fluxes_left + fluxes_right - (lmax * (state_right_ - state_left_)))
 #else
-      error stop 'error: Intel fortran still does not support abstract math!'
+      call states_diff%field_subtract_field_fast(lhs=state_right_, rhs=state_left_)
+      call states_diff%field_multiply_real_scalar_fast(lhs=states_diff, rhs=lmax)
+      call fluxes_sum%field_add_field_fast(lhs=fluxes_left, rhs=fluxes_right)
+      call fluxes%field_subtract_field_fast(lhs=fluxes_sum, rhs=states_diff)
+      call fluxes%field_multiply_real_scalar_fast(lhs=fluxes, rhs=0.5_R8P)
 #endif
    endselect
    endsubroutine solve

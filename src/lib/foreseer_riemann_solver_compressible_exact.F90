@@ -8,7 +8,7 @@ use flow_conservative_object, only : conservative_object
 use flow_eos_object, only : eos_object
 use foreseer_riemann_pattern_compressible_pvl, only : riemann_pattern_compressible_pvl
 use foreseer_riemann_solver_object, only : riemann_solver_object
-use penf, only : cton, R8P
+use penf, only : cton, R8P, str
 use vecfor, only : vector
 
 implicit none
@@ -25,6 +25,7 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_exact
    real(R8P) :: tolerance=1.e-10_R8P !< Tolerance on Newton convergence.
    contains
       ! public deferred methods
+      procedure, pass(self) :: description      !< Return pretty-printed object description.
       procedure, pass(self) :: destroy          !< Destroy solver.
       procedure, pass(self) :: initialize       !< Initialize solver.
       procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
@@ -33,6 +34,20 @@ endtype riemann_solver_compressible_exact
 
 contains
    ! public deferred methods
+   pure function description(self, prefix) result(desc)
+   !< Return a pretty-formatted description of solver.
+   class(riemann_solver_compressible_exact), intent(in)           :: self             !< Solver object.
+   character(*),                             intent(in), optional :: prefix           !< Prefixing string.
+   character(len=:), allocatable                                  :: desc             !< Description.
+   character(len=:), allocatable                                  :: prefix_          !< Prefixing string, local variable.
+   character(len=1), parameter                                    :: NL=new_line('a') !< New line character.
+
+   prefix_ = '' ; if (present(prefix)) prefix_ = prefix
+   desc = ''
+   desc=desc//prefix_//'Exact iterative solver'//NL
+   desc=desc//prefix_//'  tolerance : '//trim(str(self%tolerance))
+   endfunction description
+
    elemental subroutine destroy(self)
    !< Destroy solver.
    class(riemann_solver_compressible_exact), intent(inout) :: self  !< Solver.

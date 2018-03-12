@@ -20,7 +20,7 @@ type, abstract :: riemann_solver_object
       ! public deferred methods
       procedure(destroy_interface),          pass(self), deferred :: destroy          !< Destroy solver.
       procedure(initialize_interface),       pass(self), deferred :: initialize       !< Initialize solver.
-      ! procedure(description_interface),      pass(self), deferred :: description      !< Return pretty-printed object description.
+      procedure(description_interface),      pass(self), deferred :: description      !< Return pretty-printed object description.
       procedure(riem_assign_riem_interface), pass(lhs),  deferred :: riem_assign_riem !< `=` operator.
       procedure(solve_interface),            pass(self), deferred :: solve            !< Solve Riemann Problem.
 endtype riemann_solver_object

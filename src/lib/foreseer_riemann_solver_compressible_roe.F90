@@ -26,6 +26,7 @@ type, extends(riemann_solver_object) :: riemann_solver_compressible_roe
    !< @note This is the implemention for [[conservative_compressible]] Riemann states.
    contains
       ! public deferred methods
+      procedure, pass(self) :: description      !< Return pretty-printed object description.
       procedure, pass(self) :: destroy          !< Destroy solver.
       procedure, pass(self) :: initialize       !< Initialize solver.
       procedure, pass(lhs)  :: riem_assign_riem !< `=` operator.
@@ -34,6 +35,18 @@ endtype riemann_solver_compressible_roe
 
 contains
    ! public deferred methods
+   pure function description(self, prefix) result(desc)
+   !< Return a pretty-formatted description of solver.
+   class(riemann_solver_compressible_roe), intent(in)           :: self    !< Solver object.
+   character(*),                           intent(in), optional :: prefix  !< Prefixing string.
+   character(len=:), allocatable                                :: desc    !< Description.
+   character(len=:), allocatable                                :: prefix_ !< Prefixing string, local variable.
+
+   prefix_ = '' ; if (present(prefix)) prefix_ = prefix
+   desc = ''
+   desc=desc//prefix_//'Roe solver'
+   endfunction description
+
    elemental subroutine destroy(self)
    !< Destroy solver.
    class(riemann_solver_compressible_roe), intent(inout) :: self  !< Solver.
