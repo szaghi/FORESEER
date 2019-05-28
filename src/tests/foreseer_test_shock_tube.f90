@@ -97,6 +97,7 @@ type, extends(integrand_object) :: euler_1d
                                                    reconstruct_interfaces_characteristic !< Reconstruct interface states.
    contains
       ! auxiliary methods
+      procedure, pass(self) :: description      !< Return integrand description.
       procedure, pass(self) :: initialize       !< Initialize field.
       procedure, pass(self) :: destroy          !< Destroy field.
       procedure, pass(self) :: dt => compute_dt !< Compute the current time step, by means of CFL condition.
@@ -263,6 +264,18 @@ contains
    endfunction compute_dt
 
    ! integrand_object deferred methods
+   pure function description(self, prefix) result(desc)
+   !< Return integrand descritpion.
+   class(euler_1D),  intent(in)           :: self    !< Integrand.
+   character(*),     intent(in), optional :: prefix  !< Prefixing string.
+   character(len=:), allocatable          :: desc    !< Description.
+   character(len=:), allocatable          :: prefix_ !< Prefixing string, local variable.
+
+   prefix_ = ''
+   if (present(prefix)) prefix_ = prefix
+   desc = prefix_//'shock tube simulation'
+   endfunction description
+
    function dEuler_dt(self, t) result(dState_dt)
    !< Time derivative of Euler field, the residuals function.
    class(euler_1d), intent(in)           :: self                         !< Euler field.

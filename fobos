@@ -17,11 +17,14 @@ $DEBUG_INT   = -O0 -debug all -check all -warn all -extend-source 132 -traceback
 $DEBUG_PGI   = -C -g -gopt -Mchkfpstk -Mchkptr -Mchkstk -Mcoff -traceback
 $OPTIMIZE    = -O3
 $EXDIRS      = quarantena/
+               BeFoR64/src/tests/
                PENF/src/tests/
                FACE/src/tests/ FACE/src/third_party/
+               FiNeR/src/tests/
                FLAP/src/tests/ FLAP/src/third_party/
                FLOw/src/tests/ FLOw/src/third_party/
                FOODIE/src/tests/ FOODIE/src/third_party/
+               StringiFor/src/tests/
                VecFor/src/tests/ VecFor/src/third_party/
                WenOOF/src/tests/ WenOOF/src/third_party/
 
